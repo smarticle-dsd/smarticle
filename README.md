@@ -7,5 +7,5 @@ Project made for the Distributed Software Development course at Fakultet elektro
 ### Team members
 
 - Ivan Vlahov
-
+- Sanjay Shivakumar
 Copyright © 2022 Smarticle
