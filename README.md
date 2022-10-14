@@ -10,6 +10,7 @@ Project made for the Distributed Software Development course at Fakultet elektro
 - Sanjay Shivakumar
 - Noemi Huang
 - Dario Novinc
+- Nika Medić
 
 
 Copyright © 2022 Smarticle
