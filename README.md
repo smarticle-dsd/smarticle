@@ -11,6 +11,7 @@ Project made for the Distributed Software Development course at Fakultet elektro
 - Noemi Huang
 - Dario Novinc
 - Nika Medić
+- Sairaghav Venkataraman
 
 
 Copyright © 2022 Smarticle
