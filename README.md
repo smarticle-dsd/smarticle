@@ -14,4 +14,4 @@ Project made for the Distributed Software Development course at Fakultet elektro
 - Sairaghav Venkataraman
 
 
-Copyright © 2022 Smarticle
+Copyright © 2022 Smarticle | PoliMi, FER
