@@ -1,0 +1,29 @@
+:root {
+  --sa-primary-color-1: #a7f500;
+  --sa-primary-color-2: #99e000;
+  --sa-primary-color-3: #8bcc00;
+  --sa-primary-color-4: #7fb800;
+
+  --sa-neutral-color-1: #ffffff;
+  --sa-neutral-color-2: #f3f9ef;
+  --sa-neutral-color-3: #9fbbaa;
+  --sa-neutral-color-4: #54635b;
+  --sa-neutral-color-5: #1c211e;
+
+  --sa-success-color-1: #99e000;
+  --sa-success-color-2: #8bcc00;
+  --sa-error-color-1: #f78464;
+  --sa-error-color-2: #f46036;
+  --sa-warning-color-1: #e9cf72;
+  --sa-warning-color-2: #e2c044;
+}
+
+/* PLOP_INJECT_IMPORT */
+.sa-error404-page {
+  --sa-error404-page-background-color: var(--sa-neutral-color-2);
+}
+
+.sa-red-circle {
+  --sa-red-circle-background-color: var(--sa-error-color-2);
+  --sa-red-circle-text-color: var(--sa-neutral-color-1);
+}

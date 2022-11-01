@@ -1,0 +1,36 @@
+import React, { useMemo, FC } from 'react';
+import cs from 'classnames';
+
+import { {{pascalCase componentName}}Props } from './{{pascalCase componentName}}.types';
+
+const {{pascalCase componentName}}: FC<{{pascalCase componentName}}Props> = ({
+  domID = '{{kebabCase componentName}}',
+  dataTestId = 'test-{{kebabCase componentName}}',
+  className,
+}): JSX.Element => {
+  const domIDs = useMemo(
+    () => ({
+      root: domID,
+    }),
+    [domID],
+  );
+
+  const dataTestIDs = useMemo(
+    () => ({
+      root: dataTestId,
+    }),
+    [dataTestId],
+  );
+
+  return (
+    <div
+      id={domIDs.root}
+      className={cs('sa-{{kebabCase componentName}}', className)}
+      data-testid={dataTestIDs.root}
+    >
+      <div>{{pascalCase componentName}}</div>
+    </div>
+  );
+};
+
+export default {{pascalCase componentName}};
