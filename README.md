@@ -1,6 +1,6 @@
 # Smarticle
 
-Smarticle - helping researchers focus on research. 
+Smarticle - helping researchers focus on research.
 
 Project made for the Distributed Software Development course at Fakultet elektrotehnike i računarstva, Croatia / Politecnico di Milano, Italy
 
@@ -12,7 +12,6 @@ Project made for the Distributed Software Development course at Fakultet elektro
 - Dario Novinc
 - Nika Medić
 - Sairaghav Venkataraman
-
 
 Copyright © 2022 Smarticle | PoliMi, FER
 
@@ -33,6 +32,14 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
+
+### `npm run lint`
+
+Formats the code with [Prettier](https://prettier.io/) and analyzes it with [ESLint](https://eslint.org/).
+
+### `npm run lint:fix`
+
+Run this to format the code and potentially fix errors.
 
 ### `npm run generate`
 
