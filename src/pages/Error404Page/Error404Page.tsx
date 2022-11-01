@@ -13,14 +13,14 @@ const Error404Page: FC<Error404PageProps> = ({
     () => ({
       root: domID,
     }),
-    [domID]
+    [domID],
   );
 
   const dataTestIDs = useMemo(
     () => ({
       root: dataTestId,
     }),
-    [dataTestId]
+    [dataTestId],
   );
 
   return (

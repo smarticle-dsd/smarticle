@@ -13,14 +13,14 @@ const RedCircle: FC<RedCircleProps> = ({
     () => ({
       root: domID,
     }),
-    [domID]
+    [domID],
   );
 
   const dataTestIDs = useMemo(
     () => ({
       root: dataTestId,
     }),
-    [dataTestId]
+    [dataTestId],
   );
 
   return (
