@@ -1,10 +1,14 @@
-export type
-{{pascalCase componentName}}Props = { /** * Id prefix for DOM elements inside
-{{pascalCase componentName}}
-component */ domID?: string; /** * Test prefix for `data-testid` attribute that
-will be appended to DOM elements inside
-{{pascalCase componentName}}
-component */ dataTestId?: string; /** * className that is added to the root
-element of the
-{{pascalCase componentName}}
-*/ className?: string; };
+export type {{pascalCase componentName}}Props = {
+  /**
+   * Id prefix for DOM elements inside {{pascalCase componentName}} component
+   */
+  domID?: string;
+  /**
+   * Test prefix for `data-testid` attribute that will be appended to DOM elements inside {{pascalCase componentName}} component
+   */
+  dataTestId?: string;
+  /**
+   * className that is added to the root element of the {{pascalCase componentName}}
+   */
+  className?: string;
+};

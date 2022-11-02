@@ -15,7 +15,10 @@
         {
           "category": "function",
           "resourceName": "getPaperInfo",
-          "attributes": ["Name", "Arn"]
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     }
