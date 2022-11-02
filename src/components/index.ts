@@ -1,2 +1,2 @@
 /* PLOP_INJECT_IMPORT */
-export * from './RedCircle';
+export * from "./RedCircle";

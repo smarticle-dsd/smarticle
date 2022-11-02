@@ -23,7 +23,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "generate": "plop"
+    "generate": "plop",
+    "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
+    "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -44,6 +47,14 @@
     ]
   },
   "devDependencies": {
-    "plop": "^3.1.1"
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.10",
+    "plop": "^3.1.1",
+    "prettier": "^2.7.1",
+    "husky": "^8.0.0"
   }
 }
