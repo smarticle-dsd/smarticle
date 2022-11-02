@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-smarticle-dev-101233-authRole",
+      "UnauthRoleArn": "arn:aws:iam::080302845788:role/amplify-smarticle-dev-101233-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::080302845788:role/amplify-smarticle-dev-101233-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-smarticle-dev-101233-deployment",
+      "UnauthRoleName": "amplify-smarticle-dev-101233-unauthRole",
+      "StackName": "amplify-smarticle-dev-101233",
+      "StackId": "arn:aws:cloudformation:eu-central-1:080302845788:stack/amplify-smarticle-dev-101233/7e070ac0-5a8e-11ed-8f26-0a5015a63bb8",
+      "AmplifyAppId": "d1j4qkxyo27uiy"
+    },
+    "categories": {
+      "function": {
+        "getPaperInfo": {
+          "deploymentBucketName": "amplify-smarticle-dev-101233-deployment",
+          "s3Key": "amplify-builds/getPaperInfo-6a4f465549414b397467-build.zip"
+        }
+      },
+      "api": {
+        "backend": {}
+      }
+    }
+  }
+}
