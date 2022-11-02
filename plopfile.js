@@ -57,7 +57,7 @@ module.exports = (plop) => {
         type: "append",
         path: "src/{{componentType}}/index.ts",
         pattern: "/* PLOP_INJECT_IMPORT */",
-        template: "export * from './{{pascalCase componentName}}';",
+        template: 'export * from "./{{pascalCase componentName}}";',
       },
     ],
   });

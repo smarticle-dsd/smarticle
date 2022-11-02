@@ -1,11 +1,11 @@
-import React, { useMemo, FC } from 'react';
-import cs from 'classnames';
+import React, { useMemo, FC } from "react";
+import cs from "classnames";
 
-import { {{pascalCase componentName}}Props } from './{{pascalCase componentName}}.types';
+import { {{pascalCase componentName}}Props } from "./{{pascalCase componentName}}.types";
 
 const {{pascalCase componentName}}: FC<{{pascalCase componentName}}Props> = ({
-  domID = '{{kebabCase componentName}}',
-  dataTestId = 'test-{{kebabCase componentName}}',
+  domID = "{{kebabCase componentName}}",
+  dataTestId = "test-{{kebabCase componentName}}",
   className,
 }): JSX.Element => {
   const domIDs = useMemo(
@@ -25,7 +25,7 @@ const {{pascalCase componentName}}: FC<{{pascalCase componentName}}Props> = ({
   return (
     <div
       id={domIDs.root}
-      className={cs('sa-{{kebabCase componentName}}', className)}
+      className={cs("sa-{{kebabCase componentName}}", className)}
       data-testid={dataTestIDs.root}
     >
       <div>{{pascalCase componentName}}</div>
