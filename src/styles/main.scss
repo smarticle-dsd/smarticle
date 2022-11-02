@@ -3,5 +3,8 @@
 @import "./theme/typography.scss";
 
 /* PLOP_INJECT_IMPORT */
+@import "../pages/HomePage/HomePage.scss";
+@import "../pages/AboutPage/AboutPage.scss";
+@import "../pages/PdfViewerPage/PdfViewerPage.scss";
 @import "../pages/Error404Page/Error404Page.scss";
 @import "../components/RedCircle/RedCircle.scss";
