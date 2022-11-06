@@ -26,7 +26,7 @@
     "eject": "react-scripts eject",
     "generate": "plop",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
-    "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
+    "lint:fix": "eslint --fix src/**/*.{js,jsx,ts,tsx,json}",
     "prepare": "husky install"
   },
   "eslintConfig": {
@@ -54,6 +54,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^8.0.0",
     "plop": "^3.1.1",
     "prettier": "^2.7.1"
