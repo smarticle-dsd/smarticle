@@ -26,7 +26,7 @@
     "eject": "react-scripts eject",
     "generate": "plop",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
-    "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
+    "lint:fix": "eslint --fix src/**/*.{js,jsx,ts,tsx,json}",
     "prepare": "husky install"
   },
   "eslintConfig": {
