@@ -2,7 +2,6 @@ import React, { useMemo, FC } from "react";
 import cs from "classnames";
 
 import { AboutPageProps } from "./AboutPage.types";
-import { Header } from "../../components";
 
 const AboutPage: FC<AboutPageProps> = ({
   domID = "about-page",
@@ -29,10 +28,7 @@ const AboutPage: FC<AboutPageProps> = ({
       className={cs("sa-about-page", className)}
       data-testid={dataTestIDs.root}
     >
-      <div>
-        <Header />
-        About Page
-      </div>
+      <div>About Page</div>
     </div>
   );
 };

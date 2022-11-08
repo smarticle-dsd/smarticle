@@ -33,13 +33,11 @@ const Header: FC<HeaderProps> = ({
         <div className={cs("logo", className)}>
           <Link to="/" className={cs("brand", className)}>
             <img src={myLogo} />
-            <span className={cs("brand-name", className)}>smarticle</span>
+            <div className={cs("brand-name", className)}>smarticle</div>
           </Link>
         </div>
-        <div className={cs("nav-wrapper", className)}>
-          <div className={cs("navigation", className)}>
-            <Link to="/about">About</Link>
-          </div>
+        <div className={cs("navigation", className)}>
+          <Link to="/about">About</Link>
         </div>
       </nav>
     </div>

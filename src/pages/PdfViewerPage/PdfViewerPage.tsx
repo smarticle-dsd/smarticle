@@ -2,7 +2,6 @@ import React, { useMemo, FC } from "react";
 import cs from "classnames";
 
 import { PdfViewerPageProps } from "./PdfViewerPage.types";
-import { Header } from "../../components";
 
 const PdfViewerPage: FC<PdfViewerPageProps> = ({
   domID = "pdf-viewer-page",
@@ -29,10 +28,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
       className={cs("sa-pdf-viewer-page", className)}
       data-testid={dataTestIDs.root}
     >
-      <div>
-        <Header />
-        Pdf Viewer Page
-      </div>
+      <div>Pdf Viewer Page</div>
     </div>
   );
 };

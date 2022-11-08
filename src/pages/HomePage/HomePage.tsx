@@ -2,7 +2,6 @@ import React, { useMemo, FC } from "react";
 import cs from "classnames";
 
 import { HomePageProps } from "./HomePage.types";
-import { Header } from "../../components";
 
 const HomePage: FC<HomePageProps> = ({
   domID = "home-page",
@@ -29,10 +28,7 @@ const HomePage: FC<HomePageProps> = ({
       className={cs("sa-home-page", className)}
       data-testid={dataTestIDs.root}
     >
-      <div>
-        <Header />
-        HomePage
-      </div>
+      <div>HomePage</div>
     </div>
   );
 };
