@@ -1,0 +1,52 @@
+.sa-header{
+  background-color: var(--sa-header-background-color);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  .header-wrapper {
+    
+    
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    font-size: 15px;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    color: #fff;
+  
+    .logo {
+    padding: 5px 5px 5px 5px ;
+    margin-left: 3%;
+    .brand {
+    
+        img{
+          width: 120px;
+          height: auto;
+          text-align: center;
+
+        }
+
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  
+    .nav-wrapper {
+      margin-right: 5%;
+
+      .navigation,
+      .navigation a,
+      .navigation a:hover,
+      .navigation a:focus {
+        color: #000;
+        padding: 5px 10px;
+        text-decoration: none;
+        @include typographyMediumS;
+
+      }
+    }
+  }
+
+}
+
+  
