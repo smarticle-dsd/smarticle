@@ -24,7 +24,10 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier", "unused-imports"],
   "rules": {
-    "@typescript-eslint/no-empty-function": ["error", { "allow": ["methods", "arrowFunctions"] }],
+    "@typescript-eslint/no-empty-function": [
+      "error",
+      { "allow": ["methods", "arrowFunctions"] }
+    ],
     "@typescript-eslint/no-unused-vars": ["error"],
     "@typescript-eslint/no-explicit-any": ["warn"],
     "no-console": ["warn"],

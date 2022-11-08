@@ -1,7 +1,7 @@
 import React, { useMemo, FC } from "react";
 import cs from "classnames";
 import { Link } from "react-router-dom";
-import myLogo from './logo.png';
+import myLogo from "./logo.png";
 import { HeaderProps } from "./Header.types";
 
 const Header: FC<HeaderProps> = ({
@@ -30,21 +30,18 @@ const Header: FC<HeaderProps> = ({
       data-testid={dataTestIDs.root}
     >
       <nav className={cs("header-wrapper", className)}>
-      <div className={cs("logo", className)}>
-        <Link to="/" className={cs("brand", className)}>
-        <img src={myLogo} /> 
-        <span className={cs("brand-name", className)}>smarticle</span>
-        </Link>
-      </div>
-      <div className={cs("nav-wrapper", className)}>
-        <div className={cs("navigation", className)}>
-          <Link to="/about">
-            About
+        <div className={cs("logo", className)}>
+          <Link to="/" className={cs("brand", className)}>
+            <img src={myLogo} />
+            <span className={cs("brand-name", className)}>smarticle</span>
           </Link>
-      
         </div>
-      </div>
-    </nav>
+        <div className={cs("nav-wrapper", className)}>
+          <div className={cs("navigation", className)}>
+            <Link to="/about">About</Link>
+          </div>
+        </div>
+      </nav>
     </div>
   );
 };

@@ -29,12 +29,10 @@ const HomePage: FC<HomePageProps> = ({
       className={cs("sa-home-page", className)}
       data-testid={dataTestIDs.root}
     >
-      
       <div>
-      <Header/>
+        <Header />
         HomePage
-        </div>
-
+      </div>
     </div>
   );
 };

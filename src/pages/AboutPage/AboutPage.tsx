@@ -4,7 +4,6 @@ import cs from "classnames";
 import { AboutPageProps } from "./AboutPage.types";
 import { Header } from "../../components";
 
-
 const AboutPage: FC<AboutPageProps> = ({
   domID = "about-page",
   dataTestId = "test-about-page",
@@ -31,9 +30,9 @@ const AboutPage: FC<AboutPageProps> = ({
       data-testid={dataTestIDs.root}
     >
       <div>
-        <Header/>
+        <Header />
         About Page
-        </div>
+      </div>
     </div>
   );
 };

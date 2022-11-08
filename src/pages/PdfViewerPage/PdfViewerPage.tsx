@@ -4,7 +4,6 @@ import cs from "classnames";
 import { PdfViewerPageProps } from "./PdfViewerPage.types";
 import { Header } from "../../components";
 
-
 const PdfViewerPage: FC<PdfViewerPageProps> = ({
   domID = "pdf-viewer-page",
   dataTestId = "test-pdf-viewer-page",
@@ -31,9 +30,9 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
       data-testid={dataTestIDs.root}
     >
       <div>
-        <Header/>
+        <Header />
         Pdf Viewer Page
-        </div>
+      </div>
     </div>
   );
 };

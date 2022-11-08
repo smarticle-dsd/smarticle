@@ -1,10 +1,8 @@
-.sa-header{
+.sa-header {
   background-color: var(--sa-header-background-color);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   .header-wrapper {
-    
-    
     display: flex;
     justify-content: space-between;
     position: relative;
@@ -13,29 +11,27 @@
     text-align: center;
     align-items: center;
 
-  
     .logo {
-    padding: 5px 5px 5px 5px ;
-    margin-left: 3%;
-    .brand {
-      text-decoration: none;
-      display: flex;
+      padding: 5px 5px 5px 5px;
+      margin-left: 3%;
+      .brand {
+        text-decoration: none;
+        display: flex;
 
-          img{
+        img {
           width: 35px;
-          height: auto;        
+          height: auto;
         }
-        
-        .brand-name{
+
+        .brand-name {
           display: flex;
           color: #000;
           @include typographyMediumL;
           padding-left: 5%;
-        }    
-        
+        }
       }
     }
-  
+
     .nav-wrapper {
       margin-right: 5%;
 
@@ -47,11 +43,7 @@
         padding: 5px 10px;
         text-decoration: none;
         @include typographyMediumS;
-
       }
     }
   }
-
 }
-
-  
