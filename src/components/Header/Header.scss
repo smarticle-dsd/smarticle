@@ -1,44 +1,45 @@
 .sa-header {
   background-color: var(--sa-header-background-color);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  height: 64px;
   padding-left: 128px;
   padding-right: 128px;
+
   .header-wrapper {
+    height: 64px;
     display: flex;
     justify-content: space-between;
-    position: relative;
+    align-items: center;
 
     .logo {
-      position: relative;
-      top: 13px;
-
       .brand {
         text-decoration: none;
         display: flex;
+        align-items: center;
+
         img {
           width: 32px;
-          height: auto;
+          height: 32px;
         }
 
         .brand-name {
-          color: var(--sa-neutral-color-5);
           @include typographyBoldXl;
+          color: var(--sa-neutral-color-5);
           padding-left: 16px;
         }
       }
     }
 
     .navigation {
-      position: relative;
-      top: 23px;
-
       a,
-      a:hover,
-      a:focus {
-        color: var(--sa-neutral-color-5);
+      a:focus,
+      a:active {
         @include typographyMediumS;
+        color: var(--sa-neutral-color-5);
         text-decoration: none;
+      }
+
+      a:hover:not(:active) {
+        text-decoration: underline;
       }
     }
   }
