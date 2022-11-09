@@ -33,8 +33,8 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
   const container = document.getElementById("container");
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [pdfRef, setPdfRef] = useState<any>();
-  // const [currentPage, setCurrentPage] = useState<number>(1);
+  const [pdfRef, setPdfRef] = useState<any>(null);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const url = "test3.pdf";
 
   pdfjs.GlobalWorkerOptions.workerSrc = require("pdfjs-dist/build/pdf.worker.entry");
@@ -43,6 +43,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
     (pageNum: number, pdf = pdfRef) => {
       pdf &&
         pdf.getPage(pageNum).then((page: any) => {
+          setCurrentPage(pageNum);
           const div = document.createElement("div");
           div.setAttribute("id", "page-" + (page.pageIndex + 1));
           div.setAttribute("style", "position: relative");
@@ -83,7 +84,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
           // });
         });
     },
-    [pdfRef],
+    [currentPage],
   );
 
   const renderPages = useCallback(
@@ -97,8 +98,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
 
   useEffect(() => {
     renderPages(pdfRef);
-    //renderPage(pdfRef?.numPages, pdfRef);
-  }, [pdfRef, renderPages]);
+  }, [pdfRef]);
 
   useEffect(() => {
     const loadingTask = pdfjs.getDocument(url);
