@@ -41,8 +41,10 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
     (pageNum: number, pdf = pdfRef) => {
       pdf &&
         pdf.getPage(pageNum).then((page: any) => {
-          const viewport = page.getViewport({ scale: 1.5 });
+          const viewport = page.getViewport({ scale: 1.5, rotation: 0 });
           const canvas = canvasRef.current;
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
           const renderContext = {
             canvasContext: canvas?.getContext("2d"),
             viewport: viewport,
