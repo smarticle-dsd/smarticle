@@ -25,6 +25,25 @@
 }
 
 .sa-home-page {
+  --sa-home-page-background-color: var(--sa-neutral-color-1);
+  --sa-home-page-button-color: var(--sa-primary-color-3);
+  --sa-home-page-button-text-color: var(--sa-neutral-color-1);
+  --sa-home-page-welcome-text-color: var(--sa-neutral-color-5);
+  --sa-home-page-slogan-text-color: var(--sa-primary-color-4);
+  --sa-home-page-getstart-text-color: var(--sa-neutral-color-5);
+  --sa-home-page-description-background-color: var(--sa-neutral-color-2);
+  --sa-home-page-description-title-color: var(--sa-neutral-color-5);
+  --sa-home-page-description-text-color: var(--sa-neutral-color-4);
+}
+
+.sa-upload-modal {
+  --sa-home-page-modal-background-color: var(--sa-neutral-color-3);
+  --sa-upload-modal-background-color: var(--sa-neutral-color-2);
+  --sa-upload-modal-title-text-color: var(--sa-neutral-color-5);
+  --sa-upload-modal-drop-area-background-color: var(--sa-neutral-color-1);
+  --sa-upload-modal-drop-text-color: var(--sa-primary-color-4);
+  --sa-upload-modal-select-button-color: var(--sa-primary-color-3);
+  --sa-upload-modal-linlk-section: var(--sa-neutral-color-1);
 }
 
 .sa-about-page {
