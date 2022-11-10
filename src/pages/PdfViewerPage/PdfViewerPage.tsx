@@ -24,8 +24,8 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
   );
 
   const baseUrl = "/web/viewer.html?file=";
-  const { pdfId } = useParams();
-  const pdfFile = baseUrl + pdfId;
+  const { filePath } = useParams();
+  const pdfFile = baseUrl + filePath;
 
   return (
     <div
@@ -33,7 +33,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
       className={cs("sa-pdf-viewer-page", className)}
       data-testid={dataTestIDs.root}
     >
-      {pdfId && (
+      {filePath && (
         <iframe
           id="pdf-js-viewer"
           src={pdfFile}
