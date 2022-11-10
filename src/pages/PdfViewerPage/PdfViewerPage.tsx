@@ -2,6 +2,7 @@ import React, { useMemo, FC } from "react";
 import cs from "classnames";
 
 import { PdfViewerPageProps } from "./PdfViewerPage.types";
+import { useParams } from "react-router-dom";
 
 const PdfViewerPage: FC<PdfViewerPageProps> = ({
   domID = "pdf-viewer-page",
@@ -23,7 +24,8 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
   );
 
   const baseUrl = "/web/viewer.html?file=";
-  const pdfFile = baseUrl + "test2.pdf";
+  const { pdfId } = useParams();
+  const pdfFile = baseUrl + pdfId;
 
   return (
     <div
