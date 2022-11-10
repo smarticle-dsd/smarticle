@@ -32,11 +32,11 @@ const PDFViewer: FC<PDFViewerProps> = ({
     [dataTestId],
   );
 
-  const container = document.getElementById("container");
+  const container = document.getElementById("sa-pdf-viewer-container");
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [pdfRef, setPdfRef] = useState<any>(null);
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  //const [currentPage, setCurrentPage] = useState<number>(1);
 
   pdfjs.GlobalWorkerOptions.workerSrc = require("pdfjs-dist/build/pdf.worker.entry");
 
@@ -44,7 +44,7 @@ const PDFViewer: FC<PDFViewerProps> = ({
     (pageNum: number, pdf = pdfRef) => {
       pdf &&
         pdf.getPage(pageNum).then((page: any) => {
-          setCurrentPage(pageNum);
+          //setCurrentPage(pageNum);
           const div = document.createElement("div");
           div.setAttribute("id", "page-" + (page.pageIndex + 1));
           div.setAttribute("style", "position: relative");
@@ -85,7 +85,7 @@ const PDFViewer: FC<PDFViewerProps> = ({
           // });
         });
     },
-    [currentPage],
+    [container, pdfRef],
   );
 
   const renderPages = useCallback(
@@ -94,12 +94,12 @@ const PDFViewer: FC<PDFViewerProps> = ({
         renderPage(num, pdfRef);
       }
     },
-    [pdfRef],
+    [renderPage],
   );
 
   useEffect(() => {
     renderPages(pdfRef);
-  }, [pdfRef]);
+  }, [pdfRef, renderPages]);
 
   useEffect(() => {
     const loadingTask = pdfjs.getDocument(url);
@@ -119,7 +119,7 @@ const PDFViewer: FC<PDFViewerProps> = ({
       className={cs("sa-pdf-viewer", className)}
       data-testid={dataTestIDs.root}
     >
-      <div id="container">
+      <div id="sa-pdf-viewer-container">
         <canvas ref={canvasRef}></canvas>
       </div>
     </div>
