@@ -22,13 +22,22 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
     [dataTestId],
   );
 
+  const baseUrl = "/web/viewer.html?file=";
+  const pdfFile = baseUrl + "test2.pdf";
+
   return (
     <div
       id={domIDs.root}
       className={cs("sa-pdf-viewer-page", className)}
       data-testid={dataTestIDs.root}
     >
-      <div>Pdf Viewer Page</div>
+      <iframe
+        id="pdf-js-viewer"
+        src={pdfFile}
+        title="webviewer"
+        width="100%"
+        height="100%"
+      ></iframe>
     </div>
   );
 };
