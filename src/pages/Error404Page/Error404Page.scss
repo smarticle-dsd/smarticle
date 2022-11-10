@@ -1,10 +1,10 @@
 .sa-error404-page {
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 64px);
 
   display: flex;
   justify-content: center;
   align-items: center;
-
-  background-color: var(--sa-error404-page-background-color);
+  flex-direction: column;
+  gap: 32px;
 }
