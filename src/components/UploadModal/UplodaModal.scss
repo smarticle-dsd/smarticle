@@ -113,7 +113,38 @@
       height: 33px;
       border: 0px;
       border-radius: 4px;
-      margin: 48px auto 0px auto;
+      margin: 16px auto 0px auto;
+      padding-left: 8px;
+
+      color: var(--sa-neutral-color-5);
+
+      &::placeholder {
+        color: var(--sa-neutral-color-3);
+      }
+    }
+
+    .modal-divider {
+      @include typographyRegularXs;
+      color: var(--sa-neutral-color-5);
+      text-align: center;
+      margin-top: 14px;
+      position: relative;
+
+      &::before,
+      &::after {
+        content: "";
+        width: 42px;
+        height: 1px;
+        background: var(--sa-neutral-color-3);
+        position: absolute;
+        top: 50%;
+      }
+      &::before {
+        left: 184px;
+      }
+      &::after {
+        right: 184px;
+      }
     }
   }
 }
