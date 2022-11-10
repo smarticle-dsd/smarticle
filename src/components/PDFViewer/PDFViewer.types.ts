@@ -14,5 +14,5 @@ export type PDFViewerProps = {
   /**
    * Text inside the red circle
    */
-  text?: string;
+  url?: string;
 };

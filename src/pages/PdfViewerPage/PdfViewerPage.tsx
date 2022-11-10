@@ -29,7 +29,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
       data-testid={dataTestIDs.root}
     >
       <div>Pdf Viewer Page</div>
-      <PDFViewer></PDFViewer>
+      <PDFViewer url="test3.pdf"></PDFViewer>
     </div>
   );
 };

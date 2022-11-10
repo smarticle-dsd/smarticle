@@ -16,7 +16,7 @@ const PDFViewer: FC<PDFViewerProps> = ({
   domID = "pdf-viewer",
   dataTestId = "test-pdf-viewer",
   className,
-  text,
+  url = "",
 }): JSX.Element => {
   const domIDs = useMemo(
     () => ({
@@ -37,7 +37,6 @@ const PDFViewer: FC<PDFViewerProps> = ({
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [pdfRef, setPdfRef] = useState<any>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const url = "test3.pdf";
 
   pdfjs.GlobalWorkerOptions.workerSrc = require("pdfjs-dist/build/pdf.worker.entry");
 
@@ -120,7 +119,6 @@ const PDFViewer: FC<PDFViewerProps> = ({
       className={cs("sa-pdf-viewer", className)}
       data-testid={dataTestIDs.root}
     >
-      <div>{text}</div>
       <div id="container">
         <canvas ref={canvasRef}></canvas>
       </div>
