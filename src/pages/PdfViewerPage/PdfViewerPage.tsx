@@ -28,8 +28,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
       className={cs("sa-pdf-viewer-page", className)}
       data-testid={dataTestIDs.root}
     >
-      <div>Pdf Viewer Page</div>
-      <PDFViewer url="test3.pdf"></PDFViewer>
+      <PDFViewer url="test5.pdf"></PDFViewer>
     </div>
   );
 };
