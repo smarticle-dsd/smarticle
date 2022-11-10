@@ -33,13 +33,15 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
       className={cs("sa-pdf-viewer-page", className)}
       data-testid={dataTestIDs.root}
     >
-      <iframe
-        id="pdf-js-viewer"
-        src={pdfFile}
-        title="webviewer"
-        width="100%"
-        height="100%"
-      ></iframe>
+      {pdfId && (
+        <iframe
+          id="pdf-js-viewer"
+          src={pdfFile}
+          title="webviewer"
+          width="100%"
+          height="100%"
+        ></iframe>
+      )}
     </div>
   );
 };
