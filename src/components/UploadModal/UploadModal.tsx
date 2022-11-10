@@ -25,9 +25,11 @@ const UploadModal: FC<UploadModalProps> = ({
     [dataTestId],
   );
 
+  //accept the file input when user select or drop file
   const onUpload = () => {};
 
-  const linlkUpload = (e: React.KeyboardEvent) => {
+  //accept the link input when user tap Enter Key
+  const linkUpload = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       //
     }
@@ -59,11 +61,12 @@ const UploadModal: FC<UploadModalProps> = ({
               <p> Choose a file </p>
               <input type="file" value="" onChange={onUpload} />
             </div>
+            <div className={cs("modal-divider", className)}>or</div>
             <input
               className={cs("modal-link-section", className)}
               type="text"
               placeholder="Paste a link"
-              onKeyDown={linlkUpload}
+              onKeyDown={linkUpload}
             />
           </div>
         </div>
