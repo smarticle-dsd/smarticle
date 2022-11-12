@@ -2,7 +2,8 @@ import React, { useMemo, FC } from "react";
 import cs from "classnames";
 
 import { Error404PageProps } from "./Error404Page.types";
-import { RedCircle } from "../../components";
+import { Button, RedCircle } from "../../components";
+import { useNavigate } from "react-router-dom";
 
 const Error404Page: FC<Error404PageProps> = ({
   domID = "error404-page",
@@ -23,6 +24,12 @@ const Error404Page: FC<Error404PageProps> = ({
     [dataTestId],
   );
 
+  const navigate = useNavigate();
+
+  const onBackToMainPageButtonClick = () => {
+    navigate("/");
+  };
+
   return (
     <div
       id={domIDs.root}
@@ -30,6 +37,9 @@ const Error404Page: FC<Error404PageProps> = ({
       data-testid={dataTestIDs.root}
     >
       <RedCircle text="Not found!" />
+      <Button type="primary" size="large" onClick={onBackToMainPageButtonClick}>
+        Back to main page!
+      </Button>
     </div>
   );
 };
