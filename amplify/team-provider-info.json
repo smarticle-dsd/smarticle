@@ -22,5 +22,23 @@
         "backend": {}
       }
     }
+  },
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-smarticle-staging-151620-authRole",
+      "UnauthRoleArn": "arn:aws:iam::080302845788:role/amplify-smarticle-staging-151620-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::080302845788:role/amplify-smarticle-staging-151620-authRole",
+      "Region": "ca-central-1",
+      "DeploymentBucketName": "amplify-smarticle-staging-151620-deployment",
+      "UnauthRoleName": "amplify-smarticle-staging-151620-unauthRole",
+      "StackName": "amplify-smarticle-staging-151620",
+      "StackId": "arn:aws:cloudformation:ca-central-1:080302845788:stack/amplify-smarticle-staging-151620/963263c0-6294-11ed-8bb5-06984a945b3e",
+      "AmplifyAppId": "d2vfzz345qzpc1"
+    },
+    "categories": {
+      "function": {
+        "getPaperInfo": {}
+      }
+    }
   }
 }

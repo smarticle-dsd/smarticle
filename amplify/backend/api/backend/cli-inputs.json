@@ -1,8 +1,8 @@
 {
   "version": 1,
   "paths": {
-    "/paperInfo": {
-      "name": "/paperInfo",
+    "/items": {
+      "name": "/items",
       "lambdaFunction": "getPaperInfo",
       "permissions": {
         "setting": "open"
