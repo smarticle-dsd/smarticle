@@ -1,0 +1,150 @@
+.sa-upload-modal {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(159, 187, 170, 0.6);
+
+  position: fixed;
+  top: 64px;
+
+  .modal-wrapper {
+    background-color: var(--sa-upload-modal-background-color);
+    width: 480px;
+    height: 421px;
+
+    position: relative;
+    margin: 175px auto;
+
+    border: 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+
+    .modal-title {
+      @include typographyMediumM;
+      color: var(--sa-upload-modal-title-text-color);
+
+      width: 150px;
+      height: 23px;
+
+      position: absolute;
+      margin: 32px auto 0px 32px;
+    }
+
+    .modal-close-button {
+      cursor: pointer;
+
+      width: 24px;
+      height: 24px;
+      padding: 0px;
+      border: 0px;
+
+      position: absolute;
+      top: 31px;
+      left: 429px;
+    }
+
+    .modal-drop-area {
+      background-color: var(--sa-upload-modal-drop-area-background-color);
+      width: 416px;
+      height: 136px;
+
+      position: relative;
+      left: 32px;
+      top: 87px;
+
+      .upload-icon {
+        position: absolute;
+        top: 30px;
+        transform: translate(-50%);
+      }
+
+      p {
+        @include typographyMediumS;
+        color: var(--sa-upload-modal-drop-text-color);
+        text-align: center;
+        position: relative;
+        top: 85px;
+      }
+
+      input {
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+        left: 0px;
+        top: 0px;
+
+        cursor: pointer;
+      }
+    }
+
+    .modal-select-button {
+      margin-top: 32px;
+      background-color: transparent;
+      border: 0px;
+      width: 125px;
+      height: 33px;
+      padding: 7px 16px;
+      margin: 90px auto 0px auto;
+
+      position: relative;
+      cursor: pointer;
+
+      @include typographyRegularS;
+      color: var(--sa-upload-modal-select-button-color);
+      text-align: center;
+
+      input {
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        cursor: pointer;
+      }
+    }
+
+    .modal-link-section {
+      @include typographyRegularXs;
+      background-color: var(--sa-upload-modal-linlk-section);
+      width: 320px;
+      height: 33px;
+      border: 0px;
+      border-radius: 4px;
+      margin: 16px auto 0px auto;
+      padding-left: 8px;
+
+      color: var(--sa-neutral-color-5);
+
+      &::placeholder {
+        color: var(--sa-neutral-color-3);
+      }
+    }
+
+    .modal-divider {
+      @include typographyRegularXs;
+      color: var(--sa-neutral-color-5);
+      text-align: center;
+      margin-top: 14px;
+      position: relative;
+
+      &::before,
+      &::after {
+        content: "";
+        width: 42px;
+        height: 1px;
+        background: var(--sa-neutral-color-3);
+        position: absolute;
+        top: 50%;
+      }
+      &::before {
+        left: 184px;
+      }
+      &::after {
+        right: 184px;
+      }
+    }
+  }
+}
