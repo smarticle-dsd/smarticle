@@ -10,7 +10,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/pdfviewer" element={<PdfViewerPage />} />
+        {/* <Route path="/pdfviewer" element={<PdfViewerPage />} /> */}
+        <Route path="/pdfviewer/:filePath" element={<PdfViewerPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="*" element={<Error404Page />} />
       </Routes>
