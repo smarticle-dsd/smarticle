@@ -77,32 +77,14 @@ namespace getPaperInfo
         [JsonPropertyName("authorId")]
         public string AuthorId { get; set; }
 
-        [JsonPropertyName("externalIds")]
-        public AuthorExternalIds ExternalIds { get; set; }
-
-        [JsonPropertyName("url")]
-        public Uri Url { get; set; }
-
         [JsonPropertyName("name")]
         public string Name { get; set; }
-
-        [JsonPropertyName("aliases")]
-        public string[] Aliases { get; set; }
-
-        [JsonPropertyName("affiliations")]
-        public string[] Affiliations { get; set; }
-
-        [JsonPropertyName("homepage")]
-        public Uri Homepage { get; set; }
 
         [JsonPropertyName("paperCount")]
         public long PaperCount { get; set; }
 
         [JsonPropertyName("citationCount")]
         public long CitationCount { get; set; }
-
-        [JsonPropertyName("hIndex")]
-        public long HIndex { get; set; }
     }
 
     public class AuthorExternalIds

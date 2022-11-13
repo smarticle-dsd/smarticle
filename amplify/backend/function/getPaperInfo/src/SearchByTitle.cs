@@ -16,6 +16,9 @@ namespace getPaperInfo
         [JsonPropertyName("paperId")]
         public string PaperId { get; set; }
 
+        [JsonPropertyName("authors")]
+        public PaperInfoAuthor[] Authors { get; set; }
+
         [JsonPropertyName("title")]
         public string Title { get; set; }
     }
