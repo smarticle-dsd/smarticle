@@ -1,39 +1,15 @@
 {
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-smarticle-dev-101233-authRole",
-      "UnauthRoleArn": "arn:aws:iam::080302845788:role/amplify-smarticle-dev-101233-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::080302845788:role/amplify-smarticle-dev-101233-authRole",
-      "Region": "eu-central-1",
-      "DeploymentBucketName": "amplify-smarticle-dev-101233-deployment",
-      "UnauthRoleName": "amplify-smarticle-dev-101233-unauthRole",
-      "StackName": "amplify-smarticle-dev-101233",
-      "StackId": "arn:aws:cloudformation:eu-central-1:080302845788:stack/amplify-smarticle-dev-101233/7e070ac0-5a8e-11ed-8f26-0a5015a63bb8",
-      "AmplifyAppId": "d1j4qkxyo27uiy"
-    },
-    "categories": {
-      "function": {
-        "getPaperInfo": {
-          "deploymentBucketName": "amplify-smarticle-dev-101233-deployment",
-          "s3Key": "amplify-builds/getPaperInfo-6a4f465549414b397467-build.zip"
-        }
-      },
-      "api": {
-        "backend": {}
-      }
-    }
-  },
   "staging": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-smarticle-staging-151620-authRole",
-      "UnauthRoleArn": "arn:aws:iam::080302845788:role/amplify-smarticle-staging-151620-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::080302845788:role/amplify-smarticle-staging-151620-authRole",
-      "Region": "ca-central-1",
-      "DeploymentBucketName": "amplify-smarticle-staging-151620-deployment",
-      "UnauthRoleName": "amplify-smarticle-staging-151620-unauthRole",
-      "StackName": "amplify-smarticle-staging-151620",
-      "StackId": "arn:aws:cloudformation:ca-central-1:080302845788:stack/amplify-smarticle-staging-151620/963263c0-6294-11ed-8bb5-06984a945b3e",
-      "AmplifyAppId": "d2vfzz345qzpc1"
+      "AuthRoleName": "amplify-smarticle-staging-124337-authRole",
+      "UnauthRoleArn": "arn:aws:iam::080302845788:role/amplify-smarticle-staging-124337-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::080302845788:role/amplify-smarticle-staging-124337-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-smarticle-staging-124337-deployment",
+      "UnauthRoleName": "amplify-smarticle-staging-124337-unauthRole",
+      "StackName": "amplify-smarticle-staging-124337",
+      "StackId": "arn:aws:cloudformation:eu-central-1:080302845788:stack/amplify-smarticle-staging-124337/42d2b160-5dc8-11ed-afdf-06e5b4bcb68a",
+      "AmplifyAppId": "dcfoxoxqw27pv"
     },
     "categories": {
       "function": {
