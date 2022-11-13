@@ -13,7 +13,10 @@
     },
     "categories": {
       "function": {
-        "getPaperInfo": {}
+        "getPaperInfo": {
+          "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
+          "s3Key": "amplify-builds/getPaperInfo-4854703148692f76717a-build.zip"
+        }
       }
     }
   }
