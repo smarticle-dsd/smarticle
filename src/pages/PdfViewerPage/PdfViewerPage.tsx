@@ -33,7 +33,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
 
   let pdfFile = "";
   if (url) {
-    pdfFile = url;
+    pdfFile = "/web/viewer.html?file=" + url;
   }
   if (file) {
     const baseUrl =
