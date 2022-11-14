@@ -136,6 +136,7 @@ const UploadModal: FC<UploadModalProps> = ({
                 setSelectedFile({
                   name: "",
                 });
+                setError("");
               }}
               // onKeyDown={linkUpload}
               onChange={(event) => setPdfLink(event.target.value)}
