@@ -1,0 +1,46 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript",
+    "plugin:prettier/recommended"
+  ],
+  "overrides": [],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["react", "@typescript-eslint", "prettier", "unused-imports"],
+  "rules": {
+    "@typescript-eslint/no-empty-function": [
+      "error",
+      { "allow": ["methods", "arrowFunctions"] }
+    ],
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/no-explicit-any": ["warn"],
+    "no-console": ["warn"],
+    "no-debugger": ["error"],
+    "@typescript-eslint/explicit-module-boundary-types": ["off"],
+    "unused-imports/no-unused-imports": ["error"],
+    "no-undef": ["off"],
+    "import/no-extraneous-dependencies": "off",
+    "react/react-in-jsx-scope": ["off"],
+    "react/jsx-uses-react": ["off"],
+    "testing-library/no-container": ["off"],
+    "testing-library/no-node-access": ["off"],
+    "react/jsx-props-no-spreading": ["warn"],
+    "react/no-unescaped-entities": ["off"]
+  }
+}

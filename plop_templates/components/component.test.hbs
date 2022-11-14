@@ -1,0 +1,24 @@
+import * as React from "react";
+import { render } from "@testing-library/react";
+
+import {{pascalCase componentName}} from "../{{pascalCase componentName}}";
+
+describe("{{pascalCase componentName}} tests", () => {
+  test("Check if className exists on root DOM element", () => {
+    const { container } = render(<{{pascalCase componentName}} />);
+    const element = container.querySelector(".sa-{{kebabCase componentName}}");
+    expect(element).not.toBe(null);
+  });
+
+  test("Check if domID exists on root DOM element", () => {
+    const { container } = render(<{{pascalCase componentName}} domID="{{kebabCase componentName}}" />);
+    const element = container.querySelector("#{{kebabCase componentName}}");
+    expect(element).not.toBe(null);
+  });
+
+  test("Check if dataTestId exists on root DOM element", () => {
+    const { container } = render(<{{pascalCase componentName}} dataTestId="test-{{kebabCase componentName}}" />);
+    const element = container.querySelector('[data-testid="test-{{kebabCase componentName}}"]');
+    expect(element).not.toBe(null);
+  });
+});

@@ -1,0 +1,179 @@
+.sa-button {
+  display: inline-block;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  appearance: none;
+  cursor: pointer;
+  border: 2px solid;
+
+  // Sizes
+
+  // Note: paddings are 2px smaller than in Figma
+  // because Figma, unlike CSS, uses inside border
+
+  &.extralarge {
+    @include typographyMediumL;
+    padding: 10px 30px;
+    border-radius: 8px;
+  }
+
+  &.large {
+    @include typographyMediumS;
+    padding: 5px 14px;
+    border-radius: 4px;
+  }
+
+  &.medium {
+    @include typographyMediumXs;
+    padding: 3px 14px;
+    border-radius: 4px;
+  }
+
+  &.small {
+    @include typographyRegularXs;
+    padding: 0px 6px;
+    border-radius: 4px;
+  }
+
+  // Types
+
+  &:not(:disabled) {
+    &.primary {
+      &:not(.dangerous) {
+        border-color: var(--sa-primary-color-3);
+        background-color: var(--sa-primary-color-3);
+        color: var(--sa-neutral-color-1);
+
+        &:hover:not(:active) {
+          border-color: var(--sa-primary-color-2);
+          background-color: var(--sa-primary-color-2);
+          color: var(--sa-neutral-color-1);
+        }
+
+        &:active {
+          border-color: var(--sa-primary-color-3);
+          background-color: var(--sa-primary-color-3);
+          color: var(--sa-neutral-color-1);
+        }
+      }
+
+      &.dangerous {
+        border-color: var(--sa-error-color-2);
+        background-color: var(--sa-error-color-2);
+        color: var(--sa-neutral-color-1);
+
+        &:hover:not(:active) {
+          border-color: var(--sa-error-color-1);
+          background-color: var(--sa-error-color-1);
+          color: var(--sa-neutral-color-1);
+        }
+
+        &:active {
+          border-color: var(--sa-error-color-2);
+          background-color: var(--sa-error-color-2);
+          color: var(--sa-neutral-color-1);
+        }
+      }
+    }
+
+    &.secondary {
+      &:not(.dangerous) {
+        border-color: var(--sa-primary-color-3);
+        background-color: transparent;
+        color: var(--sa-primary-color-3);
+
+        &:hover:not(:active) {
+          border-color: var(--sa-primary-color-2);
+          background-color: transparent;
+          color: var(--sa-primary-color-2);
+        }
+
+        &:active {
+          border-color: var(--sa-primary-color-3);
+          background-color: transparent;
+          color: var(--sa-primary-color-3);
+        }
+      }
+
+      &.dangerous {
+        border-color: var(--sa-error-color-2);
+        background-color: transparent;
+        color: var(--sa-error-color-2);
+
+        &:hover:not(:active) {
+          border-color: var(--sa-error-color-1);
+          background-color: transparent;
+          color: var(--sa-error-color-1);
+        }
+
+        &:active {
+          border-color: var(--sa-error-color-2);
+          background-color: transparent;
+          color: var(--sa-error-color-2);
+        }
+      }
+    }
+
+    &.link {
+      &:not(.dangerous) {
+        border-color: transparent;
+        background-color: transparent;
+        color: var(--sa-primary-color-3);
+
+        &:hover:not(:active) {
+          border-color: transparent;
+          background-color: transparent;
+          color: var(--sa-primary-color-2);
+        }
+
+        &:active {
+          border-color: transparent;
+          background-color: transparent;
+          color: var(--sa-primary-color-3);
+        }
+      }
+
+      &.dangerous {
+        border-color: transparent;
+        background-color: transparent;
+        color: var(--sa-error-color-2);
+
+        &:hover:not(:active) {
+          border-color: transparent;
+          background-color: transparent;
+          color: var(--sa-error-1);
+        }
+
+        &:active {
+          border-color: transparent;
+          background-color: transparent;
+          color: var(--sa-error-color-2);
+        }
+      }
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+
+    &.primary {
+      border-color: var(--sa-neutral-color-3);
+      background-color: var(--sa-neutral-color-3);
+      color: var(--sa-neutral-color-1);
+    }
+
+    &.secondary {
+      border-color: var(--sa-neutral-color-3);
+      background-color: transparent;
+      color: var(--sa-neutral-color-3);
+    }
+
+    &.link {
+      border-color: transparent;
+      background-color: transparent;
+      color: var(--sa-neutral-color-3);
+    }
+  }
+}

@@ -1,0 +1,67 @@
+:root {
+  --sa-primary-color-1: #a7f500;
+  --sa-primary-color-2: #99e000;
+  --sa-primary-color-3: #8bcc00;
+  --sa-primary-color-4: #7fb800;
+
+  --sa-neutral-color-1: #ffffff;
+  --sa-neutral-color-2: #f3f9ef;
+  --sa-neutral-color-3: #9fbbaa;
+  --sa-neutral-color-4: #54635b;
+  --sa-neutral-color-5: #1c211e;
+
+  --sa-success-color-1: #99e000;
+  --sa-success-color-2: #8bcc00;
+  --sa-error-color-1: #f78464;
+  --sa-error-color-2: #f46036;
+  --sa-warning-color-1: #e9cf72;
+  --sa-warning-color-2: #e2c044;
+}
+
+/* PLOP_INJECT_IMPORT */
+.sa-button {
+}
+
+.sa-header {
+  --sa-header-background-color: var(--sa-neutral-color-2);
+}
+
+.sa-home-page {
+  --sa-home-page-background-color: var(--sa-neutral-color-1);
+  --sa-home-page-button-color: var(--sa-primary-color-3);
+  --sa-home-page-button-text-color: var(--sa-neutral-color-1);
+  --sa-home-page-welcome-text-color: var(--sa-neutral-color-5);
+  --sa-home-page-slogan-text-color: var(--sa-primary-color-4);
+  --sa-home-page-getstart-text-color: var(--sa-neutral-color-5);
+  --sa-home-page-description-background-color: var(--sa-neutral-color-2);
+  --sa-home-page-description-title-color: var(--sa-neutral-color-5);
+  --sa-home-page-description-text-color: var(--sa-neutral-color-4);
+}
+
+.sa-upload-modal {
+  --sa-home-page-modal-background-color: var(--sa-neutral-color-3);
+  --sa-upload-modal-background-color: var(--sa-neutral-color-2);
+  --sa-upload-modal-title-text-color: var(--sa-neutral-color-5);
+  --sa-upload-modal-drop-area-background-color: var(--sa-neutral-color-1);
+  --sa-upload-modal-drop-text-color: var(--sa-primary-color-4);
+  --sa-upload-modal-select-button-color: var(--sa-primary-color-3);
+  --sa-upload-modal-linlk-section: var(--sa-neutral-color-1);
+}
+
+.sa-about-page {
+}
+
+.sa-pdf-viewer-page {
+}
+
+.sa-pdf-viewer {
+}
+
+.sa-error404-page {
+  --sa-error404-page-background-color: var(--sa-neutral-color-2);
+}
+
+.sa-red-circle {
+  --sa-red-circle-background-color: var(--sa-error-color-2);
+  --sa-red-circle-text-color: var(--sa-neutral-color-1);
+}

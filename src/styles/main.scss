@@ -1,0 +1,13 @@
+@import "./theme/style.scss";
+@import "./theme/colors.scss";
+@import "./theme/typography.scss";
+
+/* PLOP_INJECT_IMPORT */
+@import "../components/Button/Button.scss";
+@import "../components/Header/Header.scss";
+@import "../pages/HomePage/HomePage.scss";
+@import "../pages/AboutPage/AboutPage.scss";
+@import "../pages/PdfViewerPage/PdfViewerPage.scss";
+@import "../pages/Error404Page/Error404Page.scss";
+@import "../components/RedCircle/RedCircle.scss";
+@import "../components/UploadModal/UplodaModal.scss";

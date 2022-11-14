@@ -1,0 +1,15 @@
+.sa-red-circle {
+  width: 100px;
+  height: 100px;
+
+  background-color: var(--sa-red-circle-background-color);
+  color: var(--sa-red-circle-text-color);
+
+  border-radius: 50px;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  @include typographyMediumS;
+}

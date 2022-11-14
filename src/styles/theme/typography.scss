@@ -1,0 +1,219 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+:root {
+  --sa-typography-primary-font: Roboto;
+}
+
+* {
+  font-family: var(--sa-typography-primary-font);
+}
+
+@mixin typographyRegularXxl() {
+  //styleName: Regular/XXL;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 39px;
+  font-weight: 400;
+  line-height: 46px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin typographyRegularXl() {
+  //styleName: Regular/XL;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 38px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin typographyRegularL() {
+  //styleName: Regular/L;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin typographyRegularM() {
+  //styleName: Regular/M;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 23px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin typographyRegularS() {
+  //styleName: Regular/S;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin typographyRegularXs() {
+  //styleName: Regular/XS;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin typographyRegularXxs() {
+  //styleName: Regular/XXS;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin typographyMediumXxl() {
+  //styleName: Medium/XXL;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 39px;
+  font-weight: 500;
+  line-height: 46px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin typographyMediumXl() {
+  //styleName: Medium/XL;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 38px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin typographyMediumL() {
+  //styleName: Medium/L;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin typographyMediumM() {
+  //styleName: Medium/M;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 23px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin typographyMediumS() {
+  //styleName: Medium/S;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin typographyMediumXs() {
+  //styleName: Medium/XS;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin typographyMediumXxs() {
+  //styleName: Medium/XXS;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin typographyBoldXxl() {
+  //styleName: Bold/XXL;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 39px;
+  font-weight: 700;
+  line-height: 46px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin typographyBoldXl() {
+  //styleName: Bold/XL;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 38px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin typographyBoldL() {
+  //styleName: Bold/L;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 30px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin typographyBoldM() {
+  //styleName: Bold/M;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin typographyBoldS() {
+  //styleName: Bold/S;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin typographyBoldXs() {
+  //styleName: Bold/XS;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin typographyBoldXxs() {
+  //styleName: Bold/XXS;
+  font-family: var(--sa-typography-primary-font);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: left;
+}
