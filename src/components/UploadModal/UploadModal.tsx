@@ -54,13 +54,20 @@ const UploadModal: FC<UploadModalProps> = ({
   const [pdfLink, setPdfLink] = useState("");
   //accept the file input when user select or drop file
   const onUpload = (e: any) => {
-    if (e.target.files[0].type === "application/pdf") {
-      setSelectedFile(e.target.files[0]);
-      setError("");
+    console.log(e);
+    if (e.target.files.length > 0) {
+      if (e.target.files[0].type === "application/pdf") {
+        setSelectedFile(e.target.files[0]);
+        setError("");
+      } else {
+        setSelectedFile(e.target.files[0]);
+        setError(
+          "The uploaded file is not supported. Only pdf files are allowed.",
+        );
+      }
     } else {
-      setSelectedFile(e.target.files[0]);
       setError(
-        "The uploaded file is not supported. Only .pdf files are supported",
+        "There was an error in getting your file. Please upload the pdf file again.",
       );
     }
   };
@@ -91,16 +98,10 @@ const UploadModal: FC<UploadModalProps> = ({
           }
         });
     } else {
-      setError("Please upload a file or a pdf link to continue.");
+      setError("Please provide a pdf file or a pdf link to continue.");
     }
   };
 
-  // accept the link input when user tap Enter Key
-  const linkUpload = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      console.log(pdfLink);
-    }
-  };
   return (
     <>
       {isVisible ? (
@@ -122,7 +123,14 @@ const UploadModal: FC<UploadModalProps> = ({
             <div className={cs("modal-drop-area", className)}>
               <Icons.UploadCloudIcon className="upload-icon" />
               <p> Drop PDF here </p>
-              <input type="file" value="" onChange={onUpload} />
+              <input
+                type="file"
+                value=""
+                onChange={onUpload}
+                onInput={() => {
+                  setPdfLink("");
+                }}
+              />
             </div>
             <div className={cs("modal-select-button", className)}>
               <p> Choose a file </p>
@@ -134,7 +142,12 @@ const UploadModal: FC<UploadModalProps> = ({
               className={cs("modal-link-section", className)}
               type="text"
               placeholder="Paste a link"
-              onKeyDown={linkUpload}
+              onInput={() => {
+                setSelectedFile({
+                  name: "",
+                });
+              }}
+              // onKeyDown={linkUpload}
               onChange={(event) => setPdfLink(event.target.value)}
             />
             <div>{error && <p>{error}</p>}</div>
