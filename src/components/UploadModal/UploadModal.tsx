@@ -68,7 +68,7 @@ const UploadModal: FC<UploadModalProps> = ({
   };
 
   const handleUpload = (file: any) => {
-    if (pdfLink !== "") {
+    if (pdfLink !== "" && pdfLink.endsWith(".pdf")) {
       navigate("/pdfviewer?url=" + pdfLink);
     } else if (file.name !== "" && file.type === "application/pdf") {
       const params = {
@@ -86,7 +86,9 @@ const UploadModal: FC<UploadModalProps> = ({
         }
       });
     } else {
-      setError("Please provide a pdf file or a pdf link to continue.");
+      setError(
+        "Please provide a pdf file or a link ending in pdf to continue.",
+      );
     }
   };
 
@@ -142,6 +144,7 @@ const UploadModal: FC<UploadModalProps> = ({
             <Button
               className={cs("modal-upload-button", className)}
               size="small"
+              disabled={error.length === 0 ? false : true}
               onClick={() => handleUpload(selectedFile)}
             >
               Continue
