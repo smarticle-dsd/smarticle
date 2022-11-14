@@ -1,8 +1,13 @@
-import React, { FC, useMemo } from "react";
+import React, { FC, useMemo, useState } from "react";
 import cs from "classnames";
 
 import { UploadModalProps } from "./UploadModal.types";
 import Icons from "../../icons";
+
+import AWS from "aws-sdk";
+import { Button } from "../Button";
+
+import { useNavigate } from "react-router-dom";
 
 const UploadModal: FC<UploadModalProps> = ({
   domID = "upload-modal",
@@ -25,15 +30,68 @@ const UploadModal: FC<UploadModalProps> = ({
     [dataTestId],
   );
 
-  //accept the file input when user select or drop file
-  const onUpload = () => {};
+  const bucketName = process.env.REACT_APP_BUCKET_NAME as string;
+  const bucketRegion = process.env.REACT_APP_BUCKET_REGION as string;
 
-  //accept the link input when user tap Enter Key
-  const linkUpload = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      //
+  AWS.config.update({
+    accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY,
+    secretAccessKey: process.env.REACT_APP_AWS_SECRET_KEY,
+  });
+
+  const navigate = useNavigate();
+
+  const myBucket = new AWS.S3({
+    params: { Bucket: bucketName },
+    region: bucketRegion,
+  });
+
+  const [error, setError] = useState("");
+  const [selectedFile, setSelectedFile] = useState({
+    name: "",
+  });
+  const [pdfLink, setPdfLink] = useState("");
+  //accept the file input when user select or drop file
+  const onUpload = (e: any) => {
+    if (e.target.files.length > 0) {
+      if (e.target.files[0].type === "application/pdf") {
+        setSelectedFile(e.target.files[0]);
+        setError("");
+      } else {
+        setSelectedFile(e.target.files[0]);
+        setError(
+          "The uploaded file is not supported. Only pdf files are allowed.",
+        );
+      }
+    } else {
+      setError("There was an error during upload. Please try again.");
     }
   };
+
+  const handleUpload = (file: any) => {
+    if (pdfLink !== "" && pdfLink.endsWith(".pdf")) {
+      navigate("/pdfviewer?url=" + pdfLink);
+    } else if (file.name !== "" && file.type === "application/pdf") {
+      const params = {
+        ACL: "public-read",
+        Body: file,
+        Bucket: bucketName,
+        Key: file.name,
+      };
+
+      myBucket.putObject(params).send((err) => {
+        if (!err) {
+          navigate("/pdfviewer?file=" + file.name);
+        } else {
+          setError("There was an error during upload. Please try again.");
+        }
+      });
+    } else {
+      setError(
+        "Please provide a pdf file or a link ending in pdf to continue.",
+      );
+    }
+  };
+
   return (
     <>
       {isVisible ? (
@@ -55,19 +113,42 @@ const UploadModal: FC<UploadModalProps> = ({
             <div className={cs("modal-drop-area", className)}>
               <Icons.UploadCloudIcon className="upload-icon" />
               <p> Drop PDF here </p>
-              <input type="file" value="" onChange={onUpload} />
+              <input
+                type="file"
+                value=""
+                onChange={onUpload}
+                onInput={() => {
+                  setPdfLink("");
+                }}
+              />
             </div>
             <div className={cs("modal-select-button", className)}>
               <p> Choose a file </p>
               <input type="file" value="" onChange={onUpload} />
             </div>
+            <div>{selectedFile && <p>{selectedFile?.name}</p>}</div>
             <div className={cs("modal-divider", className)}>or</div>
             <input
               className={cs("modal-link-section", className)}
               type="text"
               placeholder="Paste a link"
-              onKeyDown={linkUpload}
+              onInput={() => {
+                setSelectedFile({
+                  name: "",
+                });
+              }}
+              // onKeyDown={linkUpload}
+              onChange={(event) => setPdfLink(event.target.value)}
             />
+            <div>{error && <p>{error}</p>}</div>
+            <Button
+              className={cs("modal-upload-button", className)}
+              size="small"
+              disabled={error.length === 0 ? false : true}
+              onClick={() => handleUpload(selectedFile)}
+            >
+              Continue
+            </Button>
           </div>
         </div>
       ) : null}

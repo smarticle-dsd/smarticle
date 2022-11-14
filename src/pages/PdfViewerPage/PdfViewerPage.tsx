@@ -2,7 +2,7 @@ import React, { useMemo, FC } from "react";
 import cs from "classnames";
 
 import { PdfViewerPageProps } from "./PdfViewerPage.types";
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const PdfViewerPage: FC<PdfViewerPageProps> = ({
   domID = "pdf-viewer-page",
@@ -23,9 +23,27 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
     [dataTestId],
   );
 
-  const baseUrl = "/web/viewer.html?file=";
-  const { filePath } = useParams();
-  const pdfFile = baseUrl + filePath;
+  // const { filePath } = useParams();
+  const [searchParams] = useSearchParams();
+  const url = searchParams.get("url");
+  const file = searchParams.get("file");
+
+  const bucketName = process.env.REACT_APP_BUCKET_NAME as string;
+  const bucketRegion = process.env.REACT_APP_BUCKET_REGION as string;
+
+  let pdfFile = "";
+  if (url) {
+    pdfFile = url;
+  }
+  if (file) {
+    const baseUrl =
+      "/web/viewer.html?file=https://" +
+      bucketName +
+      ".s3." +
+      bucketRegion +
+      ".amazonaws.com/";
+    pdfFile = baseUrl + file;
+  }
 
   return (
     <div
@@ -33,7 +51,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
       className={cs("sa-pdf-viewer-page", className)}
       data-testid={dataTestIDs.root}
     >
-      {filePath && (
+      {pdfFile && (
         <iframe
           id="pdf-js-viewer"
           src={pdfFile}
