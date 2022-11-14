@@ -68,7 +68,7 @@ const UploadModal: FC<UploadModalProps> = ({
   const handleUpload = (file: any) => {
     if (pdfLink !== "") {
       navigate("/pdfviewer?url=" + pdfLink);
-    } else if (file.name !== "") {
+    } else if (file.name !== "" && file.type === "application/pdf") {
       const params = {
         ACL: "public-read",
         Body: file,
