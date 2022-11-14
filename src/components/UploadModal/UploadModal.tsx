@@ -45,8 +45,6 @@ const UploadModal: FC<UploadModalProps> = ({
     region: bucketRegion,
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [progress, setProgress] = useState(0);
   const [error, setError] = useState("");
   const [selectedFile, setSelectedFile] = useState({
     name: "",
@@ -65,9 +63,7 @@ const UploadModal: FC<UploadModalProps> = ({
         );
       }
     } else {
-      setError(
-        "There was an error in getting your file. Please upload the pdf file again.",
-      );
+      setError("There was an error during upload. Please try again.");
     }
   };
 
@@ -82,20 +78,13 @@ const UploadModal: FC<UploadModalProps> = ({
         Key: file.name,
       };
 
-      myBucket
-        .putObject(params)
-        .on("httpUploadProgress", (evt) => {
-          setProgress(Math.round((evt.loaded / evt.total) * 100));
-        })
-        .send((err) => {
-          if (!err) {
-            navigate("/pdfviewer?file=" + file.name);
-          } else {
-            setError(
-              "There is an error during upload. Please try again later.",
-            );
-          }
-        });
+      myBucket.putObject(params).send((err) => {
+        if (!err) {
+          navigate("/pdfviewer?file=" + file.name);
+        } else {
+          setError("There was an error during upload. Please try again.");
+        }
+      });
     } else {
       setError("Please provide a pdf file or a pdf link to continue.");
     }
