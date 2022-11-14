@@ -54,7 +54,6 @@ const UploadModal: FC<UploadModalProps> = ({
   const [pdfLink, setPdfLink] = useState("");
   //accept the file input when user select or drop file
   const onUpload = (e: any) => {
-    console.log(e);
     if (e.target.files.length > 0) {
       if (e.target.files[0].type === "application/pdf") {
         setSelectedFile(e.target.files[0]);
