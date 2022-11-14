@@ -54,8 +54,15 @@ const UploadModal: FC<UploadModalProps> = ({
   const [pdfLink, setPdfLink] = useState("");
   //accept the file input when user select or drop file
   const onUpload = (e: any) => {
-    setSelectedFile(e.target.files[0]);
-    setError("");
+    if (e.target.files[0].type === "application/pdf") {
+      setSelectedFile(e.target.files[0]);
+      setError("");
+    } else {
+      setSelectedFile(e.target.files[0]);
+      setError(
+        "The uploaded file is not supported. Only .pdf files are supported",
+      );
+    }
   };
 
   const handleUpload = (file: any) => {
