@@ -36,24 +36,33 @@ const HomePage: FC<HomePageProps> = ({
       className={cs("sa-home-page", className)}
       data-testid={dataTestIDs.root}
     >
-      <h1>Welcome to smarticle!</h1>
+      <div>
+        <Icons.BackgroundCircles
+          className={cs("background-circles", className)}
+        />
+      </div>
+
+      <h1 className={cs("sa-home-page-title", className)}>
+        Welcome to smarticle!
+      </h1>
 
       <h2 className={cs("home-page-slogan", className)}>
         Helping researchers focus on research.
       </h2>
 
-      <h3>Get started by uploading a paper</h3>
+      <h3 className={cs("sa-home-page-get-started", className)}>
+        Get started by uploading a paper
+      </h3>
 
-      <Button size="extralarge" onClick={openModal}>
+      <Button
+        className={cs("upload-pdf-button", className)}
+        size="extralarge"
+        onClick={openModal}
+      >
         Upload a PDF
       </Button>
 
       <div className={cs("home-page-description-wrapper", className)}>
-        <div>
-          <Icons.BackgroundCircles
-            className={cs("background-circles", className)}
-          />
-        </div>
         <div className={cs("home-page-description", className)}>
           <Icons.UploadPdfIcon className={cs("home-page-icon", className)} />
           <h3>Upload PDFs</h3>

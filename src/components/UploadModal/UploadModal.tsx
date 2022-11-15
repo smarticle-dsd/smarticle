@@ -99,17 +99,18 @@ const UploadModal: FC<UploadModalProps> = ({
           id={domIDs.root}
           className={cs("sa-upload-modal", className)}
           data-testid={dataTestIds.root}
-          onClick={() => toggle()}
         >
           <div
             className={cs("modal-wrapper", className)}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className={cs("modal-title", className)}>Upload a paper</div>
-            <Icons.CloseButton
-              className={cs("modal-close-button", className)}
-              onClick={() => toggle()}
-            />
+            <div className={cs("title-and-close-button")}>
+              <div className={cs("modal-title", className)}>Upload a paper</div>
+              <Icons.CloseButton
+                className={cs("modal-close-button", className)}
+                onClick={() => toggle()}
+              />
+            </div>
             <div className={cs("modal-drop-area", className)}>
               <Icons.UploadCloudIcon className="upload-icon" />
               <p> Drop PDF here </p>
@@ -143,13 +144,19 @@ const UploadModal: FC<UploadModalProps> = ({
             <div>{error && <p>{error}</p>}</div>
             <Button
               className={cs("modal-upload-button", className)}
-              size="small"
+              size="large"
+              type="primary"
               disabled={error.length === 0 ? false : true}
               onClick={() => handleUpload(selectedFile)}
             >
               Continue
             </Button>
           </div>
+
+          <div
+            className={cs("sa-upload-modal-overlay")}
+            onClick={() => toggle()}
+          ></div>
         </div>
       ) : null}
     </>
