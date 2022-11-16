@@ -149,6 +149,11 @@
   transform-origin: 0 0;
 }
 
+.internalLink{
+  opacity: 20%;
+  background:#3cce30;
+}
+
 .annotationLayer .linkAnnotation > a,
 .annotationLayer .buttonWidgetAnnotation.pushButton > a {
   position: absolute;

@@ -12247,9 +12247,9 @@
               const borderColor = data.borderColor || null;
               if (borderColor) {
                 container.style.borderColor = _util.Util.makeHexColor(
-                  borderColor[0] | 0,
-                  borderColor[1] | 0,
-                  borderColor[2] | 0,
+                  243 | 0,
+                  249 | 0,
+                  239 | 0,
                 );
               } else {
                 container.style.borderWidth = 0;
@@ -12576,6 +12576,7 @@
             link.href = this.linkService.getDestinationHash(destination);
             link.onclick = () => {
               if (destination) {
+                console.log(link)
                 this.linkService.goToDestination(destination);
               }
               return false;
