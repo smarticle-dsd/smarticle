@@ -37,7 +37,43 @@
   cursor: text;
   transform-origin: 0% 0%;
 }
+/* this is a _demo_ container. remember the importance of relative and absolute positioning */
+.tooltip-container {
+  position: relative;
+  display: flex;
+  place-content: center;
+}
 
+/* styling of the tooltip display */
+.tooltip-text {
+  display: none;
+  position: absolute;
+  top: -40px;
+  z-index: 1;
+  background: #00732c;
+  padding: 8px;
+  font-size: 1rem;
+  color: #fff;
+  border-radius: 2px;
+  animation: fadeIn 0.6s;
+}
+tooltip-text:before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -8px;
+  border: 8px solid transparent;
+  border-top: 8px solid #00732c;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+ }
 /* Only necessary in Google Chrome, see issue 14205, and most unfortunately
  * the problem doesn't show up in "text" reference tests. */
 .textLayer span.markedContent {

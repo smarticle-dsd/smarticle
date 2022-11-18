@@ -12268,6 +12268,31 @@
             } else {
               this.setRotation(rotation, container);
             }
+            //
+            //mouseover create a tooltip
+            //
+            const tooltip = document.createElement('p');
+            tooltip.className="tooltip-text";
+            tooltip.style.display='none';
+            container.appendChild(tooltip);
+            container.addEventListener("mouseover", (event) => {
+            
+              if(data.dest){
+                // // const l=this.linkService._cachedPageNumber(data.dest);
+                // // console.log(l)
+                // const href = this.linkService.getDestinationHash(data.dest);
+                // const c = this.linkService._cachedPageNumber(data.dest)
+                // console.log(c)
+                // console.log(href)
+                tooltip.innerText=data.dest;
+                tooltip.style.display='block'
+                // console.log(data.dest);
+              }
+              container.addEventListener('mouseleave', () => {
+                tooltip.style.display = 'none';
+              }, false);
+            }, false);
+            
             return container;
           }
           setRotation(angle, container = this.container) {
@@ -12522,6 +12547,7 @@
             const link = document.createElement("a");
             link.setAttribute("data-element-id", data.id);
             let isBound = false;
+            //external links
             if (data.url) {
               linkService.addLinkAttributes(link, data.url, data.newWindow);
               isBound = true;
@@ -12534,7 +12560,7 @@
             } else if (data.setOCGState) {
               this.#bindSetOCGState(link, data.setOCGState);
               isBound = true;
-            } else if (data.dest) {
+            } else if (data.dest) {  // internal links
               this._bindLink(link, data.dest);
               isBound = true;
             } else {
@@ -12576,7 +12602,6 @@
             link.href = this.linkService.getDestinationHash(destination);
             link.onclick = () => {
               if (destination) {
-                console.log(link)
                 this.linkService.goToDestination(destination);
               }
               return false;
