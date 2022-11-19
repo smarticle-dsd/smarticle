@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Lambda Function resource stack creation using Amplify CLI",
+  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"10.2.3\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -14,6 +14,9 @@
       "Type": "String"
     },
     "s3Key": {
+      "Type": "String"
+    },
+    "scApiKey": {
       "Type": "String"
     }
   },
@@ -43,7 +46,7 @@
             "Ref": "s3Key"
           }
         },
-        "Handler": "getPaperInfo::getPaperInfo.getPaperInfo::LambdaHandler",
+        "Handler": "index.handler",
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
@@ -69,6 +72,9 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
+            },
+            "SC_API_KEY": {
+              "Ref": "scApiKey"
             }
           }
         },
@@ -78,7 +84,7 @@
             "Arn"
           ]
         },
-        "Runtime": "dotnetcore3.1",
+        "Runtime": "nodejs14.x",
         "Layers": [],
         "Timeout": 25
       }
@@ -89,12 +95,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "smarticleLambdaRole02dfb613",
+            "smarticleLambdaRole09078ce5",
             {
               "Fn::Join": [
                 "",
                 [
-                  "smarticleLambdaRole02dfb613",
+                  "smarticleLambdaRole09078ce5",
                   "-",
                   {
                     "Ref": "env"
