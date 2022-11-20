@@ -3,7 +3,6 @@
  */
 exports.handler = async (event) => {
   const axios = require('axios');
-  const url = require('node:url');
 
   // TODO: Implement pagination
   return await axios.get(`https://api.semanticscholar.org/graph/v1/paper/search`, {
@@ -24,6 +23,7 @@ exports.handler = async (event) => {
       };
     }
 
+    // Multiple papers returned
     if (res.data.total > 1)
 		{
       let foundSinglePaper = false;
@@ -31,17 +31,22 @@ exports.handler = async (event) => {
       // Try to find the right paper by searching through the last names of the authors of each paper.
       // If exactly one paper is found, the flag is set.
       if (!ArrayIsNullOrEmpty(event.authorsLastNames)){
-        foundSinglePaper = res.data.data
-          .filter(o => o.authors
-            .includes(author => event.authorsLastNames
-              .includes(ExtractLastName(author.name)))) == 1;
+        let papersFilteredByAuthors = FilterPapersByAuthorsLastNames(res.data.data, event.authorsLastNames);
 
-        if (foundSinglePaper){
-          // We've found our paper, new Data is then created to extract the proper ID in the getPaperInfoRequest
-          res.data.data = res.data.data
-            .filter(o => o.authors
-              .includes(author => event.authorsLastNames
-                .includes(ExtractLastName(author.name))))
+        if (papersFilteredByAuthors.length == 1){
+          // We've found our paper, data is then edited to extract the proper ID in the next request
+          res.data.data = papersFilteredByAuthors;
+          foundSinglePaper = true;
+        } else {
+          let papersFilteredByTitle = papersFilteredByAuthors.filter(o => o.title == event.paperTitle);
+
+          if (papersFilteredByTitle.length == 1)
+          {
+            res.data.data = papersFilteredByTitle;
+            foundSinglePaper = true;
+          }
+
+          // TODO possibly implement filter by year
         }
       }
 
@@ -77,12 +82,18 @@ exports.handler = async (event) => {
         }
       }
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch(function () {
+      return {
+        statusCode: 400,
+        body: "Failed when searching for paper with ID: " + res.data.data[0].paperId
+      }
     });
   })
-  .catch(function (error) {
-    console.log(error);
+  .catch(function () {
+    return {
+      statusCode: 400,
+      body: "Failed when searching for paper with ID: " + res.data.data[0].paperId
+    }
   });
 };
 
@@ -97,4 +108,15 @@ function ExtractLastName(name){
     return name;
 
   return splitName[splitName.length - 1];
+}
+
+// This function filters through all the papers to only include those papers with the same authors
+// as those specified in the request.
+// TODO: Potentially implement that not all last names need to match (but only half for example).
+function FilterPapersByAuthorsLastNames(papers, authorsLastNames){
+  return papers
+    .filter(o => o.authors.length == authorsLastNames.length && // Initial check to see if the number of authors is the same.
+      o.authors
+      .filter(author => authorsLastNames
+        .includes(ExtractLastName(author.name))).length == o.authors.length); // Only get the papers where all the authors match.
 }
