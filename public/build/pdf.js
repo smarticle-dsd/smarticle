@@ -12276,23 +12276,14 @@
             tooltip.style.display='none';
             container.appendChild(tooltip);
             container.addEventListener("mouseover", (event) => {
-            
               if(data.dest){
-                // // const l=this.linkService._cachedPageNumber(data.dest);
-                // // console.log(l)
-                // const href = this.linkService.getDestinationHash(data.dest);
-                // const c = this.linkService._cachedPageNumber(data.dest)
-                // console.log(c)
-                // console.log(href)
                 tooltip.innerText=data.dest;
                 tooltip.style.display='block'
-                // console.log(data.dest);
               }
-              container.addEventListener('mouseleave', () => {
-                tooltip.style.display = 'none';
-              }, false);
             }, false);
-            
+            container.addEventListener('mouseleave', () => {
+              tooltip.style.display = 'none';
+            }, false);
             return container;
           }
           setRotation(angle, container = this.container) {
