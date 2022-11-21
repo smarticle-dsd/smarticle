@@ -1128,6 +1128,9 @@
   --toolbarButton-viewLayers-icon: url(images/toolbarButton-viewLayers.svg);
   --toolbarButton-currentOutlineItem-icon: url(images/toolbarButton-currentOutlineItem.svg);
   --toolbarButton-search-icon: url(images/toolbarButton-search.svg);
+  --toolbarButton-reference-details-icon : url(images/toolbarButton-referenceDetails.svg);
+  --toolbarButton-knowledge-graph-icon: url(images/toolbarButton-knowledgeGraph.svg);
+  --toolbarButton-summary-icon : url(images/toolbarButton-summary.svg);
   --findbarButton-previous-icon: url(images/findbarButton-previous.svg);
   --findbarButton-next-icon: url(images/findbarButton-next.svg);
   --secondaryToolbarButton-firstPage-icon: url(images/secondaryToolbarButton-firstPage.svg);
@@ -1294,31 +1297,31 @@ body {
   position: relative;
 }
 
-[dir="ltr"] #sidebarContainer {
+[dir="ltr"] #leftSidebarContainer {
   left: calc(-1 * var(--sidebar-width));
 }
 
-[dir="rtl"] #sidebarContainer {
+[dir="rtl"] #leftSidebarContainer {
   right: calc(-1 * var(--sidebar-width));
 }
 
-[dir="ltr"] #sidebarContainer {
+[dir="ltr"] #leftSidebarContainer {
   border-right: var(--doorhanger-border-color-whcm);
 }
 
-[dir="rtl"] #sidebarContainer {
+[dir="rtl"] #leftSidebarContainer {
   border-left: var(--doorhanger-border-color-whcm);
 }
 
-[dir="ltr"] #sidebarContainer {
+[dir="ltr"] #leftSidebarContainer {
   transition-property: left;
 }
 
-[dir="rtl"] #sidebarContainer {
+[dir="rtl"] #leftSidebarContainer {
   transition-property: right;
 }
 
-#sidebarContainer {
+#leftSidebarContainer {
   position: absolute;
   top: 32px;
   bottom: 0;
@@ -1335,17 +1338,17 @@ body {
   transition-timing-function: var(--sidebar-transition-timing-function);
 }
 
-#outerContainer.sidebarMoving #sidebarContainer,
-#outerContainer.sidebarOpen #sidebarContainer {
+#outerContainer.sidebarMoving #leftSidebarContainer,
+#outerContainer.sidebarOpen #leftSidebarContainer {
   visibility: visible;
 }
-[dir="ltr"] #outerContainer.sidebarOpen #sidebarContainer {
+[dir="ltr"] #outerContainer.sidebarOpen #leftSidebarContainer {
   left: 0;
 }
-[dir="rtl"] #outerContainer.sidebarOpen #sidebarContainer {
+[dir="rtl"] #outerContainer.sidebarOpen #leftSidebarContainer {
   right: 0;
 }
-#outerContainer.sidebarOpen #sidebarContainer {
+#outerContainer.sidebarOpen #leftSidebarContainer {
   inset-inline-start: 0;
 }
 
@@ -1442,9 +1445,9 @@ body {
 .findbar input,
 .findbar button,
 .findbar select,
-#sidebarContainer input,
-#sidebarContainer button,
-#sidebarContainer select {
+#leftSidebarContainer input,
+#leftSidebarContainer button,
+#leftSidebarContainer select {
   outline: none;
   font: message-box;
 }
@@ -1581,7 +1584,7 @@ body {
   animation: progressIndeterminate 1s linear infinite;
 }
 
-#outerContainer.sidebarResizing #sidebarContainer,
+#outerContainer.sidebarResizing #leftSidebarContainer,
 #outerContainer.sidebarResizing #viewerContainer,
 #outerContainer.sidebarResizing #loadingBar {
   /* Improve responsiveness and avoid visual glitches when the sidebar is resized. */
@@ -2307,6 +2310,21 @@ body {
   mask-image: var(--toolbarButton-download-icon);
 }
 
+#referenceDetails::before {
+  -webkit-mask-image: var(--toolbarButton-reference-details-icon);
+  mask-image: var(--toolbarButton-reference-details-icon);
+}
+
+#knowledgeGraph::before {
+  -webkit-mask-image: var(--toolbarButton-knowledge-graph-icon);
+  mask-image: var(--toolbarButton-knowledge-graph-icon);
+}
+
+#summary::before {
+  -webkit-mask-image: var(--toolbarButton-summary-icon);
+  mask-image: var(--toolbarButton-summary-icon);
+}
+
 a.secondaryToolbarButton {
   padding-top: 5px;
   text-decoration: none;
@@ -2970,7 +2988,7 @@ dialog :link {
 }
 
 @media all and (max-width: 840px) {
-  #sidebarContainer {
+  #leftSidebarContainer {
     background-color: var(--sidebar-narrow-bg-color);
   }
   [dir="ltr"] #outerContainer.sidebarOpen #viewerContainer {

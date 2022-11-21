@@ -3182,7 +3182,7 @@
           "http://mozilla.github.io",
           "https://mozilla.github.io",
           "https://smarticle-content-bucket124337-staging.s3.eu-central-1.amazonaws.com",
-          "https://arxiv.org/"
+          "https://arxiv.org/",
         ];
         var validateFileURL = function (file) {
           if (!file) {
@@ -7970,7 +7970,7 @@
           this.pdfViewer = pdfViewer;
           this.pdfThumbnailViewer = pdfThumbnailViewer;
           this.outerContainer = elements.outerContainer;
-          this.sidebarContainer = elements.sidebarContainer;
+          this.leftSidebarContainer = elements.leftSidebarContainer;
           this.toggleButton = elements.toggleButton;
           this.thumbnailButton = elements.thumbnailButton;
           this.outlineButton = elements.outlineButton;
@@ -8168,8 +8168,8 @@
           }
         }
         #addEventListeners() {
-          this.sidebarContainer.addEventListener("transitionend", (evt) => {
-            if (evt.target === this.sidebarContainer) {
+          this.leftSidebarContainer.addEventListener("transitionend", (evt) => {
+            if (evt.target === this.leftSidebarContainer) {
               this.outerContainer.classList.remove("sidebarMoving");
             }
           });
@@ -14810,7 +14810,7 @@
         },
         sidebar: {
           outerContainer: document.getElementById("outerContainer"),
-          sidebarContainer: document.getElementById("sidebarContainer"),
+          leftSidebarContainer: document.getElementById("leftSidebarContainer"),
           toggleButton: document.getElementById("sidebarToggle"),
           thumbnailButton: document.getElementById("viewThumbnail"),
           outlineButton: document.getElementById("viewOutline"),
