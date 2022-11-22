@@ -37,6 +37,14 @@
   cursor: text;
   transform-origin: 0% 0%;
 }
+
+.reference-canvas{
+  border: 1px solid black;
+  direction: ltr;
+  position: fixed;
+  z-index:2;
+  box-shadow: 5px 5px 5px black, -5px 5px 5px black;
+}
 /* this is a _demo_ container. remember the importance of relative and absolute positioning */
 .tooltip-container {
   position: relative;
@@ -57,7 +65,7 @@
   border-radius: 2px;
   animation: fadeIn 0.6s;
 }
-tooltip-text:before {
+.tooltip-text:before {
   content: "";
   position: absolute;
   top: 100%;

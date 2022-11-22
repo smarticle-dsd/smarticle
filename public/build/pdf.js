@@ -12275,17 +12275,43 @@
             tooltip.className="tooltip-text";
             tooltip.style.display='none';
             container.appendChild(tooltip);
+
+            let viewer=document.getElementById("viewer");
+      
             container.addEventListener("mouseover", (event) => {
               if(data.dest){
-                tooltip.innerText=data.dest;
-                tooltip.style.display='block'
+                const c = document.createElement("canvas"); 
+                c.className="reference-canvas"
+                c.style.top = event.clientY +'px'
+
+                page._transport.getDestination(data.dest)
+                  .then(data =>{
+                    let page_number = this.linkService._cachedPageNumber(data[0]);
+                    page._transport.getPage(page_number)
+                      .then(function(page){
+                        const r=page.getViewport({scale:1});
+                        let l = data[3]
+                        c.style.left = event.clientX +'px';
+                        c.height=300,
+                        c.width=1.3*r.width;
+                        const g = page.getViewport({scale:1.3,offsetY:1.3*(l-r.height) })
+                        const w={canvasContext:c.getContext("2d"),viewport:g};
+                        page.render(w);
+                      }),
+                    viewer.prepend(c),
+                    container.addEventListener('mouseleave', () => {
+                      tooltip.style.display = 'none';
+                      c.remove()
+                    }, false);     
+                  }
+                  );
               }
             }, false);
-            container.addEventListener('mouseleave', () => {
-              tooltip.style.display = 'none';
-            }, false);
+           
             return container;
           }
+
+
           setRotation(angle, container = this.container) {
             const [pageLLx, pageLLy, pageURx, pageURy] = this.viewport.viewBox;
             const pageWidth = pageURx - pageLLx;
