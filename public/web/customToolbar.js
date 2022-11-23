@@ -1,16 +1,23 @@
 function registerCustomToolbarButtonHandlers() {
-  const buttons = ["referenceDetails", "knowledgeGraph", "summary"];
+  const toolbarButtons = document.querySelectorAll(
+    "#sidebarViewButtons button",
+  );
 
-  buttons.forEach((btn) => {
-    document.getElementById(btn).onclick = () => {
+  for (const toolbarBtn of toolbarButtons) {
+    toolbarBtn.addEventListener("click", (e) => {
       const sidebarContent = document.getElementById("sidebarContent");
       for (const child of sidebarContent.children) {
-        child.classList.add("hidden");
+        if (child.id !== e.target.id) child.classList.add("hidden");
       }
 
-      document.getElementById(`${btn}View`)?.classList.remove("hidden");
-    };
-  });
+      for (const toolbarBtn2 of toolbarButtons) {
+        toolbarBtn2.classList.remove("toggled");
+      }
+
+      document.getElementById(`${e.target.id}View`)?.classList.remove("hidden");
+      document.getElementById(`${e.target.id}`)?.classList.add("toggled");
+    });
+  }
 }
 
 function editToolBar() {
