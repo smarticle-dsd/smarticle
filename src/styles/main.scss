@@ -3,6 +3,8 @@
 @import "./theme/typography.scss";
 
 /* PLOP_INJECT_IMPORT */
+@import "../components/Sidebar/Sidebar.scss";
+@import "../components/Toolbar/Toolbar.scss";
 @import "../components/Button/Button.scss";
 @import "../components/Header/Header.scss";
 @import "../pages/HomePage/HomePage.scss";

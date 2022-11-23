@@ -1,0 +1,26 @@
+.sa-toolbar {
+  position: fixed;
+  top: 100px;
+  right: 30px;
+
+  ul li {
+    width: 50px;
+    height: 50px;
+    list-style-type: none;
+    background-color: rgb(85, 255, 12);
+    margin-bottom: 15px;
+    border-radius: 50px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 2px 2px 3px rgb(255, 255, 255);
+
+    img {
+      padding-top: 10px;
+      width: 30px;
+      height: 30px;
+    }
+  }
+  ul li:hover {
+    background-color: rgb(19, 235, 174);
+  }
+}
