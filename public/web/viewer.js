@@ -3182,7 +3182,7 @@
           "http://mozilla.github.io",
           "https://mozilla.github.io",
           "https://smarticle-content-bucket124337-staging.s3.eu-central-1.amazonaws.com",
-          "https://arxiv.org/"
+          "https://arxiv.org/",
         ];
         var validateFileURL = function (file) {
           if (!file) {

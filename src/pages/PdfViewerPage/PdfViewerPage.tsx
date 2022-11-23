@@ -3,6 +3,8 @@ import cs from "classnames";
 
 import { PdfViewerPageProps } from "./PdfViewerPage.types";
 import { useSearchParams } from "react-router-dom";
+import { Toolbar } from "../../components";
+import { Sidebar } from "../../components";
 
 const PdfViewerPage: FC<PdfViewerPageProps> = ({
   domID = "pdf-viewer-page",
@@ -60,6 +62,8 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
           height="100%"
         ></iframe>
       )}
+      <Sidebar />
+      <Toolbar />
     </div>
   );
 };
