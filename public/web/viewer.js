@@ -4205,6 +4205,7 @@
         }
         #addEventListeners() {
           this.eventBus._on("switchcursortool", (evt) => {
+            console.log("evt:", evt);
             this.switchTool(evt.tool);
           });
           let annotationEditorMode = _pdfjsLib.AnnotationEditorType.NONE,
@@ -8088,7 +8089,10 @@
           this.isOpen = true;
           this.toggleButton.classList.add("toggled");
           this.toggleButton.setAttribute("aria-expanded", "true");
-          this.outerContainer.classList.add("sidebarMoving", "sidebarOpen");
+          this.outerContainer.classList.add(
+            "leftSidebarMoving",
+            "leftSidebarOpen",
+          );
           if (this.active === _ui_utils.SidebarView.THUMBS) {
             this.#updateThumbnailViewer();
           }
@@ -8103,8 +8107,8 @@
           this.isOpen = false;
           this.toggleButton.classList.remove("toggled");
           this.toggleButton.setAttribute("aria-expanded", "false");
-          this.outerContainer.classList.add("sidebarMoving");
-          this.outerContainer.classList.remove("sidebarOpen");
+          this.outerContainer.classList.add("leftSidebarMoving");
+          this.outerContainer.classList.remove("leftSidebarOpen");
           this.#forceRendering();
           this.#dispatchEvent();
         }
@@ -8170,7 +8174,7 @@
         #addEventListeners() {
           this.leftSidebarContainer.addEventListener("transitionend", (evt) => {
             if (evt.target === this.leftSidebarContainer) {
-              this.outerContainer.classList.remove("sidebarMoving");
+              this.outerContainer.classList.remove("leftSidebarMoving");
             }
           });
           this.toggleButton.addEventListener("click", () => {
@@ -14828,7 +14832,7 @@
         },
         sidebarResizer: {
           outerContainer: document.getElementById("outerContainer"),
-          resizer: document.getElementById("sidebarResizer"),
+          resizer: document.getElementById("leftSidebarResizer"),
         },
         findBar: {
           bar: document.getElementById("findbar"),
