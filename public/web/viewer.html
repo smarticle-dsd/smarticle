@@ -104,6 +104,47 @@ See https://github.com/adobe-type-tools/cmap-resources
               >
                 <span data-l10n-id="layers_label">Layers</span>
               </button>
+              <div class="verticalToolbarSeparator hiddenMediumView"></div>
+              <button
+                id="referenceDetails"
+                class="toolbarButton"
+                title="Show Reference View"
+                tabindex="5"
+                data-l10n-id="reference-details"
+                role="radio"
+                aria-checked="false"
+                aria-controls="referenceDetailsView"
+              >
+                <span data-l10n-id="reference_details_label"
+                  >Reference Details</span
+                >
+              </button>
+              <button
+                id="knowledgeGraph"
+                class="toolbarButton"
+                title="Show Knowledge Graph"
+                tabindex="5"
+                data-l10n-id="knowledgeGraph"
+                role="radio"
+                aria-checked="false"
+                aria-controls="knowledgeGraphView"
+              >
+                <span data-l10n-id="knowledge_graph_label"
+                  >Knowledge Graph</span
+                >
+              </button>
+              <button
+                id="summary"
+                class="toolbarButton"
+                title="Show Summary"
+                tabindex="5"
+                data-l10n-id="summary"
+                role="radio"
+                aria-checked="false"
+                aria-controls="summaryView"
+              >
+                <span data-l10n-id="summary_label">Summary</span>
+              </button>
             </div>
           </div>
 
@@ -131,6 +172,9 @@ See https://github.com/adobe-type-tools/cmap-resources
           <div id="outlineView" class="hidden"></div>
           <div id="attachmentsView" class="hidden"></div>
           <div id="layersView" class="hidden"></div>
+          <div id="referenceView" class="hidden"></div>
+          <div id="knowledgeGraphView" class="hidden"></div>
+          <div id="summaryView" class="hidden"></div>
         </div>
         <div id="sidebarResizer"></div>
       </div>

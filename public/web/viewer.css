@@ -1051,7 +1051,7 @@
 
 :root {
   --dir-factor: 1;
-  --sidebar-width: 200px;
+  --sidebar-width: 350px;
   --sidebar-transition-duration: 200ms;
   --sidebar-transition-timing-function: ease;
   --scale-select-width: 140px;
