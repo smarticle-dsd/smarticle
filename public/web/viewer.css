@@ -2495,6 +2495,13 @@ a.secondaryToolbarButton[href="#"] {
   height: 22px;
   background-color: var(--separator-color);
 }
+.verticalSidebarToolbarSeparator {
+  display: block;
+  margin: 3px 2px;
+  width: 1px;
+  height: 22px;
+  background-color: var(--separator-color);
+}
 .horizontalToolbarSeparator {
   display: block;
   margin: 6px 0;
