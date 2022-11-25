@@ -44,36 +44,9 @@
   position: fixed;
   z-index:2;
   box-shadow: 5px 5px 5px black, -5px 5px 5px black;
-}
-/* this is a _demo_ container. remember the importance of relative and absolute positioning */
-.tooltip-container {
-  position: relative;
-  display: flex;
-  place-content: center;
+
 }
 
-/* styling of the tooltip display */
-.tooltip-text {
-  display: none;
-  position: absolute;
-  top: -40px;
-  z-index: 1;
-  background: #00732c;
-  padding: 8px;
-  font-size: 1rem;
-  color: #fff;
-  border-radius: 2px;
-  animation: fadeIn 0.6s;
-}
-.tooltip-text:before {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -8px;
-  border: 8px solid transparent;
-  border-top: 8px solid #00732c;
-}
 @keyframes fadeIn {
   from {
     opacity: 0;

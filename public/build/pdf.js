@@ -12271,13 +12271,7 @@
             //
             //mouseover create a tooltip
             //
-            const tooltip = document.createElement('p');
-            tooltip.className="tooltip-text";
-            tooltip.style.display='none';
-            container.appendChild(tooltip);
-
-            let viewer=document.getElementById("viewer");
-      
+            
             container.addEventListener("mouseover", (event) => {
               if(data.dest){
                 const c = document.createElement("canvas"); 
@@ -12290,7 +12284,13 @@
                     page._transport.getPage(page_number)
                       .then(function(page){
                         const r=page.getViewport({scale:1});
-                        let l = data[3]
+                        var l;
+                        // if(data[1].name =="XYZ"){
+                        l = data[3]
+                        // }else{
+                        //   console.log(data)
+                        //   l = data[2];
+                        // }
                         c.style.left = event.clientX +'px';
                         c.height=300,
                         c.width=1.3*r.width;
@@ -12298,9 +12298,8 @@
                         const w={canvasContext:c.getContext("2d"),viewport:g};
                         page.render(w);
                       }),
-                    viewer.prepend(c),
+                    container.prepend(c),
                     container.addEventListener('mouseleave', () => {
-                      tooltip.style.display = 'none';
                       c.remove()
                     }, false);     
                   }
