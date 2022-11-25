@@ -11,4 +11,6 @@ export type SidebarProps = {
    * className that is added to the root element of the Sidebar
    */
   className?: string;
+
+  content?: string;
 };

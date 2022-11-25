@@ -7,6 +7,7 @@ const Sidebar: FC<SidebarProps> = ({
   domID = "sidebar",
   dataTestId = "test-sidebar",
   className,
+  content,
 }): JSX.Element => {
   const domIDs = useMemo(
     () => ({
@@ -28,7 +29,7 @@ const Sidebar: FC<SidebarProps> = ({
       className={cs("sa-sidebar", className)}
       data-testid={dataTestIDs.root}
     >
-      <div>Sidebar</div>
+      {content}
     </div>
   );
 };

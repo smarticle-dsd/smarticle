@@ -1,4 +1,4 @@
-import React, { useMemo, FC } from "react";
+import React, { useMemo, FC, useState } from "react";
 import cs from "classnames";
 
 import { PdfViewerPageProps } from "./PdfViewerPage.types";
@@ -24,7 +24,28 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
     }),
     [dataTestId],
   );
-
+  let text = "";
+  const [func, changefunc] = useState("");
+  const [sidebarshow, changevals] = useState(false);
+  const getsidebarshowval = (boolval: any, option: any) => {
+    changevals(boolval);
+    switch (option) {
+      case 1:
+        text = "Knowledge Graph";
+        changefunc(text);
+        break;
+      case 2:
+        text = "References";
+        changefunc(text);
+        break;
+      case 3:
+        text = "Summary";
+        changefunc(text);
+        break;
+      default:
+        alert("error");
+    }
+  };
   // const { filePath } = useParams();
   const [searchParams] = useSearchParams();
   const url = searchParams.get("url");
@@ -58,12 +79,12 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
           id="pdf-js-viewer"
           src={pdfFile}
           title="webviewer"
-          width="100%"
+          width="80%"
           height="100%"
         ></iframe>
       )}
-      <Sidebar />
-      <Toolbar />
+      <Toolbar sidebarval={getsidebarshowval} />
+      {sidebarshow && <Sidebar content={func} />}
     </div>
   );
 };

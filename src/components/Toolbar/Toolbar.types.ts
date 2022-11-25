@@ -11,4 +11,6 @@ export type ToolbarProps = {
    * className that is added to the root element of the Toolbar
    */
   className?: string;
+
+  sidebarval?: Function;
 };

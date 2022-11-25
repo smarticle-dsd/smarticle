@@ -1,4 +1,4 @@
-import React, { useMemo, FC } from "react";
+import React, { useMemo, FC, useState } from "react";
 import cs from "classnames";
 import knowledgegraphpng from "./graph.png";
 import referencespng from "./references.png";
@@ -9,6 +9,7 @@ const Toolbar: FC<ToolbarProps> = ({
   domID = "toolbar",
   dataTestId = "test-toolbar",
   className,
+  sidebarval,
 }): JSX.Element => {
   const domIDs = useMemo(
     () => ({
@@ -23,15 +24,33 @@ const Toolbar: FC<ToolbarProps> = ({
     }),
     [dataTestId],
   );
+  const [sidebarshowval, changeval] = useState(false);
 
   const actions = [
     {
       label: "KnowledgeGraph",
       icon: knowledgegraphpng,
-      onClick: () => alert("hi"),
+      onClick: () => {
+        changeval(true);
+        sidebarval?.(sidebarshowval, 1);
+      },
     },
-    { label: "References", icon: referencespng, onClick: console.log },
-    { label: "Summary", icon: summarypng, onClick: console.log },
+    {
+      label: "References",
+      icon: referencespng,
+      onClick: () => {
+        changeval(true);
+        sidebarval?.(sidebarshowval, 2);
+      },
+    },
+    {
+      label: "Summary",
+      icon: summarypng,
+      onClick: () => {
+        changeval(true);
+        sidebarval?.(sidebarshowval, 3);
+      },
+    },
   ];
 
   return (
@@ -41,7 +60,7 @@ const Toolbar: FC<ToolbarProps> = ({
       data-testid={dataTestIDs.root}
     >
       <ul>
-        {actions.map((action, index) => (
+        {actions.map((action) => (
           <li key={action.label} onClick={action.onClick}>
             <img src={action.icon} alt="" />
           </li>

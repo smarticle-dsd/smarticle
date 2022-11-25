@@ -1,8 +1,9 @@
 .sa-sidebar {
   position: fixed;
-  top: 97px;
-  right: 0px;
-  background-color: bisque;
   height: 100%;
   width: 20%;
+  right: 0px;
+  top: 60px;
+  background-color: rgb(188, 130, 59);
+  z-index: -1;
 }
