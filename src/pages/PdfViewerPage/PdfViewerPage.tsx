@@ -79,7 +79,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
           id="pdf-js-viewer"
           src={pdfFile}
           title="webviewer"
-          width="80%"
+          width={sidebarshow ? "80%" : "100%"}
           height="100%"
         ></iframe>
       )}
