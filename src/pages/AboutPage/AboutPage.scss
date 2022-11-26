@@ -1,2 +1,42 @@
 .sa-about-page {
+  width: 100%;
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 10px;
+  align-items: center;
+
+  .about-background-circles {
+    margin: 136px 0px;
+  }
+
+  .about-wrapper {
+    margin: 96px 128px;
+    min-width: 500px;
+
+    h1 {
+      @include typographyBoldXxl;
+      color: var(--sa-neutral-color-5);
+      margin: 0;
+    }
+
+    .about-title {
+      @include typographyMediumL;
+      color: var(--sa-primary-color-4);
+      margin-top: 32px;
+    }
+
+    .about-description {
+      @include typographyRegularS;
+      color: var(--sa-neutral-color-5);
+      margin-top: 16px;
+
+      ol {
+        margin: 4px;
+      }
+      ul {
+        margin: 4px;
+      }
+    }
+  }
 }
