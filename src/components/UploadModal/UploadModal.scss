@@ -52,19 +52,20 @@
       background-color: var(--sa-upload-modal-drop-area-background-color);
       width: 100%;
       position: relative;
-      height: 136px;
+      //height: 136px;
+      height: 172px;
 
       margin-top: 32px;
 
       .upload-icon {
-        margin-top: 32px;
+        margin-top: 45px;
       }
 
       p {
         @include typographyMediumS;
         color: var(--sa-upload-modal-drop-text-color);
         text-align: center;
-        margin-top: 16px;
+        margin-top: 6px;
       }
 
       input {
@@ -79,6 +80,14 @@
 
         cursor: pointer;
       }
+    }
+
+    .modal-selected-file {
+      @include typographyMediumS;
+      color: var(--sa-neutral-color-4);
+      text-align: center;
+      margin: 8px auto 0px auto;
+      height: 16px;
     }
 
     .modal-select-button {
@@ -111,37 +120,6 @@
       }
     }
 
-    .modal-upload-button {
-      margin-top: 16px;
-
-      input {
-        opacity: 0;
-        width: 100%;
-        height: 100%;
-
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        cursor: pointer;
-      }
-    }
-    .modal-link-section {
-      @include typographyRegularXs;
-      background-color: var(--sa-upload-modal-linlk-section);
-      width: 320px;
-      height: 33px;
-      border: 0px;
-      border-radius: 4px;
-      margin: 16px auto 0px auto;
-      padding-left: 8px;
-
-      color: var(--sa-neutral-color-5);
-
-      &::placeholder {
-        color: var(--sa-neutral-color-3);
-      }
-    }
-
     .modal-divider {
       @include typographyRegularXs;
       color: var(--sa-neutral-color-5);
@@ -163,6 +141,47 @@
       }
       &::after {
         right: 184px;
+      }
+    }
+
+    .modal-link-section {
+      @include typographyRegularXs;
+      background-color: var(--sa-upload-modal-linlk-section);
+      width: 320px;
+      height: 33px;
+      border: 0px;
+      border-radius: 4px;
+      margin: 16px auto 0px auto;
+      padding-left: 8px;
+
+      color: var(--sa-neutral-color-5);
+
+      &::placeholder {
+        color: var(--sa-neutral-color-3);
+      }
+    }
+
+    .modal-error-message {
+      @include typographyRegularXxs;
+      size: 10px;
+      color: var(--sa-error-color-2);
+      text-align: center;
+      margin-top: 6px;
+      height: 12px;
+    }
+
+    .modal-upload-button {
+      margin-top: 16px;
+
+      input {
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        cursor: pointer;
       }
     }
   }

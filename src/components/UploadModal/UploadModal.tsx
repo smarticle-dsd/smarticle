@@ -113,7 +113,11 @@ const UploadModal: FC<UploadModalProps> = ({
             </div>
             <div className={cs("modal-drop-area", className)}>
               <Icons.UploadCloudIcon className="upload-icon" />
-              <p> Drop PDF here </p>
+              <p>
+                Select or Drop
+                <br />
+                your PDF here
+              </p>
               <input
                 type="file"
                 value=""
@@ -123,11 +127,14 @@ const UploadModal: FC<UploadModalProps> = ({
                 }}
               />
             </div>
-            <div className={cs("modal-select-button", className)}>
-              <p> Choose a file </p>
-              <input type="file" value="" onChange={onUpload} />
+            <div
+              className={cs("modal-selected-file", className)}
+              style={{
+                visibility: selectedFile?.name === "" ? "hidden" : "visible",
+              }}
+            >
+              {selectedFile?.name}
             </div>
-            <div>{selectedFile && <p>{selectedFile?.name}</p>}</div>
             <div className={cs("modal-divider", className)}>or</div>
             <input
               className={cs("modal-link-section", className)}
@@ -139,10 +146,14 @@ const UploadModal: FC<UploadModalProps> = ({
                 });
                 setError("");
               }}
-              // onKeyDown={linkUpload}
               onChange={(event) => setPdfLink(event.target.value)}
             />
-            <div>{error && <p>{error}</p>}</div>
+            <div
+              className={cs("modal-error-message", className)}
+              style={{ visibility: error === "" ? "hidden" : "visible" }}
+            >
+              {error}
+            </div>
             <Button
               className={cs("modal-upload-button", className)}
               size="large"
