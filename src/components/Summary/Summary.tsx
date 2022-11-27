@@ -1,7 +1,22 @@
-import React, { useMemo, FC } from "react";
+import React, { useMemo, FC, useState, useEffect } from "react";
 import cs from "classnames";
 
 import { SummaryProps } from "./Summary.types";
+
+import { Amplify, API } from "aws-amplify";
+import aws_exports from "../../aws-exports";
+Amplify.configure(aws_exports);
+
+async function getSummary(title: string) {
+  console.log(title);
+  const result = await API.post("backend", "/paperSummary", {
+    body: {
+      paperTitle: title,
+    },
+  });
+  console.log(result);
+  return result;
+}
 
 const Summary: FC<SummaryProps> = ({
   domID = "summary",
@@ -22,13 +37,22 @@ const Summary: FC<SummaryProps> = ({
     [dataTestId],
   );
 
+  const [summary, setSummary] = useState({});
+  useEffect(() => {
+    setSummary(getSummary("Self-Supervised Learning based on Heat Equation"));
+  }, []);
+
   return (
     <div
       id={domIDs.root}
       className={cs("sa-summary", className)}
       data-testid={dataTestIDs.root}
     >
-      <div>Summary</div>
+      {summary && (
+        <div>
+          <p></p>
+        </div>
+      )}
     </div>
   );
 };

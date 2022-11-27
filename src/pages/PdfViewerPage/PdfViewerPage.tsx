@@ -4,7 +4,7 @@ import cs from "classnames";
 import { PdfViewerPageProps } from "./PdfViewerPage.types";
 import { useSearchParams } from "react-router-dom";
 import { createPortal } from "react-dom";
-import { TestTool } from "../../components";
+import { TestTool, Summary } from "../../components";
 
 const PdfViewerPage: FC<PdfViewerPageProps> = ({
   domID = "pdf-viewer-page",
@@ -92,7 +92,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
             createPortal(<TestTool />, referenceDetailsMountNode)}
           {knowledgeGraphMountNode &&
             createPortal(<TestTool />, knowledgeGraphMountNode)}
-          {summaryMountNode && createPortal(<TestTool />, summaryMountNode)}
+          {summaryMountNode && createPortal(<Summary />, summaryMountNode)}
         </iframe>
       )}
     </div>
