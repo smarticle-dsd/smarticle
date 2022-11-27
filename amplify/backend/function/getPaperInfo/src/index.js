@@ -6,8 +6,8 @@ exports.handler = async (event) => {
   const axios = require("axios");
 
   // If the paperId was included, fetch the paper and return.
-  if (event.paperId !== undefined && event.paperId.length > 0) {
-    return await GetPaperById(event.paperId);
+  if (event.body.paperId !== undefined && event.body.paperId.length > 0) {
+    return await GetPaperById(event.body.paperId);
   }
 
   // TODO: Implement pagination
@@ -15,7 +15,7 @@ exports.handler = async (event) => {
   return await axios
     .get(`https://api.semanticscholar.org/graph/v1/paper/search`, {
       params: {
-        query: event.paperTitle,
+        query: event.body.paperTitle,
         limit: 100,
         fields: "authors",
       },
@@ -37,10 +37,10 @@ exports.handler = async (event) => {
 
         // Try to find the right paper by searching through the last names of the authors of each paper.
         // If exactly one paper is found, the flag is set.
-        if (!ArrayIsNullOrEmpty(event.authorsLastNames)) {
+        if (!ArrayIsNullOrEmpty(event.body.authorsLastNames)) {
           let papersFilteredByAuthors = FilterPapersByAuthorsLastNames(
             res.data.data,
-            event.authorsLastNames,
+            event.body.authorsLastNames,
           );
 
           if (papersFilteredByAuthors.length === 1) {
@@ -49,7 +49,7 @@ exports.handler = async (event) => {
             foundSinglePaper = true;
           } else {
             let papersFilteredByTitle = papersFilteredByAuthors.filter(
-              (o) => o.title === event.paperTitle,
+              (o) => o.title === event.body.paperTitle,
             );
 
             if (papersFilteredByTitle.length === 1) {
@@ -62,7 +62,10 @@ exports.handler = async (event) => {
         }
 
         // If no authors were provided in the request or the title was not found
-        if (ArrayIsNullOrEmpty(event.authorsLastNames) || !foundSinglePaper) {
+        if (
+          ArrayIsNullOrEmpty(event.body.authorsLastNames) ||
+          !foundSinglePaper
+        ) {
           return {
             statusCode: 400,
             body: "Semantic Scholar API returned multiple papers when searching the title.",
