@@ -12268,39 +12268,35 @@
             } else {
               this.setRotation(rotation, container);
             }
+           
             //
-            //mouseover create a tooltip
+            //mouseover create a canvas
             //
-            
             container.addEventListener("mouseover", (event) => {
               if(data.dest){
                 const c = document.createElement("canvas"); 
-                c.className="reference-canvas"
-                c.style.top = event.clientY +'px'
+                c.className="reference-canvas";
+                c.style.top = event.clientY +'px';
 
                 page._transport.getDestination(data.dest)
                   .then(data =>{
                     let page_number = this.linkService._cachedPageNumber(data[0]);
+                    
                     page._transport.getPage(page_number)
                       .then(function(page){
                         const r=page.getViewport({scale:1});
-                        var l;
-                        // if(data[1].name =="XYZ"){
-                        l = data[3]
-                        // }else{
-                        //   console.log(data)
-                        //   l = data[2];
-                        // }
+                        //only works for "XYZ" destinations  
+                        const l = data[3]
                         c.style.left = event.clientX +'px';
                         c.height=300,
                         c.width=1.3*r.width;
-                        const g = page.getViewport({scale:1.3,offsetY:1.3*(l-r.height) })
+                        const g = page.getViewport({scale:1.3,offsetY:1.3*(l-r.height) });
                         const w={canvasContext:c.getContext("2d"),viewport:g};
                         page.render(w);
                       }),
-                    container.prepend(c),
+                    container.after(c),
                     container.addEventListener('mouseleave', () => {
-                      c.remove()
+                      c.remove();
                     }, false);     
                   }
                   );
@@ -14251,7 +14247,6 @@
             const { annotations, div, viewport, accessibilityManager } =
               parameters;
             this.#setDimensions(div, viewport);
-            let zIndex = 0;
             for (const data of annotations) {
               if (data.annotationType !== _util.AnnotationType.POPUP) {
                 const { width, height } = getRectDims(data.rect);
@@ -14286,7 +14281,7 @@
                 }
                 if (Array.isArray(rendered)) {
                   for (const renderedElement of rendered) {
-                    renderedElement.style.zIndex = zIndex++;
+                    renderedElement.style.zIndex = 1;
                     AnnotationLayer.#appendElement(
                       renderedElement,
                       data.id,
@@ -14295,7 +14290,7 @@
                     );
                   }
                 } else {
-                  rendered.style.zIndex = zIndex++;
+                  rendered.style.zIndex = 1;
                   if (element instanceof PopupAnnotationElement) {
                     div.prepend(rendered);
                   } else {

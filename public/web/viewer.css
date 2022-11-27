@@ -39,12 +39,11 @@
 }
 
 .reference-canvas{
-  border: 1px solid black;
+  border: 1px solid;
   direction: ltr;
   position: fixed;
   z-index:2;
   box-shadow: 5px 5px 5px black, -5px 5px 5px black;
-
 }
 
 @keyframes fadeIn {
@@ -168,6 +167,7 @@
 
 .internalLink{
   opacity: 20%;
+  z-index: 1;
   background:#3cce30;
 }
 
