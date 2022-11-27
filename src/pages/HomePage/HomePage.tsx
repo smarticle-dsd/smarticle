@@ -2,7 +2,7 @@ import React, { useMemo, FC, useState } from "react";
 import cs from "classnames";
 
 import { HomePageProps } from "./HomePage.types";
-import { UploadModal } from "../../components";
+import { Button, UploadModal } from "../../components";
 import Icons from "../../icons";
 
 const HomePage: FC<HomePageProps> = ({
@@ -44,7 +44,9 @@ const HomePage: FC<HomePageProps> = ({
 
       <h3>Get started by uploading a paper</h3>
 
-      <button onClick={openModal}>Upload a PDF</button>
+      <Button size="extralarge" onClick={openModal}>
+        Upload a PDF
+      </Button>
 
       <div className={cs("home-page-description-wrapper", className)}>
         <div>

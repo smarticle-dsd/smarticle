@@ -3,6 +3,8 @@ import cs from "classnames";
 
 import { PdfViewerPageProps } from "./PdfViewerPage.types";
 import { useSearchParams } from "react-router-dom";
+import { createPortal } from "react-dom";
+import { TestTool } from "../../components";
 
 const PdfViewerPage: FC<PdfViewerPageProps> = ({
   domID = "pdf-viewer-page",
@@ -33,7 +35,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
 
   let pdfFile = "";
   if (url) {
-    pdfFile = url;
+    pdfFile = "/web/viewer.html?file=" + url;
   }
   if (file) {
     const baseUrl =
@@ -44,6 +46,32 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
       ".amazonaws.com/";
     pdfFile = baseUrl + file;
   }
+
+  const [referenceDetailsMountNode, setReferenceDetailsMountNode] =
+    React.useState<HTMLElement | null | undefined>(null);
+  const [knowledgeGraphMountNode, setKnowledgeGraphMountNode] = React.useState<
+    HTMLElement | null | undefined
+  >(null);
+  const [summaryMountNode, setSummaryMountNode] = React.useState<
+    HTMLElement | null | undefined
+  >(null);
+
+  const viewerRef = React.useCallback((node: HTMLIFrameElement) => {
+    if (node !== null) {
+      // This is not a solution...
+      setTimeout(() => {
+        setReferenceDetailsMountNode(
+          node?.contentDocument?.getElementById("referenceDetailsView"),
+        );
+        setKnowledgeGraphMountNode(
+          node?.contentDocument?.getElementById("knowledgeGraphView"),
+        );
+        setSummaryMountNode(
+          node?.contentDocument?.getElementById("summaryView"),
+        );
+      }, 250);
+    }
+  }, []);
 
   return (
     <div
@@ -58,7 +86,14 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
           title="webviewer"
           width="100%"
           height="100%"
-        ></iframe>
+          ref={viewerRef}
+        >
+          {referenceDetailsMountNode &&
+            createPortal(<TestTool />, referenceDetailsMountNode)}
+          {knowledgeGraphMountNode &&
+            createPortal(<TestTool />, knowledgeGraphMountNode)}
+          {summaryMountNode && createPortal(<TestTool />, summaryMountNode)}
+        </iframe>
       )}
     </div>
   );
