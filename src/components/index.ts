@@ -1,4 +1,5 @@
 /* PLOP_INJECT_IMPORT */
+export * from "./Summary";
 export * from "./Button";
 export * from "./Header";
 export * from "./UploadModal";
