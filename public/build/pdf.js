@@ -12247,9 +12247,9 @@
               const borderColor = data.borderColor || null;
               if (borderColor) {
                 container.style.borderColor = _util.Util.makeHexColor(
-                  borderColor[0] | 0,
-                  borderColor[1] | 0,
-                  borderColor[2] | 0,
+                  243 | 0,
+                  249 | 0,
+                  239 | 0,
                 );
               } else {
                 container.style.borderWidth = 0;
@@ -12268,8 +12268,45 @@
             } else {
               this.setRotation(rotation, container);
             }
+           
+            //
+            //mouseover create a canvas
+            //
+            container.addEventListener("mouseover", (event) => {
+              if(data.dest){
+                const c = document.createElement("canvas"); 
+                c.className="reference-canvas";
+                c.style.top = event.clientY +'px';
+
+                page._transport.getDestination(data.dest)
+                  .then(data =>{
+                    let page_number = this.linkService._cachedPageNumber(data[0]);
+                    
+                    page._transport.getPage(page_number)
+                      .then(function(page){
+                        const r=page.getViewport({scale:1});
+                        //only works for "XYZ" destinations  
+                        const l = data[3]
+                        c.style.left = event.clientX +'px';
+                        c.height=300,
+                        c.width=1.3*r.width;
+                        const g = page.getViewport({scale:1.3,offsetY:1.3*(l-r.height) });
+                        const w={canvasContext:c.getContext("2d"),viewport:g};
+                        page.render(w);
+                      }),
+                    container.after(c),
+                    container.addEventListener('mouseleave', () => {
+                      c.remove();
+                    }, false);     
+                  }
+                  );
+              }
+            }, false);
+           
             return container;
           }
+
+
           setRotation(angle, container = this.container) {
             const [pageLLx, pageLLy, pageURx, pageURy] = this.viewport.viewBox;
             const pageWidth = pageURx - pageLLx;
@@ -12522,6 +12559,7 @@
             const link = document.createElement("a");
             link.setAttribute("data-element-id", data.id);
             let isBound = false;
+            //external links
             if (data.url) {
               linkService.addLinkAttributes(link, data.url, data.newWindow);
               isBound = true;
@@ -12534,7 +12572,7 @@
             } else if (data.setOCGState) {
               this.#bindSetOCGState(link, data.setOCGState);
               isBound = true;
-            } else if (data.dest) {
+            } else if (data.dest) {  // internal links
               this._bindLink(link, data.dest);
               isBound = true;
             } else {
@@ -14209,7 +14247,6 @@
             const { annotations, div, viewport, accessibilityManager } =
               parameters;
             this.#setDimensions(div, viewport);
-            let zIndex = 0;
             for (const data of annotations) {
               if (data.annotationType !== _util.AnnotationType.POPUP) {
                 const { width, height } = getRectDims(data.rect);
@@ -14244,7 +14281,7 @@
                 }
                 if (Array.isArray(rendered)) {
                   for (const renderedElement of rendered) {
-                    renderedElement.style.zIndex = zIndex++;
+                    renderedElement.style.zIndex = 1;
                     AnnotationLayer.#appendElement(
                       renderedElement,
                       data.id,
@@ -14253,7 +14290,7 @@
                     );
                   }
                 } else {
-                  rendered.style.zIndex = zIndex++;
+                  rendered.style.zIndex = 1;
                   if (element instanceof PopupAnnotationElement) {
                     div.prepend(rendered);
                   } else {

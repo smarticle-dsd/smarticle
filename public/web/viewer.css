@@ -38,6 +38,22 @@
   transform-origin: 0% 0%;
 }
 
+.reference-canvas{
+  border: 1px solid;
+  direction: ltr;
+  position: fixed;
+  z-index:2;
+  box-shadow: 5px 5px 5px black, -5px 5px 5px black;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+ }
 /* Only necessary in Google Chrome, see issue 14205, and most unfortunately
  * the problem doesn't show up in "text" reference tests. */
 .textLayer span.markedContent {
@@ -147,6 +163,12 @@
   pointer-events: auto;
   box-sizing: border-box;
   transform-origin: 0 0;
+}
+
+.internalLink{
+  opacity: 20%;
+  z-index: 1;
+  background:#3cce30;
 }
 
 .annotationLayer .linkAnnotation > a,
