@@ -25,17 +25,10 @@ const KnowledgeGraphh: FC<KnowledgeGraphProps> = ({
   );
 
   // eslint-disable-next-line import/no-webpack-loader-syntax, @typescript-eslint/no-var-requires
-  /* const data = require("./response.json");
+  const elements = require("./response.json");
 
-  let elements = data.map((x: any) => x.nodeData);
-  elements = elements.concat(
-    data
-      .filter((o: any) => o.edgeData !== undefined)
-      .map((x: any) => x.edgeData),
-  ); */
-
-  const elements = [
-    { data: { id: "1", label: "Node 1" } },
+  /* const elements = [
+    { data: { id: "1", label: "Node 1", type: "main" } },
     { data: { id: "2", label: "Node 2" } },
     { data: { id: "3", label: "Node 3" } },
     { data: { id: "4", label: "Node 4" } },
@@ -68,7 +61,7 @@ const KnowledgeGraphh: FC<KnowledgeGraphProps> = ({
     {
       data: { source: "1", target: "9", label: "Edge from Node1 to Node9" },
     },
-  ];
+  ]; */
 
   const layout = {
     name: "concentric",
@@ -83,6 +76,23 @@ const KnowledgeGraphh: FC<KnowledgeGraphProps> = ({
     },
   };
 
+  const stylesheet = [
+    {
+      selector: "node",
+      style: {
+        width: 20,
+        height: 20,
+        "background-color": (node: any) => getColorBasedOnType(node),
+      },
+    },
+    {
+      selector: "edge",
+      style: {
+        "line-color": (edge: any) => getColorBasedOnType(edge),
+      },
+    },
+  ];
+
   return (
     <div
       id={domIDs.root}
@@ -92,10 +102,25 @@ const KnowledgeGraphh: FC<KnowledgeGraphProps> = ({
       <CytoscapeComponent
         elements={elements}
         style={{ width: "1000px", height: "1000px" }}
+        stylesheet={stylesheet}
         layout={layout}
       />
     </div>
   );
 };
+
+function getColorBasedOnType(obj: any) {
+  console.log(obj.data("type"));
+  switch (obj.data("type")) {
+    case "main":
+      return "red";
+    case "citation":
+      return "blue";
+    case "reference":
+      return "green";
+    default:
+      return "black";
+  }
+}
 
 export default KnowledgeGraphh;
