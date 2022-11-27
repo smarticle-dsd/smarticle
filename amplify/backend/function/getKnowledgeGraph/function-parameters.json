@@ -1,6 +1,5 @@
 {
   "lambdaLayers": [],
-  "secretNames": [],
   "environmentVariableList": [
     {
       "cloudFormationParameterName": "scApiKey",
