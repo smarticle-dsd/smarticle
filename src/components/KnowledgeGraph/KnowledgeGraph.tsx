@@ -24,80 +24,15 @@ const KnowledgeGraphh: FC<KnowledgeGraphProps> = ({
     [dataTestId],
   );
 
-  /* const cy = cytoscape({
-    // very commonly used options
-    container: undefined,
-    elements: [
-    ],
-    style: [
-    ],
-    layout: { name: "grid" },
-    data: {
-    },
+  // eslint-disable-next-line import/no-webpack-loader-syntax, @typescript-eslint/no-var-requires
+  /* const data = require("./response.json");
 
-    // initial viewport state:
-    zoom: 1,
-    pan: { x: 0, y: 0 },
-
-    // interaction options:
-    minZoom: 1e-50,
-    maxZoom: 1e50,
-    zoomingEnabled: true,
-    userZoomingEnabled: true,
-    panningEnabled: true,
-    userPanningEnabled: true,
-    boxSelectionEnabled: true,
-    selectionType: "single",
-    touchTapThreshold: 8,
-    desktopTapThreshold: 4,
-    autolock: false,
-    autoungrabify: false,
-    autounselectify: false,
-
-    // rendering options:
-    headless: false,
-    styleEnabled: true,
-    hideEdgesOnViewport: false,
-    textureOnViewport: false,
-    motionBlur: false,
-    motionBlurOpacity: 0.2,
-    wheelSensitivity: 1,
-    pixelRatio: "auto",
-  }); */
-
-  /* const elements = [
-    {
-      group: "nodes",
-      data: { id: "one", label: "Node 1" },
-      position: { x: 0, y: 0 },
-    },
-    {
-      group: "nodes",
-      data: { id: "two", label: "Node 2" },
-      position: { x: 100, y: 0 },
-    },
-    {
-      group: "nodes",
-      data: { id: "three", label: "Node 3" },
-      position: { x: 100, y: 0 },
-    },
-    {
-      group: "edges",
-      data: {
-        source: "one",
-        target: "two",
-        label: "Edge from Node1 to Node2",
-      },
-    },
-    {
-      group: "edges",
-      data: {
-        source: "two",
-        target: "three",
-        label: "Edge from Node2 to Node3",
-      },
-    },
-  ]; */
+  let elements = data.map((x: any) => x.nodeData);
+  elements = elements.concat(
+    data
+      .filter((o: any) => o.edgeData !== undefined)
+      .map((x: any) => x.edgeData),
+  ); */
 
   const elements = [
     { data: { id: "1", label: "Node 1" } },
@@ -139,7 +74,7 @@ const KnowledgeGraphh: FC<KnowledgeGraphProps> = ({
     name: "concentric",
     startAngle: 0 * Math.PI,
     minNodeSpacing: 20,
-    edgeLengthVal: 40,
+    edgeLengthVal: 80,
     concentric: function (node: any) {
       return node.degree();
     },
@@ -156,7 +91,7 @@ const KnowledgeGraphh: FC<KnowledgeGraphProps> = ({
     >
       <CytoscapeComponent
         elements={elements}
-        style={{ width: "500px", height: "500px" }}
+        style={{ width: "1000px", height: "1000px" }}
         layout={layout}
       />
     </div>
