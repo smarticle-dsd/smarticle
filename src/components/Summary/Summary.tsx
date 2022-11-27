@@ -7,21 +7,11 @@ import { Amplify, API } from "aws-amplify";
 import aws_exports from "../../aws-exports";
 Amplify.configure(aws_exports);
 
-async function getSummary(title: string) {
-  console.log(title);
-  const result = await API.post("backend", "/paperSummary", {
-    body: {
-      paperTitle: title,
-    },
-  });
-  console.log(result);
-  return result;
-}
-
 const Summary: FC<SummaryProps> = ({
   domID = "summary",
   dataTestId = "test-summary",
   className,
+  paperTitle,
 }): JSX.Element => {
   const domIDs = useMemo(
     () => ({
@@ -37,10 +27,18 @@ const Summary: FC<SummaryProps> = ({
     [dataTestId],
   );
 
-  const [summary, setSummary] = useState({});
+  const [summary, setSummary] = useState<any>({});
   useEffect(() => {
-    setSummary(getSummary("Self-Supervised Learning based on Heat Equation"));
-  }, []);
+    async function getSummary(title: string) {
+      const result = await API.post("backend", "/paperSummary", {
+        body: {
+          paperTitle: title,
+        },
+      });
+      return result;
+    }
+    getSummary(paperTitle as string).then((result) => setSummary(result));
+  }, [paperTitle]);
 
   return (
     <div
@@ -48,9 +46,12 @@ const Summary: FC<SummaryProps> = ({
       className={cs("sa-summary", className)}
       data-testid={dataTestIDs.root}
     >
-      {summary && (
+      {summary.tldr && (
         <div>
-          <p></p>
+          <h1>TLDR</h1>
+          <p>{summary?.tldr?.text}</p>
+          <h1>Abstract</h1>
+          <p>{summary?.abstract}</p>
         </div>
       )}
     </div>

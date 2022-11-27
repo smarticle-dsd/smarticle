@@ -11,4 +11,5 @@ export type SummaryProps = {
    * className that is added to the root element of the Summary
    */
   className?: string;
+  paperTitle?: string;
 };

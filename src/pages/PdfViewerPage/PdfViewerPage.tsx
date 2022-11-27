@@ -92,7 +92,11 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
             createPortal(<TestTool />, referenceDetailsMountNode)}
           {knowledgeGraphMountNode &&
             createPortal(<TestTool />, knowledgeGraphMountNode)}
-          {summaryMountNode && createPortal(<Summary />, summaryMountNode)}
+          {summaryMountNode &&
+            createPortal(
+              <Summary paperTitle="Self-Supervised Learning based on Heat Equation" />,
+              summaryMountNode,
+            )}
         </iframe>
       )}
     </div>
