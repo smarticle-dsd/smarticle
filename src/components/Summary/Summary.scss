@@ -1,17 +1,17 @@
 .sa-summary {
-    color: var(--sa-neutral-color-1);
-    
-        h1 {
-            @include typographyMediumL;
-            padding: 16px 248px 16px 8px
-        }
-    
-        h2 {
-            @include typographyMediumS;
-            padding: 16px 273px 16px 8px
-        }
-    
-        p {
-            @include typographyRegularXs;
-        }
+  color: var(--sa-neutral-color-1);
+
+  h1 {
+    @include typographyMediumL;
+    padding: 16px 248px 16px 8px;
+  }
+
+  h2 {
+    @include typographyMediumS;
+    padding: 16px 273px 16px 8px;
+  }
+
+  p {
+    @include typographyRegularXs;
+  }
 }
