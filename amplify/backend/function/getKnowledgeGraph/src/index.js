@@ -30,7 +30,7 @@ exports.handler = async (event) => {
         data: {
           id: paperInfo.data.paperId,
           label: paperInfo.data.title,
-          "background-color": "rad",
+          type: "main",
         },
       });
 
@@ -42,7 +42,7 @@ exports.handler = async (event) => {
           data: {
             id: reference.paperId,
             label: reference.title,
-            "background-color": "green",
+            type: "reference",
           },
         });
         nodesAndEdges.push({
@@ -50,7 +50,7 @@ exports.handler = async (event) => {
             source: paperInfo.data.paperId,
             target: reference.paperId,
             label: "Edge label placeholder",
-            "line-color": "green",
+            type: "reference",
           },
         });
       }
@@ -63,7 +63,7 @@ exports.handler = async (event) => {
           data: {
             id: citation.paperId,
             label: citation.title,
-            "background-color": "blue",
+            type: "citation",
           },
         });
         nodesAndEdges.push({
@@ -71,17 +71,17 @@ exports.handler = async (event) => {
             source: paperInfo.data.paperId,
             target: citation.paperId,
             label: "Edge label placeholder",
-            "line-color": "blue",
+            type: "citation",
           },
         });
       }
 
-      console.log(JSON.stringify(nodesAndEdges));
+      /* console.log(JSON.stringify(nodesAndEdges)); */
 
-      /* return {
+      return {
         statusCode: 200,
         body: nodesAndEdges,
-      }; */
+      };
     })
     .catch(function (error) {
       console.log(error);
