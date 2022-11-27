@@ -5,12 +5,13 @@ exports.handler = async (event) => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const axios = require("axios");
 
-  // If the paperId was included
+  // If the paperId was included, fetch the paper and return.
   if (event.paperId !== undefined && event.paperId.length > 0) {
     return await GetPaperById(event.paperId);
   }
 
   // TODO: Implement pagination
+  // Search for the paper using the title provided
   return await axios
     .get(`https://api.semanticscholar.org/graph/v1/paper/search`, {
       params: {
