@@ -76,15 +76,12 @@ exports.handler = async (event) => {
         });
       }
 
-      /* console.log(JSON.stringify(nodesAndEdges)); */
-
       return {
         statusCode: 200,
         body: nodesAndEdges,
       };
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch(function () {
       return {
         statusCode: 400,
         body: "Failed when searching for paper with ID: " + event.paperId,
