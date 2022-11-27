@@ -48,9 +48,9 @@ const Summary: FC<SummaryProps> = ({
     >
       {summary.tldr && (
         <div>
-          <h1>TLDR</h1>
+          <h1>Summary</h1>
           <p>{summary?.tldr?.text}</p>
-          <h1>Abstract</h1>
+          <h2>Abstract</h2>
           <p>{summary?.abstract}</p>
         </div>
       )}

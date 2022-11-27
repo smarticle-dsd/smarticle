@@ -94,6 +94,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
             createPortal(<TestTool />, knowledgeGraphMountNode)}
           {summaryMountNode &&
             createPortal(
+              // Need to find a way to get this from the PDF Viewer component
               <Summary paperTitle="Self-Supervised Learning based on Heat Equation" />,
               summaryMountNode,
             )}
