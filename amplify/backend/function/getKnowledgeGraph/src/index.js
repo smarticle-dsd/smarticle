@@ -27,45 +27,64 @@ exports.handler = async (event) => {
       let nodesAndEdges = [];
 
       nodesAndEdges.push({
-        data: { id: paperInfo.data.paperId, label: paperInfo.data.title },
+        data: {
+          id: paperInfo.data.paperId,
+          label: paperInfo.data.title,
+          "background-color": "rad",
+        },
       });
 
-      // Sets up the directed connections from current paper to all papers it references
+      // Adds a node for each referenced paper and sets up the
+      // edges from current paper to all papers it references
       for (i = 1; i < referenceCount + 1; i++) {
         let reference = paperInfo.data.references[i - 1];
         nodesAndEdges.push({
-          data: { id: reference.paperId, label: reference.title },
+          data: {
+            id: reference.paperId,
+            label: reference.title,
+            "background-color": "green",
+          },
         });
         nodesAndEdges.push({
           data: {
             source: paperInfo.data.paperId,
             target: reference.paperId,
             label: "Edge label placeholder",
+            "line-color": "green",
           },
         });
       }
 
-      // Sets up the directed connections from papers which cite this paper to the current paper
+      // Adds a node for each citation and sets up the
+      // edges from papers which cite this paper to the current paper
       for (i = referenceCount + 1; i < verticesCount; i++) {
         let citation = paperInfo.data.citations[i - referenceCount - 1];
         nodesAndEdges.push({
-          data: { id: citation.paperId, label: citation.title },
+          data: {
+            id: citation.paperId,
+            label: citation.title,
+            "background-color": "blue",
+          },
         });
         nodesAndEdges.push({
           data: {
             source: paperInfo.data.paperId,
             target: citation.paperId,
             label: "Edge label placeholder",
+            "line-color": "blue",
           },
         });
       }
 
-      return {
+      console.log(JSON.stringify(nodesAndEdges));
+
+      /* return {
         statusCode: 200,
         body: nodesAndEdges,
-      };
+      }; */
     })
-    .catch(function () {
+    .catch(function (error) {
+      console.log(error);
       return {
         statusCode: 400,
         body: "Failed when searching for paper with ID: " + event.paperId,
