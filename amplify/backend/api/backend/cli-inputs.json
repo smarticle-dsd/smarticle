@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/paperInfo": {
+      "name": "/paperInfo",
+      "lambdaFunction": "getPaperInfo",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
