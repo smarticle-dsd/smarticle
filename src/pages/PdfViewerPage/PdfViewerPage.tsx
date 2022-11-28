@@ -40,17 +40,14 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
   const [paperTitle, setPaperTitle] = useState(
     "A Note on Task-Aware Loss via Reweighing Prediction Loss by Decision-Regret",
   );
+  const baseUrl = "/web/viewer.html?file=";
   if (url) {
-    pdfFile = "/web/viewer.html?file=" + url;
+    pdfFile = baseUrl + url;
   }
   if (file) {
-    const baseUrl =
-      "/web/viewer.html?file=https://" +
-      bucketName +
-      ".s3." +
-      bucketRegion +
-      ".amazonaws.com/";
-    pdfFile = baseUrl + file;
+    const s3Url =
+      "https://" + bucketName + ".s3." + bucketRegion + ".amazonaws.com/";
+    pdfFile = baseUrl + s3Url + file;
   }
 
   useEffect(() => {
