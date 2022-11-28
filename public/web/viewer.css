@@ -38,6 +38,22 @@
   transform-origin: 0% 0%;
 }
 
+.reference-canvas{
+  border: 1px solid;
+  direction: ltr;
+  position: fixed;
+  z-index:2;
+  box-shadow: 5px 5px 5px black, -5px 5px 5px black;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+ }
 /* Only necessary in Google Chrome, see issue 14205, and most unfortunately
  * the problem doesn't show up in "text" reference tests. */
 .textLayer span.markedContent {
@@ -147,6 +163,12 @@
   pointer-events: auto;
   box-sizing: border-box;
   transform-origin: 0 0;
+}
+
+.internalLink{
+  opacity: 20%;
+  z-index: 1;
+  background:#3cce30;
 }
 
 .annotationLayer .linkAnnotation > a,
@@ -1051,7 +1073,7 @@
 
 :root {
   --dir-factor: 1;
-  --sidebar-width: 200px;
+  --sidebar-width: 350px;
   --sidebar-transition-duration: 200ms;
   --sidebar-transition-timing-function: ease;
   --scale-select-width: 140px;
@@ -1128,6 +1150,9 @@
   --toolbarButton-viewLayers-icon: url(images/toolbarButton-viewLayers.svg);
   --toolbarButton-currentOutlineItem-icon: url(images/toolbarButton-currentOutlineItem.svg);
   --toolbarButton-search-icon: url(images/toolbarButton-search.svg);
+  --toolbarButton-reference-details-icon : url(images/toolbarButton-referenceDetails.svg);
+  --toolbarButton-knowledge-graph-icon: url(images/toolbarButton-knowledgeGraph.svg);
+  --toolbarButton-summary-icon : url(images/toolbarButton-summary.svg);
   --findbarButton-previous-icon: url(images/findbarButton-previous.svg);
   --findbarButton-next-icon: url(images/findbarButton-next.svg);
   --secondaryToolbarButton-firstPage-icon: url(images/secondaryToolbarButton-firstPage.svg);
@@ -2354,6 +2379,21 @@ a.secondaryToolbarButton[href="#"] {
   mask-image: var(--toolbarButton-search-icon);
 }
 
+#referenceDetails::before {
+  -webkit-mask-image: var(--toolbarButton-reference-details-icon);
+  mask-image: var(--toolbarButton-reference-details-icon);
+}
+
+#knowledgeGraph::before {
+  -webkit-mask-image: var(--toolbarButton-knowledge-graph-icon);
+  mask-image: var(--toolbarButton-knowledge-graph-icon);
+}
+
+#summary::before {
+  -webkit-mask-image: var(--toolbarButton-summary-icon);
+  mask-image: var(--toolbarButton-summary-icon);
+}
+
 [dir="ltr"] .pdfSidebarNotification::after {
   right: 2px;
 }
@@ -2491,6 +2531,13 @@ a.secondaryToolbarButton[href="#"] {
 .verticalToolbarSeparator {
   display: block;
   margin: 5px 2px;
+  width: 1px;
+  height: 22px;
+  background-color: var(--separator-color);
+}
+.verticalSidebarToolbarSeparator {
+  display: block;
+  margin: 3px 2px;
   width: 1px;
   height: 22px;
   background-color: var(--separator-color);
