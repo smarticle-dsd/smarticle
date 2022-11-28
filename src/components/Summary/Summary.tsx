@@ -37,7 +37,9 @@ const Summary: FC<SummaryProps> = ({
       });
       return result;
     }
-    getSummary(paperTitle as string).then((result) => setSummary(result));
+    getSummary(paperTitle as string).then((result) => {
+      setSummary(result);
+    });
   }, [paperTitle]);
 
   return (

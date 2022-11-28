@@ -1,10 +1,11 @@
-import React, { useMemo, FC } from "react";
+import React, { useMemo, FC, useEffect, useState } from "react";
 import cs from "classnames";
 
 import { PdfViewerPageProps } from "./PdfViewerPage.types";
 import { useSearchParams } from "react-router-dom";
 import { createPortal } from "react-dom";
 import { TestTool, Summary } from "../../components";
+import * as pdfjs from "pdfjs-dist/legacy/build/pdf";
 
 const PdfViewerPage: FC<PdfViewerPageProps> = ({
   domID = "pdf-viewer-page",
@@ -34,6 +35,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
   const bucketRegion = process.env.REACT_APP_BUCKET_REGION as string;
 
   let pdfFile = "";
+  const [paperTitle, setPaperTitle] = useState("");
   if (url) {
     pdfFile = "/web/viewer.html?file=" + url;
   }
@@ -46,6 +48,37 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
       ".amazonaws.com/";
     pdfFile = baseUrl + file;
   }
+
+  useEffect(() => {
+    async function getDetailedInfo(pdf: any) {
+      const page = await pdf.getPage(1);
+      const content = await page.getTextContent();
+
+      let maxHeight = 0;
+      let headingData = "";
+      await content.items.map((item: { height: number; str: string }) => {
+        if (item.height > maxHeight) {
+          if (!item.str.toLowerCase().includes("arxiv")) {
+            maxHeight = item.height;
+            headingData = item.str;
+          }
+        }
+      });
+      return {
+        paperHeading: headingData,
+      };
+    }
+    if (file) {
+      pdfjs.GlobalWorkerOptions.workerSrc = require("pdfjs-dist/build/pdf.worker.entry");
+      pdfjs
+        .getDocument(pdfFile.split("file=")[1])
+        .promise.then((pdfDoc: any) => {
+          getDetailedInfo(pdfDoc).then(({ paperHeading }) => {
+            setPaperTitle(paperHeading);
+          });
+        });
+    }
+  }, [file, pdfFile]);
 
   const [referenceDetailsMountNode, setReferenceDetailsMountNode] =
     React.useState<HTMLElement | null | undefined>(null);
@@ -95,7 +128,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
           {summaryMountNode &&
             createPortal(
               // Need to find a way to get this from the PDF Viewer component
-              <Summary paperTitle="Self-Supervised Learning based on Heat Equation" />,
+              <Summary paperTitle={paperTitle} />,
               summaryMountNode,
             )}
         </iframe>
