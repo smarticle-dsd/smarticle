@@ -7,6 +7,8 @@ import { createPortal } from "react-dom";
 import { TestTool, Summary } from "../../components";
 import * as pdfjs from "pdfjs-dist/legacy/build/pdf";
 
+pdfjs.GlobalWorkerOptions.workerSrc = require("pdfjs-dist/build/pdf.worker.entry");
+
 const PdfViewerPage: FC<PdfViewerPageProps> = ({
   domID = "pdf-viewer-page",
   dataTestId = "test-pdf-viewer-page",
@@ -71,7 +73,6 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
       };
     }
     if (file) {
-      pdfjs.GlobalWorkerOptions.workerSrc = require("pdfjs-dist/build/pdf.worker.entry");
       pdfjs
         .getDocument(pdfFile.split("file=")[1])
         .promise.then((pdfDoc: any) => {
@@ -79,8 +80,14 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
             setPaperTitle(paperHeading);
           });
         });
+    } else if (url) {
+      pdfjs.getDocument(url).promise.then((pdfDoc: any) => {
+        getDetailedInfo(pdfDoc).then(({ paperHeading }) => {
+          setPaperTitle(paperHeading);
+        });
+      });
     }
-  }, [file, pdfFile]);
+  }, [file, paperTitle, pdfFile, url]);
 
   const [referenceDetailsMountNode, setReferenceDetailsMountNode] =
     React.useState<HTMLElement | null | undefined>(null);
