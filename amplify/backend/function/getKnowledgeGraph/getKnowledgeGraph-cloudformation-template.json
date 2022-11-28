@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"10.2.3\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
+  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"10.4.0\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -50,12 +50,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "getPaperInfo",
+            "getKnowledgeGraph",
             {
               "Fn::Join": [
                 "",
                 [
-                  "getPaperInfo",
+                  "getKnowledgeGraph",
                   "-",
                   {
                     "Ref": "env"
@@ -95,12 +95,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "smarticleLambdaRole09078ce5",
+            "smarticleLambdaRole97e58175",
             {
               "Fn::Join": [
                 "",
                 [
-                  "smarticleLambdaRole09078ce5",
+                  "smarticleLambdaRole97e58175",
                   "-",
                   {
                     "Ref": "env"
