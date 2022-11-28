@@ -66,7 +66,7 @@ const HomePage: FC<HomePageProps> = ({
         <div className={cs("home-page-description", className)}>
           <Icons.UploadPdfIcon className={cs("home-page-icon", className)} />
           <h3>Upload PDFs</h3>
-          <h4>Upload the PDFs from your device or from a website</h4>
+          <h4>Upload the paper from your device</h4>
         </div>
         <div className={cs("home-page-description", className)}>
           <Icons.ReferenceDetailsIcon
