@@ -1,9 +1,4 @@
 {
   "lambdaLayers": [],
-  "environmentVariableList": [
-    {
-      "cloudFormationParameterName": "scApiKey",
-      "environmentVariableName": "SC_API_KEY"
-    }
-  ]
+  "environmentVariableList": []
 }

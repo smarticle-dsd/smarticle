@@ -1,10 +1,13 @@
-import React, { useMemo, FC } from "react";
+import React, { useMemo, FC, useEffect, useState } from "react";
 import cs from "classnames";
 
 import { PdfViewerPageProps } from "./PdfViewerPage.types";
 import { useSearchParams } from "react-router-dom";
 import { createPortal } from "react-dom";
-import { TestTool } from "../../components";
+import { TestTool, Summary } from "../../components";
+import * as pdfjs from "pdfjs-dist/legacy/build/pdf";
+
+pdfjs.GlobalWorkerOptions.workerSrc = require("pdfjs-dist/build/pdf.worker.entry");
 
 const PdfViewerPage: FC<PdfViewerPageProps> = ({
   domID = "pdf-viewer-page",
@@ -34,21 +37,57 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
   const bucketRegion = process.env.REACT_APP_BUCKET_REGION as string;
 
   let pdfFile = "";
+  const [paperTitle, setPaperTitle] = useState(
+    "A Note on Task-Aware Loss via Reweighing Prediction Loss by Decision-Regret",
+  );
+  const baseUrl = "/web/viewer.html?file=";
   if (url) {
-    pdfFile = "/web/viewer.html?file=" + url;
+    pdfFile = baseUrl + url;
   }
   if (file) {
-    const baseUrl =
-      "/web/viewer.html?file=https://" +
-      bucketName +
-      ".s3." +
-      bucketRegion +
-      ".amazonaws.com/";
-    pdfFile = baseUrl + file;
+    const s3Url =
+      "https://" + bucketName + ".s3." + bucketRegion + ".amazonaws.com/";
+    pdfFile = baseUrl + s3Url + file;
   }
 
-  //  const [referenceDetailsMountNode, setReferenceDetailsMountNode] =
-  //  React.useState<HTMLElement | null | undefined>(null);
+  useEffect(() => {
+    async function getDetailedInfo(pdf: any) {
+      const page = await pdf.getPage(1);
+      const content = await page.getTextContent();
+
+      let maxHeight = 0;
+      let headingData = "";
+      await content.items.map((item: { height: number; str: string }) => {
+        if (item.height > maxHeight) {
+          if (!item.str.toLowerCase().includes("arxiv")) {
+            maxHeight = item.height;
+            headingData = item.str;
+          }
+        }
+      });
+      return {
+        paperHeading: headingData,
+      };
+    }
+    if (file) {
+      pdfjs
+        .getDocument(pdfFile.split("file=")[1])
+        .promise.then((pdfDoc: any) => {
+          getDetailedInfo(pdfDoc).then(({ paperHeading }) => {
+            setPaperTitle(paperHeading);
+          });
+        });
+    } else if (url) {
+      pdfjs.getDocument(url).promise.then((pdfDoc: any) => {
+        getDetailedInfo(pdfDoc).then(({ paperHeading }) => {
+          setPaperTitle(paperHeading);
+        });
+      });
+    }
+  }, [file, paperTitle, pdfFile, url]);
+
+  // const [referenceDetailsMountNode, setReferenceDetailsMountNode] =
+  //   React.useState<HTMLElement | null | undefined>(null);
   const [knowledgeGraphMountNode, setKnowledgeGraphMountNode] = React.useState<
     HTMLElement | null | undefined
   >(null);
@@ -94,7 +133,12 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
           }
           {knowledgeGraphMountNode &&
             createPortal(<TestTool />, knowledgeGraphMountNode)}
-          {summaryMountNode && createPortal(<TestTool />, summaryMountNode)}
+          {summaryMountNode &&
+            createPortal(
+              // Need to find a way to get this from the PDF Viewer component
+              <Summary paperTitle={paperTitle} />,
+              summaryMountNode,
+            )}
         </iframe>
       )}
     </div>

@@ -1,32 +1,44 @@
 .sa-upload-modal {
-  height: 100%;
   width: 100%;
-  background-color: rgba(159, 187, 170, 0.6);
 
-  position: fixed;
+  position: absolute;
+  inset: 0;
   top: 64px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+
+  .sa-upload-modal-overlay {
+    position: fixed;
+    width: 100%;
+    background-color: rgba(159, 187, 170, 0.6);
+    z-index: 1;
+    top: 0px;
+    bottom: 0px;
+  }
 
   .modal-wrapper {
     background-color: var(--sa-upload-modal-background-color);
     width: 480px;
-    //height: 421px;
 
-    position: relative;
     margin: 175px auto;
 
     border: 0px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
 
+    padding: 32px;
+    position: relative;
+    z-index: 2;
+
+    .title-and-close-button {
+      display: flex;
+      justify-content: space-between;
+    }
+
     .modal-title {
       @include typographyMediumM;
       color: var(--sa-upload-modal-title-text-color);
-
-      width: 150px;
-      height: 23px;
-
-      position: absolute;
-      margin: 32px auto 0px 32px;
     }
 
     .modal-close-button {
@@ -34,35 +46,26 @@
 
       width: 24px;
       height: 24px;
-      padding: 0px;
-      border: 0px;
-
-      position: absolute;
-      top: 31px;
-      left: 429px;
     }
 
     .modal-drop-area {
       background-color: var(--sa-upload-modal-drop-area-background-color);
-      width: 416px;
-      height: 136px;
-
+      width: 100%;
       position: relative;
-      left: 32px;
-      top: 87px;
+      //height: 136px;
+      height: 172px;
+
+      margin-top: 32px;
 
       .upload-icon {
-        position: absolute;
-        top: 30px;
-        transform: translate(-50%);
+        margin-top: 45px;
       }
 
       p {
         @include typographyMediumS;
         color: var(--sa-upload-modal-drop-text-color);
         text-align: center;
-        position: relative;
-        top: 85px;
+        margin-top: 6px;
       }
 
       input {
@@ -71,24 +74,35 @@
         height: 100%;
 
         position: absolute;
+
         left: 0px;
         top: 0px;
 
         cursor: pointer;
       }
+    }
+
+    .modal-selected-file {
+      @include typographyMediumS;
+      color: var(--sa-neutral-color-4);
+      text-align: center;
+      margin: 8px auto 0px auto;
+      height: 16px;
     }
 
     .modal-select-button {
       margin-top: 32px;
       background-color: transparent;
       border: 0px;
-      width: 125px;
       height: 33px;
       padding: 7px 16px;
-      margin: 90px auto 0px auto;
 
       position: relative;
+
       cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       @include typographyRegularS;
       color: var(--sa-upload-modal-select-button-color);
@@ -103,50 +117,6 @@
         left: 0px;
         top: 0px;
         cursor: pointer;
-      }
-    }
-
-    .modal-upload-button {
-      //margin-top: 32px;
-      background-color: transparent;
-      border: 0px;
-      width: 125px;
-      height: 33px;
-      padding: 7px 16px;
-      margin: auto auto 10px auto;
-
-      position: relative;
-      cursor: pointer;
-
-      @include typographyRegularS;
-      color: var(--sa-upload-modal-select-button-color);
-      text-align: center;
-
-      input {
-        opacity: 0;
-        width: 100%;
-        height: 100%;
-
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        cursor: pointer;
-      }
-    }
-    .modal-link-section {
-      @include typographyRegularXs;
-      background-color: var(--sa-upload-modal-linlk-section);
-      width: 320px;
-      height: 33px;
-      border: 0px;
-      border-radius: 4px;
-      margin: 16px auto 0px auto;
-      padding-left: 8px;
-
-      color: var(--sa-neutral-color-5);
-
-      &::placeholder {
-        color: var(--sa-neutral-color-3);
       }
     }
 
@@ -171,6 +141,47 @@
       }
       &::after {
         right: 184px;
+      }
+    }
+
+    .modal-link-section {
+      @include typographyRegularXs;
+      background-color: var(--sa-upload-modal-linlk-section);
+      width: 320px;
+      height: 33px;
+      border: 0px;
+      border-radius: 4px;
+      margin: 16px auto 0px auto;
+      padding-left: 8px;
+
+      color: var(--sa-neutral-color-5);
+
+      &::placeholder {
+        color: var(--sa-neutral-color-3);
+      }
+    }
+
+    .modal-error-message {
+      @include typographyRegularXxs;
+      size: 10px;
+      color: var(--sa-error-color-2);
+      text-align: center;
+      margin-top: 6px;
+      height: 12px;
+    }
+
+    .modal-upload-button {
+      margin-top: 16px;
+
+      input {
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        cursor: pointer;
       }
     }
   }
