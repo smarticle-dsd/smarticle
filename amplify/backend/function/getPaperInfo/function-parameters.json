@@ -1,3 +1,5 @@
 {
-  "lambdaLayers": []
+  "lambdaLayers": [],
+  "secretNames": [],
+  "environmentVariableList": []
 }
