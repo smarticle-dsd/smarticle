@@ -66,26 +66,30 @@ const HomePage: FC<HomePageProps> = ({
         <div className={cs("home-page-description", className)}>
           <Icons.UploadPdfIcon className={cs("home-page-icon", className)} />
           <h3>Upload PDFs</h3>
-          <h4>description</h4>
+          <h4>Upload the paper from your device</h4>
         </div>
         <div className={cs("home-page-description", className)}>
           <Icons.ReferenceDetailsIcon
             className={cs("home-page-icon", className)}
           />
           <h3>Inspect Reference details</h3>
-          <h4>description</h4>
+          <h4>
+            Resolve cross-references of the paper with a mouse hover and click
+          </h4>
         </div>
         <div className={cs("home-page-description", className)}>
           <Icons.KnowledgeGraphIcon
             className={cs("home-page-icon", className)}
           />
           <h3>Create a Knowledge graph</h3>
-          <h4>description</h4>
+          <h4>
+            Construct a knowledge graph regarding the references in the paper
+          </h4>
         </div>
         <div className={cs("home-page-description", className)}>
           <Icons.SummaryIcon className={cs("home-page-icon", className)} />
           <h3>Generate a Summary</h3>
-          <h4>description</h4>
+          <h4>Extract a summary for the various key components of the paper</h4>
         </div>
       </div>
 
