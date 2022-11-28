@@ -3182,7 +3182,7 @@
           "http://mozilla.github.io",
           "https://mozilla.github.io",
           "https://smarticle-content-bucket124337-staging.s3.eu-central-1.amazonaws.com",
-          "https://arxiv.org/"
+          "https://arxiv.org/",
         ];
         var validateFileURL = function (file) {
           if (!file) {
@@ -8260,7 +8260,7 @@
       exports.PDFSidebarResizer = void 0;
       var _ui_utils = __webpack_require__(1);
       const SIDEBAR_WIDTH_VAR = "--sidebar-width";
-      const SIDEBAR_MIN_WIDTH = 200;
+      const SIDEBAR_MIN_WIDTH = 350;
       const SIDEBAR_RESIZING_CLASS = "sidebarResizing";
       class PDFSidebarResizer {
         constructor(options, eventBus, l10n) {

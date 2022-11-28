@@ -135,7 +135,7 @@ const UploadModal: FC<UploadModalProps> = ({
             >
               {selectedFile?.name}
             </div>
-            <div className={cs("modal-divider", className)}>or</div>
+            {/*<div className={cs("modal-divider", className)}>or</div>
             <input
               className={cs("modal-link-section", className)}
               type="text"
@@ -147,7 +147,7 @@ const UploadModal: FC<UploadModalProps> = ({
                 setError("");
               }}
               onChange={(event) => setPdfLink(event.target.value)}
-            />
+            />*/}
             <div
               className={cs("modal-error-message", className)}
               style={{ visibility: error === "" ? "hidden" : "visible" }}
