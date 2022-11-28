@@ -12332,10 +12332,10 @@
                     const ll = data[3];
 
                     const gg = page.getViewport({
-                      scale: 1,
-                      offsetY: 1.3 * ll - rr.height,
+                      scale: 1.3,
+                      offsetY: 1.3 * (ll - rr.height),
                     });
-                    canv.height = 300;
+                    canv.height = 200;
                     canv.width = 1.3 * rr.width;
 
                     document
@@ -12662,31 +12662,7 @@
             link.href = this.linkService.getDestinationHash(destination);
             link.onclick = () => {
               if (destination) {
-                this.linkService.goToDestination(destination);
-                /*console.log(this.linkService._cachedPageNumber(destination));
-                page = destination;
-                var canv = document.createElement("canvas");
-                canv.id = "referencedtl";
-
-                page._transport.getDestination(data.dest).then((data) => {
-                  let page_number = this.linkService._cachedPageNumber(data[0]);
-
-                  page._transport.getPage(page_number).then(function (page) {
-                    const r = page.getViewport({ scale: 1 });
-                    //only works for "XYZ" destinations
-                    const l = data[3];
-                    (canv.height = 300), (canv.width = 1.3 * r.width);
-                    const gg = page.getViewport({
-                      scale: 1.3,
-                      offsetY: 1.3 * (l - r.height),
-                    });
-                    const ww = {
-                      canvasContext: canv.getContext("2d"),
-                      viewport: gg,
-                    };
-                    page.render(ww);
-                  });
-                });*/
+                //this.linkService.goToDestination(destination);
               }
               return false;
             };
