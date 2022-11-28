@@ -29,6 +29,8 @@ const Summary: FC<SummaryProps> = ({
 
   const [summary, setSummary] = useState<any>({});
   useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log("summary", paperTitle);
     async function getSummary(title: string) {
       const result = await API.post("backend", "/paperSummary", {
         body: {

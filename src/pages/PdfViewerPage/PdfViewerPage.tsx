@@ -80,12 +80,16 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
             setPaperTitle(paperHeading);
           });
         });
+      // eslint-disable-next-line no-console
+      console.log("PDF viewer, file", paperTitle);
     } else if (url) {
       pdfjs.getDocument(url).promise.then((pdfDoc: any) => {
         getDetailedInfo(pdfDoc).then(({ paperHeading }) => {
           setPaperTitle(paperHeading);
         });
       });
+      // eslint-disable-next-line no-console
+      console.log("PDF viewer, url", paperTitle);
     }
   }, [file, paperTitle, pdfFile, url]);
 
