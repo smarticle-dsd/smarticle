@@ -6,6 +6,8 @@ import { ReactComponent as SummaryIcon } from "./HomePage/summary.svg";
 import { ReactComponent as UploadCloudIcon } from "./HomePage/upload-icon.svg";
 import { ReactComponent as CloseButton } from "./HomePage/close-icon.svg";
 
+import { ReactComponent as AboutBackgroundCircles } from "./AboutPage/about_background.svg";
+
 const Icons = {
   BackgroundCircles,
   UploadPdfIcon,
@@ -14,6 +16,7 @@ const Icons = {
   SummaryIcon,
   UploadCloudIcon,
   CloseButton,
+  AboutBackgroundCircles,
 };
 
 export default Icons;
