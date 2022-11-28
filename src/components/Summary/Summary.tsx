@@ -39,6 +39,7 @@ const Summary: FC<SummaryProps> = ({
             paperTitle: title,
           },
         });
+        setError(false);
         return result;
       } catch (e) {
         setError(true);
