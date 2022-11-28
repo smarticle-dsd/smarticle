@@ -12272,7 +12272,7 @@
             //
             //mouseover create a canvas
             //
-            container.addEventListener("mouseover", (event) => {
+            container.addEventListener("mouseenter", (event) => {
               if(data.dest){
                 const c = document.createElement("canvas"); 
                 c.className="reference-canvas";
