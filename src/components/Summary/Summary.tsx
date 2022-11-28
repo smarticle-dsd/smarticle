@@ -28,16 +28,22 @@ const Summary: FC<SummaryProps> = ({
   );
 
   const [summary, setSummary] = useState<any>({});
+  const [error, setError] = useState<boolean>(false);
   useEffect(() => {
     // eslint-disable-next-line no-console
     console.log("summary", paperTitle);
     async function getSummary(title: string) {
-      const result = await API.post("backend", "/paperSummary", {
-        body: {
-          paperTitle: title,
-        },
-      });
-      return result;
+      try {
+        const result = await API.post("backend", "/paperSummary", {
+          body: {
+            paperTitle: title,
+          },
+        });
+        return result;
+      } catch (e) {
+        setError(true);
+        return {};
+      }
     }
     getSummary(paperTitle as string).then((result) => {
       setSummary(result);
@@ -51,6 +57,9 @@ const Summary: FC<SummaryProps> = ({
       data-testid={dataTestIDs.root}
     >
       <div>
+        {error && (
+          <p>Semantic Scholar does not have any information on your paper.</p>
+        )}
         {summary.tldr && summary.tldr.text && (
           <>
             <h1>Summary</h1>
