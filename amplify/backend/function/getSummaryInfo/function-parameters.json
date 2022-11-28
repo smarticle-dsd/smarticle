@@ -1,6 +1,4 @@
 {
   "lambdaLayers": [],
-  "secretNames": [
-    "SC_KEY"
-  ]
+  "secretNames": ["SC_KEY"]
 }

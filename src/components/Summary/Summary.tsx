@@ -48,14 +48,20 @@ const Summary: FC<SummaryProps> = ({
       className={cs("sa-summary", className)}
       data-testid={dataTestIDs.root}
     >
-      {summary.tldr && (
-        <div>
-          <h1>Summary</h1>
-          <p>{summary?.tldr?.text}</p>
-          <h2>Abstract</h2>
-          <p>{summary?.abstract}</p>
-        </div>
-      )}
+      <div>
+        {summary.tldr && summary.tldr.text && (
+          <>
+            <h1>Summary</h1>
+            <p>{summary?.tldr?.text}</p>
+          </>
+        )}
+        {summary.abstract && (
+          <>
+            <h2>Abstract</h2>
+            <p>{summary?.abstract}</p>
+          </>
+        )}
+      </div>
     </div>
   );
 };
