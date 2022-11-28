@@ -35,7 +35,9 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
   const bucketRegion = process.env.REACT_APP_BUCKET_REGION as string;
 
   let pdfFile = "";
-  const [paperTitle, setPaperTitle] = useState("");
+  const [paperTitle, setPaperTitle] = useState(
+    "A Note on Task-Aware Loss via Reweighing Prediction Loss by Decision-Regret",
+  );
   if (url) {
     pdfFile = "/web/viewer.html?file=" + url;
   }
