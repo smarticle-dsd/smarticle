@@ -15,13 +15,18 @@
       "function": {
         "getPaperInfo": {
           "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
-          "s3Key": "amplify-builds/getPaperInfo-6652346a597235653378-build.zip",
-          "scApiKey": "74YznjI4XpavHyy6QrUw91YlRNrOa0kr4c3k1j3N"
+          "s3Key": "amplify-builds/getPaperInfo-58415a4e674734685564-build.zip",
+          "scApiKey": "placeholder"
         },
         "getKnowledgeGraph": {
           "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
-          "scApiKey": "74YznjI4XpavHyy6QrUw91YlRNrOa0kr4c3k1j3N",
+          "scApiKey": "placeholder",
           "s3Key": "amplify-builds/getKnowledgeGraph-6b7a596c6b4c34694246-build.zip"
+        },
+        "getSummaryInfo": {
+          "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
+          "s3Key": "amplify-builds/getSummaryInfo-6d7878384a46636d6d6f-build.zip",
+          "secretsPathAmplifyAppId": "dcfoxoxqw27pv"
         }
       },
       "api": {
