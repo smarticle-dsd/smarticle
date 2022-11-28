@@ -5,7 +5,7 @@ import CytoscapeComponent from "react-cytoscapejs";
 
 import { KnowledgeGraphProps } from "./KnowledgeGraph.types";
 
-const KnowledgeGraphh: FC<KnowledgeGraphProps> = ({
+const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
   domID = "knowledge-graph",
   dataTestId = "test-knowledge-graph",
   className,
@@ -123,4 +123,4 @@ function getColorBasedOnType(obj: any) {
   }
 }
 
-export default KnowledgeGraphh;
+export default KnowledgeGraph;

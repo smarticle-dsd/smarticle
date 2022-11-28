@@ -2,7 +2,7 @@ import React, { useMemo, FC } from "react";
 import cs from "classnames";
 
 import { TestGraphPageProps } from "./TestGraphPage.types";
-import { KnowledgeGraphh } from "../../components";
+import { KnowledgeGraph } from "../../components";
 
 const TestGraphPage: FC<TestGraphPageProps> = ({
   domID = "test-graph-page",
@@ -29,7 +29,7 @@ const TestGraphPage: FC<TestGraphPageProps> = ({
       className={cs("sa-test-graph-page", className)}
       data-testid={dataTestIDs.root}
     >
-      <KnowledgeGraphh />
+      <KnowledgeGraph />
     </div>
   );
 };

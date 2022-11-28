@@ -1,2 +1,2 @@
-export { default as KnowledgeGraphh } from "./KnowledgeGraph";
+export { default as KnowledgeGraph } from "./KnowledgeGraph";
 export type { KnowledgeGraphProps } from "./KnowledgeGraph.types";
