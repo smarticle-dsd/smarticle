@@ -86,8 +86,8 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
     }
   }, [file, paperTitle, pdfFile, url]);
 
-  const [referenceDetailsMountNode, setReferenceDetailsMountNode] =
-    React.useState<HTMLElement | null | undefined>(null);
+  // const [referenceDetailsMountNode, setReferenceDetailsMountNode] =
+  //   React.useState<HTMLElement | null | undefined>(null);
   const [knowledgeGraphMountNode, setKnowledgeGraphMountNode] = React.useState<
     HTMLElement | null | undefined
   >(null);
@@ -99,9 +99,9 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
     if (node !== null) {
       // This is not a solution...
       setTimeout(() => {
-        setReferenceDetailsMountNode(
-          node?.contentDocument?.getElementById("referenceDetailsView"),
-        );
+        //setReferenceDetailsMountNode(
+        //  node?.contentDocument?.getElementById("referenceDetailsView"),
+        //);
         setKnowledgeGraphMountNode(
           node?.contentDocument?.getElementById("knowledgeGraphView"),
         );
@@ -127,8 +127,10 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
           height="100%"
           ref={viewerRef}
         >
-          {referenceDetailsMountNode &&
-            createPortal(<TestTool />, referenceDetailsMountNode)}
+          {
+            //referenceDetailsMountNode &&
+            // createPortal(<TestTool />, referenceDetailsMountNode)
+          }
           {knowledgeGraphMountNode &&
             createPortal(<TestTool />, knowledgeGraphMountNode)}
           {summaryMountNode &&
