@@ -108,7 +108,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
         setSummaryMountNode(
           node?.contentDocument?.getElementById("summaryView"),
         );
-      }, 250);
+      }, 5000);
     }
   }, []);
 
