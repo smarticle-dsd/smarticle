@@ -155,6 +155,7 @@ const UploadModal: FC<UploadModalProps> = ({
                 type="file"
                 onChange={onUpload}
                 onInput={() => {
+                  setError("");
                   setPdfLink("");
                 }}
               />
@@ -174,9 +175,14 @@ const UploadModal: FC<UploadModalProps> = ({
               value={pdfLink}
               placeholder="Paste a link"
               onInput={() => {
+                setSelectedFile({
+                  name: "",
+                });
                 setError("");
               }}
-              onChange={(event) => setPdfLink(event.target.value)}
+              onChange={(event) => {
+                setPdfLink(event.target.value);
+              }}
             />
             <div className={cs("modal-support-message", className)}>
               Currently links are supported only for papers on arxiv.org

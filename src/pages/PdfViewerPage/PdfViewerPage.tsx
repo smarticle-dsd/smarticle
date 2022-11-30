@@ -57,7 +57,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
 
       let maxHeight = 0;
       let headingData = "";
-      await content.items.map((item: { height: number; str: string }) => {
+      await content.items.forEach((item: { height: number; str: string }) => {
         if (item.height > maxHeight) {
           if (!item.str.toLowerCase().includes("arxiv")) {
             maxHeight = item.height;
