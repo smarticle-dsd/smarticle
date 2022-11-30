@@ -9,6 +9,8 @@ import { Button } from "../Button";
 
 import { useNavigate } from "react-router-dom";
 
+import * as pdfjs from "pdfjs-dist/legacy/build/pdf";
+
 const UploadModal: FC<UploadModalProps> = ({
   domID = "upload-modal",
   dataTestId = "test-upload-modal",
@@ -50,6 +52,15 @@ const UploadModal: FC<UploadModalProps> = ({
     name: "",
   });
   const [pdfLink, setPdfLink] = useState("");
+  async function isPdfValid(url: any) {
+    try {
+      await pdfjs.getDocument(url).promise;
+      setError("");
+      return true;
+    } catch (err) {
+      setError("The input provided is not a valid pdf.");
+    }
+  }
   //accept the file input when user select or drop file
   const onUpload = (e: any) => {
     if (e.target.files.length > 0) {
@@ -67,24 +78,28 @@ const UploadModal: FC<UploadModalProps> = ({
     }
   };
 
-  const handleUpload = (file: any) => {
-    if (pdfLink !== "" && pdfLink.endsWith(".pdf")) {
-      navigate("/pdfviewer?url=" + pdfLink);
+  const handleUpload = async (file: any) => {
+    if (pdfLink !== "") {
+      if (await isPdfValid(pdfLink)) {
+        navigate("/pdfviewer?url=" + pdfLink);
+      }
     } else if (file.name !== "" && file.type === "application/pdf") {
-      const params = {
-        ACL: "public-read",
-        Body: file,
-        Bucket: bucketName,
-        Key: file.name,
-      };
+      if (await isPdfValid(URL.createObjectURL(file))) {
+        const params = {
+          ACL: "public-read",
+          Body: file,
+          Bucket: bucketName,
+          Key: file.name,
+        };
 
-      myBucket.putObject(params).send((err) => {
-        if (!err) {
-          navigate("/pdfviewer?file=" + file.name);
-        } else {
-          setError("There was an error during upload. Please try again.");
-        }
-      });
+        myBucket.putObject(params).send((err: any) => {
+          if (!err) {
+            navigate("/pdfviewer?file=" + file.name);
+          } else {
+            setError("There was an error during upload. Please try again.");
+          }
+        });
+      }
     } else {
       setError(
         "Please provide a pdf file or a link ending in pdf to continue.",
@@ -135,7 +150,7 @@ const UploadModal: FC<UploadModalProps> = ({
             >
               {selectedFile?.name}
             </div>
-            {/*<div className={cs("modal-divider", className)}>or</div>
+            <div className={cs("modal-divider", className)}>or</div>
             <input
               className={cs("modal-link-section", className)}
               type="text"
@@ -147,7 +162,7 @@ const UploadModal: FC<UploadModalProps> = ({
                 setError("");
               }}
               onChange={(event) => setPdfLink(event.target.value)}
-            />*/}
+            />
             <div
               className={cs("modal-error-message", className)}
               style={{ visibility: error === "" ? "hidden" : "visible" }}
