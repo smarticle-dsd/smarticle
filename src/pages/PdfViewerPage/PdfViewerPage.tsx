@@ -69,21 +69,17 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
         paperHeading: headingData,
       };
     }
+    let urlToLoad = "";
     if (file) {
-      pdfjs
-        .getDocument(pdfFile.split("file=")[1])
-        .promise.then((pdfDoc: any) => {
-          getDetailedInfo(pdfDoc).then(({ paperHeading }) => {
-            setPaperTitle(paperHeading);
-          });
-        });
+      urlToLoad = pdfFile.split("file=")[1];
     } else if (url) {
-      pdfjs.getDocument(url).promise.then((pdfDoc: any) => {
-        getDetailedInfo(pdfDoc).then(({ paperHeading }) => {
-          setPaperTitle(paperHeading);
-        });
-      });
+      urlToLoad = url;
     }
+    pdfjs.getDocument(urlToLoad).promise.then((pdfDoc: any) => {
+      getDetailedInfo(pdfDoc).then(({ paperHeading }) => {
+        setPaperTitle(paperHeading);
+      });
+    });
   }, [file, paperTitle, pdfFile, url]);
 
   // const [referenceDetailsMountNode, setReferenceDetailsMountNode] =

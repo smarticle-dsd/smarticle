@@ -4,7 +4,7 @@ import cs from "classnames";
 import { UploadModalProps } from "./UploadModal.types";
 import Icons from "../../icons";
 
-import AWS from "aws-sdk";
+import AWS, { AWSError } from "aws-sdk";
 import { Button } from "../Button";
 
 import { useNavigate } from "react-router-dom";
@@ -49,14 +49,18 @@ const UploadModal: FC<UploadModalProps> = ({
 
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [selectedFile, setSelectedFile] = useState({
+  const [selectedFile, setSelectedFile] = useState<Record<string, string>>({
     name: "",
   });
   const [pdfLink, setPdfLink] = useState("");
-  async function isPdfValid(url: any) {
+  async function isPdfValid(url: string) {
     try {
       setLoading(true);
-      await pdfjs.getDocument(url).promise;
+      await pdfjs.getDocument({
+        url,
+        disableAutoFetch: true,
+        disableStream: true,
+      }).promise;
       setError("");
       setLoading(false);
       return true;
@@ -73,7 +77,6 @@ const UploadModal: FC<UploadModalProps> = ({
         setSelectedFile(e.target.files[0]);
         setError("");
       } else {
-        setSelectedFile(e.target.files[0]);
         setError(
           "The uploaded file is not supported. Only pdf files are allowed.",
         );
@@ -97,7 +100,7 @@ const UploadModal: FC<UploadModalProps> = ({
           Key: file.name,
         };
 
-        myBucket.putObject(params).send((err: any) => {
+        myBucket.putObject(params).send((err: AWSError) => {
           if (!err) {
             navigate("/pdfviewer?file=" + file.name);
           } else {
@@ -118,6 +121,8 @@ const UploadModal: FC<UploadModalProps> = ({
       name: "",
     });
     setPdfLink("");
+    setError("");
+    setLoading(false);
   };
 
   return (
@@ -148,7 +153,6 @@ const UploadModal: FC<UploadModalProps> = ({
               </p>
               <input
                 type="file"
-                value=""
                 onChange={onUpload}
                 onInput={() => {
                   setPdfLink("");
@@ -202,7 +206,7 @@ const UploadModal: FC<UploadModalProps> = ({
 
           <div
             className={cs("sa-upload-modal-overlay")}
-            onClick={() => toggle()}
+            onClick={() => handleToggle()}
           ></div>
         </div>
       ) : null}
