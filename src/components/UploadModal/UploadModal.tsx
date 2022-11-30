@@ -47,22 +47,27 @@ const UploadModal: FC<UploadModalProps> = ({
     region: bucketRegion,
   });
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   const [selectedFile, setSelectedFile] = useState({
     name: "",
   });
   const [pdfLink, setPdfLink] = useState("");
   async function isPdfValid(url: any) {
     try {
+      setLoading(true);
       await pdfjs.getDocument(url).promise;
       setError("");
+      setLoading(false);
       return true;
     } catch (err) {
+      setLoading(false);
       setError("The input provided is not a valid pdf.");
     }
   }
   //accept the file input when user select or drop file
   const onUpload = (e: any) => {
+    setPdfLink("");
     if (e.target.files.length > 0) {
       if (e.target.files[0].type === "application/pdf") {
         setSelectedFile(e.target.files[0]);
@@ -107,6 +112,14 @@ const UploadModal: FC<UploadModalProps> = ({
     }
   };
 
+  const handleToggle = () => {
+    toggle();
+    setSelectedFile({
+      name: "",
+    });
+    setPdfLink("");
+  };
+
   return (
     <>
       {isVisible ? (
@@ -123,7 +136,7 @@ const UploadModal: FC<UploadModalProps> = ({
               <div className={cs("modal-title", className)}>Upload a paper</div>
               <Icons.CloseButton
                 className={cs("modal-close-button", className)}
-                onClick={() => toggle()}
+                onClick={() => handleToggle()}
               />
             </div>
             <div className={cs("modal-drop-area", className)}>
@@ -154,15 +167,22 @@ const UploadModal: FC<UploadModalProps> = ({
             <input
               className={cs("modal-link-section", className)}
               type="text"
+              value={pdfLink}
               placeholder="Paste a link"
               onInput={() => {
-                setSelectedFile({
-                  name: "",
-                });
                 setError("");
               }}
               onChange={(event) => setPdfLink(event.target.value)}
             />
+            <div className={cs("modal-support-message", className)}>
+              Currently links are supported only for papers on arxiv.org
+            </div>
+            <div
+              className={cs("modal-support-message", className)}
+              style={{ visibility: !loading ? "hidden" : "visible" }}
+            >
+              Validating pdf file....
+            </div>
             <div
               className={cs("modal-error-message", className)}
               style={{ visibility: error === "" ? "hidden" : "visible" }}
