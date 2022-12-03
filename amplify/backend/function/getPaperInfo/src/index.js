@@ -79,7 +79,8 @@ exports.handler = async (event) => {
       return {
         statusCode: 400,
         body:
-          "Failed when searching for paper with ID: " + event.body.paperTitle,
+          "Failed when searching for paper with ID: " +
+          res.data.data[0].paperId,
       };
     });
 };

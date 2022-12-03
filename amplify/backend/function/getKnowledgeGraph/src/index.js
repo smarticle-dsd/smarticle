@@ -5,18 +5,15 @@ exports.handler = async (event) => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const axios = require("axios");
   return await axios
-    .get(
-      `https://api.semanticscholar.org/graph/v1/paper/` + event.body.paperId,
-      {
-        params: {
-          fields:
-            "authors,citations,citationCount,references,referenceCount,title",
-        },
-        headers: {
-          "x-api-key": process.env.SC_API_KEY,
-        },
+    .get(`https://api.semanticscholar.org/graph/v1/paper/` + event.paperId, {
+      params: {
+        fields:
+          "authors,citations,citationCount,references,referenceCount,title",
       },
-    )
+      headers: {
+        "x-api-key": process.env.SC_API_KEY,
+      },
+    })
     .then(function (paperInfo) {
       // Number of papers referenced in this paper.
       let referenceCount = paperInfo.data.referenceCount;
@@ -87,7 +84,7 @@ exports.handler = async (event) => {
     .catch(function () {
       return {
         statusCode: 400,
-        body: "Failed when searching for paper with ID: " + event.body.paperId,
+        body: "Failed when searching for paper with ID: " + event.paperId,
       };
     });
 };

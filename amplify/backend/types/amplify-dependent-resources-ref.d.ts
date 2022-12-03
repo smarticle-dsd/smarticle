@@ -17,6 +17,9 @@ export type AmplifyDependentResourcesAttributes = {
             "Arn": "string",
             "Region": "string",
             "LambdaExecutionRole": "string"
+        },
+        "smarticlelayer": {
+            "Arn": "string"
         }
     },
     "api": {
