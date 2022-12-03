@@ -1,0 +1,21 @@
+{
+  "permissions": [
+    {
+      "type": "AwsAccounts",
+      "accounts": [
+        "080302845788"
+      ]
+    },
+    {
+      "type": "Private"
+    }
+  ],
+  "runtimes": [
+    {
+      "value": "nodejs",
+      "name": "NodeJS",
+      "runtimePluginId": "amplify-nodejs-function-runtime-provider",
+      "layerExecutablePath": "nodejs"
+    }
+  ]
+}

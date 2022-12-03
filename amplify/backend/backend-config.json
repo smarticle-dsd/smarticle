@@ -3,17 +3,49 @@
     "getPaperInfo": {
       "build": true,
       "providerPlugin": "awscloudformation",
-      "service": "Lambda"
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "smarticlelayer",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ]
     },
     "getKnowledgeGraph": {
       "build": true,
       "providerPlugin": "awscloudformation",
-      "service": "Lambda"
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "smarticlelayer",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ]
     },
     "getSummaryInfo": {
       "build": true,
       "providerPlugin": "awscloudformation",
-      "service": "Lambda"
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "smarticlelayer",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "smarticlelayer": {
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer",
+      "build": true
     }
   },
   "auth": {},
@@ -25,12 +57,18 @@
         {
           "category": "function",
           "resourceName": "getPaperInfo",
-          "attributes": ["Name", "Arn"]
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         },
         {
           "category": "function",
           "resourceName": "getSummaryInfo",
-          "attributes": ["Name", "Arn"]
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     }
