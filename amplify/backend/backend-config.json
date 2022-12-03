@@ -15,6 +15,7 @@
     "getSummaryInfo": {
       "build": true,
       "providerPlugin": "awscloudformation",
+<<<<<<< HEAD
       "service": "Lambda",
       "dependsOn": [
         {
@@ -30,6 +31,9 @@
       "providerPlugin": "awscloudformation",
       "service": "LambdaLayer",
       "build": true
+=======
+      "service": "Lambda"
+>>>>>>> develop
     }
   },
   "auth": {},
@@ -41,18 +45,26 @@
         {
           "category": "function",
           "resourceName": "getPaperInfo",
+<<<<<<< HEAD
           "attributes": [
             "Name",
             "Arn"
           ]
+=======
+          "attributes": ["Name", "Arn"]
+>>>>>>> develop
         },
         {
           "category": "function",
           "resourceName": "getSummaryInfo",
+<<<<<<< HEAD
           "attributes": [
             "Name",
             "Arn"
           ]
+=======
+          "attributes": ["Name", "Arn"]
+>>>>>>> develop
         }
       ]
     }

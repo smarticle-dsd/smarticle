@@ -99,20 +99,25 @@ const UploadModal: FC<UploadModalProps> = ({
           id={domIDs.root}
           className={cs("sa-upload-modal", className)}
           data-testid={dataTestIds.root}
-          onClick={() => toggle()}
         >
           <div
             className={cs("modal-wrapper", className)}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className={cs("modal-title", className)}>Upload a paper</div>
-            <Icons.CloseButton
-              className={cs("modal-close-button", className)}
-              onClick={() => toggle()}
-            />
+            <div className={cs("title-and-close-button")}>
+              <div className={cs("modal-title", className)}>Upload a paper</div>
+              <Icons.CloseButton
+                className={cs("modal-close-button", className)}
+                onClick={() => toggle()}
+              />
+            </div>
             <div className={cs("modal-drop-area", className)}>
               <Icons.UploadCloudIcon className="upload-icon" />
-              <p> Drop PDF here </p>
+              <p>
+                Select or Drop
+                <br />
+                your PDF here
+              </p>
               <input
                 type="file"
                 value=""
@@ -122,12 +127,15 @@ const UploadModal: FC<UploadModalProps> = ({
                 }}
               />
             </div>
-            <div className={cs("modal-select-button", className)}>
-              <p> Choose a file </p>
-              <input type="file" value="" onChange={onUpload} />
+            <div
+              className={cs("modal-selected-file", className)}
+              style={{
+                visibility: selectedFile?.name === "" ? "hidden" : "visible",
+              }}
+            >
+              {selectedFile?.name}
             </div>
-            <div>{selectedFile && <p>{selectedFile?.name}</p>}</div>
-            <div className={cs("modal-divider", className)}>or</div>
+            {/*<div className={cs("modal-divider", className)}>or</div>
             <input
               className={cs("modal-link-section", className)}
               type="text"
@@ -138,19 +146,29 @@ const UploadModal: FC<UploadModalProps> = ({
                 });
                 setError("");
               }}
-              // onKeyDown={linkUpload}
               onChange={(event) => setPdfLink(event.target.value)}
-            />
-            <div>{error && <p>{error}</p>}</div>
+            />*/}
+            <div
+              className={cs("modal-error-message", className)}
+              style={{ visibility: error === "" ? "hidden" : "visible" }}
+            >
+              {error}
+            </div>
             <Button
               className={cs("modal-upload-button", className)}
-              size="small"
+              size="large"
+              type="primary"
               disabled={error.length === 0 ? false : true}
               onClick={() => handleUpload(selectedFile)}
             >
               Continue
             </Button>
           </div>
+
+          <div
+            className={cs("sa-upload-modal-overlay")}
+            onClick={() => toggle()}
+          ></div>
         </div>
       ) : null}
     </>
