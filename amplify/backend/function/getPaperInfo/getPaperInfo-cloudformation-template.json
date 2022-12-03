@@ -15,6 +15,10 @@
     },
     "s3Key": {
       "Type": "String"
+    },
+    "functionsmarticlelayerArn": {
+      "Type": "String",
+      "Default": "functionsmarticlelayerArn"
     }
   },
   "Conditions": {
@@ -79,7 +83,11 @@
           ]
         },
         "Runtime": "nodejs14.x",
-        "Layers": [],
+        "Layers": [
+          {
+            "Fn::Sub": "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:layer:smarticlelayer-staging:1"
+          }
+        ],
         "Timeout": 25
       }
     },

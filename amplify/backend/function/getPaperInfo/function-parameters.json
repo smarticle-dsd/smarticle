@@ -1,5 +1,13 @@
 {
-  "lambdaLayers": [],
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "smarticlelayer",
+      "env": "staging",
+      "version": 1,
+      "isLatestVersionSelected": false
+    }
+  ],
   "secretNames": [],
   "environmentVariableList": []
 }
