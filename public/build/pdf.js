@@ -12318,12 +12318,14 @@
             container.addEventListener(
               "click",
               () => {
-                const can = document.getElementById("reference");
-                if (can.firstElementChild != null) {
-                  can.innerHTML = "";
+                const can = document.getElementsByClassName("reffwrap")[0];
+                if (can != null) {
+                  can.parentNode.removeChild(can);
                 }
-                var canv = document.createElement("canvas");
-                canv.id = "referencedtl";
+                //var canv = document.createElement("canvas");
+                // canv.id = "referencedtl";
+                var canv = document.getElementsByClassName("canv")[0];
+                canv.style.visibility = "visible";
                 page._transport.getDestination(data.dest).then((data) => {
                   let page_number = this.linkService._cachedPageNumber(data[0]);
 
@@ -12335,8 +12337,8 @@
                       scale: 1.3,
                       offsetY: 1.3 * (ll - rr.height),
                     });
-                    canv.height = 200;
-                    canv.width = 1.3 * rr.width;
+                    //canv.height = 400;
+                    //canv.width = 1.3 * rr.width;
 
                     document.getElementById("reference").append(canv);
                     const ww = {

@@ -36,6 +36,7 @@ const Reference: FC<ReferenceProps> = ({
           <h3>Click on a reference to preview it</h3>
         </div>
       </div>
+      <canvas className={cs("canv", className)}></canvas>
     </div>
   );
 };
