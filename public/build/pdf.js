@@ -12322,8 +12322,7 @@
                 if (can != null) {
                   can.parentNode.removeChild(can);
                 }
-                //var canv = document.createElement("canvas");
-                // canv.id = "referencedtl";
+
                 var canv = document.getElementsByClassName("canv")[0];
                 canv.style.visibility = "visible";
                 page._transport.getDestination(data.dest).then((data) => {
@@ -12332,14 +12331,13 @@
                   page._transport.getPage(page_number).then(function (page) {
                     const rr = page.getViewport({ scale: 1 });
                     const ll = data[3];
-
+                    alert(ll);
+                    alert(rr.height);
+                    const scalefact = 0.6;
                     const gg = page.getViewport({
-                      scale: 1.3,
-                      offsetY: 1.3 * (ll - rr.height),
+                      scale: scalefact,
+                      offsetY: (ll - rr.height) * scalefact,
                     });
-                    //canv.height = 400;
-                    //canv.width = 1.3 * rr.width;
-
                     document.getElementById("reference").append(canv);
                     const ww = {
                       canvasContext: canv.getContext("2d"),
