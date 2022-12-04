@@ -12286,9 +12286,7 @@
                   c.style.top = event.clientY + "px";
 
                   page._transport.getDestinations().then((res) => {
-                    console.log(res)
-                    var d;
-                    d = res["appendix.A"];
+                    var d = res["appendix.A"];
                     if(d == undefined){
                       d = res["section.1"];
                     }
