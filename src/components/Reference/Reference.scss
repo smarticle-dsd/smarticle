@@ -1,0 +1,24 @@
+.sa-reference {
+  color: var(--sa-neutral-color-1);
+  padding: 16px;
+  h1 {
+    @include typographyMediumL;
+    margin-bottom: 16px;
+  }
+  .reffwrap {
+    height: 318px;
+    text-align: center;
+    background: white;
+    position: relative;
+
+    .reff {
+      position: relative;
+      top: 96px;
+      h3 {
+        @include typographyMediumXs;
+        color: var(--sa-primary-color-4);
+        text-align: center;
+      }
+    }
+  }
+}

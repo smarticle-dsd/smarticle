@@ -12318,9 +12318,9 @@
             container.addEventListener(
               "click",
               () => {
-                const can = document.getElementById("referenceDetailsView");
+                const can = document.getElementById("reference");
                 if (can.firstElementChild != null) {
-                  can.removeChild(can.firstElementChild);
+                  can.innerHTML = "";
                 }
                 var canv = document.createElement("canvas");
                 canv.id = "referencedtl";
@@ -12338,9 +12338,7 @@
                     canv.height = 200;
                     canv.width = 1.3 * rr.width;
 
-                    document
-                      .getElementById("referenceDetailsView")
-                      .append(canv);
+                    document.getElementById("reference").append(canv);
                     const ww = {
                       canvasContext: canv.getContext("2d"),
                       viewport: gg,
