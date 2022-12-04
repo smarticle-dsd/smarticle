@@ -12268,11 +12268,11 @@
             } else {
               this.setRotation(rotation, container);
             }
-            document.addEventListener('mouseup', event => {  
-                if(window.getSelection().toString().length){
-                  let exactText = window.getSelection().toString();        
-                  console.log(exactText)
-                }
+            document.addEventListener("mouseup", (event) => {
+              if (window.getSelection().toString().length) {
+                let exactText = window.getSelection().toString();
+                console.log(exactText);
+              }
             });
             //
             //mouseover create a canvas
@@ -12287,44 +12287,46 @@
 
                   page._transport.getDestinations().then((res) => {
                     var d = res["appendix.A"];
-                    if(d == undefined){
+                    if (d == undefined) {
                       d = res["section.1"];
                     }
-                    if(d == undefined){
+                    if (d == undefined) {
                       d = 50;
-                    }else{
-                      d = d[2]
+                    } else {
+                      d = d[2];
                     }
                     page._transport.getDestination(data.dest).then((data) => {
                       let page_number = this.linkService._cachedPageNumber(
                         data[0],
                       );
-                      console.log(data)
-                      page._transport.getPage(page_number).then(function (page) {
-                        const r = page.getViewport({ scale: 1 });
-                        const y = data[3];
 
-                        c.style.left = event.clientX + "px";
-                        c.height = 300;
-                        if(data[1].name == 'XYZ'){
-                          c.width = 1.3 * r.width - 2*d - 10;
-                        }else if(data[1].name == 'FitR'){
-                          c.width = 1.3 *r.width - d;
-                        }else{
-                          y = data[2];
-                        }
-                       
-                        const g = page.getViewport({
-                          scale: 1.3,
-                          offsetY: 1.3 * (y - r.height),
-                          offsetX: 1.3* (-d + 10)
-                        });
-                        const w = {
-                          canvasContext: c.getContext("2d"),
-                          viewport: g,
-                        };
-                        page.render(w);
-                      }),
+                      page._transport
+                        .getPage(page_number)
+                        .then(function (page) {
+                          const r = page.getViewport({ scale: 1 });
+                          const y = data[3];
+
+                          c.style.left = event.clientX + "px";
+                          c.height = 300;
+                          if (data[1].name == "XYZ") {
+                            c.width = 1.3 * r.width - 2 * d - 10;
+                          } else if (data[1].name == "FitR") {
+                            c.width = 1.3 * r.width - d;
+                          } else {
+                            y = data[2];
+                          }
+
+                          const g = page.getViewport({
+                            scale: 1.3,
+                            offsetY: 1.3 * (y - r.height),
+                            offsetX: 1.3 * (-d + 10),
+                          });
+                          const w = {
+                            canvasContext: c.getContext("2d"),
+                            viewport: g,
+                          };
+                          page.render(w);
+                        }),
                         container.after(c),
                         container.addEventListener(
                           "mouseleave",
@@ -12334,7 +12336,7 @@
                           false,
                         );
                     });
-                  });   
+                  });
                 }
               },
               false,
@@ -12352,23 +12354,40 @@
                 canv.style.visibility = "visible";
                 page._transport.getDestination(data.dest).then((data) => {
                   let page_number = this.linkService._cachedPageNumber(data[0]);
-
-                  page._transport.getPage(page_number).then(function (page) {
-                    const rr = page.getViewport({ scale: 1 });
-                    const ll = data[3];
-                    alert(ll);
-                    alert(rr.height);
-                    const scalefact = 0.6;
-                    const gg = page.getViewport({
-                      scale: scalefact,
-                      offsetY: (ll - rr.height) * scalefact,
+                  page._transport.getDestinations().then((res) => {
+                    var d = res["appendix.A"];
+                    if (d == undefined) {
+                      d = res["section.1"];
+                    }
+                    if (d == undefined) {
+                      d = 50;
+                    } else {
+                      d = d[2];
+                    }
+                    page._transport.getPage(page_number).then(function (page) {
+                      const rr = page.getViewport({ scale: 1 });
+                      const ll = data[3];
+                      const scalefact = 1;
+                      canv.height = 300;
+                      if (data[1].name == "XYZ") {
+                        canv.width = rr.width - 2 * (d - 10);
+                      } else if (data[1].name == "FitR") {
+                        canv.width = rr.width - d;
+                      } else {
+                        ll = data[2];
+                      }
+                      const gg = page.getViewport({
+                        scale: scalefact,
+                        offsetY: (ll - rr.height) * scalefact,
+                        offsetX: (-d + 10) * scalefact,
+                      });
+                      document.getElementById("reference").append(canv);
+                      const ww = {
+                        canvasContext: canv.getContext("2d"),
+                        viewport: gg,
+                      };
+                      page.render(ww);
                     });
-                    document.getElementById("reference").append(canv);
-                    const ww = {
-                      canvasContext: canv.getContext("2d"),
-                      viewport: gg,
-                    };
-                    page.render(ww);
                   });
                 });
               },
