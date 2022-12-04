@@ -1,10 +1,13 @@
 {
-  "lambdaLayers": [],
-  "secretNames": [],
-  "environmentVariableList": [
+  "lambdaLayers": [
     {
-      "cloudFormationParameterName": "scApiKey",
-      "environmentVariableName": "SC_API_KEY"
+      "type": "ProjectLayer",
+      "resourceName": "smarticlelayer",
+      "env": "staging",
+      "version": 1,
+      "isLatestVersionSelected": false
     }
-  ]
+  ],
+  "secretNames": [],
+  "environmentVariableList": []
 }

@@ -16,8 +16,9 @@
     "s3Key": {
       "Type": "String"
     },
-    "scApiKey": {
-      "Type": "String"
+    "functionsmarticlelayerArn": {
+      "Type": "String",
+      "Default": "functionsmarticlelayerArn"
     }
   },
   "Conditions": {
@@ -72,9 +73,6 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
-            },
-            "SC_API_KEY": {
-              "Ref": "scApiKey"
             }
           }
         },
@@ -85,7 +83,11 @@
           ]
         },
         "Runtime": "nodejs14.x",
-        "Layers": [],
+        "Layers": [
+          {
+            "Fn::Sub": "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:layer:smarticlelayer-staging:1"
+          }
+        ],
         "Timeout": 25
       }
     },
