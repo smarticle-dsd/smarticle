@@ -12368,7 +12368,7 @@
                       const rr = page.getViewport({ scale: 1 });
                       const ll = data[3];
                       const scalefact = 1;
-                      canv.height = 300;
+                      canv.height = 250;
                       if (data[1].name == "XYZ") {
                         canv.width = rr.width - 2 * (d - 10);
                       } else if (data[1].name == "FitR") {
@@ -12387,6 +12387,8 @@
                         viewport: gg,
                       };
                       page.render(ww);
+
+                      togglereftool();
                     });
                   });
                 });
