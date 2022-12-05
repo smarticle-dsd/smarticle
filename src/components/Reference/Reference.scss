@@ -5,15 +5,15 @@
     @include typographyMediumL;
     margin-bottom: 16px;
   }
-  .reffwrap {
+  .reference-view-wrapper {
     height: 318px;
     text-align: center;
     background: white;
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    .reff {
-      position: relative;
-      top: 96px;
+    .reference-view {
       h3 {
         @include typographyMediumXs;
         color: var(--sa-primary-color-4);
@@ -21,7 +21,7 @@
       }
     }
   }
-  .canv {
+  .referenceview-canvas {
     visibility: hidden;
     height: 100%;
     width: 100%;

@@ -12345,12 +12345,16 @@
             container.addEventListener(
               "click",
               () => {
-                const can = document.getElementsByClassName("reffwrap")[0];
+                const can = document.getElementsByClassName(
+                  "reference-view-wrapper",
+                )[0];
                 if (can != null) {
                   can.parentNode.removeChild(can);
                 }
 
-                var canv = document.getElementsByClassName("canv")[0];
+                var canv = document.getElementsByClassName(
+                  "referenceview-canvas",
+                )[0];
                 canv.style.visibility = "visible";
                 page._transport.getDestination(data.dest).then((data) => {
                   let page_number = this.linkService._cachedPageNumber(data[0]);
@@ -12368,7 +12372,7 @@
                       const rr = page.getViewport({ scale: 1 });
                       const ll = data[3];
                       const scalefact = 1;
-                      canv.height = 250;
+                      canv.height = 450;
                       if (data[1].name == "XYZ") {
                         canv.width = rr.width - 2 * (d - 10);
                       } else if (data[1].name == "FitR") {
@@ -12381,14 +12385,13 @@
                         offsetY: (ll - rr.height) * scalefact,
                         offsetX: (-d + 10) * scalefact,
                       });
-                      document.getElementById("reference").append(canv);
                       const ww = {
                         canvasContext: canv.getContext("2d"),
                         viewport: gg,
                       };
                       page.render(ww);
 
-                      togglereftool();
+                      toggleRefTool();
                     });
                   });
                 });

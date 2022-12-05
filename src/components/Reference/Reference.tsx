@@ -30,13 +30,13 @@ const Reference: FC<ReferenceProps> = ({
     >
       <h1>Reference Details</h1>
 
-      <div className={cs("reffwrap", className)}>
-        <div className={cs("reff", className)}>
+      <div className={cs("reference-view-wrapper", className)}>
+        <div className={cs("reference-view", className)}>
           <img src={svg} alt="Reference" />
           <h3>Click on a reference to preview it</h3>
         </div>
       </div>
-      <canvas className={cs("canv", className)}></canvas>
+      <canvas className={cs("referenceview-canvas", className)}></canvas>
     </div>
   );
 };

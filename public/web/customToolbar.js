@@ -43,15 +43,15 @@ function removeElement(elemID) {
 }
 
 //toggles sidebar and reference toolbar on clicking the reference link
-const togglereftool = () => {
-  let vall = document.getElementById("referenceDetailsView");
+const toggleRefTool = () => {
+  let referenceid = document.getElementById("referenceDetailsView");
 
   const toolbarButtons = document.querySelectorAll(
     "#sidebarViewButtons button",
   );
   const sidebarContent = document.getElementById("sidebarContent");
   for (const child of sidebarContent.children) {
-    if (child.id !== vall) child.classList.add("hidden");
+    if (child.id !== referenceid) child.classList.add("hidden");
   }
   for (const toolbarBtn2 of toolbarButtons) {
     toolbarBtn2.classList.remove("toggled");
