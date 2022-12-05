@@ -42,6 +42,7 @@ function removeElement(elemID) {
   element.parentNode.removeChild(element);
 }
 
+//toggles sidebar and reference toolbar on clicking the reference link
 const togglereftool = () => {
   let vall = document.getElementById("referenceDetailsView");
 
@@ -59,6 +60,9 @@ const togglereftool = () => {
     .getElementById(`${"referenceDetails"}View`)
     ?.classList.remove("hidden");
   document.getElementById(`${"referenceDetails"}`)?.classList.add("toggled");
+
+  document.getElementById(`${"outerContainer"}`)?.classList.add("sidebarOpen");
+  document.getElementById(`${"sidebarToggle"}`)?.classList.add("toggled");
 };
 
 window.onload = editToolBar;
