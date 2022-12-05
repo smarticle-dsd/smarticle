@@ -2,9 +2,7 @@
   "permissions": [
     {
       "type": "AwsAccounts",
-      "accounts": [
-        "080302845788"
-      ]
+      "accounts": ["080302845788"]
     },
     {
       "type": "Private"
