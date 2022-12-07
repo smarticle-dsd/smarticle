@@ -12268,12 +12268,6 @@
             } else {
               this.setRotation(rotation, container);
             }
-            document.addEventListener("mouseup", (event) => {
-              if (window.getSelection().toString().length) {
-                let exactText = window.getSelection().toString();
-                console.log(exactText);
-              }
-            });
             //
             //mouseover create a canvas
             //
@@ -12286,40 +12280,43 @@
                   c.style.top = event.clientY + "px";
 
                   page._transport.getDestinations().then((res) => {
-                    var d = res["appendix.A"];
-                    if (d == undefined) {
-                      d = res["section.1"];
-                    }
-                    if (d == undefined) {
-                      d = 50;
-                    } else {
-                      d = d[2];
-                    }
+                    var margin =
+                      res["appendix.A"] != undefined
+                        ? res["appendix.A"]
+                        : res["section.1"];
+                    margin = margin == undefined ? 50 : margin[2];
+
                     page._transport.getDestination(data.dest).then((data) => {
                       let page_number = this.linkService._cachedPageNumber(
                         data[0],
                       );
-
                       page._transport
                         .getPage(page_number)
                         .then(function (page) {
                           const r = page.getViewport({ scale: 1 });
                           const y = data[3];
+                          const scale = 1.3;
 
-                          c.style.left = event.clientX + "px";
                           c.height = 300;
                           if (data[1].name == "XYZ") {
-                            c.width = 1.3 * r.width - 2 * d - 10;
+                            c.width = scale * r.width - 2 * margin - 10;
                           } else if (data[1].name == "FitR") {
-                            c.width = 1.3 * r.width - d;
+                            c.width = scale * r.width - margin;
                           } else {
                             y = data[2];
                           }
 
+                          if (event.clientX + c.width > window.innerWidth) {
+                            const g =
+                              event.clientX + c.width - window.innerWidth;
+                            c.style.left = event.clientX - g - 5 + "px";
+                          } else {
+                            c.style.left = event.clientX + "px";
+                          }
                           const g = page.getViewport({
-                            scale: 1.3,
-                            offsetY: 1.3 * (y - r.height),
-                            offsetX: 1.3 * (-d + 10),
+                            scale: scale,
+                            offsetY: scale * (y - r.height + 10),
+                            offsetX: scale * (-margin + 10),
                           });
                           const w = {
                             canvasContext: c.getContext("2d"),
@@ -12359,32 +12356,29 @@
                 page._transport.getDestination(data.dest).then((data) => {
                   let page_number = this.linkService._cachedPageNumber(data[0]);
                   page._transport.getDestinations().then((res) => {
-                    var d = res["appendix.A"];
-                    if (d == undefined) {
-                      d = res["section.1"];
-                    }
-                    if (d == undefined) {
-                      d = 50;
-                    } else {
-                      d = d[2];
-                    }
+                    var margin =
+                      res["appendix.A"] != undefined
+                        ? res["appendix.A"]
+                        : res["section.1"];
+                    margin = margin == undefined ? 50 : margin[2];
                     page._transport.getPage(page_number).then(function (page) {
                       const rr = page.getViewport({ scale: 1 });
                       const ll = data[3];
-                      const scalefact = 1;
-                      canv.height = 450;
+                      const scalefact = 1.5;
                       if (data[1].name == "XYZ") {
-                        canv.width = rr.width - 2 * (d - 10);
+                        canv.width = scalefact * rr.width - 2 * margin - 10;
                       } else if (data[1].name == "FitR") {
-                        canv.width = rr.width - d;
+                        canv.width = scalefact * rr.width - margin;
                       } else {
                         ll = data[2];
                       }
                       const gg = page.getViewport({
                         scale: scalefact,
                         offsetY: (ll - rr.height) * scalefact,
-                        offsetX: (-d + 10) * scalefact,
+                        offsetX: (-margin + 10) * scalefact,
                       });
+                      canv.height = 600;
+
                       const ww = {
                         canvasContext: canv.getContext("2d"),
                         viewport: gg,

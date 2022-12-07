@@ -8,7 +8,9 @@
         {
           "category": "function",
           "resourceName": "smarticlelayer",
-          "attributes": ["Arn"]
+          "attributes": [
+            "Arn"
+          ]
         }
       ]
     },
@@ -20,7 +22,9 @@
         {
           "category": "function",
           "resourceName": "smarticlelayer",
-          "attributes": ["Arn"]
+          "attributes": [
+            "Arn"
+          ]
         }
       ]
     },
@@ -32,7 +36,9 @@
         {
           "category": "function",
           "resourceName": "smarticlelayer",
-          "attributes": ["Arn"]
+          "attributes": [
+            "Arn"
+          ]
         }
       ]
     },
@@ -51,12 +57,18 @@
         {
           "category": "function",
           "resourceName": "getPaperInfo",
-          "attributes": ["Name", "Arn"]
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         },
         {
           "category": "function",
           "resourceName": "getSummaryInfo",
-          "attributes": ["Name", "Arn"]
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     }
