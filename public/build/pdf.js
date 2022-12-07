@@ -12280,8 +12280,8 @@
                   c.style.top = event.clientY + "px";
 
                   page._transport.getDestinations().then((res) => {
-                    var d = res["appendix.A"] != undefined ? res["appendix.A"] : res["section.1"];
-                    d = d == undefined ? 50 : d[2];
+                    var margin = res["appendix.A"] != undefined ? res["appendix.A"] : res["section.1"];
+                    margin = margin == undefined ? 50 : margin[2];
                
                     page._transport.getDestination(data.dest).then((data) => {
                       let page_number = this.linkService._cachedPageNumber(
@@ -12290,26 +12290,27 @@
                       page._transport.getPage(page_number).then(function (page) {
                         const r = page.getViewport({ scale: 1 });
                         const y = data[3];
+                        const scale = 1.3;
 
                         c.height = 300;
                         if(data[1].name == 'XYZ'){
-                          c.width = 1.3 * r.width - 2*d - 10;
+                          c.width = scale * r.width - 2 * margin - 10;
                         }else if(data[1].name == 'FitR'){
-                          c.width = 1.3 *r.width - d;
+                          c.width = scale * r.width - margin;
                         }else{
                           y = data[2];
                         }
                      
                         if(event.clientX + c.width > window.innerWidth){
                           const g = event.clientX + c.width - window.innerWidth;
-                          c.style.left = (event.clientX - g - 5)+ "px";
+                          c.style.left = (event.clientX - g - 5) + "px";
                         }else{
                           c.style.left = event.clientX + "px";
                         }
                         const g = page.getViewport({
-                          scale: 1.3,
-                          offsetY: 1.3 * (y - r.height),
-                          offsetX: 1.3* (-d + 10)
+                          scale: scale,
+                          offsetY: scale * (y - r.height + 10),
+                          offsetX: scale * (-margin + 10)
                         });
                         const w = {
                           canvasContext: c.getContext("2d"),
