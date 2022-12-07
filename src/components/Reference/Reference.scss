@@ -8,12 +8,17 @@
   .reference-view-wrapper {
     height: 318px;
     text-align: center;
-    background: white;
+    background: var(--sa-neutral-color-2);
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 4px;
 
     .reference-view {
+      img {
+        margin-bottom: 16px;
+        vertical-align: top;
+      }
       h3 {
         @include typographyMediumXs;
         color: var(--sa-primary-color-4);
