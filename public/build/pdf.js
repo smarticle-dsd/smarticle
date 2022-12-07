@@ -12366,7 +12366,7 @@
                       const ll = data[3];
                       const scalefact = 1.5;
                       if (data[1].name == "XYZ") {
-                        canv.width = scalefact * rr.width - 2 * margin - 10;
+                        canv.width = scalefact * rr.width - 2 * margin - 40;
                       } else if (data[1].name == "FitR") {
                         canv.width = scalefact * rr.width - margin;
                       } else {
@@ -12374,7 +12374,7 @@
                       }
                       const gg = page.getViewport({
                         scale: scalefact,
-                        offsetY: (ll - rr.height) * scalefact,
+                        offsetY: (ll - rr.height + 5) * scalefact,
                         offsetX: (-margin + 10) * scalefact,
                       });
                       canv.height = 600;
