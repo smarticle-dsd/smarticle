@@ -63,7 +63,6 @@ const UploadModal: FC<UploadModalProps> = ({
         disableStream: true,
       }).promise;
       setError("");
-      setLoading(false);
       return true;
     } catch (err) {
       setLoading(false);
@@ -108,6 +107,7 @@ const UploadModal: FC<UploadModalProps> = ({
             setError("There was an error during upload. Please try again.");
           }
         });
+        setLoading(false);
       }
     } else {
       setError(
