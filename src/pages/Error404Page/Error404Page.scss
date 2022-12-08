@@ -1,10 +1,71 @@
 .sa-error404-page {
-  width: 100vw;
-  height: calc(100vh - 64px);
+  .background-circles {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 32px;
+  .error-page-wrapper {
+    padding: 128px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+    .error-wrapper {
+      text-align: center;
+      padding: 0px 50px;
+      transition: ease all 0.5s;
+
+      .icon-box {
+        padding: 110px 0px 0px 0px;
+        transition: ease all 0.5s;
+        cursor: pointer;
+
+        @media screen and (max-width: 1100px) {
+          padding: 0px 75px 0px 75px;
+          height: 150px;
+        }
+      }
+
+      h1 {
+        @include typographyMediumXxl;
+        color: var(--sa-neutral-color-5);
+        text-align: center;
+        margin: 40px 0px 0px 0px;
+      }
+
+      p {
+        @include typographyRegularS;
+        color: var(--sa-neutral-color-5);
+        text-align: center;
+        padding: 7px 0px 0px 0px;
+        width: 500px;
+
+        span {
+          color: var(--sa-primary-color-3);
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+
+      @media screen and (max-width: 1100px) {
+        padding: 0px 75px 0px 75px;
+      }
+    }
+
+    .paper-icon {
+      text-align: center;
+      padding: 18px 50px;
+      transition: ease all 0.5s;
+
+      @media screen and (max-width: 1100px) {
+        padding: 18px 0px;
+        width: 250px;
+        height: 350px;
+      }
+    }
+  }
 }
