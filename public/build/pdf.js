@@ -12268,7 +12268,6 @@
             } else {
               this.setRotation(rotation, container);
             }
-
             //
             //mouseover create a canvas
             //
@@ -12280,35 +12279,60 @@
                   c.className = "reference-canvas";
                   c.style.top = event.clientY + "px";
 
-                  page._transport.getDestination(data.dest).then((data) => {
-                    let page_number = this.linkService._cachedPageNumber(
-                      data[0],
-                    );
+                  page._transport.getDestinations().then((res) => {
+                    var margin =
+                      res["appendix.A"] != undefined
+                        ? res["appendix.A"]
+                        : res["section.1"];
+                    margin = margin == undefined ? 50 : margin[2];
 
-                    page._transport.getPage(page_number).then(function (page) {
-                      const r = page.getViewport({ scale: 1 });
-                      //only works for "XYZ" destinations
-                      const l = data[3];
-                      c.style.left = event.clientX + "px";
-                      (c.height = 300), (c.width = 1.3 * r.width);
-                      const g = page.getViewport({
-                        scale: 1.3,
-                        offsetY: 1.3 * (l - r.height),
-                      });
-                      const w = {
-                        canvasContext: c.getContext("2d"),
-                        viewport: g,
-                      };
-                      page.render(w);
-                    }),
-                      container.after(c),
-                      container.addEventListener(
-                        "mouseleave",
-                        () => {
-                          c.remove();
-                        },
-                        false,
+                    page._transport.getDestination(data.dest).then((data) => {
+                      let page_number = this.linkService._cachedPageNumber(
+                        data[0],
                       );
+                      page._transport
+                        .getPage(page_number)
+                        .then(function (page) {
+                          const r = page.getViewport({ scale: 1 });
+                          const y = data[3];
+                          const scale = 1.3;
+
+                          c.height = 300;
+                          if (data[1].name == "XYZ") {
+                            c.width = scale * r.width - 2 * margin - 10;
+                          } else if (data[1].name == "FitR") {
+                            c.width = scale * r.width - margin;
+                          } else {
+                            y = data[2];
+                          }
+
+                          if (event.clientX + c.width > window.innerWidth) {
+                            const g =
+                              event.clientX + c.width - window.innerWidth;
+                            c.style.left = event.clientX - g - 5 + "px";
+                          } else {
+                            c.style.left = event.clientX + "px";
+                          }
+                          const g = page.getViewport({
+                            scale: scale,
+                            offsetY: scale * (y - r.height + 10),
+                            offsetX: scale * (-margin + 10),
+                          });
+                          const w = {
+                            canvasContext: c.getContext("2d"),
+                            viewport: g,
+                          };
+                          page.render(w);
+                        }),
+                        container.after(c),
+                        container.addEventListener(
+                          "mouseleave",
+                          () => {
+                            c.remove();
+                          },
+                          false,
+                        );
+                    });
                   });
                 }
               },
@@ -12318,34 +12342,51 @@
             container.addEventListener(
               "click",
               () => {
-                const can = document.getElementById("referenceDetailsView");
-                if (can.firstElementChild != null) {
-                  can.removeChild(can.firstElementChild);
+                const can = document.getElementsByClassName(
+                  "reference-view-wrapper",
+                )[0];
+                if (can != null) {
+                  can.parentNode.removeChild(can);
                 }
-                var canv = document.createElement("canvas");
-                canv.id = "referencedtl";
+
+                var canv = document.getElementsByClassName(
+                  "referenceview-canvas",
+                )[0];
+                canv.style.visibility = "visible";
                 page._transport.getDestination(data.dest).then((data) => {
                   let page_number = this.linkService._cachedPageNumber(data[0]);
+                  page._transport.getDestinations().then((res) => {
+                    var margin =
+                      res["appendix.A"] != undefined
+                        ? res["appendix.A"]
+                        : res["section.1"];
+                    margin = margin == undefined ? 50 : margin[2];
+                    page._transport.getPage(page_number).then(function (page) {
+                      const rr = page.getViewport({ scale: 1 });
+                      const ll = data[3];
+                      const scalefact = 1.5;
+                      if (data[1].name == "XYZ") {
+                        canv.width = scalefact * rr.width - 2 * margin - 40;
+                      } else if (data[1].name == "FitR") {
+                        canv.width = scalefact * rr.width - margin;
+                      } else {
+                        ll = data[2];
+                      }
+                      const gg = page.getViewport({
+                        scale: scalefact,
+                        offsetY: (ll - rr.height + 5) * scalefact,
+                        offsetX: (-margin + 10) * scalefact,
+                      });
+                      canv.height = 600;
 
-                  page._transport.getPage(page_number).then(function (page) {
-                    const rr = page.getViewport({ scale: 1 });
-                    const ll = data[3];
+                      const ww = {
+                        canvasContext: canv.getContext("2d"),
+                        viewport: gg,
+                      };
+                      page.render(ww);
 
-                    const gg = page.getViewport({
-                      scale: 1.3,
-                      offsetY: 1.3 * (ll - rr.height),
+                      toggleRefTool();
                     });
-                    canv.height = 200;
-                    canv.width = 1.3 * rr.width;
-
-                    document
-                      .getElementById("referenceDetailsView")
-                      .append(canv);
-                    const ww = {
-                      canvasContext: canv.getContext("2d"),
-                      viewport: gg,
-                    };
-                    page.render(ww);
                   });
                 });
               },
