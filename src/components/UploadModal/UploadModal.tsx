@@ -10,6 +10,7 @@ import { Button } from "../Button";
 import { useNavigate } from "react-router-dom";
 
 import * as pdfjs from "pdfjs-dist/legacy/build/pdf";
+import { Loader } from "../Loader";
 
 const UploadModal: FC<UploadModalProps> = ({
   domID = "upload-modal",
@@ -191,7 +192,7 @@ const UploadModal: FC<UploadModalProps> = ({
               className={cs("modal-support-message", className)}
               style={{ visibility: !loading ? "hidden" : "visible" }}
             >
-              Validating pdf file....
+              <Loader />
             </div>
             <div
               className={cs("modal-error-message", className)}
