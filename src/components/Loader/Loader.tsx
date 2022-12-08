@@ -29,7 +29,7 @@ const Loader: FC<LoaderProps> = ({
       className={cs("sa-loader", className)}
       data-testid={dataTestIDs.root}
     >
-      <CircularProgress color="success" />
+      <CircularProgress className={cs("sa-loader-progress", className)} />
     </div>
   );
 };
