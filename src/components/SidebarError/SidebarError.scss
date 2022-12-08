@@ -1,0 +1,64 @@
+.sa-sidebar-error {
+    color: var(--sa-neutral-color-1);
+    padding: 16px;
+
+    h1 {
+        @include typographyMediumL;
+    }
+
+    .sidebar-error-view-wrapper {
+        height: 318px;
+        text-align: center;
+        background: var(--sa-neutral-color-2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+
+        .sidebar-error-view {
+            img {
+                margin-bottom: 16px;
+                vertical-align: top;
+            }
+
+            h3 {
+                @include typographyMediumXs;
+                color: var(--sa-error-color-1);
+                text-align: center;
+            }
+        }
+    }
+
+    .sidebar-error-paper-input {
+        padding: 16px;
+        text-align: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+
+        .sidebar-error-input-header {
+            margin-bottom: 16px;
+
+            h3 {
+                @include typographyMediumS;
+                text-align: left;
+            }
+        }
+
+        .sidebar-error-input-section {
+            margin-bottom: 16px;
+
+            .sidebar-error-input-text {
+                @include typographyRegularXs;
+                height: 33px;
+                width: 318px;
+            }
+
+            .sidebar-error-button {
+                @include typographyMediumXs;
+                align-items: center;
+                text-align: center;
+            }
+        }
+    }
+}
