@@ -1,5 +1,6 @@
 /* PLOP_INJECT_IMPORT */
 export * from "./Loader";
+export * from "./SidebarError";
 export * from "./Reference";
 export * from "./Summary";
 export * from "./TestTool";
