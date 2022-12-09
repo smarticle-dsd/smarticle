@@ -5,7 +5,7 @@
     @include typographyMediumL;
   }
 
-  .sidebar-error-view-wrapper {
+  .sidebar-error-view-image-wrapper {
     height: 318px;
     text-align: center;
     background: var(--sa-neutral-color-2);
@@ -14,7 +14,7 @@
     align-items: center;
     border-radius: 4px;
 
-    .sidebar-error-view {
+    .sidebar-error-view-image {
       img {
         margin-bottom: 16px;
         vertical-align: top;
@@ -29,9 +29,8 @@
   }
 
   .sidebar-error-paper-input {
-    padding: 16px;
+    margin-top: 16px;
     text-align: center;
-    align-items: center;
     display: flex;
     flex-direction: column;
 
@@ -50,27 +49,19 @@
       .sidebar-error-input-text {
         @include typographyRegularXs;
         margin-bottom: 8px;
-        height: 33px;
-        width: 318px;
+        padding: 8px 0px;
+        width: 100%;
         border: 0px;
         border-radius: 4px;
         color: var(--sa-neutral-color-5);
 
         &::placeholder {
           color: var(--sa-neutral-color-3);
+          padding-left: 8px;
         }
       }
-
       .sidebar-error-button {
-        @include typographyMediumXs;
-        opacity: 0;
-        width: 100%;
-        height: 100%;
-
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        cursor: pointer;
+        text-align: center;
       }
     }
   }

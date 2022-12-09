@@ -29,8 +29,8 @@ const SidebarError: FC<SidebarErrorProps> = ({
       className={cs("sa-sidebar-error", className)}
       data-testid={dataTestIDs.root}
     >
-      <div className={cs("sidebar-error-view-wrapper", className)}>
-        <div className={cs("sidebar-error-view", className)}>
+      <div className={cs("sidebar-error-view-image-wrapper", className)}>
+        <div className={cs("sidebar-error-view-image", className)}>
           <img src={"/sidebar-error.svg"} alt="Paper not found" />
           <h3>Paper ID not found!</h3>
         </div>
@@ -47,11 +47,11 @@ const SidebarError: FC<SidebarErrorProps> = ({
             onInput={() => {}}
             onChange={(event) => {}}
           />
-        </div>
-        <div className={cs("sidebar-error-button", className)}>
-          <Button size="large" type="primary" onClick={() => {}}>
-            Submit ID
-          </Button>
+          <div className={cs("sidebar-error-button", className)}>
+            <Button size="large" type="primary" onClick={() => {}}>
+              Submit ID
+            </Button>
+          </div>
         </div>
       </div>
     </div>
