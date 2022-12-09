@@ -1,4 +1,14 @@
 {
-  "lambdaLayers": [],
-  "secretNames": ["SC_KEY"]
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "smarticlelayer",
+      "env": "staging",
+      "version": "Always choose latest version",
+      "isLatestVersionSelected": true
+    }
+  ],
+  "secretNames": [
+    "SC_KEY"
+  ]
 }
