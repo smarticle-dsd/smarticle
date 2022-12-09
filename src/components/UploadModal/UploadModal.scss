@@ -161,9 +161,15 @@
       }
     }
 
+    .modal-support-message {
+      @include typographyRegularXxs;
+      color: var(--sa-neutral-color-4);
+      text-align: center;
+      margin-top: 6px;
+      height: 12px;
+    }
     .modal-error-message {
       @include typographyRegularXxs;
-      size: 10px;
       color: var(--sa-error-color-2);
       text-align: center;
       margin-top: 6px;

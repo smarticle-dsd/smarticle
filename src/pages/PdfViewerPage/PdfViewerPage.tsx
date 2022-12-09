@@ -38,9 +38,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
   const bucketRegion = process.env.REACT_APP_BUCKET_REGION as string;
 
   let pdfFile = "";
-  const [paperTitle, setPaperTitle] = useState(
-    "A Note on Task-Aware Loss via Reweighing Prediction Loss by Decision-Regret",
-  );
+  const [paperTitle, setPaperTitle] = useState("");
   const baseUrl = "/web/viewer.html?file=";
   if (url) {
     pdfFile = baseUrl + url;
@@ -58,7 +56,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
 
       let maxHeight = 0;
       let headingData = "";
-      await content.items.map((item: { height: number; str: string }) => {
+      await content.items.forEach((item: { height: number; str: string }) => {
         if (item.height > maxHeight) {
           if (!item.str.toLowerCase().includes("arxiv")) {
             maxHeight = item.height;
@@ -70,21 +68,17 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
         paperHeading: headingData,
       };
     }
+    let urlToLoad = "";
     if (file) {
-      pdfjs
-        .getDocument(pdfFile.split("file=")[1])
-        .promise.then((pdfDoc: any) => {
-          getDetailedInfo(pdfDoc).then(({ paperHeading }) => {
-            setPaperTitle(paperHeading);
-          });
-        });
+      urlToLoad = pdfFile.split("file=")[1];
     } else if (url) {
-      pdfjs.getDocument(url).promise.then((pdfDoc: any) => {
-        getDetailedInfo(pdfDoc).then(({ paperHeading }) => {
-          setPaperTitle(paperHeading);
-        });
-      });
+      urlToLoad = url;
     }
+    pdfjs.getDocument(urlToLoad).promise.then((pdfDoc: any) => {
+      getDetailedInfo(pdfDoc).then(({ paperHeading }) => {
+        setPaperTitle(paperHeading);
+      });
+    });
   }, [file, paperTitle, pdfFile, url]);
 
   const [referenceDetailsMountNode, setReferenceDetailsMountNode] =
