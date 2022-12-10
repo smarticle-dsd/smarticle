@@ -23,10 +23,7 @@ function registerCustomToolbarButtonHandlers() {
 function editToolBar() {
   /* Moving elements*/
   //addElemFromSecondaryToPrimary("previous","toolbarViewerMiddle")
-  /* Hiding elements */
-  //removeElement("secondaryToolbarToggle")
-  // removeElement("editorInk");
-  // removeElement("editorFreeText");
+  removeElement("openFile");
   registerCustomToolbarButtonHandlers();
 }
 
@@ -37,6 +34,7 @@ function addElemFromSecondaryToPrimary(elemID, parentID) {
   element.innerHTML = "";
   parent.append(element);
 }
+
 function removeElement(elemID) {
   let element = document.getElementById(elemID);
   element.parentNode.removeChild(element);
