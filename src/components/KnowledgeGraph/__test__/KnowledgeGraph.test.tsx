@@ -17,8 +17,12 @@ describe("KnowledgeGraph tests", () => {
   });
 
   test("Check if dataTestId exists on root DOM element", () => {
-    const { container } = render(<KnowledgeGraph dataTestId="test-knowledge-graph" />);
-    const element = container.querySelector('[data-testid="test-knowledge-graph"]');
+    const { container } = render(
+      <KnowledgeGraph dataTestId="test-knowledge-graph" />,
+    );
+    const element = container.querySelector(
+      '[data-testid="test-knowledge-graph"]',
+    );
     expect(element).not.toBe(null);
   });
 });

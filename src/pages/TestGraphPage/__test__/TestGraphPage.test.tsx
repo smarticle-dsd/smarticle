@@ -17,8 +17,12 @@ describe("TestGraphPage tests", () => {
   });
 
   test("Check if dataTestId exists on root DOM element", () => {
-    const { container } = render(<TestGraphPage dataTestId="test-test-graph-page" />);
-    const element = container.querySelector('[data-testid="test-test-graph-page"]');
+    const { container } = render(
+      <TestGraphPage dataTestId="test-test-graph-page" />,
+    );
+    const element = container.querySelector(
+      '[data-testid="test-test-graph-page"]',
+    );
     expect(element).not.toBe(null);
   });
 });
