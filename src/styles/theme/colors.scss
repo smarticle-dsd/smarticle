@@ -19,12 +19,17 @@
 }
 
 /* PLOP_INJECT_IMPORT */
+.sa-loader {
+}
+
 .sa-summary {
 }
 .sa-test-tool {
 }
 
 .sa-button {
+}
+.sa-sidebar-error {
 }
 
 .sa-header {
@@ -51,15 +56,6 @@
   --sa-upload-modal-drop-text-color: var(--sa-primary-color-4);
   --sa-upload-modal-select-button-color: var(--sa-primary-color-3);
   --sa-upload-modal-linlk-section: var(--sa-neutral-color-1);
-}
-
-.sa-about-page {
-}
-
-.sa-pdf-viewer-page {
-}
-
-.sa-pdf-viewer {
 }
 
 .sa-error404-page {

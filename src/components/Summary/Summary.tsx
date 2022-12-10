@@ -5,6 +5,7 @@ import { SummaryProps } from "./Summary.types";
 
 import { Amplify, API } from "aws-amplify";
 import aws_exports from "../../aws-exports";
+import { SidebarError } from "../SidebarError";
 Amplify.configure(aws_exports);
 
 const Summary: FC<SummaryProps> = ({
@@ -56,12 +57,10 @@ const Summary: FC<SummaryProps> = ({
       data-testid={dataTestIDs.root}
     >
       <div>
-        {error && (
-          <p>Semantic Scholar does not have any information on your paper.</p>
-        )}
+        <h1>Summary</h1>
+        {error && <SidebarError />}
         {summary.tldr && summary.tldr.text && (
           <>
-            <h1>Summary</h1>
             <p>{summary?.tldr?.text}</p>
           </>
         )}
