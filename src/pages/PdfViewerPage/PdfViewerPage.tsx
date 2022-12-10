@@ -97,9 +97,14 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
 
   // A react version of setInterval, once the viewerNode is loaded, we try to
   // set the reference details, knowledge graph and summary node states
+  const TOOL_LOADING_INTERVAL = 100; // milliseconds
+
   React.useEffect(() => {
     if (!viewerNode) {
-      setTimeout(() => setSidebarCheckTimer((cur) => cur + 1), 100);
+      setTimeout(
+        () => setSidebarCheckTimer((cur) => cur + 1),
+        TOOL_LOADING_INTERVAL,
+      );
     } else {
       let needToUpdate = false;
 
@@ -125,7 +130,10 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
       }
 
       if (needToUpdate) {
-        setTimeout(() => setSidebarCheckTimer((cur) => cur + 1), 100);
+        setTimeout(
+          () => setSidebarCheckTimer((cur) => cur + 1),
+          TOOL_LOADING_INTERVAL,
+        );
       }
     }
   }, [
