@@ -23,7 +23,7 @@
         },
         "getSummaryInfo": {
           "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
-          "s3Key": "amplify-builds/getSummaryInfo-62374b43594662452b48-build.zip",
+          "s3Key": "amplify-builds/getSummaryInfo-6d6839706551652b4977-build.zip",
           "secretsPathAmplifyAppId": "dcfoxoxqw27pv"
         },
         "smarticlelayer": {

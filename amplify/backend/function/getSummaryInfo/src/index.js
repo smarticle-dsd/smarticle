@@ -38,11 +38,16 @@ exports.handler = async (event) => {
         paperId,
         fieldsToGet: "abstract,tldr",
       });
+
+      const abstract = summaryDetails.data.abstract;
+      const tldr = summaryDetails.data.tldr
+        ? summaryDetails.data.tldr.text
+        : null;
       return await getReturnMessages({
         statusCode: 200,
         messageContent: {
-          abstract: summaryDetails.data.abstract,
-          tldr: summaryDetails.data.tldr.text,
+          abstract,
+          tldr,
         },
       });
     } else {
