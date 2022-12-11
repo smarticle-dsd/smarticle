@@ -90,20 +90,64 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
     HTMLElement | null | undefined
   >(null);
 
+  const [viewerNode, setViewerNode] = React.useState<HTMLIFrameElement | null>(
+    null,
+  );
+  const [sidebarCheckTimer, setSidebarCheckTimer] = React.useState<number>(0);
+
+  // A react version of setInterval, once the viewerNode is loaded, we try to
+  // set the reference details, knowledge graph and summary node states
+  const TOOL_LOADING_INTERVAL = 100; // milliseconds
+
+  React.useEffect(() => {
+    if (!viewerNode) {
+      setTimeout(
+        () => setSidebarCheckTimer((cur) => cur + 1),
+        TOOL_LOADING_INTERVAL,
+      );
+    } else {
+      let needToUpdate = false;
+
+      if (!referenceDetailsMountNode) {
+        needToUpdate = true;
+        setReferenceDetailsMountNode(
+          viewerNode?.contentDocument?.getElementById("referenceDetailsView"),
+        );
+      }
+
+      if (!knowledgeGraphMountNode) {
+        needToUpdate = true;
+        setKnowledgeGraphMountNode(
+          viewerNode?.contentDocument?.getElementById("knowledgeGraphView"),
+        );
+      }
+
+      if (!summaryMountNode) {
+        needToUpdate = true;
+        setSummaryMountNode(
+          viewerNode?.contentDocument?.getElementById("summaryView"),
+        );
+      }
+
+      if (needToUpdate) {
+        setTimeout(
+          () => setSidebarCheckTimer((cur) => cur + 1),
+          TOOL_LOADING_INTERVAL,
+        );
+      }
+    }
+  }, [
+    viewerNode,
+    sidebarCheckTimer,
+    referenceDetailsMountNode,
+    knowledgeGraphMountNode,
+    summaryMountNode,
+  ]);
+
+  // Once the iframe loads, set it in a state
   const viewerRef = React.useCallback((node: HTMLIFrameElement) => {
     if (node !== null) {
-      // This is not a solution...
-      setTimeout(() => {
-        setReferenceDetailsMountNode(
-          node?.contentDocument?.getElementById("referenceDetailsView"),
-        );
-        setKnowledgeGraphMountNode(
-          node?.contentDocument?.getElementById("knowledgeGraphView"),
-        );
-        setSummaryMountNode(
-          node?.contentDocument?.getElementById("summaryView"),
-        );
-      }, 5000);
+      setViewerNode(node);
     }
   }, []);
 
