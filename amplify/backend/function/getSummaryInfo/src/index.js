@@ -22,18 +22,19 @@ exports.handler = async (event) => {
   const input = JSON.parse(event.body);
 
   let paperId = input.paperId;
+  let paperTitle = input.paperTitle;
 
   try {
-    if (!paperId) {
+    if (paperId === null && paperTitle !== null) {
       const paperDetails = await getPapersByTitle({
-        paperTitle: input.paperTitle,
+        paperTitle,
         fieldsToGet: "paperId,title,authors",
         limit: 1,
       });
       console.log("Paper details", paperDetails);
-      paperId = paperDetails.data[0].paperId;
+      if (paperDetails.data.length > 0) paperId = paperDetails.data[0].paperId;
     }
-    if (paperId) {
+    if (paperId !== null) {
       const summaryDetails = await querySemanticScholarByPaperId({
         paperId,
         fieldsToGet: "abstract,tldr",

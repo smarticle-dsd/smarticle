@@ -1,0 +1,11 @@
+.sa-supported-paper-list {
+  .sa-supported-paper-message {
+    h3 {
+      @include typographyRegularXxs;
+    }
+    ul {
+      @include typographyRegularXxs;
+      padding-left: 20px;
+    }
+  }
+}

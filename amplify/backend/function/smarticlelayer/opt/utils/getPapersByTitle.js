@@ -14,9 +14,7 @@ async function getPapersByTitle({ paperTitle, fieldsToGet, limit }) {
       if (status) {
         return {
           status: true,
-          data: {
-            ...data.data,
-          },
+          data: data.data,
         };
       } else {
         return {

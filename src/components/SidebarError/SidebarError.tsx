@@ -3,6 +3,7 @@ import cs from "classnames";
 
 import { SidebarErrorProps } from "./SidebarError.types";
 import { Button } from "../Button";
+import { SupportedPaperList } from "../SupportedPaperList";
 
 const SidebarError: FC<SidebarErrorProps> = ({
   domID = "sidebar-error",
@@ -48,23 +49,18 @@ const SidebarError: FC<SidebarErrorProps> = ({
       className={cs("sa-sidebar-error", className)}
       data-testid={dataTestIDs.root}
     >
-      <div className={cs("sidebar-error-view-image-wrapper", className)}>
-        <div className={cs("sidebar-error-view-image", className)}>
-          <img
-            src={
-              severity === "error" ? "/sidebar-error.svg" : "/sidebar-error.svg"
-            }
-            alt={
-              severity === "error"
-                ? "Paper not found"
-                : "Incorrect paper retrieved"
-            }
-          />
-          <h3>{message}</h3>
+      {severity === "error" && (
+        <div className={cs("sidebar-error-view-image-wrapper", className)}>
+          <div className={cs("sidebar-error-view-image", className)}>
+            <img src="/sidebar-error.svg" alt="Paper not found" />
+
+            <h3>{message}</h3>
+          </div>
         </div>
-      </div>
+      )}
       <div className={cs("sidebar-error-paper-input")}>
         <div className={cs("sidebar-error-input-header", className)}>
+          <h3>Incorrect Information?</h3>
           <h3>Enter the paper's ID manually:</h3>
         </div>
         <div className={cs("sidebar-error-input-section", className)}>
@@ -85,6 +81,7 @@ const SidebarError: FC<SidebarErrorProps> = ({
               Submit ID
             </Button>
           </div>
+          <SupportedPaperList />
         </div>
       </div>
     </div>

@@ -33,16 +33,21 @@ const Summary: FC<SummaryProps> = ({
 
   // Function to call backend to get summary
   async function getSummary(id: string | null, title: string | null) {
-    const result = await API.post("backend", "/paperSummary", {
-      body: {
-        paperTitle: title,
-        paperId: id,
-      },
-    });
-    if (result.abstract || result.tldr) {
-      setError(false);
-      return result;
-    } else {
+    try {
+      const result = await API.post("backend", "/paperSummary", {
+        body: {
+          paperTitle: title,
+          paperId: id,
+        },
+      });
+      if (result.abstract || result.tldr) {
+        setError(false);
+        return result;
+      } else {
+        setError(true);
+        return {};
+      }
+    } catch (e) {
       setError(true);
       return {};
     }
