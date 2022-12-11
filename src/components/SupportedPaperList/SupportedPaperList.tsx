@@ -31,7 +31,7 @@ const SupportedPaperList: FC<SupportedPaperListProps> = ({
     {
       name: "DOI ID",
       format: "paperId",
-      sample: "0796f6cd7f0403a854d67d525e9b32af3b277331",
+      sample: "10.1038/nrn3241",
     },
     {
       name: "arxiv ID",
@@ -75,6 +75,12 @@ const SupportedPaperList: FC<SupportedPaperListProps> = ({
       <div className={cs("sa-supported-paper-message", className)}>
         <h3>Supported ID formats and examples:</h3>
         <ul>{listItems}</ul>
+      </div>
+      <div className={cs("sa-supported-paper-footer", className)}>
+        <h2>
+          All the information displayed are provided by Semantic Scholar
+          https://www.semanticscholar.org/
+        </h2>
       </div>
     </div>
   );

@@ -1,11 +1,19 @@
 .sa-supported-paper-list {
   .sa-supported-paper-message {
+    @include typographyRegularXxs;
     h3 {
       @include typographyRegularXxs;
     }
     ul {
       @include typographyRegularXxs;
       padding-left: 20px;
+    }
+  }
+  .sa-supported-paper-footer {
+    h2 {
+      @include typographyRegularXxs;
+      margin-top: 16px;
+      text-align: center;
     }
   }
 }
