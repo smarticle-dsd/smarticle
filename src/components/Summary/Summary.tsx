@@ -30,22 +30,23 @@ const Summary: FC<SummaryProps> = ({
 
   const [summary, setSummary] = useState<any>({});
   const [error, setError] = useState<boolean>(false);
-  useEffect(() => {
-    async function getSummary(title: string) {
-      try {
-        const result = await API.post("backend", "/paperSummary", {
-          body: {
-            paperTitle: title,
-          },
-        });
-        setError(false);
-        return result;
-      } catch (e) {
-        setError(true);
-        return {};
-      }
+  async function getSummary(id: string | null, title: string | null) {
+    try {
+      const result = await API.post("backend", "/paperSummary", {
+        body: {
+          paperTitle: title,
+          paperId: id,
+        },
+      });
+      setError(false);
+      return result;
+    } catch (e) {
+      setError(true);
+      return {};
     }
-    getSummary(paperTitle as string).then((result) => {
+  }
+  useEffect(() => {
+    getSummary(null, paperTitle as string).then((result) => {
       setSummary(result);
     });
   }, [paperTitle]);
@@ -58,10 +59,9 @@ const Summary: FC<SummaryProps> = ({
     >
       <div>
         <h1>Summary</h1>
-        {error && <SidebarError />}
-        {summary.tldr && summary.tldr.text && (
+        {summary.tldr && (
           <>
-            <p>{summary?.tldr?.text}</p>
+            <p>{summary?.tldr}</p>
           </>
         )}
         {summary.abstract && (
@@ -69,6 +69,15 @@ const Summary: FC<SummaryProps> = ({
             <h2>Abstract</h2>
             <p>{summary?.abstract}</p>
           </>
+        )}
+        {error && <SidebarError message="Paper ID not found!" />}
+        {!error && (
+          <SidebarError
+            message="Is this not the right summary for the uploaded paper?"
+            summary={summary}
+            setSummary={setSummary}
+            getSummary={getSummary}
+          />
         )}
       </div>
     </div>

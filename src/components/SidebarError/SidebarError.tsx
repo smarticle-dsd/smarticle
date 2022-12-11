@@ -1,4 +1,4 @@
-import React, { useMemo, FC } from "react";
+import React, { useMemo, FC, useState } from "react";
 import cs from "classnames";
 
 import { SidebarErrorProps } from "./SidebarError.types";
@@ -8,6 +8,10 @@ const SidebarError: FC<SidebarErrorProps> = ({
   domID = "sidebar-error",
   dataTestId = "test-sidebar-error",
   className,
+  message,
+  summary,
+  setSummary,
+  getSummary,
 }): JSX.Element => {
   const domIDs = useMemo(
     () => ({
@@ -22,7 +26,17 @@ const SidebarError: FC<SidebarErrorProps> = ({
     }),
     [dataTestId],
   );
-
+  const [paperId, setPaperId] = useState<string>("");
+  const handlePaperIdInput = async (paperId: string) => {
+    setPaperId(paperId);
+    if (summary && setSummary && getSummary) {
+      getSummary(paperId as string, null).then(
+        (result: Record<string, string>) => {
+          setSummary(result);
+        },
+      );
+    }
+  };
   return (
     <div
       id={domIDs.root}
@@ -32,7 +46,7 @@ const SidebarError: FC<SidebarErrorProps> = ({
       <div className={cs("sidebar-error-view-image-wrapper", className)}>
         <div className={cs("sidebar-error-view-image", className)}>
           <img src={"/sidebar-error.svg"} alt="Paper not found" />
-          <h3>Paper ID not found!</h3>
+          <h3>{message}</h3>
         </div>
       </div>
       <div className={cs("sidebar-error-paper-input")}>
@@ -44,11 +58,16 @@ const SidebarError: FC<SidebarErrorProps> = ({
             className={cs("sidebar-error-input-text", className)}
             type="text"
             placeholder="Enter ID"
-            onInput={() => {}}
-            onChange={(event) => {}}
+            onChange={(event) => {
+              setPaperId(event.target.value);
+            }}
           />
           <div className={cs("sidebar-error-button", className)}>
-            <Button size="large" type="primary" onClick={() => {}}>
+            <Button
+              size="large"
+              type="primary"
+              onClick={() => handlePaperIdInput(paperId)}
+            >
               Submit ID
             </Button>
           </div>

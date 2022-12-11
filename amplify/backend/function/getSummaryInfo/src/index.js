@@ -1,103 +1,65 @@
-/*
-Use the following code to retrieve configured secrets from SSM:
-
-const aws = require('aws-sdk');
-
-const { Parameters } = await (new aws.SSM())
-  .getParameters({
-    Names: ["SC_KEY"].map(secretName => process.env[secretName]),
-    WithDecryption: true,
-  })
-  .promise();
-
-Parameters will be of the form { Name: 'secretName', Value: 'secretValue', ... }[]
-*/
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
-const axios = require("axios");
-const aws = require("aws-sdk");
+const getPapersByTitle = require("/opt/utils/getPapersByTitle");
+const querySemanticScholarByPaperId = require("/opt/utils/querySemanticScholarByPaperId");
 
-async function getPaperId(paperTitle, key) {
-  return await axios.get(
-    `https://api.semanticscholar.org/graph/v1/paper/search`,
-    {
-      headers: {
-        "x-api-key": key,
-      },
-      params: {
-        query: paperTitle,
-        limit: 1,
-        fields: "authors",
-      },
-    },
-  );
+async function getReturnMessages({ statusCode, messageContent }) {
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "*",
+  };
+  const returnMessage = {
+    statusCode,
+    headers,
+    body: JSON.stringify(messageContent),
+  };
+  return returnMessage;
 }
 
-async function getSummaryDetails(paperId, key) {
-  return await axios.get(
-    `https://api.semanticscholar.org/graph/v1/paper/` + paperId,
-    {
-      params: {
-        fields: "abstract,tldr",
-      },
-      headers: {
-        "x-api-key": key,
-      },
-    },
-  );
-}
 exports.handler = async (event) => {
+  console.log(`EVENT: ${JSON.stringify(event)}`);
+  const input = JSON.parse(event.body);
+
+  let paperId = input.paperId;
+
   try {
-    const { Parameters } = await new aws.SSM()
-      .getParameters({
-        Names: ["SC_KEY"].map((secretName) => process.env[secretName]),
-        WithDecryption: true,
-      })
-      .promise();
-
-    let ss_key = Parameters[0].Value;
-    console.log(`EVENT: ${JSON.stringify(event)}`);
-
-    if (ss_key) {
-      const paperDetails = await getPaperId(
-        JSON.parse(event.body).paperTitle,
-        ss_key,
-      );
-      const summaryDetails = await getSummaryDetails(
-        paperDetails.data.data[0].paperId,
-        ss_key,
-      );
-      console.log(summaryDetails.data);
-      return {
-        statusCode: 200,
-        //  Uncomment below to enable CORS requests
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "*",
-        },
-        body: JSON.stringify(summaryDetails.data),
-      };
-    } else {
-      return {
-        statusCode: 500,
-        //  Uncomment below to enable CORS requests
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "*",
-        },
-        body: "some error",
-      };
+    if (!paperId) {
+      const paperDetails = await getPapersByTitle({
+        paperTitle: input.paperTitle,
+        fieldsToGet: "paperId,title,authors",
+        limit: 1,
+      });
+      console.log("Paper details", paperDetails);
+      paperId = paperDetails.data[0].paperId;
     }
-  } catch (err) {
-    return {
+    if (paperId) {
+      const summaryDetails = await querySemanticScholarByPaperId({
+        paperId,
+        fieldsToGet: "abstract,tldr",
+      });
+      return await getReturnMessages({
+        statusCode: 200,
+        messageContent: {
+          abstract: summaryDetails.data.abstract,
+          tldr: summaryDetails.data.tldr.text,
+        },
+      });
+    } else {
+      return await getReturnMessages({
+        statusCode: 500,
+        messageContent: {
+          error: "Cannot find the paper ID",
+        },
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return await getReturnMessages({
       statusCode: 500,
-      //  Uncomment below to enable CORS requests
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "*",
+      messageContent: {
+        error,
       },
-      body: "some error",
-    };
+    });
   }
 };
