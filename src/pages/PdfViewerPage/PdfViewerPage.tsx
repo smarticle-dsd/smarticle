@@ -7,6 +7,7 @@ import { createPortal } from "react-dom";
 import { TestTool, Summary } from "../../components";
 import { Reference } from "../../components";
 import * as pdfjs from "pdfjs-dist/legacy/build/pdf";
+import { TextItem, TextMarkedContent } from "pdfjs-dist/types/src/display/api";
 
 pdfjs.GlobalWorkerOptions.workerSrc = require("pdfjs-dist/build/pdf.worker.entry");
 
@@ -50,17 +51,17 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
   }
 
   useEffect(() => {
-    async function getDetailedInfo(pdf: any) {
+    async function getDetailedInfo(pdf: pdfjs.PDFDocumentProxy) {
       const page = await pdf.getPage(1);
       const content = await page.getTextContent();
 
       let maxHeight = 0;
       let headingData = "";
-      await content.items.forEach((item: { height: number; str: string }) => {
-        if (item.height > maxHeight) {
-          if (!item.str.toLowerCase().includes("arxiv")) {
-            maxHeight = item.height;
-            headingData = item.str;
+      content.items.forEach((item: TextItem | TextMarkedContent) => {
+        if ((item as TextItem).height > maxHeight) {
+          if (!(item as TextItem).str.toLowerCase().includes("arxiv")) {
+            maxHeight = (item as TextItem).height;
+            headingData = (item as TextItem).str;
           }
         }
       });
@@ -74,11 +75,13 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
     } else if (url) {
       urlToLoad = url;
     }
-    pdfjs.getDocument(urlToLoad).promise.then((pdfDoc: any) => {
-      getDetailedInfo(pdfDoc).then(({ paperHeading }) => {
-        setPaperTitle(paperHeading);
+    pdfjs
+      .getDocument(urlToLoad)
+      .promise.then((pdfDoc: pdfjs.PDFDocumentProxy) => {
+        getDetailedInfo(pdfDoc).then(({ paperHeading }) => {
+          setPaperTitle(paperHeading);
+        });
       });
-    });
   }, [file, paperTitle, pdfFile, url]);
 
   const [referenceDetailsMountNode, setReferenceDetailsMountNode] =
