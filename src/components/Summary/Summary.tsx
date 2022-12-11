@@ -70,7 +70,14 @@ const Summary: FC<SummaryProps> = ({
             <p>{summary?.abstract}</p>
           </>
         )}
-        {error && <SidebarError message="Paper ID not found!" />}
+        {error && (
+          <SidebarError
+            message="Paper ID not found!"
+            summary={summary}
+            setSummary={setSummary}
+            getSummary={getSummary}
+          />
+        )}
         {!error && (
           <SidebarError
             message="Is this not the right summary for the uploaded paper?"
