@@ -60,7 +60,7 @@ const SidebarError: FC<SidebarErrorProps> = ({
       )}
       <div className={cs("sidebar-error-paper-input")}>
         <div className={cs("sidebar-error-input-header", className)}>
-          <h3>Incorrect Information?</h3>
+          {severity !== "error" && <h3>Incorrect Information?</h3>}
           <h3>Enter the paper's ID manually:</h3>
         </div>
         <div className={cs("sidebar-error-input-section", className)}>
