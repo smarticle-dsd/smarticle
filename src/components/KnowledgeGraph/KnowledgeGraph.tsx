@@ -62,12 +62,6 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
     startAngle: 0 * Math.PI,
     minNodeSpacing: 20,
     edgeLengthVal: 80,
-    /* boundingBox: {
-      x1: 100,
-      y1: 100,
-      w: 600 - 100,
-      h: 500,
-    }, */
     concentric: function (node: any) {
       return node.degree();
     },
@@ -108,6 +102,8 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
 
               // get the data associated with the node
               const data = node.data();
+
+              // Can be set to true to emulate error handling in component
               setError(false);
 
               // do something with the data here
