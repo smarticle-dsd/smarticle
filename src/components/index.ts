@@ -1,4 +1,5 @@
 /* PLOP_INJECT_IMPORT */
+export * from "./SupportedPaperList";
 export * from "./Loader";
 export * from "./SidebarError";
 export * from "./Reference";
