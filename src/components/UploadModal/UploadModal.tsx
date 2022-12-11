@@ -74,8 +74,7 @@ const UploadModal: FC<UploadModalProps> = ({
     setPdfLink("");
     if (e.target.files.length > 0) {
       if (e.target.files[0].type === "application/pdf") {
-        setSelectedFile(e.target.files[0]);
-        setError("");
+        handleUpload(e.target.files[0]);
       } else {
         setError(
           "The uploaded file is not supported. Only pdf files are allowed.",
@@ -189,12 +188,6 @@ const UploadModal: FC<UploadModalProps> = ({
               Currently links are supported only for papers on arxiv.org
             </div>
             <div
-              className={cs("modal-support-message", className)}
-              style={{ visibility: !loading ? "hidden" : "visible" }}
-            >
-              <Loader />
-            </div>
-            <div
               className={cs("modal-error-message", className)}
               style={{ visibility: error === "" ? "hidden" : "visible" }}
             >
@@ -209,6 +202,13 @@ const UploadModal: FC<UploadModalProps> = ({
             >
               Continue
             </Button>
+            {loading ? (
+              <div className={cs("loader-background", className)}>
+                <div className={cs("loader-modal", className)}>
+                  <Loader />
+                </div>
+              </div>
+            ) : null}
           </div>
 
           <div
