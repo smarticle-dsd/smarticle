@@ -12,6 +12,7 @@ const SidebarError: FC<SidebarErrorProps> = ({
   summary,
   setSummary,
   getSummary,
+  severity,
 }): JSX.Element => {
   const domIDs = useMemo(
     () => ({
@@ -26,10 +27,14 @@ const SidebarError: FC<SidebarErrorProps> = ({
     }),
     [dataTestId],
   );
+
   const [paperId, setPaperId] = useState<string>("");
+
+  // Function to get summary for manual id input
   const handlePaperIdInput = async (paperId: string) => {
-    setPaperId(paperId);
     if (summary && setSummary && getSummary) {
+      setSummary({});
+      setPaperId(paperId);
       getSummary(paperId as string, null).then(
         (result: Record<string, string>) => {
           setSummary(result);
@@ -45,7 +50,16 @@ const SidebarError: FC<SidebarErrorProps> = ({
     >
       <div className={cs("sidebar-error-view-image-wrapper", className)}>
         <div className={cs("sidebar-error-view-image", className)}>
-          <img src={"/sidebar-error.svg"} alt="Paper not found" />
+          <img
+            src={
+              severity === "error" ? "/sidebar-error.svg" : "/sidebar-error.svg"
+            }
+            alt={
+              severity === "error"
+                ? "Paper not found"
+                : "Incorrect paper retrieved"
+            }
+          />
           <h3>{message}</h3>
         </div>
       </div>

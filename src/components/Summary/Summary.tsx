@@ -28,8 +28,10 @@ const Summary: FC<SummaryProps> = ({
     [dataTestId],
   );
 
-  const [summary, setSummary] = useState<any>({});
+  const [summary, setSummary] = useState<Record<string, string>>({});
   const [error, setError] = useState<boolean>(false);
+
+  // Function to call backend to get summary
   async function getSummary(id: string | null, title: string | null) {
     try {
       const result = await API.post("backend", "/paperSummary", {
@@ -45,6 +47,7 @@ const Summary: FC<SummaryProps> = ({
       return {};
     }
   }
+  // Get summary on page load
   useEffect(() => {
     getSummary(null, paperTitle as string).then((result) => {
       setSummary(result);
@@ -70,25 +73,19 @@ const Summary: FC<SummaryProps> = ({
             <p>{summary?.abstract}</p>
           </>
         )}
-        {error && (
-          <SidebarError
-            message="Paper ID not found!"
-            summary={summary}
-            setSummary={setSummary}
-            getSummary={getSummary}
-          />
-        )}
-        {!error && (
-          <SidebarError
-            message="Is this not the right summary for the uploaded paper?"
-            summary={summary}
-            setSummary={setSummary}
-            getSummary={getSummary}
-          />
-        )}
+        <SidebarError
+          message={
+            error
+              ? "Paper ID not found!"
+              : "Is this not the right summary for the uploaded paper?"
+          }
+          summary={summary}
+          setSummary={setSummary}
+          getSummary={getSummary}
+          severity={error ? "error" : "info"}
+        />
       </div>
     </div>
   );
 };
-
 export default Summary;

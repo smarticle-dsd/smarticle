@@ -16,5 +16,9 @@ export type SidebarErrorProps = {
   message?: string;
   summary?: Record<string, string>;
   setSummary?: Dispatch<Record<string, string>>;
-  getSummary?: (id: string | null, title: string | null) => Promise<any>;
+  getSummary?: (
+    id: string | null,
+    title: string | null,
+  ) => Promise<Record<string, string>>;
+  severity?: string;
 };
