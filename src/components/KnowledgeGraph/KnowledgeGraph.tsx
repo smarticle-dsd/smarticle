@@ -88,8 +88,11 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
       {error && (
         <div>
           <div>
-            <img src={"/knowledgeGraph-error.svg"} alt="Paper not found" />
-            <h3>Paper ID not found!</h3>
+            <img
+              src={"/knowledgeGraph-error.svg"}
+              alt="Error during graph loading"
+            />
+            <h3>An error occurred during graph loading!</h3>
           </div>
         </div>
       )}
