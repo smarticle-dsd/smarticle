@@ -20,7 +20,8 @@
             "text-outline-width": "2px",
             "color": "#fff",
             "overlay-padding": "6px",
-            "z-index": "10"
+            "z-index": "10",
+            "content": "data(label)"
         }
     },
     {
