@@ -78,10 +78,13 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
     pdfjs
       .getDocument(urlToLoad)
       .promise.then((pdfDoc: pdfjs.PDFDocumentProxy) => {
-        getDetailedInfo(pdfDoc).then(({ paperHeading }) => {
-          setPaperTitle(paperHeading);
-        });
-      });
+        getDetailedInfo(pdfDoc)
+          .then(({ paperHeading }) => {
+            setPaperTitle(paperHeading);
+          })
+          .catch((e) => {});
+      })
+      .catch((e) => {});
   }, [file, paperTitle, pdfFile, url]);
 
   const [referenceDetailsMountNode, setReferenceDetailsMountNode] =
