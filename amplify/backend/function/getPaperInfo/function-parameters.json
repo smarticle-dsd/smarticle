@@ -4,8 +4,8 @@
       "type": "ProjectLayer",
       "resourceName": "smarticlelayer",
       "env": "staging",
-      "version": 1,
-      "isLatestVersionSelected": false
+      "version": "Always choose latest version",
+      "isLatestVersionSelected": true
     }
   ],
   "secretNames": [],

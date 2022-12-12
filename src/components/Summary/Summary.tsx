@@ -3,9 +3,10 @@ import cs from "classnames";
 
 import { SummaryProps } from "./Summary.types";
 
+import { SidebarError } from "../SidebarError";
+
 import { Amplify, API } from "aws-amplify";
 import aws_exports from "../../aws-exports";
-import { SidebarError } from "../SidebarError";
 Amplify.configure(aws_exports);
 
 const Summary: FC<SummaryProps> = ({

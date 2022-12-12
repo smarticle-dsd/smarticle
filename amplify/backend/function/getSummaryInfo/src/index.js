@@ -4,13 +4,13 @@
 const getPapersByTitle = require("/opt/utils/getPapersByTitle");
 const querySemanticScholarByPaperId = require("/opt/utils/querySemanticScholarByPaperId");
 
-async function getReturnMessages({ statusCode, messageContent }) {
+async function getReturnMessages({ messageContent }) {
   const headers = {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Headers": "*",
   };
   const returnMessage = {
-    statusCode,
+    statusCode: 200,
     headers,
     body: JSON.stringify(messageContent),
   };
@@ -45,7 +45,6 @@ exports.handler = async (event) => {
         ? summaryDetails.data.tldr.text
         : null;
       return await getReturnMessages({
-        statusCode: 200,
         messageContent: {
           abstract,
           tldr,
@@ -53,7 +52,6 @@ exports.handler = async (event) => {
       });
     } else {
       return await getReturnMessages({
-        statusCode: 500,
         messageContent: {
           error: "Cannot find the paper ID",
         },
@@ -62,7 +60,6 @@ exports.handler = async (event) => {
   } catch (error) {
     console.log(error);
     return await getReturnMessages({
-      statusCode: 500,
       messageContent: {
         error,
       },
