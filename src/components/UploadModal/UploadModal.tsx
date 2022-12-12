@@ -89,7 +89,7 @@ const UploadModal: FC<UploadModalProps> = ({
   const handleUpload = async (file: any) => {
     if (pdfLink !== "") {
       if (await isPdfValid(pdfLink)) {
-        navigate("/pdfviewer?url=" + pdfLink);
+        navigate("/pdfviewer/?url=" + pdfLink);
       }
     } else if (file.name !== "" && file.type === "application/pdf") {
       if (await isPdfValid(URL.createObjectURL(file))) {
@@ -102,7 +102,7 @@ const UploadModal: FC<UploadModalProps> = ({
 
         myBucket.putObject(params).send((err: AWSError) => {
           if (!err) {
-            navigate("/pdfviewer?file=" + file.name);
+            navigate("/pdfviewer/?file=" + file.name);
           } else {
             setError("There was an error during upload. Please try again.");
           }

@@ -8,6 +8,7 @@ import { TestTool, Summary } from "../../components";
 import { Reference } from "../../components";
 import * as pdfjs from "pdfjs-dist/legacy/build/pdf";
 import { TextItem, TextMarkedContent } from "pdfjs-dist/types/src/display/api";
+import { Error404Page } from "../Error404Page";
 
 pdfjs.GlobalWorkerOptions.workerSrc = require("pdfjs-dist/build/pdf.worker.entry");
 
@@ -163,7 +164,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
       className={cs("sa-pdf-viewer-page", className)}
       data-testid={dataTestIDs.root}
     >
-      {pdfFile && (
+      {pdfFile.length > 0 ? (
         <iframe
           id="pdf-js-viewer"
           src={pdfFile}
@@ -183,6 +184,8 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
               summaryMountNode,
             )}
         </iframe>
+      ) : (
+        <Error404Page />
       )}
     </div>
   );
