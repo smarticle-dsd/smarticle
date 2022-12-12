@@ -1,4 +1,5 @@
 /* PLOP_INJECT_IMPORT */
+export * from "./TestGraphPage";
 export * from "./HomePage";
 export * from "./AboutPage";
 export * from "./PdfViewerPage";

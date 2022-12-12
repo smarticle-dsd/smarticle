@@ -9,3 +9,4 @@ export * from "./Button";
 export * from "./Header";
 export * from "./UploadModal";
 export * from "./RedCircle";
+export * from "./KnowledgeGraph";
