@@ -1081,7 +1081,7 @@
   --toolbar-icon-opacity: 0.7;
   --doorhanger-icon-opacity: 0.9;
 
-  --main-color: rgba(12, 12, 13, 1);
+  --main-color: var(--sa-neutral-color-5);
   --body-bg-color: var(--sa-neutral-color-30-3);
   --progressBar-percent: 0%;
   --progressBar-end-offset: 0;
@@ -1091,7 +1091,7 @@
   --scrollbar-color: auto;
   --scrollbar-bg-color: auto;
   --toolbar-icon-bg-color: var(--sa-neutral-color-4);
-  --toolbar-icon-hover-bg-color: var(--sa-neutral-color-4);
+  --toolbar-icon-hover-bg-color: var(--sa-neutral-color-5);
 
   --sidebar-narrow-bg-color: rgba(237, 237, 240, 0.9);
   --sidebar-toolbar-bg-color: rgba(245, 246, 247, 1);
@@ -1104,7 +1104,7 @@
     0 1px 0 rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.1);
   --toolbarSidebar-border-bottom: none;
   --button-hover-color: #1c211e1a;
-  --toggled-btn-color: rgba(0, 0, 0, 1);
+  --toggled-btn-color: var(--sa-neutral-color-5);
   --toggled-btn-bg-color: rgba(0, 0, 0, 0.3);
   --toggled-hover-active-btn-color: rgba(0, 0, 0, 0.4);
   --dropdown-btn-bg-color: rgba(215, 215, 219, 1);
