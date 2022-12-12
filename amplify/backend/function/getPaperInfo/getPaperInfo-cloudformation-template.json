@@ -85,7 +85,7 @@
         "Runtime": "nodejs14.x",
         "Layers": [
           {
-            "Fn::Sub": "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:layer:smarticlelayer-staging:1"
+            "Ref": "functionsmarticlelayerArn"
           }
         ],
         "Timeout": 25

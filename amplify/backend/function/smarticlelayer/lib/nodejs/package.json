@@ -3,7 +3,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "aws-sdk": "^2.1267.0",
-    "axios": "^1.2.0"
+    "aws-sdk": "^2.1272.0",
+    "axios": "^1.2.1"
   }
 }

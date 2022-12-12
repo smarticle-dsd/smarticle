@@ -23,12 +23,12 @@
         },
         "getSummaryInfo": {
           "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
-          "s3Key": "amplify-builds/getSummaryInfo-34324e3234587056304c-build.zip",
+          "s3Key": "amplify-builds/getSummaryInfo-61563963486249743331-build.zip",
           "secretsPathAmplifyAppId": "dcfoxoxqw27pv"
         },
         "smarticlelayer": {
           "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
-          "s3Key": "amplify-builds/smarticlelayer-LambdaLayerVersion31a05340-build.zip"
+          "s3Key": "amplify-builds/smarticlelayer-LambdaLayerVersionb0454e9a-build.zip"
         }
       },
       "api": {
