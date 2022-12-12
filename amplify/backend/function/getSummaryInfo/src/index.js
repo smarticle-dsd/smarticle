@@ -1,103 +1,68 @@
-/*
-Use the following code to retrieve configured secrets from SSM:
-
-const aws = require('aws-sdk');
-
-const { Parameters } = await (new aws.SSM())
-  .getParameters({
-    Names: ["SC_KEY"].map(secretName => process.env[secretName]),
-    WithDecryption: true,
-  })
-  .promise();
-
-Parameters will be of the form { Name: 'secretName', Value: 'secretValue', ... }[]
-*/
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
-const axios = require("axios");
-const aws = require("aws-sdk");
+const getPapersByTitle = require("/opt/utils/getPapersByTitle");
+const querySemanticScholarByPaperId = require("/opt/utils/querySemanticScholarByPaperId");
 
-async function getPaperId(paperTitle, key) {
-  return await axios.get(
-    `https://api.semanticscholar.org/graph/v1/paper/search`,
-    {
-      headers: {
-        "x-api-key": key,
-      },
-      params: {
-        query: paperTitle,
-        limit: 1,
-        fields: "authors",
-      },
-    },
-  );
+async function getReturnMessages({ messageContent }) {
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "*",
+  };
+  const returnMessage = {
+    statusCode: 200,
+    headers,
+    body: JSON.stringify(messageContent),
+  };
+  return returnMessage;
 }
 
-async function getSummaryDetails(paperId, key) {
-  return await axios.get(
-    `https://api.semanticscholar.org/graph/v1/paper/` + paperId,
-    {
-      params: {
-        fields: "abstract,tldr",
-      },
-      headers: {
-        "x-api-key": key,
-      },
-    },
-  );
-}
 exports.handler = async (event) => {
+  console.log(`EVENT: ${JSON.stringify(event)}`);
+  const input = JSON.parse(event.body);
+
+  let paperId = input.paperId;
+  let paperTitle = input.paperTitle;
+
   try {
-    const { Parameters } = await new aws.SSM()
-      .getParameters({
-        Names: ["SC_KEY"].map((secretName) => process.env[secretName]),
-        WithDecryption: true,
-      })
-      .promise();
-
-    let ss_key = Parameters[0].Value;
-    console.log(`EVENT: ${JSON.stringify(event)}`);
-
-    if (ss_key) {
-      const paperDetails = await getPaperId(
-        JSON.parse(event.body).paperTitle,
-        ss_key,
-      );
-      const summaryDetails = await getSummaryDetails(
-        paperDetails.data.data[0].paperId,
-        ss_key,
-      );
-      console.log(summaryDetails.data);
-      return {
-        statusCode: 200,
-        //  Uncomment below to enable CORS requests
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "*",
-        },
-        body: JSON.stringify(summaryDetails.data),
-      };
-    } else {
-      return {
-        statusCode: 500,
-        //  Uncomment below to enable CORS requests
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "*",
-        },
-        body: "some error",
-      };
+    if (paperId === null && paperTitle !== null) {
+      const paperDetails = await getPapersByTitle({
+        paperTitle,
+        fieldsToGet: "paperId,title,authors",
+        limit: 1,
+      });
+      console.log("Paper details", paperDetails);
+      if (paperDetails.data.length > 0) paperId = paperDetails.data[0].paperId;
     }
-  } catch (err) {
-    return {
-      statusCode: 500,
-      //  Uncomment below to enable CORS requests
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "*",
+    if (paperId !== null) {
+      const summaryDetails = await querySemanticScholarByPaperId({
+        paperId,
+        fieldsToGet: "abstract,tldr",
+      });
+
+      const abstract = summaryDetails.data.abstract;
+      const tldr = summaryDetails.data.tldr
+        ? summaryDetails.data.tldr.text
+        : null;
+      return await getReturnMessages({
+        messageContent: {
+          abstract,
+          tldr,
+        },
+      });
+    } else {
+      return await getReturnMessages({
+        messageContent: {
+          error: "Cannot find the paper ID",
+        },
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return await getReturnMessages({
+      messageContent: {
+        error,
       },
-      body: "some error",
-    };
+    });
   }
 };

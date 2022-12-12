@@ -3,6 +3,8 @@ import cs from "classnames";
 
 import { SummaryProps } from "./Summary.types";
 
+import { SidebarError } from "../SidebarError";
+
 import { Amplify, API } from "aws-amplify";
 import aws_exports from "../../aws-exports";
 Amplify.configure(aws_exports);
@@ -27,24 +29,33 @@ const Summary: FC<SummaryProps> = ({
     [dataTestId],
   );
 
-  const [summary, setSummary] = useState<any>({});
+  const [summary, setSummary] = useState<Record<string, string>>({});
   const [error, setError] = useState<boolean>(false);
-  useEffect(() => {
-    async function getSummary(title: string) {
-      try {
-        const result = await API.post("backend", "/paperSummary", {
-          body: {
-            paperTitle: title,
-          },
-        });
+
+  // Function to call backend to get summary
+  async function getSummary(id: string | null, title: string | null) {
+    try {
+      const result = await API.post("backend", "/paperSummary", {
+        body: {
+          paperTitle: title,
+          paperId: id,
+        },
+      });
+      if (result.abstract || result.tldr) {
         setError(false);
         return result;
-      } catch (e) {
+      } else {
         setError(true);
         return {};
       }
+    } catch (e) {
+      setError(true);
+      return {};
     }
-    getSummary(paperTitle as string).then((result) => {
+  }
+  // Get summary on page load
+  useEffect(() => {
+    getSummary(null, paperTitle as string).then((result) => {
       setSummary(result);
     });
   }, [paperTitle]);
@@ -56,13 +67,10 @@ const Summary: FC<SummaryProps> = ({
       data-testid={dataTestIDs.root}
     >
       <div>
-        {error && (
-          <p>Semantic Scholar does not have any information on your paper.</p>
-        )}
-        {summary.tldr && summary.tldr.text && (
+        <h1>Summary</h1>
+        {summary.tldr && (
           <>
-            <h1>Summary</h1>
-            <p>{summary?.tldr?.text}</p>
+            <p>{summary?.tldr}</p>
           </>
         )}
         {summary.abstract && (
@@ -71,9 +79,19 @@ const Summary: FC<SummaryProps> = ({
             <p>{summary?.abstract}</p>
           </>
         )}
+        <SidebarError
+          message={
+            error
+              ? "Paper ID not found!"
+              : "Is this not the right summary for the uploaded paper?"
+          }
+          summary={summary}
+          setSummary={setSummary}
+          getSummary={getSummary}
+          severity={error ? "error" : "info"}
+        />
       </div>
     </div>
   );
 };
-
 export default Summary;

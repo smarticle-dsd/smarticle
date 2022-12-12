@@ -1,4 +1,12 @@
 {
-  "lambdaLayers": [],
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "smarticlelayer",
+      "env": "staging",
+      "version": "Always choose latest version",
+      "isLatestVersionSelected": true
+    }
+  ],
   "environmentVariableList": []
 }
