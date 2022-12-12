@@ -190,5 +190,31 @@
         cursor: pointer;
       }
     }
+
+    .loader-background {
+      position: absolute;
+      width: 100%;
+      background-color: rgba(159, 187, 170, 0.6);
+      z-index: 1;
+      top: 0px;
+      bottom: 0px;
+      left: 0px;
+
+      display: flex;
+      justify-content: center;
+
+      .loader-modal {
+        margin: 220px 0px;
+        width: 80px;
+        height: 70px;
+        border-radius: 8px;
+        background-color: var(--sa-neutral-color-2);
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 10;
+      }
+    }
   }
 }
