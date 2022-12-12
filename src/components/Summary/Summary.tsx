@@ -28,24 +28,33 @@ const Summary: FC<SummaryProps> = ({
     [dataTestId],
   );
 
-  const [summary, setSummary] = useState<any>({});
+  const [summary, setSummary] = useState<Record<string, string>>({});
   const [error, setError] = useState<boolean>(false);
-  useEffect(() => {
-    async function getSummary(title: string) {
-      try {
-        const result = await API.post("backend", "/paperSummary", {
-          body: {
-            paperTitle: title,
-          },
-        });
+
+  // Function to call backend to get summary
+  async function getSummary(id: string | null, title: string | null) {
+    try {
+      const result = await API.post("backend", "/paperSummary", {
+        body: {
+          paperTitle: title,
+          paperId: id,
+        },
+      });
+      if (result.abstract || result.tldr) {
         setError(false);
         return result;
-      } catch (e) {
+      } else {
         setError(true);
         return {};
       }
+    } catch (e) {
+      setError(true);
+      return {};
     }
-    getSummary(paperTitle as string).then((result) => {
+  }
+  // Get summary on page load
+  useEffect(() => {
+    getSummary(null, paperTitle as string).then((result) => {
       setSummary(result);
     });
   }, [paperTitle]);
@@ -58,10 +67,9 @@ const Summary: FC<SummaryProps> = ({
     >
       <div>
         <h1>Summary</h1>
-        {error && <SidebarError />}
-        {summary.tldr && summary.tldr.text && (
+        {summary.tldr && (
           <>
-            <p>{summary?.tldr?.text}</p>
+            <p>{summary?.tldr}</p>
           </>
         )}
         {summary.abstract && (
@@ -70,9 +78,19 @@ const Summary: FC<SummaryProps> = ({
             <p>{summary?.abstract}</p>
           </>
         )}
+        <SidebarError
+          message={
+            error
+              ? "Paper ID not found!"
+              : "Is this not the right summary for the uploaded paper?"
+          }
+          summary={summary}
+          setSummary={setSummary}
+          getSummary={getSummary}
+          severity={error ? "error" : "info"}
+        />
       </div>
     </div>
   );
 };
-
 export default Summary;
