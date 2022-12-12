@@ -12353,6 +12353,14 @@
                   "referenceview-canvas",
                 )[0];
                 canv.style.visibility = "visible";
+
+                let link_destination = data.dest;
+                canv.addEventListener(
+                  "click",
+                  () => this.linkService.goToDestination(link_destination),
+                  false,
+                );
+
                 page._transport.getDestination(data.dest).then((data) => {
                   let page_number = this.linkService._cachedPageNumber(data[0]);
                   page._transport.getDestinations().then((res) => {
