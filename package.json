@@ -27,13 +27,14 @@
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "sass": "^1.55.0",
+    "save-dev": "^0.0.1-security",
     "typescript": "^4.8.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --testPathIgnorePatterns src/components/KnowledgeGraph --testPathIgnorePatterns src/pages/",
+    "test": "cypress run",
     "eject": "react-scripts eject",
     "generate": "plop",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
@@ -63,6 +64,7 @@
     "@types/react-cytoscapejs": "^1.2.2",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
+    "cypress": "^12.1.0",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
