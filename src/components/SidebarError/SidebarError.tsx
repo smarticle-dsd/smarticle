@@ -76,6 +76,7 @@ const SidebarError: FC<SidebarErrorProps> = ({
             <Button
               size="large"
               type="primary"
+              disabled={paperId.length === 0}
               onClick={() => handlePaperIdInput(paperId)}
             >
               Submit ID
