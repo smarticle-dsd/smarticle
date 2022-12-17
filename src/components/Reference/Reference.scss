@@ -31,7 +31,10 @@
     height: 100%;
     width: 100%;
   }
-  .referenceview-canvas:hover {
-    cursor: pointer;
+  .referenceview-button {
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    visibility: hidden;
   }
 }

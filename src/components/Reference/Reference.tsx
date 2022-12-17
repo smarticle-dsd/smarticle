@@ -1,6 +1,7 @@
 import React, { useMemo, FC } from "react";
 import cs from "classnames";
 import svg from "./refvec.svg";
+import { Button } from "../Button";
 import { ReferenceProps } from "./Reference.types";
 
 const Reference: FC<ReferenceProps> = ({
@@ -37,6 +38,11 @@ const Reference: FC<ReferenceProps> = ({
         </div>
       </div>
       <canvas className={cs("referenceview-canvas", className)}></canvas>
+      <div className={cs("referenceview-button", className)}>
+        <Button size="large" type="primary">
+          Jump to Content
+        </Button>
+      </div>
     </div>
   );
 };
