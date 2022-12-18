@@ -14,6 +14,8 @@ export type SidebarErrorProps = {
    */
   className?: string;
   message?: string;
+  paperTitle?: string;
+  // Props for summary
   summary?: Record<string, string>;
   setSummary?: Dispatch<Record<string, string>>;
   getSummary?: (
@@ -21,4 +23,5 @@ export type SidebarErrorProps = {
     title: string | null,
   ) => Promise<Record<string, string>>;
   severity?: string;
+  // TODO: Add props for Knowledge graph
 };
