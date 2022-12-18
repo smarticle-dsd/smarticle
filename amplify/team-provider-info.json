@@ -28,7 +28,7 @@
         },
         "smarticlelayer": {
           "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
-          "s3Key": "amplify-builds/smarticlelayer-LambdaLayerVersionb0454e9a-build.zip"
+          "s3Key": "amplify-builds/smarticlelayer-LambdaLayerVersion9e86bdd1-build.zip"
         }
       },
       "api": {

@@ -3,12 +3,15 @@ import React, { useMemo, FC, useState } from "react";
 import cs from "classnames";
 import CytoscapeComponent from "react-cytoscapejs";
 
+import { API } from "aws-amplify";
+
 import { KnowledgeGraphProps } from "./KnowledgeGraph.types";
 
 const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
   domID = "knowledge-graph",
   dataTestId = "test-knowledge-graph",
   className,
+  paperId,
 }): JSX.Element => {
   const domIDs = useMemo(
     () => ({
@@ -23,6 +26,35 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
     }),
     [dataTestId],
   );
+
+  const [elements, setElements] = useState<any>({});
+
+  // Function to call backend to get summary
+  async function getElements(id: string | undefined) {
+    try {
+      const result = await API.post("backend", "/knowledgeGraph", {
+        body: {
+          paperId: id,
+        },
+      });
+      if (result.abstract || result.tldr) {
+        setError(false);
+        return result;
+      } else {
+        setError(true);
+        return {};
+      }
+    } catch (e) {
+      setError(true);
+      return {};
+    }
+  }
+  // Get summary on page load
+  React.useEffect(() => {
+    getElements(paperId).then((result) => {
+      setElements(result);
+    });
+  }, [paperId]);
 
   const [error, setError] = useState<boolean>(false);
 
@@ -52,7 +84,7 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
   });
 
   // eslint-disable-next-line import/no-webpack-loader-syntax, @typescript-eslint/no-var-requires
-  const elements = require("./response.json");
+  /* const elements = require("./response.json"); */
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-unused-vars
   const graphStyle = require("./cy-style.json");

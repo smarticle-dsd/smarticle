@@ -29,7 +29,7 @@ const TestGraphPage: FC<TestGraphPageProps> = ({
       className={cs("sa-test-graph-page", className)}
       data-testid={dataTestIDs.root}
     >
-      <KnowledgeGraph />
+      <KnowledgeGraph paperId="74YznjI4XpavHyy6QrUw91YlRNrOa0kr4c3k1j3N" />
     </div>
   );
 };
