@@ -62,7 +62,6 @@ const SidebarError: FC<SidebarErrorProps> = ({
         },
       );
     }
-    setPaperId("");
   };
   return (
     <div
@@ -88,6 +87,7 @@ const SidebarError: FC<SidebarErrorProps> = ({
           <input
             className={cs("sidebar-error-input-text", className)}
             type="text"
+            value={paperId}
             placeholder="Enter ID"
             onChange={(event) => {
               setPaperId(event.target.value);
