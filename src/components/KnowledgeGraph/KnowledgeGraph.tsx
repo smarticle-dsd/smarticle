@@ -11,7 +11,7 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
   domID = "knowledge-graph",
   dataTestId = "test-knowledge-graph",
   className,
-  paperId,
+  paperTitle,
 }): JSX.Element => {
   const domIDs = useMemo(
     () => ({
@@ -27,17 +27,18 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
     [dataTestId],
   );
 
-  const [elements, setElements] = useState<any>({});
+  const [elements, setElements] = useState<any>([{}]);
 
   // Function to call backend to get summary
-  async function getElements(id: string | undefined) {
+  async function getElements(id: string | null, title: string | null) {
     try {
-      const result = await API.post("backend", "/knowledgeGraph", {
+      const result = await API.post("backend", "/paperKnowledgeGraph", {
         body: {
-          paperId: id,
+          paperTitle: title,
+          paperId: "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
         },
       });
-      if (result.abstract || result.tldr) {
+      if (result.length > 1) {
         setError(false);
         return result;
       } else {
@@ -51,10 +52,11 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
   }
   // Get summary on page load
   React.useEffect(() => {
-    getElements(paperId).then((result) => {
+    getElements(null, paperTitle).then((result) => {
       setElements(result);
+      console.log(result);
     });
-  }, [paperId]);
+  }, [paperTitle]);
 
   const [error, setError] = useState<boolean>(false);
 
@@ -143,6 +145,13 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
 
               // do something with the data here
               selectNode(data.label);
+              cy.animation({
+                fit: {
+                  eles: node,
+                  padding: 200,
+                },
+                duration: 1000,
+              }).play();
             });
           }}
           elements={elements}
