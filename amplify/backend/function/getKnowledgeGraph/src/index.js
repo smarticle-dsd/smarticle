@@ -38,7 +38,7 @@ exports.handler = async (event) => {
       const paperInfo = await querySemanticScholarByPaperId({
         paperId,
         fieldsToGet:
-          "title,authors,references,references.authors,citations,citations.authors,referenceCount,citationCount",
+          "title,authors,references,references.title,references.authors,citations,citations.title,citations.authors,referenceCount,citationCount",
       });
 
       let nodesAndEdges = [];
