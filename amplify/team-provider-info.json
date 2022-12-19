@@ -19,7 +19,8 @@
         },
         "getKnowledgeGraph": {
           "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
-          "s3Key": "amplify-builds/getKnowledgeGraph-6b7a596c6b4c34694246-build.zip"
+          "s3Key": "amplify-builds/getKnowledgeGraph-746d45336f34474b6162-build.zip",
+          "secretsPathAmplifyAppId": "dcfoxoxqw27pv"
         },
         "getSummaryInfo": {
           "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
@@ -28,7 +29,7 @@
         },
         "smarticlelayer": {
           "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
-          "s3Key": "amplify-builds/smarticlelayer-LambdaLayerVersionb0454e9a-build.zip"
+          "s3Key": "amplify-builds/smarticlelayer-LambdaLayerVersion9e86bdd1-build.zip"
         }
       },
       "api": {

@@ -1,20 +1,47 @@
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
+
+const getPapersByTitle = require("/opt/utils/getPapersByTitle");
+const querySemanticScholarByPaperId = require("/opt/utils/querySemanticScholarByPaperId");
+
+async function getReturnMessages({ messageContent }) {
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "*",
+  };
+  const returnMessage = {
+    statusCode: 200,
+    headers,
+    body: JSON.stringify(messageContent),
+  };
+  return returnMessage;
+}
 exports.handler = async (event) => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const axios = require("axios");
-  return await axios
-    .get(`https://api.semanticscholar.org/graph/v1/paper/` + event.paperId, {
-      params: {
-        fields:
-          "authors,citations,citationCount,references,referenceCount,title",
-      },
-      headers: {
-        "x-api-key": process.env.SC_API_KEY,
-      },
-    })
-    .then(function (paperInfo) {
+  console.log(`EVENT: ${JSON.stringify(event)}`);
+  const input = JSON.parse(event.body);
+
+  let paperId = input.paperId;
+  let paperTitle = input.paperTitle;
+
+  try {
+    if (paperId === null && paperTitle !== null) {
+      const paperDetails = await getPapersByTitle({
+        paperTitle,
+        fieldsToGet: "paperId,title,authors",
+        limit: 1,
+      });
+      console.log("Paper details", paperDetails);
+      if (paperDetails.data.length > 0) paperId = paperDetails.data[0].paperId;
+    }
+    if (paperId !== null) {
+      const paperInfo = await querySemanticScholarByPaperId({
+        paperId,
+        fieldsToGet:
+          "title,authors,references,references.authors,citations,citations.authors,referenceCount,citationCount",
+      });
+
+      let nodesAndEdges = [];
       // Number of papers referenced in this paper.
       let referenceCount = paperInfo.data.referenceCount;
 
@@ -23,9 +50,6 @@ exports.handler = async (event) => {
 
       // Number of vertices in the adjacency matrix, 1 is added for current paper
       let verticesCount = referenceCount + citationCount + 1;
-
-      let nodesAndEdges = [];
-
       nodesAndEdges.push({
         data: {
           id: paperInfo.data.paperId,
@@ -76,15 +100,15 @@ exports.handler = async (event) => {
         });
       }
 
-      return {
-        statusCode: 200,
-        body: nodesAndEdges,
-      };
-    })
-    .catch(function () {
-      return {
-        statusCode: 400,
-        body: "Failed when searching for paper with ID: " + event.paperId,
-      };
+      return getReturnMessages({
+        messageContent: nodesAndEdges,
+      });
+    }
+  } catch {
+    return getReturnMessages({
+      messageContent: {
+        error: "Failed when search for paper details",
+      },
     });
+  }
 };
