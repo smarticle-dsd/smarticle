@@ -94,26 +94,24 @@ const SidebarError: FC<SidebarErrorProps> = ({
             }}
           />
           <div className={cs("sidebar-error-buttons")}>
-            <div className={cs("sidebar-submit-button", className)}>
-              <Button
-                size="large"
-                type="primary"
-                disabled={paperId.length === 0}
-                onClick={() => handlePaperIdInput(paperId)}
-              >
-                Submit ID
-              </Button>
-            </div>
-            <div className={cs("sidebar-reset-button", className)}>
-              <Button
-                size="large"
-                type="primary"
-                disabled={!needsReset && paperTitle !== null}
-                onClick={() => handleResetData()}
-              >
-                Reset
-              </Button>
-            </div>
+            <Button
+              className={cs("sidebar-submit-button", className)}
+              size="large"
+              type="primary"
+              disabled={paperId.length === 0}
+              onClick={() => handlePaperIdInput(paperId)}
+            >
+              Submit ID
+            </Button>
+            <Button
+              size="large"
+              className={cs("sidebar-reset-button", className)}
+              type="primary"
+              disabled={!needsReset && paperTitle !== null}
+              onClick={() => handleResetData()}
+            >
+              Reset
+            </Button>
           </div>
           <SupportedPaperList />
         </div>

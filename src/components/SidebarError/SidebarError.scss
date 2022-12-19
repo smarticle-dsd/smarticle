@@ -64,8 +64,9 @@
         display: flex;
         text-align: center;
         margin-bottom: 16px;
+        justify-content: flex-start;
         .sidebar-submit-button{
-          padding-right: 16px;
+          margin-right: 16px;
         }
       }
     }
