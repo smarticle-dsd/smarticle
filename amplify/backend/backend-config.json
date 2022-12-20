@@ -69,6 +69,14 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "getKnowledgeGraph",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     }
