@@ -60,9 +60,14 @@
           color: var(--sa-neutral-color-3);
         }
       }
-      .sidebar-error-button {
+      .sidebar-error-buttons{
+        display: flex;
         text-align: center;
-        margin-bottom: 13px;
+        margin-bottom: 16px;
+        justify-content: center;
+        .sidebar-submit-button{
+          margin-right: 16px;
+        }
       }
     }
   }

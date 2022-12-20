@@ -178,11 +178,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
           {knowledgeGraphMountNode &&
             createPortal(<TestTool />, knowledgeGraphMountNode)}
           {summaryMountNode &&
-            createPortal(
-              // Need to find a way to get this from the PDF Viewer component
-              <Summary paperTitle={paperTitle} />,
-              summaryMountNode,
-            )}
+            createPortal(<Summary paperTitle={paperTitle} />, summaryMountNode)}
         </iframe>
       ) : (
         <Error404Page />

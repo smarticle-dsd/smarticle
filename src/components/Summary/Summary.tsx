@@ -66,20 +66,25 @@ const Summary: FC<SummaryProps> = ({
       className={cs("sa-summary", className)}
       data-testid={dataTestIDs.root}
     >
-      <div>
+      <div className={cs("sa-summary-tldr", className)}>
         <h1>Summary</h1>
         {summary.tldr && (
           <>
             <p>{summary?.tldr}</p>
           </>
         )}
+      </div>
+      <div className={cs("sa-summary-abstract", className)}>
         {summary.abstract && (
           <>
             <h2>Abstract</h2>
             <p>{summary?.abstract}</p>
           </>
         )}
+      </div>
+      <div className={cs("sa-summary-error", className)}>
         <SidebarError
+          paperTitle={paperTitle}
           message={
             error
               ? "Paper ID not found!"
