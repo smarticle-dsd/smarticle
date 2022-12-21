@@ -13,23 +13,24 @@
     },
     "categories": {
       "function": {
-        "getPaperInfo": {
-          "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
-          "s3Key": "amplify-builds/getPaperInfo-58415a4e674734685564-build.zip"
-        },
         "getKnowledgeGraph": {
           "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
-          "s3Key": "amplify-builds/getKnowledgeGraph-5a6b6c4b4c55307a6558-build.zip",
+          "s3Key": "amplify-builds/getKnowledgeGraph-5279465a784137497955-build.zip",
           "secretsPathAmplifyAppId": "dcfoxoxqw27pv"
         },
         "getSummaryInfo": {
           "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
-          "s3Key": "amplify-builds/getSummaryInfo-61563963486249743331-build.zip",
+          "s3Key": "amplify-builds/getSummaryInfo-574861676a6250574b5a-build.zip",
           "secretsPathAmplifyAppId": "dcfoxoxqw27pv"
         },
         "smarticlelayer": {
           "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
-          "s3Key": "amplify-builds/smarticlelayer-LambdaLayerVersion9e86bdd1-build.zip"
+          "s3Key": "amplify-builds/smarticlelayer-LambdaLayerVersione2fb6c82-build.zip"
+        },
+        "getCustomSummary": {
+          "secretsPathAmplifyAppId": "dcfoxoxqw27pv",
+          "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
+          "s3Key": "amplify-builds/getCustomSummary-683775594d32444f7850-build.zip"
         }
       },
       "api": {

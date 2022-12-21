@@ -29,8 +29,31 @@ const Summary: FC<SummaryProps> = ({
     [dataTestId],
   );
 
-  const [summary, setSummary] = useState<Record<string, string>>({});
+  const [summary, setSummary] = useState<Record<string, string> | null>(null);
   const [error, setError] = useState<boolean>(false);
+
+  // const [customSummary, setCustomSummary] = useState<string | null>(null);
+  // // Function to call backend to get custom summary
+  // async function getCustomSummary(text: string) {
+  //   try {
+  //     const result = await API.post("backend", "/customSummary", {
+  //       body: {
+  //         text,
+  //       },
+  //     });
+  //     if (result.summary) {
+  //       setError(false);
+  //       setCustomSummary(result.summary);
+  //       return result.summary;
+  //     } else {
+  //       setError(true);
+  //       return null;
+  //     }
+  //   } catch (e) {
+  //     setError(true);
+  //     return null;
+  //   }
+  // }
 
   // Function to call backend to get summary
   async function getSummary(id: string | null, title: string | null) {
@@ -46,18 +69,23 @@ const Summary: FC<SummaryProps> = ({
         return result;
       } else {
         setError(true);
-        return {};
+        return null;
       }
     } catch (e) {
       setError(true);
-      return {};
+      return null;
     }
   }
   // Get summary on page load
   useEffect(() => {
-    getSummary(null, paperTitle as string).then((result) => {
-      setSummary(result);
-    });
+    if (paperTitle !== "") {
+      getSummary(null, paperTitle as string).then((result) => {
+        setSummary(result);
+        // if (result.abstract) {
+        //   getCustomSummary(result.abstract);
+        // }
+      });
+    }
   }, [paperTitle]);
 
   return (
@@ -68,14 +96,14 @@ const Summary: FC<SummaryProps> = ({
     >
       <div className={cs("sa-summary-tldr", className)}>
         <h1>Summary</h1>
-        {summary.tldr && (
+        {summary?.tldr && (
           <>
             <p>{summary?.tldr}</p>
           </>
         )}
       </div>
       <div className={cs("sa-summary-abstract", className)}>
-        {summary.abstract && (
+        {summary?.abstract && (
           <>
             <h2>Abstract</h2>
             <p>{summary?.abstract}</p>

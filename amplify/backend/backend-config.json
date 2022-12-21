@@ -1,19 +1,5 @@
 {
   "function": {
-    "getPaperInfo": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "smarticlelayer",
-          "attributes": [
-            "Arn"
-          ]
-        }
-      ]
-    },
     "getKnowledgeGraph": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -22,9 +8,7 @@
         {
           "category": "function",
           "resourceName": "smarticlelayer",
-          "attributes": [
-            "Arn"
-          ]
+          "attributes": ["Arn"]
         }
       ]
     },
@@ -36,9 +20,7 @@
         {
           "category": "function",
           "resourceName": "smarticlelayer",
-          "attributes": [
-            "Arn"
-          ]
+          "attributes": ["Arn"]
         }
       ]
     },
@@ -46,6 +28,18 @@
       "providerPlugin": "awscloudformation",
       "service": "LambdaLayer",
       "build": true
+    },
+    "getCustomSummary": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "smarticlelayer",
+          "attributes": ["Arn"]
+        }
+      ]
     }
   },
   "auth": {},
@@ -56,27 +50,18 @@
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "getPaperInfo",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        },
-        {
-          "category": "function",
           "resourceName": "getSummaryInfo",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
+          "attributes": ["Name", "Arn"]
         },
         {
           "category": "function",
           "resourceName": "getKnowledgeGraph",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
+          "attributes": ["Name", "Arn"]
+        },
+        {
+          "category": "function",
+          "resourceName": "getCustomSummary",
+          "attributes": ["Name", "Arn"]
         }
       ]
     }
