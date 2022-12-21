@@ -2,8 +2,8 @@ import React, { useMemo, FC, useState, useEffect } from "react";
 import cs from "classnames";
 
 import { SummaryProps } from "./Summary.types";
-
 import { SidebarError } from "../SidebarError";
+import { Button } from "../Button";
 
 import { Amplify, API } from "aws-amplify";
 import aws_exports from "../../aws-exports";
@@ -32,31 +32,45 @@ const Summary: FC<SummaryProps> = ({
   const [summary, setSummary] = useState<Record<string, string> | null>(null);
   const [error, setError] = useState<boolean>(false);
 
-  // const [customSummary, setCustomSummary] = useState<string | null>(null);
-  // // Function to call backend to get custom summary
-  // async function getCustomSummary(text: string) {
-  //   try {
-  //     const result = await API.post("backend", "/customSummary", {
-  //       body: {
-  //         text,
-  //       },
-  //     });
-  //     if (result.summary) {
-  //       setError(false);
-  //       setCustomSummary(result.summary);
-  //       return result.summary;
-  //     } else {
-  //       setError(true);
-  //       return null;
-  //     }
-  //   } catch (e) {
-  //     setError(true);
-  //     return null;
-  //   }
-  // }
+  const [loading, setLoading] = useState<boolean>(false);
+  const [customSummary, setCustomSummary] = useState<string | null>(null);
+  // Function to call backend to get custom summary
+  const getCustomSummary = async (text: string | undefined) => {
+    setLoading(true);
+    const result = await API.post("backend", "/customSummary", {
+      body: {
+        text,
+      },
+    });
+
+    if (result.summary) setCustomSummary(result.summary);
+    else
+      setCustomSummary(
+        "Summary could not be generated for the selected section.",
+      );
+
+    setLoading(false);
+  };
+
+  // Get selected text when "Generate Summary" button is clicked and query backend to get custom text summary
+  const handleCustomSummary = () => {
+    setCustomSummary("Generating summary for selected text. Please wait...");
+    const selectedText = (
+      document.getElementById("pdf-js-viewer") as HTMLIFrameElement
+    )?.contentDocument
+      ?.getSelection()
+      ?.toString();
+
+    if (selectedText) {
+      getCustomSummary(selectedText);
+    } else
+      setCustomSummary(
+        "Please select a section of the text to view summary of the section.",
+      );
+  };
 
   // Function to call backend to get summary
-  async function getSummary(id: string | null, title: string | null) {
+  const getSummary = async (id: string | null, title: string | null) => {
     try {
       const result = await API.post("backend", "/paperSummary", {
         body: {
@@ -75,15 +89,12 @@ const Summary: FC<SummaryProps> = ({
       setError(true);
       return null;
     }
-  }
+  };
   // Get summary on page load
   useEffect(() => {
     if (paperTitle !== "") {
       getSummary(null, paperTitle as string).then((result) => {
         setSummary(result);
-        // if (result.abstract) {
-        //   getCustomSummary(result.abstract);
-        // }
       });
     }
   }, [paperTitle]);
@@ -94,6 +105,23 @@ const Summary: FC<SummaryProps> = ({
       className={cs("sa-summary", className)}
       data-testid={dataTestIDs.root}
     >
+      <div className={cs("sa-summary-custom", className)}>
+        <div className={cs("sa-summary-custom-text", className)}>
+          {customSummary && (
+            <>
+              <h2>Selected Text Summary</h2>
+              <p>{customSummary}</p>
+            </>
+          )}
+        </div>
+        <Button
+          className={cs("sa-summary-custom-button", className)}
+          disabled={loading}
+          onClick={handleCustomSummary}
+        >
+          Generate Summary
+        </Button>
+      </div>
       <div className={cs("sa-summary-tldr", className)}>
         <h1>Summary</h1>
         {summary?.tldr && (

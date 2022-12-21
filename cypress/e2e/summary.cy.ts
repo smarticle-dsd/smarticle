@@ -279,3 +279,36 @@ describe('Entering an invalid paper ID and clicking on "Submit ID" displays erro
       });
   });
 });
+
+describe('"Generate Summary" button is enabled when user opens the Summary tool', () => {
+  it("passes", () => {
+    getIframeFromUrl(pdfUrlWithoutSummary)
+      .find(".sa-summary")
+      .then(($summary) => {
+        const generateSummaryButton = $summary.find(
+          ".sa-summary-custom-button",
+        );
+        expect(generateSummaryButton).to.be.enabled;
+      });
+  });
+});
+
+describe('When user clicks on "Generate Summary" button without any selection, an error message is displayed', () => {
+  it("passes", () => {
+    getIframeFromUrl(pdfUrlWithoutSummary)
+      .find(".sa-summary")
+      .then(($summary) => {
+        const generateSummaryText = $summary.find(".sa-summary-custom-text");
+        const generateSummaryButton = $summary.find(
+          ".sa-summary-custom-button",
+        );
+        cy.wrap(generateSummaryButton)
+          .click({ force: true })
+          .then(() => {
+            expect(generateSummaryText.text()).to.contain(
+              "Please select a section of the text to view summary of the section.",
+            );
+          });
+      });
+  });
+});
