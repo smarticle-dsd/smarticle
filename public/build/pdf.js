@@ -12393,7 +12393,7 @@
                       };
                       page.render(ww);
 
-                      toggleRefTool();
+                      openSidebarTool("referenceDetailsToolbarButton");
                     });
                   });
                 });
