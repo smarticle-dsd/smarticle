@@ -2,14 +2,14 @@ import React, { useMemo, FC } from "react";
 import cs from "classnames";
 
 import { CustomSummaryProps } from "./CustomSummary.types";
-import Icons from "../../icons";
+import { TitleClose } from "../TitleClose";
 
 const CustomSummary: FC<CustomSummaryProps> = ({
   domID = "custom-summary",
   dataTestId = "test-custom-summary",
   className,
   summary,
-  setSummary,
+  handleClose,
 }): JSX.Element => {
   const domIDs = useMemo(
     () => ({
@@ -31,17 +31,12 @@ const CustomSummary: FC<CustomSummaryProps> = ({
       className={cs("sa-custom-summary", className)}
       data-testid={dataTestIDs.root}
     >
-      {summary && setSummary ? (
+      {summary && handleClose ? (
         <>
-          <div className={cs("title-and-close-button")}>
-            <div className={cs("modal-title", className)}>
-              Selected Text Summary
-            </div>
-            <Icons.CloseButton
-              className={cs("modal-close-button", className)}
-              onClick={() => setSummary(null)}
-            />
-          </div>
+          <TitleClose
+            titleText="Selected Text Summary"
+            handleClose={handleClose}
+          />
           <p>{summary}</p>
         </>
       ) : null}

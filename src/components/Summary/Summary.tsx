@@ -100,6 +100,10 @@ const Summary: FC<SummaryProps> = ({
     }
   }, [paperTitle]);
 
+  const handleClose = () => {
+    setCustomSummary(null);
+  };
+
   return (
     <div
       id={domIDs.root}
@@ -109,10 +113,7 @@ const Summary: FC<SummaryProps> = ({
       <div className={cs("sa-summary-custom", className)}>
         <div className={cs("sa-summary-custom-text", className)}>
           {customSummary && (
-            <CustomSummary
-              summary={customSummary}
-              setSummary={setCustomSummary}
-            />
+            <CustomSummary summary={customSummary} handleClose={handleClose} />
           )}
         </div>
         <Button

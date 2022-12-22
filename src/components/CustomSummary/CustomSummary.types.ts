@@ -1,5 +1,3 @@
-import { Dispatch } from "react";
-
 export type CustomSummaryProps = {
   /**
    * Id prefix for DOM elements inside CustomSummary component
@@ -14,5 +12,5 @@ export type CustomSummaryProps = {
    */
   className?: string;
   summary?: string;
-  setSummary?: Dispatch<string | null>;
+  handleClose?: () => void;
 };

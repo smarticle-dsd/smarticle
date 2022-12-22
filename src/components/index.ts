@@ -1,4 +1,5 @@
 /* PLOP_INJECT_IMPORT */
+export * from "./TitleClose";
 export * from "./CustomSummary";
 export * from "./SupportedPaperList";
 export * from "./Loader";
