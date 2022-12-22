@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 import * as pdfjs from "pdfjs-dist/legacy/build/pdf";
 import { Loader } from "../Loader";
+import { TitleClose } from "../TitleClose";
 
 const UploadModal: FC<UploadModalProps> = ({
   domID = "upload-modal",
@@ -133,13 +134,7 @@ const UploadModal: FC<UploadModalProps> = ({
             className={cs("modal-wrapper", className)}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className={cs("title-and-close-button")}>
-              <div className={cs("modal-title", className)}>Upload a paper</div>
-              <Icons.CloseButton
-                className={cs("modal-close-button", className)}
-                onClick={() => handleToggle()}
-              />
-            </div>
+            <TitleClose titleText="Upload a paper" handleClose={handleToggle} />
             <div className={cs("modal-drop-area", className)}>
               <Icons.UploadCloudIcon className="upload-icon" />
               <p>

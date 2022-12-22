@@ -16,7 +16,7 @@ export type SidebarErrorProps = {
   message?: string;
   paperTitle?: string;
   // Props for summary
-  summary?: Record<string, string>;
+  summary?: Record<string, string> | null;
   setSummary?: Dispatch<Record<string, string>>;
   getSummary?: (
     id: string | null,

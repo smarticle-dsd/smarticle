@@ -1,10 +1,10 @@
 const aws = require("aws-sdk");
 
-async function getApiKey() {
+async function getApiKey(key) {
   try {
     const { Parameters } = await new aws.SSM()
       .getParameters({
-        Names: ["SC_KEY"].map((secretName) => process.env[secretName]),
+        Names: [key].map((secretName) => process.env[secretName]),
         WithDecryption: true,
       })
       .promise();
