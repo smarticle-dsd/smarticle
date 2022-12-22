@@ -7,6 +7,7 @@ import { Button } from "../Button";
 
 import { Amplify, API } from "aws-amplify";
 import aws_exports from "../../aws-exports";
+import { CustomSummary } from "../CustomSummary";
 Amplify.configure(aws_exports);
 
 const Summary: FC<SummaryProps> = ({
@@ -108,10 +109,10 @@ const Summary: FC<SummaryProps> = ({
       <div className={cs("sa-summary-custom", className)}>
         <div className={cs("sa-summary-custom-text", className)}>
           {customSummary && (
-            <>
-              <h2>Selected Text Summary</h2>
-              <p>{customSummary}</p>
-            </>
+            <CustomSummary
+              summary={customSummary}
+              setSummary={setCustomSummary}
+            />
           )}
         </div>
         <Button
