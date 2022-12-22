@@ -6,6 +6,8 @@ import CytoscapeComponent from "react-cytoscapejs";
 import { API } from "aws-amplify";
 
 import { KnowledgeGraphProps } from "./KnowledgeGraph.types";
+import { ElementDefinition } from "cytoscape";
+import styled from "@emotion/styled";
 
 const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
   domID = "knowledge-graph",
@@ -27,7 +29,7 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
     [dataTestId],
   );
 
-  const [elements, setElements] = useState<any>([{}]);
+  const [elements, setElements] = useState<ElementDefinition[]>([]);
 
   // Function to call backend to get summary
   async function getElements(id: string | null, title: string | null) {
@@ -35,7 +37,7 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
       const result = await API.post("backend", "/paperKnowledgeGraph", {
         body: {
           paperTitle: title,
-          paperId: "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+          paperId: id,
         },
       });
       if (result.length > 1) {
@@ -54,7 +56,6 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
   React.useEffect(() => {
     getElements(null, paperTitle).then((result) => {
       setElements(result);
-      console.log(result);
     });
   }, [paperTitle]);
 
@@ -111,6 +112,30 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
 
   const [selectedPaperTitle, selectNode] = useState();
 
+  const Container = styled.div`
+    display: flex;
+    justify-content: center;
+    paddingbottom: 20px;
+  `;
+
+  const InnerContainer = styled.div`
+    display: flex;
+    align-items: center;
+    padding: 0 10px; /* add padding between InnerContainer elements */
+  `;
+
+  const Cube = styled.div`
+    width: 10px;
+    height: 10px;
+    border-radius: 2px; /* round the edges */
+    background-color: #ff0000;
+    margin: 0 10px;
+  `;
+
+  const PaperInfo = styled.div`
+    paddingtop: 20px;
+  `;
+
   return (
     <div
       id={domIDs.root}
@@ -130,6 +155,16 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
           </div>
         </div>
       )}
+      <Container>
+        <InnerContainer>
+          <Cube style={{ backgroundColor: "#00BFFF" }} />
+          <span>Citations</span>
+        </InnerContainer>
+        <InnerContainer>
+          <Cube style={{ backgroundColor: "#009933" }} />
+          <span>References</span>
+        </InnerContainer>
+      </Container>
       {!error && (
         <CytoscapeComponent
           cy={(cy) => {
@@ -145,6 +180,8 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
 
               // do something with the data here
               selectNode(data.label);
+
+              // Zoom onto selected node
               cy.animation({
                 fit: {
                   eles: node,
@@ -163,7 +200,10 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
           zoom={0.3}
         />
       )}
-      <span>{selectedPaperTitle}</span>
+      <PaperInfo>
+        <h1>Paper Title:</h1>
+        <p>{selectedPaperTitle}</p>
+      </PaperInfo>
     </div>
   );
 };

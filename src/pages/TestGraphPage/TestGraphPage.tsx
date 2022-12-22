@@ -29,7 +29,7 @@ const TestGraphPage: FC<TestGraphPageProps> = ({
       className={cs("sa-test-graph-page", className)}
       data-testid={dataTestIDs.root}
     >
-      <KnowledgeGraph paperTitle="test title" />
+      <KnowledgeGraph paperTitle="Concept and Model of a Metamaterial-Based Passive Wireless Temperature Sensor for Harsh Environment Applications" />
     </div>
   );
 };
