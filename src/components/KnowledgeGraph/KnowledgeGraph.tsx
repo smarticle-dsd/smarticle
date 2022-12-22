@@ -6,8 +6,8 @@ import CytoscapeComponent from "react-cytoscapejs";
 import { API } from "aws-amplify";
 
 import { KnowledgeGraphProps } from "./KnowledgeGraph.types";
-import { ElementDefinition } from "cytoscape";
 import styled from "@emotion/styled";
+import { Button } from "../Button";
 
 const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
   domID = "knowledge-graph",
@@ -29,7 +29,9 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
     [dataTestId],
   );
 
-  const [elements, setElements] = useState<ElementDefinition[]>([]);
+  let myCy: cytoscape.Core;
+
+  const [elements, setElements] = useState<any>([]);
 
   // Function to call backend to get summary
   async function getElements(id: string | null, title: string | null) {
@@ -136,6 +138,19 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
     paddingtop: 20px;
   `;
 
+  function zoomOut() {
+    myCy
+      .animation({
+        fit: {
+          eles: elements,
+          padding: 10,
+        },
+        easing: "ease-in-out",
+        duration: 1000,
+      })
+      .play();
+  }
+
   return (
     <div
       id={domIDs.root}
@@ -187,9 +202,11 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
                   eles: node,
                   padding: 200,
                 },
+                easing: "ease-in-out",
                 duration: 1000,
               }).play();
             });
+            myCy = cy;
           }}
           elements={elements}
           style={style}
@@ -200,6 +217,13 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
           zoom={0.3}
         />
       )}
+      <Button /// <reference path="buttonRef" />
+        size="large"
+        type="primary"
+        onClick={() => zoomOut()}
+      >
+        Zoom out
+      </Button>
       <PaperInfo>
         <h1>Paper Title:</h1>
         <p>{selectedPaperTitle}</p>
