@@ -19,16 +19,22 @@
         },
         "getKnowledgeGraph": {
           "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
-          "s3Key": "amplify-builds/getKnowledgeGraph-6b7a596c6b4c34694246-build.zip"
+          "s3Key": "amplify-builds/getKnowledgeGraph-5279465a784137497955-build.zip",
+          "secretsPathAmplifyAppId": "dcfoxoxqw27pv"
         },
         "getSummaryInfo": {
           "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
-          "s3Key": "amplify-builds/getSummaryInfo-61563963486249743331-build.zip",
+          "s3Key": "amplify-builds/getSummaryInfo-574861676a6250574b5a-build.zip",
           "secretsPathAmplifyAppId": "dcfoxoxqw27pv"
         },
         "smarticlelayer": {
           "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
-          "s3Key": "amplify-builds/smarticlelayer-LambdaLayerVersion9e86bdd1-build.zip"
+          "s3Key": "amplify-builds/smarticlelayer-LambdaLayerVersion7f7cffd0-build.zip"
+        },
+        "getCustomSummary": {
+          "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
+          "s3Key": "amplify-builds/getCustomSummary-45656a6b6a557a557263-build.zip",
+          "secretsPathAmplifyAppId": "dcfoxoxqw27pv"
         }
       },
       "api": {

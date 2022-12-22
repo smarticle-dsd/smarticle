@@ -1,11 +1,17 @@
 const axios = require("axios");
 const getApiKey = require("/opt/utils/getApiKey");
 
-async function makeHTTPRequest({ endpoint, query, fields, limit }) {
-  console.log("Input to makeHTTPRequest", endpoint, query, fields, limit);
+async function makeSemanticScholarRequest({ endpoint, query, fields, limit }) {
+  console.log(
+    "Input to makeSemanticScholarRequest",
+    endpoint,
+    query,
+    fields,
+    limit,
+  );
   const baseUrl = "https://api.semanticscholar.org/graph/v1/paper/";
   try {
-    const { status, data } = await getApiKey();
+    const { status, data } = await getApiKey("SC_KEY");
     if (status && data) {
       let options = {
         method: "GET",
@@ -41,4 +47,4 @@ async function makeHTTPRequest({ endpoint, query, fields, limit }) {
   }
 }
 
-module.exports = makeHTTPRequest;
+module.exports = makeSemanticScholarRequest;
