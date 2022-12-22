@@ -26,7 +26,8 @@ exports.handler = async (event) => {
   } catch {
     return await getReturnMessages({
       messageContent: {
-        error: "Failed when search for paper details",
+        error:
+          "Internal error. The request is too long or you have exceeded the number of allowed requests.",
       },
     });
   }

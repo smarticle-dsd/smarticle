@@ -29,13 +29,13 @@ async function makeNlpCloudRequest({ text }) {
     } else {
       return {
         status: false,
-        data,
+        data: "Internal error. The request is too long or you have exceeded the number of allowed requests.",
       };
     }
   } catch (error) {
     return {
       status: false,
-      data: error,
+      data: "Internal error. The request is too long or you have exceeded the number of allowed requests.",
     };
   }
 }
