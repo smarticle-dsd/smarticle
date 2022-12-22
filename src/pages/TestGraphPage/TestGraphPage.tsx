@@ -3,6 +3,7 @@ import cs from "classnames";
 
 import { TestGraphPageProps } from "./TestGraphPage.types";
 import { KnowledgeGraph } from "../../components";
+import { useSearchParams } from "react-router-dom";
 
 const TestGraphPage: FC<TestGraphPageProps> = ({
   domID = "test-graph-page",
@@ -23,13 +24,16 @@ const TestGraphPage: FC<TestGraphPageProps> = ({
     [dataTestId],
   );
 
+  const [searchParams] = useSearchParams();
+  const title: string | null = searchParams.get("title");
+
   return (
     <div
       id={domIDs.root}
       className={cs("sa-test-graph-page", className)}
       data-testid={dataTestIDs.root}
     >
-      <KnowledgeGraph paperTitle="Concept and Model of a Metamaterial-Based Passive Wireless Temperature Sensor for Harsh Environment Applications" />
+      {title ? <KnowledgeGraph paperTitle={title} /> : null}
     </div>
   );
 };
