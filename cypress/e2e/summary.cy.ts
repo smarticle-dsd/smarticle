@@ -5,7 +5,7 @@ const pdfUrlWithNoDetails = "https://arxiv.org/pdf/2211.14250.pdf";
 const paperIdWithSummaryAbstract = "649def34f8be52c8b66281af98ae884c09aef38b";
 const paperIdWithoutSummary = "arxiv:1305.3823";
 const pdfFile = "cypress/fixtures/test1.pdf";
-const getIframeFromUrl = (pdfUrl: string, waitTime: number = 8000) => {
+const getIframeFromUrl = (pdfUrl: string, waitTime: number = 20000) => {
   cy.visit("/");
   return cy
     .get(".upload-pdf-button")
