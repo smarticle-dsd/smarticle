@@ -2,11 +2,12 @@ import React, { useMemo, FC, useState, useEffect } from "react";
 import cs from "classnames";
 
 import { SummaryProps } from "./Summary.types";
-
 import { SidebarError } from "../SidebarError";
+import { Button } from "../Button";
 
 import { Amplify, API } from "aws-amplify";
 import aws_exports from "../../aws-exports";
+import { CustomSummary } from "../CustomSummary";
 Amplify.configure(aws_exports);
 
 const Summary: FC<SummaryProps> = ({
@@ -29,11 +30,48 @@ const Summary: FC<SummaryProps> = ({
     [dataTestId],
   );
 
-  const [summary, setSummary] = useState<Record<string, string>>({});
+  const [summary, setSummary] = useState<Record<string, string> | null>(null);
   const [error, setError] = useState<boolean>(false);
 
+  const [loading, setLoading] = useState<boolean>(false);
+  const [customSummary, setCustomSummary] = useState<string | null>(null);
+  // Function to call backend to get custom summary
+  const getCustomSummary = async (text: string | undefined) => {
+    setLoading(true);
+    const result = await API.post("backend", "/customSummary", {
+      body: {
+        text,
+      },
+    });
+
+    if (result.summary) setCustomSummary(result.summary);
+    else
+      setCustomSummary(
+        "Summary could not be generated for the selected section.",
+      );
+
+    setLoading(false);
+  };
+
+  // Get selected text when "Generate Summary" button is clicked and query backend to get custom text summary
+  const handleCustomSummary = () => {
+    setCustomSummary("Generating summary for selected text. Please wait...");
+    const selectedText = (
+      document.getElementById("pdf-js-viewer") as HTMLIFrameElement
+    )?.contentDocument
+      ?.getSelection()
+      ?.toString();
+
+    if (selectedText) {
+      getCustomSummary(selectedText);
+    } else
+      setCustomSummary(
+        "Please select a section of the text to view summary of the section.",
+      );
+  };
+
   // Function to call backend to get summary
-  async function getSummary(id: string | null, title: string | null) {
+  const getSummary = async (id: string | null, title: string | null) => {
     try {
       const result = await API.post("backend", "/paperSummary", {
         body: {
@@ -46,19 +84,25 @@ const Summary: FC<SummaryProps> = ({
         return result;
       } else {
         setError(true);
-        return {};
+        return null;
       }
     } catch (e) {
       setError(true);
-      return {};
+      return null;
     }
-  }
+  };
   // Get summary on page load
   useEffect(() => {
-    getSummary(null, paperTitle as string).then((result) => {
-      setSummary(result);
-    });
+    if (paperTitle !== "") {
+      getSummary(null, paperTitle as string).then((result) => {
+        setSummary(result);
+      });
+    }
   }, [paperTitle]);
+
+  const handleClose = () => {
+    setCustomSummary(null);
+  };
 
   return (
     <div
@@ -66,20 +110,39 @@ const Summary: FC<SummaryProps> = ({
       className={cs("sa-summary", className)}
       data-testid={dataTestIDs.root}
     >
-      <div>
+      <div className={cs("sa-summary-custom", className)}>
+        <div className={cs("sa-summary-custom-text", className)}>
+          {customSummary && (
+            <CustomSummary summary={customSummary} handleClose={handleClose} />
+          )}
+        </div>
+        <Button
+          className={cs("sa-summary-custom-button", className)}
+          disabled={loading}
+          onClick={handleCustomSummary}
+        >
+          Generate Summary
+        </Button>
+      </div>
+      <div className={cs("sa-summary-tldr", className)}>
         <h1>Summary</h1>
-        {summary.tldr && (
+        {summary?.tldr && (
           <>
             <p>{summary?.tldr}</p>
           </>
         )}
-        {summary.abstract && (
+      </div>
+      <div className={cs("sa-summary-abstract", className)}>
+        {summary?.abstract && (
           <>
             <h2>Abstract</h2>
             <p>{summary?.abstract}</p>
           </>
         )}
+      </div>
+      <div className={cs("sa-summary-error", className)}>
         <SidebarError
+          paperTitle={paperTitle}
           message={
             error
               ? "Paper ID not found!"

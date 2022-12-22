@@ -14,11 +14,14 @@ export type SidebarErrorProps = {
    */
   className?: string;
   message?: string;
-  summary?: Record<string, string>;
+  paperTitle?: string;
+  // Props for summary
+  summary?: Record<string, string> | null;
   setSummary?: Dispatch<Record<string, string>>;
   getSummary?: (
     id: string | null,
     title: string | null,
   ) => Promise<Record<string, string>>;
   severity?: string;
+  // TODO: Add props for Knowledge graph
 };
