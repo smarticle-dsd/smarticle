@@ -12,10 +12,11 @@ const SidebarError: FC<SidebarErrorProps> = ({
   className,
   paperTitle,
   message,
+  severity,
+  getTitle,
   summary,
   setSummary,
   getSummary,
-  severity,
 }): JSX.Element => {
   const domIDs = useMemo(
     () => ({
@@ -37,7 +38,12 @@ const SidebarError: FC<SidebarErrorProps> = ({
   //Function to reset data to original data
   const handleResetData = async () => {
     setPaperId("");
-    // TODO: Add code to reset data for Knowledge graph
+    // Code to reset data for Knowledge graph
+    if (getTitle) {
+      getTitle(null, paperTitle as string).then(() => {
+        setNeedsReset(false);
+      });
+    }
     // Reset summary from paper title
     if (paperTitle && setSummary && getSummary) {
       setSummary({});
@@ -50,7 +56,12 @@ const SidebarError: FC<SidebarErrorProps> = ({
 
   // Function to get data for manual id input
   const handlePaperIdInput = async (paperId: string) => {
-    // TODO: Add code to get data for Knowledge graph from paper id
+    // Code to get data for Knowledge graph from paper id
+    if (getTitle) {
+      getTitle(paperId as string, null).then(() => {
+        setNeedsReset(true);
+      });
+    }
     // Get summary from paper id
     if (summary && setSummary && getSummary) {
       setSummary({});

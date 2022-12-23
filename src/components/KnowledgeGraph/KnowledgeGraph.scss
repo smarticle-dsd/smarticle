@@ -1,2 +1,26 @@
 .sa-knowledge-graph {
+  color: var(--sa-neutral-color-5);
+  padding: 16px;
+
+  h1 {
+    @include typographyMediumL;
+    margin-bottom: 16px;
+  }
+
+  .sa-knowledge-graph-wrapper {
+    .sa-knowledge-graph-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      h2 {
+        @include typographyMediumM;
+      }
+    }
+
+    .sa-knowledge-graph-button {
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+  }
 }

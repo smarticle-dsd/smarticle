@@ -10,9 +10,9 @@
   {
     "selector": "node",
     "style": {
-      "width": "20",
-      "height": "20",
-      "font-size": "3px",
+      "width": "30",
+      "height": "30",
+      "font-size": "6px",
       "text-valign": "center",
       "text-halign": "center",
       "background-color": "#555",

@@ -4,7 +4,7 @@ import cs from "classnames";
 import { PdfViewerPageProps } from "./PdfViewerPage.types";
 import { useSearchParams } from "react-router-dom";
 import { createPortal } from "react-dom";
-import { TestTool, Summary } from "../../components";
+import { Summary, KnowledgeGraph } from "../../components";
 import { Reference } from "../../components";
 import * as pdfjs from "pdfjs-dist/legacy/build/pdf";
 import { TextItem, TextMarkedContent } from "pdfjs-dist/types/src/display/api";
@@ -176,7 +176,10 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
           {referenceDetailsMountNode &&
             createPortal(<Reference />, referenceDetailsMountNode)}
           {knowledgeGraphMountNode &&
-            createPortal(<TestTool />, knowledgeGraphMountNode)}
+            createPortal(
+              <KnowledgeGraph paperTitle={paperTitle} />,
+              knowledgeGraphMountNode,
+            )}
           {summaryMountNode &&
             createPortal(<Summary paperTitle={paperTitle} />, summaryMountNode)}
         </iframe>

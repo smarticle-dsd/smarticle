@@ -1,14 +1,16 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useMemo, FC, useState } from "react";
 import cs from "classnames";
-import CytoscapeComponent from "react-cytoscapejs";
 
 import { KnowledgeGraphProps } from "./KnowledgeGraph.types";
+import { Button } from "../Button";
+import { SidebarError } from "../SidebarError";
+import { API } from "aws-amplify";
 
 const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
   domID = "knowledge-graph",
   dataTestId = "test-knowledge-graph",
   className,
+  paperTitle,
 }): JSX.Element => {
   const domIDs = useMemo(
     () => ({
@@ -23,121 +25,93 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
     }),
     [dataTestId],
   );
-
   const [error, setError] = useState<boolean>(false);
+  const [manualTitle, setManualTitle] = useState<string>("");
 
-  // create a reference to the parent container element
-  const containerRef = React.useRef<HTMLDivElement>(null);
-
-  // use the useState hook to store the width and height of the component
-  const [style, setStyle] = React.useState({});
-
-  // update the width  of the component when the component is mounted
-  React.useEffect(() => {
-    if (containerRef.current) {
-      setStyle({ width: containerRef.current.offsetWidth, height: 500 });
-    }
-  }, []);
-
-  // update the width of the component whenever the parent container changes
-  React.useEffect(() => {
-    function handleResize() {
-      if (containerRef.current) {
-        setStyle({ width: containerRef.current.offsetWidth, height: 500 });
+  // Function to call backend to get nodes
+  async function getElements(id: string | null, title: string | null) {
+    try {
+      setManualTitle("");
+      const result = await API.post("backend", "/paperKnowledgeGraph", {
+        body: {
+          paperTitle: title,
+          paperId: id,
+        },
+      });
+      if (result.length > 1) {
+        const main = result.filter(
+          (node: Record<string, Record<string, string>>) =>
+            node.data.type === "main",
+        );
+        setManualTitle(main[0].data.label);
+        setError(false);
+        return result;
+      } else {
+        setError(true);
+        return null;
       }
+    } catch (e) {
+      setError(true);
+      return null;
     }
+  }
+  // Get paper title status on page load
+  React.useEffect(() => {
+    if (paperTitle && paperTitle.length > 0) {
+      getElements(null, paperTitle);
+      setError(false);
+    } else {
+      setManualTitle("");
+      setError(true);
+    }
+  }, [paperTitle]);
 
-    // add an event listener to listen for resize events
-    window.addEventListener("resize", handleResize);
-  });
-
-  // eslint-disable-next-line import/no-webpack-loader-syntax, @typescript-eslint/no-var-requires
-  const elements = require("./response.json");
-
-  // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-unused-vars
-  const graphStyle = require("./cy-style.json");
-
-  const layout = {
-    name: "concentric",
-    startAngle: 0 * Math.PI,
-    minNodeSpacing: 20,
-    edgeLengthVal: 80,
-    concentric: function (node: any) {
-      return node.degree();
-    },
-    levelWidth: function (nodes: []) {
-      return 2;
-    },
-    fit: "true",
-    animate: "true",
+  // const navigate = useNavigate();
+  const sendToKG = () => {
+    // navigate("/testGraph?title=" + paperTitle);
+    window.open(
+      window.location.origin.toString() + "/testGraph?title=" + manualTitle,
+      "_blank",
+    );
   };
-
-  graphStyle[1].style["background-color"] = (node: any) =>
-    getColorBasedOnType(node);
-
-  const [selectedPaperTitle, selectNode] = useState();
 
   return (
     <div
       id={domIDs.root}
       className={cs("sa-knowledge-graph", className)}
       data-testid={dataTestIDs.root}
-      ref={containerRef}
     >
       <h1>Knowledge Graph</h1>
-      {error && (
-        <div>
-          <div>
-            <img
-              src={"/knowledgeGraph-error.svg"}
-              alt="Error during graph loading"
-            />
-            <h3>An error occurred during graph loading!</h3>
+      <div className={cs("sa-knowledge-graph-wrapper", className)}>
+        {!error && manualTitle.length > 0 ? (
+          <div className={cs("sa-knowledge-graph-details", className)}>
+            <h2>Paper Title</h2>
+            <p>{manualTitle}</p>
+            <div>
+              <Button
+                className={cs("sa-knowledge-graph-button", className)}
+                onClick={sendToKG}
+              >
+                Open Knowledge Graph
+              </Button>
+            </div>
           </div>
+        ) : null}
+        <div>
+          <SidebarError
+            paperTitle={paperTitle}
+            message={
+              error
+                ? "Paper ID not found!"
+                : "Is this not the right summary for the uploaded paper?"
+            }
+            severity={error ? "error" : "info"}
+            getTitle={getElements}
+          />
         </div>
-      )}
-      {!error && (
-        <CytoscapeComponent
-          cy={(cy) => {
-            cy.on("select", "node", (event) => {
-              // get the selected node
-              const node = event.target;
-
-              // get the data associated with the node
-              const data = node.data();
-
-              // Can be set to true to emulate error handling in component
-              setError(false);
-
-              // do something with the data here
-              selectNode(data.label);
-            });
-          }}
-          elements={elements}
-          style={style}
-          stylesheet={graphStyle}
-          layout={layout}
-          wheelSensitivity={0.2}
-          pan={{ x: 100, y: 200 }}
-          zoom={0.3}
-        />
-      )}
-      <span>{selectedPaperTitle}</span>
+      </div>
     </div>
   );
 };
-
-function getColorBasedOnType(obj: any) {
-  switch (obj.data("type")) {
-    case "main":
-      return "#8B0000";
-    case "citation":
-      return "#00BFFF";
-    case "reference":
-      return "#009933";
-    default:
-      return "black";
-  }
-}
 
 export default KnowledgeGraph;
