@@ -32,6 +32,9 @@ describe("Rerence view wapper is shown when no reference has been clicked", () =
         .then(($reference) => {
           const refrenceWrapper = $reference.find(".reference-view-wrapper");
           expect(refrenceWrapper).to.exist; //Check if wrapper exists
+          const refView = $reference.find(".reference-view");
+          expect(refView).to.contain.text("Click on a reference to preview it");
+
           const referenceCanvas = $reference.find(".referenceview-canvas");
           expect(referenceCanvas).to.be.hidden; // Canvas should not be displayed until it's clicked
           const jumpToContentButton = $reference.find(".referenceview-button");
