@@ -31,6 +31,12 @@
     height: 100%;
     width: 100%;
   }
+  .wrapper-canvas {
+    overflow: hidden;
+  }
+  .referenceview-canvas {
+    position: relative;
+  }
   .referenceview-canvas:hover {
     cursor: pointer;
   }
