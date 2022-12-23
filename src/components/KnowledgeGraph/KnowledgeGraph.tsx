@@ -31,6 +31,7 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
   // Function to call backend to get nodes
   async function getElements(id: string | null, title: string | null) {
     try {
+      setManualTitle("");
       const result = await API.post("backend", "/paperKnowledgeGraph", {
         body: {
           paperTitle: title,
@@ -82,7 +83,7 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
     >
       <h1>Knowledge Graph</h1>
       <div className={cs("sa-knowledge-graph-wrapper", className)}>
-        {!error ? (
+        {!error && manualTitle.length > 0 ? (
           <div className={cs("sa-knowledge-graph-details", className)}>
             <h2>Paper Title</h2>
             <p>{manualTitle}</p>
