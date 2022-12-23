@@ -2,7 +2,6 @@ import React, { useMemo, FC, useState } from "react";
 import cs from "classnames";
 
 import { KnowledgeGraphProps } from "./KnowledgeGraph.types";
-import { useNavigate } from "react-router-dom";
 import { Button } from "../Button";
 import { SidebarError } from "../SidebarError";
 import { API } from "aws-amplify";
@@ -27,7 +26,7 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
     [dataTestId],
   );
   const [error, setError] = useState<boolean>(false);
-  const [elements, setElements] = useState<any>([]);
+  const [manualTitle, setManualTitle] = useState<string>("");
 
   // Function to call backend to get nodes
   async function getElements(id: string | null, title: string | null) {
@@ -39,32 +38,40 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
         },
       });
       if (result.length > 1) {
+        const main = result.filter(
+          (node: Record<string, Record<string, string>>) =>
+            node.data.type === "main",
+        );
+        setManualTitle(main[0].data.label);
         setError(false);
         return result;
       } else {
         setError(true);
-        return {};
+        return null;
       }
     } catch (e) {
       setError(true);
-      return {};
+      return null;
     }
   }
-  // Get nodes on page load
+  // Get paper title status on page load
   React.useEffect(() => {
     if (paperTitle && paperTitle.length > 0) {
-      getElements(null, paperTitle).then((result) => {
-        setElements(result);
-        setError(false);
-      });
+      getElements(null, paperTitle);
+      setError(false);
     } else {
+      setManualTitle("");
       setError(true);
     }
   }, [paperTitle]);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const sendToKG = () => {
-    navigate("/testGraph?title=" + paperTitle);
+    // navigate("/testGraph?title=" + paperTitle);
+    window.open(
+      window.location.origin.toString() + "/testGraph?title=" + manualTitle,
+      "_blank",
+    );
   };
 
   return (
@@ -76,12 +83,18 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
       <h1>Knowledge Graph</h1>
       <div className={cs("sa-knowledge-graph-wrapper", className)}>
         {!error ? (
-          <Button
-            className={cs("sa-knowledge-graph-button", className)}
-            onClick={sendToKG}
-          >
-            View Knowledge Graph
-          </Button>
+          <div className={cs("sa-knowledge-graph-details", className)}>
+            <h2>Paper Title</h2>
+            <p>{manualTitle}</p>
+            <div>
+              <Button
+                className={cs("sa-knowledge-graph-button", className)}
+                onClick={sendToKG}
+              >
+                Open Knowledge Graph
+              </Button>
+            </div>
+          </div>
         ) : null}
         <div>
           <SidebarError
@@ -92,9 +105,7 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
                 : "Is this not the right summary for the uploaded paper?"
             }
             severity={error ? "error" : "info"}
-            elements={elements}
-            setElements={setElements}
-            getElements={getElements}
+            getTitle={getElements}
           />
         </div>
       </div>

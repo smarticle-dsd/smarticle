@@ -8,12 +8,18 @@
   }
 
   .sa-knowledge-graph-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    .sa-knowledge-graph-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      h2 {
+        @include typographyMediumM;
+      }
+    }
 
     .sa-knowledge-graph-button {
+      margin-top: 8px;
       margin-bottom: 8px;
     }
   }

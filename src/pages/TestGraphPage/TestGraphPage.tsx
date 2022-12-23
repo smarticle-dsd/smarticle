@@ -115,7 +115,7 @@ const TestGraphPage: FC<TestGraphPageProps> = ({
   graphStyle[1].style["background-color"] = (node: any) =>
     getColorBasedOnType(node);
 
-  const [selectedPaperTitle, selectNode] = useState();
+  const [selectedPaperTitle, selectNode] = useState("");
 
   const Container = styled.div`
     display: flex;
@@ -157,20 +157,27 @@ const TestGraphPage: FC<TestGraphPageProps> = ({
   return (
     <div
       id={domIDs.root}
-      className={cs("test-graph-page", className)}
+      className={cs("sa-test-graph-page", className)}
       data-testid={dataTestIDs.root}
       ref={containerRef}
     >
-      <h1>Knowledge Graph</h1>
+      <div className={cs("sa-test-graph-page-header", className)}>
+        <div className={cs("sa-test-graph-page-header-title", className)}>
+          <h1>Knowledge Graph</h1>
+        </div>
+        <div className={cs("sa-test-graph-page-header-button", className)}>
+          <Button /// <reference path="buttonRef" />
+            size="large"
+            type="primary"
+            onClick={() => zoomOut()}
+          >
+            Restore
+          </Button>
+        </div>
+      </div>
       {error && (
         <div>
-          <div>
-            <img
-              src={"/knowledgeGraph-error.svg"}
-              alt="Error during graph loading"
-            />
-            <h3>An error occurred during graph loading!</h3>
-          </div>
+          <h3>An error occurred during graph loading!</h3>
         </div>
       )}
       <Container>
@@ -220,17 +227,12 @@ const TestGraphPage: FC<TestGraphPageProps> = ({
           zoom={0.3}
         />
       )}
-      <Button /// <reference path="buttonRef" />
-        size="large"
-        type="primary"
-        onClick={() => zoomOut()}
-      >
-        Zoom out
-      </Button>
-      <PaperInfo>
-        <h1>Paper Title:</h1>
-        <p>{selectedPaperTitle}</p>
-      </PaperInfo>
+      {selectedPaperTitle?.length > 0 ? (
+        <PaperInfo>
+          <h1>Paper Details:</h1>
+          <p>{selectedPaperTitle}</p>
+        </PaperInfo>
+      ) : null}
     </div>
   );
 };

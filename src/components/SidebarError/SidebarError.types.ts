@@ -24,10 +24,8 @@ export type SidebarErrorProps = {
     title: string | null,
   ) => Promise<Record<string, string>>;
   // TODO: Add props for Knowledge graph
-  elements?: Record<string, string> | null;
-  setElements?: Dispatch<Record<string, string>>;
-  getElements?: (
+  getTitle?: (
     id: string | null,
     title: string | null,
-  ) => Promise<Record<string, string>>;
+  ) => Promise<Array<Record<string, Record<string, string>>> | null>;
 };
