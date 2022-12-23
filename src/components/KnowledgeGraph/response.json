@@ -1,1329 +1,1329 @@
 [
-    {
-        "data": {
-            "id": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "label": "Concept and Model of a Metamaterial-Based Passive Wireless Temperature Sensor for Harsh Environment Applications",
-            "type": "main"
-        }
-    },
-    {
-        "data": {
-            "id": "921345ebc15445f7a22f67520632aa89e383365f",
-            "label": "A Silicon Carbide Wireless Temperature Sensing System for High Temperature Applications",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "921345ebc15445f7a22f67520632aa89e383365f",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "55bebe647c5a9c1c028bed5f840b86a56f50b119",
-            "label": "Multi-functional metamaterial sensor based on a broad-side coupled SRR topology with a multi-layer substrate",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "55bebe647c5a9c1c028bed5f840b86a56f50b119",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "791d45b060ea930f72eaf6c89de370403158e8f6",
-            "label": "A Low-Profile Wireless Passive Temperature Sensor Using Resonator/Antenna Integration Up to 1000 $^{\\circ}$C",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "791d45b060ea930f72eaf6c89de370403158e8f6",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "60826d3afa0ec1806cbaca0ec8b36c160b4b7acc",
-            "label": "Thin-film sensor based tip-shaped split ring resonator metamaterial for microwave application",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "60826d3afa0ec1806cbaca0ec8b36c160b4b7acc",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "bf47ec4141a2cff215ed2937af3f5484fd3919df",
-            "label": "Reversed Doppler effect in double negative metamaterials",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "bf47ec4141a2cff215ed2937af3f5484fd3919df",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "e080712fc0f0b4df5d66d18ae44cbb6cfb249c97",
-            "label": "A novel passive wireless ultrasensitive RF temperature transducer for remote sensing",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "e080712fc0f0b4df5d66d18ae44cbb6cfb249c97",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "e6ace59ec03e9484698b7a9b68f1dbd37304d9e1",
-            "label": "Nested Metamaterials for Wireless Strain Sensing",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "e6ace59ec03e9484698b7a9b68f1dbd37304d9e1",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "29afa8e309bb82adec9cf374c0758bd7e1d52384",
-            "label": "A close-ring pair terahertz metamaterial resonating at normal incidence.",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "29afa8e309bb82adec9cf374c0758bd7e1d52384",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "d99cc07058494507ed4f66dccb8b195fe7004d65",
-            "label": "A capacitively-loaded MEMS Slot element for wireless temperature sensing of up to 300°C",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "d99cc07058494507ed4f66dccb8b195fe7004d65",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "f5b69a21c9a23891fe70615d6dd83a6fd2943a0c",
-            "label": "COMPARATIVE INVESTIGATION OF RESONANCE CHARACTERISTICS AND ELECTRICAL SIZE OF THE DOUBLE-SIDED SRR, BC-SRR AND CONVENTIONAL SRR TYPE METAMATERIALS FOR VARYING SUBSTRATE PARAMETERS",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "f5b69a21c9a23891fe70615d6dd83a6fd2943a0c",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "e4eb3c44b4a611cbc830ccede77aef53b03bb7dc",
-            "label": "Optimal design of miniaturized thin-film helical resonators",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "e4eb3c44b4a611cbc830ccede77aef53b03bb7dc",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "6ad9619d77ce9796ef2a625d3d5f96b2ffeac701",
-            "label": "A Wireless Sensor Using Left-Handed Metamaterials",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "6ad9619d77ce9796ef2a625d3d5f96b2ffeac701",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "441aaf0b28f9c44889674d31e9b49bcd7c46b059",
-            "label": "A terahertz plasmonic metamaterial structure for near-field sensing applications",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "441aaf0b28f9c44889674d31e9b49bcd7c46b059",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "00dcc57a8652e2af3e9e1a78d743fdfd02ee38a7",
-            "label": "Miniaturized negative permeability materials",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "00dcc57a8652e2af3e9e1a78d743fdfd02ee38a7",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "c51987276b283f369ae9919847055a35ff4de742",
-            "label": "Design of Spiral and Multiple Split-Ring Resonators for the Realization of Miniaturized Metamaterial Samples",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "c51987276b283f369ae9919847055a35ff4de742",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "2f3f22cb3e9c55e362e60a601cf0874ccbd207be",
-            "label": "Optical cloaking with metamaterials",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "2f3f22cb3e9c55e362e60a601cf0874ccbd207be",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "9880699907547b7f4bcbad05a3c466c425d5395f",
-            "label": "Metamaterial Electromagnetic Cloak at Microwave Frequencies",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "9880699907547b7f4bcbad05a3c466c425d5395f",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "b34b1920c6b640330f47e176bfe58649e149c0d6",
-            "label": "Temperature Measurement of High Speed Rotating Turbine Blades Using a Pyrometer",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "b34b1920c6b640330f47e176bfe58649e149c0d6",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "c681063efeac34d85937982a1607244fb83ce01f",
-            "label": "A compact equivalent circuit model for the SRR structure in metamaterials",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "c681063efeac34d85937982a1607244fb83ce01f",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "a442da2525aa719f6ff8c8a734932faef269ffe2",
-            "label": "Ceramic temperature sensors for harsh environments",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "a442da2525aa719f6ff8c8a734932faef269ffe2",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "68bf76fca323ee64ab24a959bcb28ce04023aae9",
-            "label": "Investigation of magnetic resonances for different split-ring resonator parameters and designs",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "68bf76fca323ee64ab24a959bcb28ce04023aae9",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "6e6ff9243ccbe0561fc4264a0432aeabfec67947",
-            "label": "Metamaterials and Negative Refractive Index",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "6e6ff9243ccbe0561fc4264a0432aeabfec67947",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "e67f9103a80acb8cee88d5077da13087d668464e",
-            "label": "Electric coupling to the magnetic resonance of split ring resonators",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "e67f9103a80acb8cee88d5077da13087d668464e",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "479be49ff8d53b947c59ffe2ce0dca22d528ed33",
-            "label": "High Temperature 10 Bar Pressure Sensor Based on 3C-SiC/SOI for Turbine Control Applications",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "479be49ff8d53b947c59ffe2ce0dca22d528ed33",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "dfa75151ca0607cbe5f4a5082dd3139dfa84623d",
-            "label": "Sensors That Can Take the Heat, Part 1: Opening the High-Temperature Toolbox",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "dfa75151ca0607cbe5f4a5082dd3139dfa84623d",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "efe72d42661585d9675cb958f5bad61556a689f4",
-            "label": "Impedance spectroscopy study of the electrical conductivity and dielectric constant of polycrystalline LiNbO3",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "efe72d42661585d9675cb958f5bad61556a689f4",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "db332d16dc77c16530dd197b0cb03ff41cbf6b18",
-            "label": "Remote temperature-measurement instrumentation for a heated rotating turbine disk",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "db332d16dc77c16530dd197b0cb03ff41cbf6b18",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "b531783d482191e3876cf7b085038eab4a610ae5",
-            "label": "Highly reliable temperature sensor using rf-sputtered SiC thin film.",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "b531783d482191e3876cf7b085038eab4a610ae5",
-            "label": "Edge label placeholder",
-            "type": "reference"
-        }
-    },
-    {
-        "data": {
-            "id": "1fd152fd71b7b971cadc967b679755d918d8e620",
-            "label": "Meta-IoT: Simultaneous Sensing and Transmission by Meta-Material Sensor-Based Internet of Things",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "1fd152fd71b7b971cadc967b679755d918d8e620",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "bc9b8b266b0bb7554d9e34fca63aae9b755b6db9",
-            "label": "Meta-Material Sensor Based Internet of Things: Design, Optimization, and Implementation",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "bc9b8b266b0bb7554d9e34fca63aae9b755b6db9",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "5848860ad9171861446f946bb5b4fc1fefa12848",
-            "label": "Compact Fano-Type Liquid Metamaterial Resonator for High-Precision Temperature Sensing",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "5848860ad9171861446f946bb5b4fc1fefa12848",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "2e72a5c3d65eb02aefbf88d00f7675b4143d3bfd",
-            "label": "Flexible Platform of Acoustofluidics and Metamaterials with Decoupled Resonant Frequencies",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "2e72a5c3d65eb02aefbf88d00f7675b4143d3bfd",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "6713928a2a20c3f6048fe4749571e182b37ea951",
-            "label": "A Novel Meander Line Metamaterial Absorber Operating at 24 GHz and 28 GHz for the 5G Applications",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "6713928a2a20c3f6048fe4749571e182b37ea951",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "07e70023f68934b73fdfcdbfa625b435c675ed02",
-            "label": "High-FOM Temperature Sensing Based on Hg-EIT-Like Liquid Metamaterial Unit",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "07e70023f68934b73fdfcdbfa625b435c675ed02",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "8e7e62523585315a4449d53ed1b0542a85b27a06",
-            "label": "Dual-Band Measurement of Complex Permittivity in a Microwave Waveguide with a Flexible, Thin and Sensitive Metamaterial-Based Sensor",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "8e7e62523585315a4449d53ed1b0542a85b27a06",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "8a36fe28a0035461226174eaecc66469c9b9b874",
-            "label": "Metamaterial Inspired Soil Moisture Sensor Using Machine Learning Approach For Accurate Prediction",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "8a36fe28a0035461226174eaecc66469c9b9b874",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "cfeaaf2d95a07af627d115df7031f71b211bcacf",
-            "label": "A Review on Advanced Wireless Passive Temperature Sensors",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "cfeaaf2d95a07af627d115df7031f71b211bcacf",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "9b18af1e878f9c6436729b4e5196cb48c857b21c",
-            "label": "Strain Sensing by Electrical Capacitive Variation: From Stretchable Materials to Electronic Interfaces",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "9b18af1e878f9c6436729b4e5196cb48c857b21c",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "7c2b5df4ef51a7ec7c9f53a5739651ace5565d61",
-            "label": "A simple dielectric resonator-based sensor for temperature measurement",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "7c2b5df4ef51a7ec7c9f53a5739651ace5565d61",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "94210a54fdd49506aed89724d519ae2630a8a9f8",
-            "label": "Advanced Electromagnetic Metamaterials for Temperature Sensing Applications",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "94210a54fdd49506aed89724d519ae2630a8a9f8",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "94151421a33abcc706f812ec9b50393993b39ccb",
-            "label": "Wireless‐Powered VOCs Sensor Based on Energy‐Harvesting Metamaterial",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "94151421a33abcc706f812ec9b50393993b39ccb",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "3b0b2835b44989d17a1968eb33a3584c06b1aeaf",
-            "label": "Localization in power-constrained Terahertz-operating software-defined metamaterials",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "3b0b2835b44989d17a1968eb33a3584c06b1aeaf",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "fa192a43f122f38d646b5758ac1d5715c4bdc006",
-            "label": "Resonant Type RF Glucose Biosensors",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "fa192a43f122f38d646b5758ac1d5715c4bdc006",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "27a58e8f20730125707829ca5b86805478deb06f",
-            "label": "Localization in Terahertz-Operating Energy Harvesting Software-Defined Metamaterials",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "27a58e8f20730125707829ca5b86805478deb06f",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "15d7bb671369d1094ad65febd1de8ddb0fe496e2",
-            "label": "Toward localization in terahertz-operating energy harvesting software-defined metamaterials: context analysis",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "15d7bb671369d1094ad65febd1de8ddb0fe496e2",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "29cd251ee8aa71c616f8fe374062421e9c1dab25",
-            "label": "Passive wireless sensors fabricated by spark plasma sintering for ultra-high temperature measurements",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "29cd251ee8aa71c616f8fe374062421e9c1dab25",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "a50727999c61a81ccd2d26b7dda09b221bcf50c0",
-            "label": "Design and Thermal Management of an Additive Manufactured Swirl Injector for High Pressure Oxy-Methane Combustion",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "a50727999c61a81ccd2d26b7dda09b221bcf50c0",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "dc756123176ef184b637b8657a23ab574cad13b0",
-            "label": "InSb Based Microstrip Patch Antenna Temperature Sensor for Terahertz Applications",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "dc756123176ef184b637b8657a23ab574cad13b0",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "85ff6a52239a54a27e1974ea756b35eefb4d8299",
-            "label": "A Novel Linear Capacitive Temperature Sensor Using Polydimethylsiloxane",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "85ff6a52239a54a27e1974ea756b35eefb4d8299",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "1b71883abf343a55ae1211623882a546ecc6fd05",
-            "label": "The use of metamaterial type double-sided resonator structures in humidity and concentration sensing applications",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "1b71883abf343a55ae1211623882a546ecc6fd05",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "c81a32cf570a4236e0dd2e1f6ed65c2939402958",
-            "label": "On the VO2 metasurface-based temperature sensor",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "c81a32cf570a4236e0dd2e1f6ed65c2939402958",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "049418913a102e2aab88c9a66ba2885b709e07d4",
-            "label": "Chevron-beam metamaterial with active tunability in near-infrared wavelength range",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "049418913a102e2aab88c9a66ba2885b709e07d4",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "00748093cd986bab7f64d75046ba92486eb9ae7b",
-            "label": "Broadside Coupled Split Ring Resonator as a Sensitive Tunable Sensor for Efficient Detection of Mechanical Vibrations",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "00748093cd986bab7f64d75046ba92486eb9ae7b",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "89f2dca7d2abf5d2ec35978cdc286ad073374f55",
-            "label": "Investigation on temperature-dependent dielectric properties of ETFE fluoropolymer for microwave temperature sensing applications",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "89f2dca7d2abf5d2ec35978cdc286ad073374f55",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "77869e4a196c9f71f206756d828ac122f95083f2",
-            "label": "Thermally Tuneable Terahertz InSb Patch Microstrip Antenna",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "77869e4a196c9f71f206756d828ac122f95083f2",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "9c838c657222715725255ac5605cb10efaf5453b",
-            "label": "Broadside coupled split ring resonator metamaterial structure for sensitive measurement of liquid concentrations",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "9c838c657222715725255ac5605cb10efaf5453b",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "c7a451c2486f65d08306f6a190b7f427a54a658c",
-            "label": "Wireless wide-range pressure sensor based on graphene/PDMS sponge for tactile monitoring",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "c7a451c2486f65d08306f6a190b7f427a54a658c",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "a59c3d23d46e9428af4f42383e5cd957141a24c2",
-            "label": "Wireless-Powered Chemical Sensor by 2.4 GHz Wi-Fi Energy-Harvesting Metamaterial",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "a59c3d23d46e9428af4f42383e5cd957141a24c2",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "9edbc75a61dc4583a6be0a7b505a725f8d8914cf",
-            "label": "Ultrasensitive, Parity–Time-Symmetric Wireless Reactive and Resistive Sensors",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "9edbc75a61dc4583a6be0a7b505a725f8d8914cf",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "09da780c3a7224f8e7d9ce8e33d0b0195f423fe2",
-            "label": "Smart grid communication and information technologies in the perspective of Industry 4.0: Opportunities and challenges",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "09da780c3a7224f8e7d9ce8e33d0b0195f423fe2",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "64a04a97d3b9ac68d4d46fe307c7c1ae33876999",
-            "label": "High Sensitivity Refractive Index Sensor Based on Frequency Selective Surfaces Absorber",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "64a04a97d3b9ac68d4d46fe307c7c1ae33876999",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "ae81b090901bc8d2dd80484cc7341509d25d07ec",
-            "label": "Fast, Highly Sensitive Interdigitated Capacitor Sensor to Detect Wide Range of Temperatures Using Graphene-Oxide-Containing Dielectric Membrane",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "ae81b090901bc8d2dd80484cc7341509d25d07ec",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "6b6352565acadcb32e902d7d63a20e75a3d95a48",
-            "label": "Low-Cost Wireless Temperature Measurement: Design, Manufacture, and Testing of a PCB-Based Wireless Passive Temperature Sensor",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "6b6352565acadcb32e902d7d63a20e75a3d95a48",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "fe13d16f165fddec043ff1c0bab01418c45f2660",
-            "label": "Introduction to SiC and Thermoelectrical Properties",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "fe13d16f165fddec043ff1c0bab01418c45f2660",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "b7d1e3604e2448cca3ec7fa6881560d17694474e",
-            "label": "Nanowire reinforcement of woven composites for enhancing interlaminar fracture toughness",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "b7d1e3604e2448cca3ec7fa6881560d17694474e",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "5910fb7fd6a622ce9846ff257a23a08c877de5a5",
-            "label": "Ultrahigh sensitive temperature sensor based on graphene-semiconductor metamaterial",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "5910fb7fd6a622ce9846ff257a23a08c877de5a5",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "39784f2478ecdb2b328b232b208407b43ab665c4",
-            "label": "Ultrahigh sensitive temperature sensor based on graphene-semiconductor metamaterial",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "39784f2478ecdb2b328b232b208407b43ab665c4",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "0fa8160f61c4c35c1fd669e71ba744b4dfa1312a",
-            "label": "Optical Ring Resonator Based Temperature Sensor",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "0fa8160f61c4c35c1fd669e71ba744b4dfa1312a",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "735d527aff3db07557aec65aa0a3dd23e7c758c9",
-            "label": "A urea-modified polydiacetylene-based high temperature reversible thermochromic sensor: Characterisation and evaluation of properties as a function of temperature",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "735d527aff3db07557aec65aa0a3dd23e7c758c9",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "6657ce83a08bf0c3a06dfbcc001058d1e5a78a62",
-            "label": "AlN-Based Ceramic Patch Antenna-Type Wireless Passive High-Temperature Sensor",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "6657ce83a08bf0c3a06dfbcc001058d1e5a78a62",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "2cfa6dc989940fd685bfeb564234308a49149508",
-            "label": "Metamaterial split ring resonator as a sensitive mechanical vibration sensor",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "2cfa6dc989940fd685bfeb564234308a49149508",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "4c9f74eeec1127fec8ebd3f07903a4216ffe4b78",
-            "label": "Determination of permittivity of pulses and cereals using metamaterial split ring resonator",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "4c9f74eeec1127fec8ebd3f07903a4216ffe4b78",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "a64c5dddc601638074346125cc281f68014c6ac3",
-            "label": "Metamaterial Based Passive Wireless Temperature Sensor  ",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "a64c5dddc601638074346125cc281f68014c6ac3",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "ad4cfc8b8f104234d96a6f8e3ec335803ae39f1b",
-            "label": "Complex permittivity measurement using metamaterial split ring resonators",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "ad4cfc8b8f104234d96a6f8e3ec335803ae39f1b",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "7fdd5109739a39b7ab5775bd417e77e7d5ff443a",
-            "label": "Pyroelectric Ceramics As Temperature Sensors For Energy System Applications",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "7fdd5109739a39b7ab5775bd417e77e7d5ff443a",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "b1f8bddf13e23e6889640ae34b901b94030ae239",
-            "label": "Sensitivity analysis of different resonator structure for sensor applications in microwave region",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "b1f8bddf13e23e6889640ae34b901b94030ae239",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "3c38eb0ad9cdff9bbbdbba20b16f98b24e09b102",
-            "label": "Multi-Point Single-Antenna Sensing Enabled by Wireless Nested Split-Ring Resonator Sensors",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "3c38eb0ad9cdff9bbbdbba20b16f98b24e09b102",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "fcc775e2f465de30507da3753a3d634ac1a657f2",
-            "label": "Far-Field Interrogation of Microstrip Patch Antenna for Temperature Sensing Without Electronics",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "fcc775e2f465de30507da3753a3d634ac1a657f2",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "d8177cb4cb36c2feaf2e907efc0261a28bb5362c",
-            "label": "A Lithium Niobate High-Temperature Sensor for Energy System Applications",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "d8177cb4cb36c2feaf2e907efc0261a28bb5362c",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "e13b3c02a3040262dfdbf5b81f72da073ba508f0",
-            "label": "Highly Sensitive Temperature Sensors Based on Fiber-Optic PWM and Capacitance Variation Using Thermochromic Sensing Membrane",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "e13b3c02a3040262dfdbf5b81f72da073ba508f0",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "f9056d6ce555eedc854519125385c892a2900865",
-            "label": "3D scanning and sensing technique for the detection and remote reading of a passive temperature sensor",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "f9056d6ce555eedc854519125385c892a2900865",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "71415963349db11d5b9c8f3f9099b7921e7162b4",
-            "label": "Pyro-electric energy harvesting with a high Curie temperature material LiNbO3",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "71415963349db11d5b9c8f3f9099b7921e7162b4",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "3aaf1ada20ecf38a69ccc06bb6176ecef3d4168e",
-            "label": "Feasibility study of thermal energy harvesting using lead free pyroelectrics",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "3aaf1ada20ecf38a69ccc06bb6176ecef3d4168e",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "53719d7fb6ad6501bef2bbe8a36b264f60fd75fb",
-            "label": "Modeling And Testing Of Functional Materials For Energy System Applications",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "53719d7fb6ad6501bef2bbe8a36b264f60fd75fb",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "48b67b0f3f262b47426cacff347b706e5cf63a88",
-            "label": "Modeling and characterization of piezoelectric based multifunctional structures",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "48b67b0f3f262b47426cacff347b706e5cf63a88",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "552ffd7475d71d7adfdf89113b8ebf123b708261",
-            "label": "Wireless monitoring of temperature and humidity using sensor array",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "552ffd7475d71d7adfdf89113b8ebf123b708261",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "1e51e792d79336abfd867709cc9c2af49f3e6fcb",
-            "label": "Remote Monitoring for Solar Photovoltaic Systems in Rural Application Using GSM Network",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "1e51e792d79336abfd867709cc9c2af49f3e6fcb",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "id": "2f760f03001e1cc18ece4b03c44740619c238385",
-            "label": "Porous carbon/CeO2 composites for Li-ion battery application",
-            "type": "citation"
-        }
-    },
-    {
-        "data": {
-            "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
-            "target": "2f760f03001e1cc18ece4b03c44740619c238385",
-            "label": "Edge label placeholder",
-            "type": "citation"
-        }
+  {
+    "data": {
+      "id": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "label": "Concept and Model of a Metamaterial-Based Passive Wireless Temperature Sensor for Harsh Environment Applications",
+      "type": "main"
     }
+  },
+  {
+    "data": {
+      "id": "921345ebc15445f7a22f67520632aa89e383365f",
+      "label": "A Silicon Carbide Wireless Temperature Sensing System for High Temperature Applications",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "921345ebc15445f7a22f67520632aa89e383365f",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "55bebe647c5a9c1c028bed5f840b86a56f50b119",
+      "label": "Multi-functional metamaterial sensor based on a broad-side coupled SRR topology with a multi-layer substrate",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "55bebe647c5a9c1c028bed5f840b86a56f50b119",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "791d45b060ea930f72eaf6c89de370403158e8f6",
+      "label": "A Low-Profile Wireless Passive Temperature Sensor Using Resonator/Antenna Integration Up to 1000 $^{\\circ}$C",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "791d45b060ea930f72eaf6c89de370403158e8f6",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "60826d3afa0ec1806cbaca0ec8b36c160b4b7acc",
+      "label": "Thin-film sensor based tip-shaped split ring resonator metamaterial for microwave application",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "60826d3afa0ec1806cbaca0ec8b36c160b4b7acc",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "bf47ec4141a2cff215ed2937af3f5484fd3919df",
+      "label": "Reversed Doppler effect in double negative metamaterials",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "bf47ec4141a2cff215ed2937af3f5484fd3919df",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "e080712fc0f0b4df5d66d18ae44cbb6cfb249c97",
+      "label": "A novel passive wireless ultrasensitive RF temperature transducer for remote sensing",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "e080712fc0f0b4df5d66d18ae44cbb6cfb249c97",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "e6ace59ec03e9484698b7a9b68f1dbd37304d9e1",
+      "label": "Nested Metamaterials for Wireless Strain Sensing",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "e6ace59ec03e9484698b7a9b68f1dbd37304d9e1",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "29afa8e309bb82adec9cf374c0758bd7e1d52384",
+      "label": "A close-ring pair terahertz metamaterial resonating at normal incidence.",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "29afa8e309bb82adec9cf374c0758bd7e1d52384",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "d99cc07058494507ed4f66dccb8b195fe7004d65",
+      "label": "A capacitively-loaded MEMS Slot element for wireless temperature sensing of up to 300°C",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "d99cc07058494507ed4f66dccb8b195fe7004d65",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "f5b69a21c9a23891fe70615d6dd83a6fd2943a0c",
+      "label": "COMPARATIVE INVESTIGATION OF RESONANCE CHARACTERISTICS AND ELECTRICAL SIZE OF THE DOUBLE-SIDED SRR, BC-SRR AND CONVENTIONAL SRR TYPE METAMATERIALS FOR VARYING SUBSTRATE PARAMETERS",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "f5b69a21c9a23891fe70615d6dd83a6fd2943a0c",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "e4eb3c44b4a611cbc830ccede77aef53b03bb7dc",
+      "label": "Optimal design of miniaturized thin-film helical resonators",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "e4eb3c44b4a611cbc830ccede77aef53b03bb7dc",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "6ad9619d77ce9796ef2a625d3d5f96b2ffeac701",
+      "label": "A Wireless Sensor Using Left-Handed Metamaterials",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "6ad9619d77ce9796ef2a625d3d5f96b2ffeac701",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "441aaf0b28f9c44889674d31e9b49bcd7c46b059",
+      "label": "A terahertz plasmonic metamaterial structure for near-field sensing applications",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "441aaf0b28f9c44889674d31e9b49bcd7c46b059",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "00dcc57a8652e2af3e9e1a78d743fdfd02ee38a7",
+      "label": "Miniaturized negative permeability materials",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "00dcc57a8652e2af3e9e1a78d743fdfd02ee38a7",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "c51987276b283f369ae9919847055a35ff4de742",
+      "label": "Design of Spiral and Multiple Split-Ring Resonators for the Realization of Miniaturized Metamaterial Samples",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "c51987276b283f369ae9919847055a35ff4de742",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "2f3f22cb3e9c55e362e60a601cf0874ccbd207be",
+      "label": "Optical cloaking with metamaterials",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "2f3f22cb3e9c55e362e60a601cf0874ccbd207be",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "9880699907547b7f4bcbad05a3c466c425d5395f",
+      "label": "Metamaterial Electromagnetic Cloak at Microwave Frequencies",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "9880699907547b7f4bcbad05a3c466c425d5395f",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "b34b1920c6b640330f47e176bfe58649e149c0d6",
+      "label": "Temperature Measurement of High Speed Rotating Turbine Blades Using a Pyrometer",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "b34b1920c6b640330f47e176bfe58649e149c0d6",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "c681063efeac34d85937982a1607244fb83ce01f",
+      "label": "A compact equivalent circuit model for the SRR structure in metamaterials",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "c681063efeac34d85937982a1607244fb83ce01f",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "a442da2525aa719f6ff8c8a734932faef269ffe2",
+      "label": "Ceramic temperature sensors for harsh environments",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "a442da2525aa719f6ff8c8a734932faef269ffe2",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "68bf76fca323ee64ab24a959bcb28ce04023aae9",
+      "label": "Investigation of magnetic resonances for different split-ring resonator parameters and designs",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "68bf76fca323ee64ab24a959bcb28ce04023aae9",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "6e6ff9243ccbe0561fc4264a0432aeabfec67947",
+      "label": "Metamaterials and Negative Refractive Index",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "6e6ff9243ccbe0561fc4264a0432aeabfec67947",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "e67f9103a80acb8cee88d5077da13087d668464e",
+      "label": "Electric coupling to the magnetic resonance of split ring resonators",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "e67f9103a80acb8cee88d5077da13087d668464e",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "479be49ff8d53b947c59ffe2ce0dca22d528ed33",
+      "label": "High Temperature 10 Bar Pressure Sensor Based on 3C-SiC/SOI for Turbine Control Applications",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "479be49ff8d53b947c59ffe2ce0dca22d528ed33",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "dfa75151ca0607cbe5f4a5082dd3139dfa84623d",
+      "label": "Sensors That Can Take the Heat, Part 1: Opening the High-Temperature Toolbox",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "dfa75151ca0607cbe5f4a5082dd3139dfa84623d",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "efe72d42661585d9675cb958f5bad61556a689f4",
+      "label": "Impedance spectroscopy study of the electrical conductivity and dielectric constant of polycrystalline LiNbO3",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "efe72d42661585d9675cb958f5bad61556a689f4",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "db332d16dc77c16530dd197b0cb03ff41cbf6b18",
+      "label": "Remote temperature-measurement instrumentation for a heated rotating turbine disk",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "db332d16dc77c16530dd197b0cb03ff41cbf6b18",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "b531783d482191e3876cf7b085038eab4a610ae5",
+      "label": "Highly reliable temperature sensor using rf-sputtered SiC thin film.",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "b531783d482191e3876cf7b085038eab4a610ae5",
+      "label": "Edge label placeholder",
+      "type": "reference"
+    }
+  },
+  {
+    "data": {
+      "id": "1fd152fd71b7b971cadc967b679755d918d8e620",
+      "label": "Meta-IoT: Simultaneous Sensing and Transmission by Meta-Material Sensor-Based Internet of Things",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "1fd152fd71b7b971cadc967b679755d918d8e620",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "bc9b8b266b0bb7554d9e34fca63aae9b755b6db9",
+      "label": "Meta-Material Sensor Based Internet of Things: Design, Optimization, and Implementation",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "bc9b8b266b0bb7554d9e34fca63aae9b755b6db9",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "5848860ad9171861446f946bb5b4fc1fefa12848",
+      "label": "Compact Fano-Type Liquid Metamaterial Resonator for High-Precision Temperature Sensing",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "5848860ad9171861446f946bb5b4fc1fefa12848",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "2e72a5c3d65eb02aefbf88d00f7675b4143d3bfd",
+      "label": "Flexible Platform of Acoustofluidics and Metamaterials with Decoupled Resonant Frequencies",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "2e72a5c3d65eb02aefbf88d00f7675b4143d3bfd",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "6713928a2a20c3f6048fe4749571e182b37ea951",
+      "label": "A Novel Meander Line Metamaterial Absorber Operating at 24 GHz and 28 GHz for the 5G Applications",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "6713928a2a20c3f6048fe4749571e182b37ea951",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "07e70023f68934b73fdfcdbfa625b435c675ed02",
+      "label": "High-FOM Temperature Sensing Based on Hg-EIT-Like Liquid Metamaterial Unit",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "07e70023f68934b73fdfcdbfa625b435c675ed02",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "8e7e62523585315a4449d53ed1b0542a85b27a06",
+      "label": "Dual-Band Measurement of Complex Permittivity in a Microwave Waveguide with a Flexible, Thin and Sensitive Metamaterial-Based Sensor",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "8e7e62523585315a4449d53ed1b0542a85b27a06",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "8a36fe28a0035461226174eaecc66469c9b9b874",
+      "label": "Metamaterial Inspired Soil Moisture Sensor Using Machine Learning Approach For Accurate Prediction",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "8a36fe28a0035461226174eaecc66469c9b9b874",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "cfeaaf2d95a07af627d115df7031f71b211bcacf",
+      "label": "A Review on Advanced Wireless Passive Temperature Sensors",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "cfeaaf2d95a07af627d115df7031f71b211bcacf",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "9b18af1e878f9c6436729b4e5196cb48c857b21c",
+      "label": "Strain Sensing by Electrical Capacitive Variation: From Stretchable Materials to Electronic Interfaces",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "9b18af1e878f9c6436729b4e5196cb48c857b21c",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "7c2b5df4ef51a7ec7c9f53a5739651ace5565d61",
+      "label": "A simple dielectric resonator-based sensor for temperature measurement",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "7c2b5df4ef51a7ec7c9f53a5739651ace5565d61",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "94210a54fdd49506aed89724d519ae2630a8a9f8",
+      "label": "Advanced Electromagnetic Metamaterials for Temperature Sensing Applications",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "94210a54fdd49506aed89724d519ae2630a8a9f8",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "94151421a33abcc706f812ec9b50393993b39ccb",
+      "label": "Wireless‐Powered VOCs Sensor Based on Energy‐Harvesting Metamaterial",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "94151421a33abcc706f812ec9b50393993b39ccb",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "3b0b2835b44989d17a1968eb33a3584c06b1aeaf",
+      "label": "Localization in power-constrained Terahertz-operating software-defined metamaterials",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "3b0b2835b44989d17a1968eb33a3584c06b1aeaf",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "fa192a43f122f38d646b5758ac1d5715c4bdc006",
+      "label": "Resonant Type RF Glucose Biosensors",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "fa192a43f122f38d646b5758ac1d5715c4bdc006",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "27a58e8f20730125707829ca5b86805478deb06f",
+      "label": "Localization in Terahertz-Operating Energy Harvesting Software-Defined Metamaterials",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "27a58e8f20730125707829ca5b86805478deb06f",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "15d7bb671369d1094ad65febd1de8ddb0fe496e2",
+      "label": "Toward localization in terahertz-operating energy harvesting software-defined metamaterials: context analysis",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "15d7bb671369d1094ad65febd1de8ddb0fe496e2",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "29cd251ee8aa71c616f8fe374062421e9c1dab25",
+      "label": "Passive wireless sensors fabricated by spark plasma sintering for ultra-high temperature measurements",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "29cd251ee8aa71c616f8fe374062421e9c1dab25",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "a50727999c61a81ccd2d26b7dda09b221bcf50c0",
+      "label": "Design and Thermal Management of an Additive Manufactured Swirl Injector for High Pressure Oxy-Methane Combustion",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "a50727999c61a81ccd2d26b7dda09b221bcf50c0",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "dc756123176ef184b637b8657a23ab574cad13b0",
+      "label": "InSb Based Microstrip Patch Antenna Temperature Sensor for Terahertz Applications",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "dc756123176ef184b637b8657a23ab574cad13b0",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "85ff6a52239a54a27e1974ea756b35eefb4d8299",
+      "label": "A Novel Linear Capacitive Temperature Sensor Using Polydimethylsiloxane",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "85ff6a52239a54a27e1974ea756b35eefb4d8299",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "1b71883abf343a55ae1211623882a546ecc6fd05",
+      "label": "The use of metamaterial type double-sided resonator structures in humidity and concentration sensing applications",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "1b71883abf343a55ae1211623882a546ecc6fd05",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "c81a32cf570a4236e0dd2e1f6ed65c2939402958",
+      "label": "On the VO2 metasurface-based temperature sensor",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "c81a32cf570a4236e0dd2e1f6ed65c2939402958",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "049418913a102e2aab88c9a66ba2885b709e07d4",
+      "label": "Chevron-beam metamaterial with active tunability in near-infrared wavelength range",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "049418913a102e2aab88c9a66ba2885b709e07d4",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "00748093cd986bab7f64d75046ba92486eb9ae7b",
+      "label": "Broadside Coupled Split Ring Resonator as a Sensitive Tunable Sensor for Efficient Detection of Mechanical Vibrations",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "00748093cd986bab7f64d75046ba92486eb9ae7b",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "89f2dca7d2abf5d2ec35978cdc286ad073374f55",
+      "label": "Investigation on temperature-dependent dielectric properties of ETFE fluoropolymer for microwave temperature sensing applications",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "89f2dca7d2abf5d2ec35978cdc286ad073374f55",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "77869e4a196c9f71f206756d828ac122f95083f2",
+      "label": "Thermally Tuneable Terahertz InSb Patch Microstrip Antenna",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "77869e4a196c9f71f206756d828ac122f95083f2",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "9c838c657222715725255ac5605cb10efaf5453b",
+      "label": "Broadside coupled split ring resonator metamaterial structure for sensitive measurement of liquid concentrations",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "9c838c657222715725255ac5605cb10efaf5453b",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "c7a451c2486f65d08306f6a190b7f427a54a658c",
+      "label": "Wireless wide-range pressure sensor based on graphene/PDMS sponge for tactile monitoring",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "c7a451c2486f65d08306f6a190b7f427a54a658c",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "a59c3d23d46e9428af4f42383e5cd957141a24c2",
+      "label": "Wireless-Powered Chemical Sensor by 2.4 GHz Wi-Fi Energy-Harvesting Metamaterial",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "a59c3d23d46e9428af4f42383e5cd957141a24c2",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "9edbc75a61dc4583a6be0a7b505a725f8d8914cf",
+      "label": "Ultrasensitive, Parity–Time-Symmetric Wireless Reactive and Resistive Sensors",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "9edbc75a61dc4583a6be0a7b505a725f8d8914cf",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "09da780c3a7224f8e7d9ce8e33d0b0195f423fe2",
+      "label": "Smart grid communication and information technologies in the perspective of Industry 4.0: Opportunities and challenges",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "09da780c3a7224f8e7d9ce8e33d0b0195f423fe2",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "64a04a97d3b9ac68d4d46fe307c7c1ae33876999",
+      "label": "High Sensitivity Refractive Index Sensor Based on Frequency Selective Surfaces Absorber",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "64a04a97d3b9ac68d4d46fe307c7c1ae33876999",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "ae81b090901bc8d2dd80484cc7341509d25d07ec",
+      "label": "Fast, Highly Sensitive Interdigitated Capacitor Sensor to Detect Wide Range of Temperatures Using Graphene-Oxide-Containing Dielectric Membrane",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "ae81b090901bc8d2dd80484cc7341509d25d07ec",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "6b6352565acadcb32e902d7d63a20e75a3d95a48",
+      "label": "Low-Cost Wireless Temperature Measurement: Design, Manufacture, and Testing of a PCB-Based Wireless Passive Temperature Sensor",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "6b6352565acadcb32e902d7d63a20e75a3d95a48",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "fe13d16f165fddec043ff1c0bab01418c45f2660",
+      "label": "Introduction to SiC and Thermoelectrical Properties",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "fe13d16f165fddec043ff1c0bab01418c45f2660",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "b7d1e3604e2448cca3ec7fa6881560d17694474e",
+      "label": "Nanowire reinforcement of woven composites for enhancing interlaminar fracture toughness",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "b7d1e3604e2448cca3ec7fa6881560d17694474e",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "5910fb7fd6a622ce9846ff257a23a08c877de5a5",
+      "label": "Ultrahigh sensitive temperature sensor based on graphene-semiconductor metamaterial",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "5910fb7fd6a622ce9846ff257a23a08c877de5a5",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "39784f2478ecdb2b328b232b208407b43ab665c4",
+      "label": "Ultrahigh sensitive temperature sensor based on graphene-semiconductor metamaterial",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "39784f2478ecdb2b328b232b208407b43ab665c4",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "0fa8160f61c4c35c1fd669e71ba744b4dfa1312a",
+      "label": "Optical Ring Resonator Based Temperature Sensor",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "0fa8160f61c4c35c1fd669e71ba744b4dfa1312a",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "735d527aff3db07557aec65aa0a3dd23e7c758c9",
+      "label": "A urea-modified polydiacetylene-based high temperature reversible thermochromic sensor: Characterisation and evaluation of properties as a function of temperature",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "735d527aff3db07557aec65aa0a3dd23e7c758c9",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "6657ce83a08bf0c3a06dfbcc001058d1e5a78a62",
+      "label": "AlN-Based Ceramic Patch Antenna-Type Wireless Passive High-Temperature Sensor",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "6657ce83a08bf0c3a06dfbcc001058d1e5a78a62",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "2cfa6dc989940fd685bfeb564234308a49149508",
+      "label": "Metamaterial split ring resonator as a sensitive mechanical vibration sensor",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "2cfa6dc989940fd685bfeb564234308a49149508",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "4c9f74eeec1127fec8ebd3f07903a4216ffe4b78",
+      "label": "Determination of permittivity of pulses and cereals using metamaterial split ring resonator",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "4c9f74eeec1127fec8ebd3f07903a4216ffe4b78",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "a64c5dddc601638074346125cc281f68014c6ac3",
+      "label": "Metamaterial Based Passive Wireless Temperature Sensor  ",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "a64c5dddc601638074346125cc281f68014c6ac3",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "ad4cfc8b8f104234d96a6f8e3ec335803ae39f1b",
+      "label": "Complex permittivity measurement using metamaterial split ring resonators",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "ad4cfc8b8f104234d96a6f8e3ec335803ae39f1b",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "7fdd5109739a39b7ab5775bd417e77e7d5ff443a",
+      "label": "Pyroelectric Ceramics As Temperature Sensors For Energy System Applications",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "7fdd5109739a39b7ab5775bd417e77e7d5ff443a",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "b1f8bddf13e23e6889640ae34b901b94030ae239",
+      "label": "Sensitivity analysis of different resonator structure for sensor applications in microwave region",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "b1f8bddf13e23e6889640ae34b901b94030ae239",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "3c38eb0ad9cdff9bbbdbba20b16f98b24e09b102",
+      "label": "Multi-Point Single-Antenna Sensing Enabled by Wireless Nested Split-Ring Resonator Sensors",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "3c38eb0ad9cdff9bbbdbba20b16f98b24e09b102",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "fcc775e2f465de30507da3753a3d634ac1a657f2",
+      "label": "Far-Field Interrogation of Microstrip Patch Antenna for Temperature Sensing Without Electronics",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "fcc775e2f465de30507da3753a3d634ac1a657f2",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "d8177cb4cb36c2feaf2e907efc0261a28bb5362c",
+      "label": "A Lithium Niobate High-Temperature Sensor for Energy System Applications",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "d8177cb4cb36c2feaf2e907efc0261a28bb5362c",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "e13b3c02a3040262dfdbf5b81f72da073ba508f0",
+      "label": "Highly Sensitive Temperature Sensors Based on Fiber-Optic PWM and Capacitance Variation Using Thermochromic Sensing Membrane",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "e13b3c02a3040262dfdbf5b81f72da073ba508f0",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "f9056d6ce555eedc854519125385c892a2900865",
+      "label": "3D scanning and sensing technique for the detection and remote reading of a passive temperature sensor",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "f9056d6ce555eedc854519125385c892a2900865",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "71415963349db11d5b9c8f3f9099b7921e7162b4",
+      "label": "Pyro-electric energy harvesting with a high Curie temperature material LiNbO3",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "71415963349db11d5b9c8f3f9099b7921e7162b4",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "3aaf1ada20ecf38a69ccc06bb6176ecef3d4168e",
+      "label": "Feasibility study of thermal energy harvesting using lead free pyroelectrics",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "3aaf1ada20ecf38a69ccc06bb6176ecef3d4168e",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "53719d7fb6ad6501bef2bbe8a36b264f60fd75fb",
+      "label": "Modeling And Testing Of Functional Materials For Energy System Applications",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "53719d7fb6ad6501bef2bbe8a36b264f60fd75fb",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "48b67b0f3f262b47426cacff347b706e5cf63a88",
+      "label": "Modeling and characterization of piezoelectric based multifunctional structures",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "48b67b0f3f262b47426cacff347b706e5cf63a88",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "552ffd7475d71d7adfdf89113b8ebf123b708261",
+      "label": "Wireless monitoring of temperature and humidity using sensor array",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "552ffd7475d71d7adfdf89113b8ebf123b708261",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "1e51e792d79336abfd867709cc9c2af49f3e6fcb",
+      "label": "Remote Monitoring for Solar Photovoltaic Systems in Rural Application Using GSM Network",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "1e51e792d79336abfd867709cc9c2af49f3e6fcb",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "id": "2f760f03001e1cc18ece4b03c44740619c238385",
+      "label": "Porous carbon/CeO2 composites for Li-ion battery application",
+      "type": "citation"
+    }
+  },
+  {
+    "data": {
+      "source": "80e785c6093cc8f71955bcd8cfcb9d38fe1145f7",
+      "target": "2f760f03001e1cc18ece4b03c44740619c238385",
+      "label": "Edge label placeholder",
+      "type": "citation"
+    }
+  }
 ]

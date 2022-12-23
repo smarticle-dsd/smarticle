@@ -2,16 +2,18 @@
     .title-and-close-button {
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
 
     .modal-title {
-      @include typographyMediumM;
-      color: var(--sa-upload-modal-title-text-color);
+      h2 {
+        @include typographyMediumM;
+        color: var(--sa-upload-modal-title-text-color);
+      }
     }
 
     .modal-close-button {
       cursor: pointer;
-
       width: 24px;
       height: 24px;
     }

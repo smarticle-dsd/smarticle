@@ -5,7 +5,7 @@ const pdfUrlWithNoDetails = "https://arxiv.org/pdf/2211.14250.pdf";
 const paperIdWithSummaryAbstract = "649def34f8be52c8b66281af98ae884c09aef38b";
 const paperIdWithoutSummary = "arxiv:1305.3823";
 const pdfFile = "cypress/fixtures/test1.pdf";
-const getIframeFromUrl = (pdfUrl: string, waitTime: number = 8000) => {
+const getIframeFromUrl = (pdfUrl: string, waitTime: number = 20000) => {
   cy.visit("/");
   return cy
     .get(".upload-pdf-button")
@@ -59,7 +59,7 @@ describe("The available data is displayed when Semantic Scholar has either summa
         .find(".sa-summary")
         .then(($summary) => {
           const tldr = $summary.find(".sa-summary-tldr");
-          expect(tldr.text()).to.equal("Summary");
+          expect(tldr.text()).to.equal("Summary-+");
           const abstract = $summary.find(".sa-summary-abstract");
           expect(abstract).to.contain.text("Abstract");
           expect(abstract).to.contain.text(
@@ -80,7 +80,7 @@ describe("Error message is displayed when Semantic Scholar does not have summary
         .then(($summary) => {
           const tldr = $summary.find(".sa-summary-tldr");
           expect(tldr).to.contain.text("Summary");
-          expect(tldr.text()).to.equal("Summary");
+          expect(tldr.text()).to.equal("Summary-+");
           const abstract = $summary.find(".sa-summary-abstract");
           expect(abstract).to.be.empty;
           const error = $summary.find(".sa-summary-error");
@@ -273,7 +273,7 @@ describe('Entering a paper ID with either abstract or summary and clicking on "S
                   expect(abstract).to.contain.text(
                     "In this paper we study the azimuthal correlations of heavy quarks in Pb+Pb collisions with",
                   );
-                  expect(tldr.text()).to.equal("Summary");
+                  expect(tldr.text()).to.equal("Summary-+");
                 });
             });
         });
@@ -307,7 +307,7 @@ describe('Entering an invalid paper ID and clicking on "Submit ID" displays erro
                 .click()
                 .wait(5000)
                 .then(() => {
-                  expect(tldr.text()).to.equal("Summary");
+                  expect(tldr.text()).to.equal("Summary-+");
                   expect(abstract).to.be.empty;
                   expect(error).to.exist;
                   expect(error.text()).to.contain("Paper ID not found!");
@@ -346,13 +346,15 @@ describe('When user clicks on "Generate Summary" button without any selection, a
       cy.wrap($iframeData)
         .find(".sa-summary")
         .then(($summary) => {
-          const customSummaryText = $summary.find(".sa-summary-custom-text");
           const generateSummaryButton = $summary.find(
             ".sa-summary-custom-button",
           );
           cy.wrap(generateSummaryButton)
             .click()
             .then(() => {
+              const customSummaryText = $summary.find(
+                ".sa-summary-custom-text",
+              );
               expect(customSummaryText.text()).to.contain(
                 "Please select a section of the text to view summary of the section.",
               );
@@ -370,10 +372,6 @@ describe('When user clicks on "Generate Summary" button without any selection, a
 //       cy.wrap($iframeData)
 //         .find(".sa-summary")
 //         .then(($summary) => {
-//           const customSummaryText = $summary.find(".sa-summary-custom-text");
-//           const generateSummaryButton = $summary.find(
-//             ".sa-summary-custom-button",
-//           );
 //           const textSelection = $summary.find(".sa-summary-abstract");
 //           cy.wrap(textSelection)
 //             .trigger("mousedown")
@@ -389,10 +387,15 @@ describe('When user clicks on "Generate Summary" button without any selection, a
 //           cy.document()
 //             .trigger("selectionchange")
 //             .then(() => {
+//               const generateSummaryButton = $summary.find(
+//                 ".sa-summary-custom-button",
+//               );
 //               cy.wrap(generateSummaryButton)
 //                 .click()
-//                 .wait(5000)
 //                 .then(() => {
+//                   const customSummaryText = $summary.find(
+//                     ".sa-summary-custom-text",
+//                   );
 //                   expect(customSummaryText.text()).to.not.contain(
 //                     "Please select a section of the text to view summary of the section.",
 //                   );
@@ -418,18 +421,115 @@ describe("Clicking the close button on the custom summary text closes it", () =>
           cy.wrap(generateSummaryButton)
             .click({ force: true })
             .then(() => {
-              const customSummaryCloseButton = $summary.find(
-                ".modal-close-button",
-              );
               const customSummaryText = $summary.find(
                 ".sa-summary-custom-text",
               );
+              const customSummaryCloseButton = $summary.find(
+                ".modal-close-button",
+              );
+              expect(customSummaryText).to.exist;
               cy.wrap(customSummaryCloseButton)
                 .click({ force: true })
-                .wait(5000)
                 .then(() => {
-                  expect(customSummaryText).to.not.be.visible;
+                  expect(customSummaryText).to.not.exist;
                 });
+            });
+        });
+    });
+  });
+});
+
+describe("Clicking the zoom out button decreases font size for abstract and tldr", () => {
+  it("passes", () => {
+    getIframeFromUrl(pdfUrlWithSummaryAbstract).then(($iframeData) => {
+      const summaryButton = $iframeData.find("#summary");
+      cy.wrap(summaryButton).click();
+      cy.wrap($iframeData)
+        .find(".sa-summary")
+        .then(($summary) => {
+          const summaryContent = $summary.find("#summary-content");
+          cy.wrap(summaryContent).should("have.css", "font-size", "14px");
+
+          const zoomOutButton = $summary.find(".sa-sidebar-zoom-out-button");
+
+          cy.wrap(zoomOutButton)
+            .click()
+            .then(() => {
+              cy.wrap(summaryContent).should("have.css", "font-size", "13px");
+            });
+        });
+    });
+  });
+});
+
+describe("Clicking the zoom in button increases font size for abstract and tldr", () => {
+  it("passes", () => {
+    getIframeFromUrl(pdfUrlWithSummaryAbstract).then(($iframeData) => {
+      const summaryButton = $iframeData.find("#summary");
+      cy.wrap(summaryButton).click();
+      cy.wrap($iframeData)
+        .find(".sa-summary")
+        .then(($summary) => {
+          const summaryContent = $summary.find("#summary-content");
+          cy.wrap(summaryContent).should("have.css", "font-size", "14px");
+
+          const zoomInButton = $summary.find(".sa-sidebar-zoom-in-button");
+
+          cy.wrap(zoomInButton)
+            .click()
+            .then(() => {
+              cy.wrap(summaryContent).should("have.css", "font-size", "15px");
+            });
+        });
+    });
+  });
+});
+
+describe("Clicking the zoom out button is disabled after font size is 11px", () => {
+  it("passes", () => {
+    getIframeFromUrl(pdfUrlWithSummaryAbstract).then(($iframeData) => {
+      const summaryButton = $iframeData.find("#summary");
+      cy.wrap(summaryButton).click();
+      cy.wrap($iframeData)
+        .find(".sa-summary")
+        .then(($summary) => {
+          const summaryContent = $summary.find("#summary-content");
+          cy.wrap(summaryContent).should("have.css", "font-size", "14px");
+
+          const zoomOutButton = $summary.find(".sa-sidebar-zoom-out-button");
+
+          cy.wrap(zoomOutButton)
+            .click()
+            .click()
+            .click()
+            .then(() => {
+              cy.wrap(summaryContent).should("have.css", "font-size", "11px");
+              cy.wrap(zoomOutButton).should("be.disabled");
+            });
+        });
+    });
+  });
+});
+
+describe("Clicking the zoom in button is disabled when font size is 16px", () => {
+  it("passes", () => {
+    getIframeFromUrl(pdfUrlWithSummaryAbstract).then(($iframeData) => {
+      const summaryButton = $iframeData.find("#summary");
+      cy.wrap(summaryButton).click();
+      cy.wrap($iframeData)
+        .find(".sa-summary")
+        .then(($summary) => {
+          const summaryContent = $summary.find("#summary-content");
+          cy.wrap(summaryContent).should("have.css", "font-size", "14px");
+
+          const zoomInButton = $summary.find(".sa-sidebar-zoom-in-button");
+
+          cy.wrap(zoomInButton)
+            .click()
+            .click()
+            .then(() => {
+              cy.wrap(summaryContent).should("have.css", "font-size", "16px");
+              cy.wrap(zoomInButton).should("be.disabled");
             });
         });
     });
