@@ -171,7 +171,7 @@ const TestGraphPage: FC<TestGraphPageProps> = ({
             type="primary"
             onClick={() => zoomOut()}
           >
-            Restore
+            Zoom Out
           </Button>
         </div>
       </div>
