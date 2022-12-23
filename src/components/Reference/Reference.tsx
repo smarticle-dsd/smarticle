@@ -38,13 +38,13 @@ const Reference: FC<ReferenceProps> = ({
           <h3>Click on a reference to preview it</h3>
         </div>
       </div>
-      <canvas className={cs("referenceview-canvas", className)}></canvas>
+      <div className={cs("wrapper-canvas", className)}>
+        <Canvas />
+      </div>
       <div className={cs("referenceview-button", className)}>
         <Button size="large" type="primary">
           Jump to Content
         </Button>
-      <div className={cs("wrapper-canvas", className)}>
-        <Canvas />
       </div>
     </div>
   );
