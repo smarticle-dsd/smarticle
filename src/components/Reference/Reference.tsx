@@ -1,7 +1,8 @@
-import React, { useMemo, FC } from "react";
+import React, { useMemo, FC, useRef, useState } from "react";
 import cs from "classnames";
 import svg from "./refvec.svg";
 import { ReferenceProps } from "./Reference.types";
+import { useGesture } from "@use-gesture/react";
 
 const Reference: FC<ReferenceProps> = ({
   domID = "reference",
@@ -36,9 +37,78 @@ const Reference: FC<ReferenceProps> = ({
           <h3>Click on a reference to preview it</h3>
         </div>
       </div>
-      <canvas className={cs("referenceview-canvas", className)}></canvas>
+      <div className={cs("wrapper-canvas", className)}>
+        <Canvas />
+      </div>
     </div>
   );
 };
+
+function Canvas() {
+  const canvcon = useRef() as React.MutableRefObject<HTMLCanvasElement>;
+  const [crop, setCrop] = useState({ x: 0, y: 0, scale: 1 });
+  let canv_bound = canvcon.current?.parentElement?.getBoundingClientRect();
+  let wrap_bound = canvcon.current?.parentElement?.getBoundingClientRect();
+  const [bounds, setBounds] = useState({ w: 0, h: 0 });
+  useGesture(
+    {
+      onDrag: ({ offset: [dx, dy] }) => {
+        setCrop((crop) => ({ ...crop, x: dx, y: dy }));
+      },
+      onPinch: ({ event, offset: [d] }) => {
+        event.stopImmediatePropagation();
+        event.preventDefault();
+        setCrop((crop) => ({ ...crop, scale: d }));
+      },
+      onWheel: ({ event }) => {
+        if (crop.scale >= 1 && crop.scale <= 5)
+          setCrop((crop) => ({
+            ...crop,
+            scale: crop.scale + event.deltaY * 0.0001,
+          }));
+        if (crop.scale > 5) crop.scale = 5;
+        if (crop.scale < 1) crop.scale = 1;
+
+        canv_bound = canvcon.current?.getBoundingClientRect();
+        wrap_bound = canvcon.current?.parentElement?.getBoundingClientRect();
+
+        if (canv_bound && wrap_bound) {
+          setBounds((bounds) => ({
+            ...bounds,
+            w: (canv_bound?.width as number) - (wrap_bound?.width as number),
+            h: (canv_bound?.height as number) - (wrap_bound?.height as number),
+          }));
+        }
+      },
+    },
+    {
+      target: canvcon,
+      eventOptions: { passive: false },
+      pinch: {
+        scaleBounds: { min: 1, max: 5 },
+      },
+      drag: {
+        bounds: {
+          right: bounds.w / crop.scale,
+          left: -bounds.w / crop.scale,
+          top: -bounds.h / crop.scale,
+          bottom: bounds.h / crop.scale,
+        },
+      },
+    },
+  );
+
+  return (
+    <canvas
+      ref={canvcon}
+      className="referenceview-canvas"
+      style={{
+        left: crop.x,
+        top: crop.y,
+        transform: `scale(${crop.scale})`,
+      }}
+    ></canvas>
+  );
+}
 
 export default Reference;

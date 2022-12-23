@@ -9,6 +9,7 @@ const CustomSummary: FC<CustomSummaryProps> = ({
   dataTestId = "test-custom-summary",
   className,
   summary,
+  fontSize,
   handleClose,
 }): JSX.Element => {
   const domIDs = useMemo(
@@ -37,7 +38,9 @@ const CustomSummary: FC<CustomSummaryProps> = ({
             titleText="Selected Text Summary"
             handleClose={handleClose}
           />
-          <p>{summary}</p>
+          <p id="summary-content" style={{ fontSize: `${fontSize}px` }}>
+            {summary}
+          </p>
         </>
       ) : null}
     </div>
