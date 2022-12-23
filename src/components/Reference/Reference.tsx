@@ -54,15 +54,11 @@ function Canvas() {
     {
       onDrag: ({ offset: [dx, dy] }) => {
         setCrop((crop) => ({ ...crop, x: dx, y: dy }));
-        //canv_bound = canvcon.current?.parentElement?.getBoundingClientRect();
-        //wrap_bound = canvcon.current?.parentElement?.getBoundingClientRect();
       },
       onPinch: ({ event, offset: [d] }) => {
         event.stopImmediatePropagation();
         event.preventDefault();
         setCrop((crop) => ({ ...crop, scale: d }));
-        //canv_bound = canvcon.current?.parentElement?.getBoundingClientRect();
-        //  wrap_bound = canvcon.current?.parentElement?.getBoundingClientRect();
       },
       onWheel: ({ event }) => {
         if (crop.scale >= 1 && crop.scale <= 5)
@@ -82,7 +78,6 @@ function Canvas() {
             w: (canv_bound?.width as number) - (wrap_bound?.width as number),
             h: (canv_bound?.height as number) - (wrap_bound?.height as number),
           }));
-          console.log(bounds);
         }
       },
     },
@@ -94,10 +89,10 @@ function Canvas() {
       },
       drag: {
         bounds: {
-          right: (bounds.w * 2) / crop.scale,
-          left: (-bounds.w * 2) / crop.scale,
-          top: (-bounds.h * 2) / crop.scale,
-          bottom: (bounds.h * 2) / crop.scale,
+          right: bounds.w / crop.scale,
+          left: -bounds.w / crop.scale,
+          top: -bounds.h / crop.scale,
+          bottom: bounds.h / crop.scale,
         },
       },
     },
