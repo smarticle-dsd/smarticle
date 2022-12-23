@@ -97,7 +97,10 @@ const Summary: FC<SummaryProps> = ({
     if (paperTitle !== "") {
       getSummary(null, paperTitle as string).then((result) => {
         setSummary(result);
+        setError(false);
       });
+    } else {
+      setError(true);
     }
   }, [paperTitle]);
 
@@ -164,7 +167,11 @@ const Summary: FC<SummaryProps> = ({
       <div className={cs("sa-summary-custom", className)}>
         {customSummary !== null && (
           <div className={cs("sa-summary-custom-text", className)}>
-            <CustomSummary summary={customSummary} handleClose={handleClose} />
+            <CustomSummary
+              summary={customSummary}
+              fontSize={fontSize}
+              handleClose={handleClose}
+            />
           </div>
         )}
         <Button

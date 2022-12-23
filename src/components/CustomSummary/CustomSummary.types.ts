@@ -12,5 +12,6 @@ export type CustomSummaryProps = {
    */
   className?: string;
   summary?: string;
+  fontSize?: number;
   handleClose?: () => void;
 };
