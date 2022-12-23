@@ -32,7 +32,9 @@ const TitleClose: FC<TitleCloseProps> = ({
       data-testid={dataTestIDs.root}
     >
       <div className={cs("title-and-close-button")}>
-        <div className={cs("modal-title", className)}>{titleText}</div>
+        <div className={cs("modal-title", className)}>
+          <h2>{titleText}</h2>
+        </div>
         {handleClose ? (
           <Icons.CloseButton
             className={cs("modal-close-button", className)}

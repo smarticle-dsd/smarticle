@@ -14,4 +14,6 @@ export type SidebarZoomProps = {
   titleText?: string;
   handleZoomIn?: () => void;
   handleZoomOut?: () => void;
+  zoomInDisabled?: boolean;
+  zoomOutDisabled?: boolean;
 };

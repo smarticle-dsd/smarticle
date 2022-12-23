@@ -11,6 +11,8 @@ const SidebarZoom: FC<SidebarZoomProps> = ({
   titleText,
   handleZoomIn,
   handleZoomOut,
+  zoomInDisabled,
+  zoomOutDisabled,
 }): JSX.Element => {
   const domIDs = useMemo(
     () => ({
@@ -36,11 +38,21 @@ const SidebarZoom: FC<SidebarZoomProps> = ({
         <h1>{titleText}</h1>
       </div>
       <div className={cs("sa-sidebar-zoom-buttons", className)}>
-        <Button size="small" onClick={handleZoomIn}>
-          +
-        </Button>
-        <Button size="small" onClick={handleZoomOut}>
+        <Button
+          className={cs("sa-sidebar-zoom-out-button", className)}
+          size="small"
+          disabled={zoomOutDisabled}
+          onClick={handleZoomOut}
+        >
           -
+        </Button>
+        <Button
+          className={cs("sa-sidebar-zoom-in-button", className)}
+          size="small"
+          disabled={zoomInDisabled}
+          onClick={handleZoomIn}
+        >
+          +
         </Button>
       </div>
     </div>

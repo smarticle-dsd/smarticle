@@ -106,11 +106,27 @@ const Summary: FC<SummaryProps> = ({
   };
 
   const [fontSize, setFontSize] = useState<number>(14);
+  const [zoomInDisabled, setZoomInDisabled] = useState<boolean>(false);
+  const [zoomOutDisabled, setZoomOutDisabled] = useState<boolean>(false);
   const handleZoomIn = () => {
     setFontSize(fontSize + 1);
+    if (fontSize === 15) {
+      setZoomInDisabled(true);
+      setZoomOutDisabled(false);
+    } else {
+      setZoomInDisabled(false);
+      setZoomOutDisabled(false);
+    }
   };
   const handleZoomOut = () => {
     setFontSize(fontSize - 1);
+    if (fontSize < 13) {
+      setZoomOutDisabled(true);
+      setZoomInDisabled(false);
+    } else {
+      setZoomOutDisabled(false);
+      setZoomInDisabled(false);
+    }
   };
 
   return (
@@ -119,25 +135,13 @@ const Summary: FC<SummaryProps> = ({
       className={cs("sa-summary", className)}
       data-testid={dataTestIDs.root}
     >
-      <div className={cs("sa-summary-custom", className)}>
-        <div className={cs("sa-summary-custom-text", className)}>
-          {customSummary && (
-            <CustomSummary summary={customSummary} handleClose={handleClose} />
-          )}
-        </div>
-        <Button
-          className={cs("sa-summary-custom-button", className)}
-          disabled={loading}
-          onClick={handleCustomSummary}
-        >
-          Generate Summary
-        </Button>
-      </div>
       <div className={cs("sa-summary-tldr", className)}>
         <SidebarZoom
           titleText="Summary"
           handleZoomIn={handleZoomIn}
           handleZoomOut={handleZoomOut}
+          zoomInDisabled={zoomInDisabled}
+          zoomOutDisabled={zoomOutDisabled}
         />
         {summary?.tldr && (
           <>
@@ -156,6 +160,20 @@ const Summary: FC<SummaryProps> = ({
             </p>
           </>
         )}
+      </div>
+      <div className={cs("sa-summary-custom", className)}>
+        {customSummary !== null && (
+          <div className={cs("sa-summary-custom-text", className)}>
+            <CustomSummary summary={customSummary} handleClose={handleClose} />
+          </div>
+        )}
+        <Button
+          className={cs("sa-summary-custom-button", className)}
+          disabled={loading}
+          onClick={handleCustomSummary}
+        >
+          Generate Summary
+        </Button>
       </div>
       <div className={cs("sa-summary-error", className)}>
         <SidebarError

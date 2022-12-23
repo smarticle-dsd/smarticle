@@ -1,4 +1,11 @@
 .sa-sidebar-zoom {
   display: flex;
   justify-content: space-between;
+  .sa-sidebar-zoom-out-button, .sa-sidebar-zoom-in-button {
+    height: 24px;
+    width: 24px;
+  }
+   .sa-sidebar-zoom-in-button {
+    margin-left: 2px;
+  }
 }
