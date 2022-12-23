@@ -59,7 +59,7 @@ describe("The available data is displayed when Semantic Scholar has either summa
         .find(".sa-summary")
         .then(($summary) => {
           const tldr = $summary.find(".sa-summary-tldr");
-          expect(tldr.text()).to.equal("Summary");
+          expect(tldr.text()).to.equal("Summary+-");
           const abstract = $summary.find(".sa-summary-abstract");
           expect(abstract).to.contain.text("Abstract");
           expect(abstract).to.contain.text(
@@ -80,7 +80,7 @@ describe("Error message is displayed when Semantic Scholar does not have summary
         .then(($summary) => {
           const tldr = $summary.find(".sa-summary-tldr");
           expect(tldr).to.contain.text("Summary");
-          expect(tldr.text()).to.equal("Summary");
+          expect(tldr.text()).to.equal("Summary+-");
           const abstract = $summary.find(".sa-summary-abstract");
           expect(abstract).to.be.empty;
           const error = $summary.find(".sa-summary-error");
@@ -273,7 +273,7 @@ describe('Entering a paper ID with either abstract or summary and clicking on "S
                   expect(abstract).to.contain.text(
                     "In this paper we study the azimuthal correlations of heavy quarks in Pb+Pb collisions with",
                   );
-                  expect(tldr.text()).to.equal("Summary");
+                  expect(tldr.text()).to.equal("Summary+-");
                 });
             });
         });
@@ -307,7 +307,7 @@ describe('Entering an invalid paper ID and clicking on "Submit ID" displays erro
                 .click()
                 .wait(5000)
                 .then(() => {
-                  expect(tldr.text()).to.equal("Summary");
+                  expect(tldr.text()).to.equal("Summary+-");
                   expect(abstract).to.be.empty;
                   expect(error).to.exist;
                   expect(error.text()).to.contain("Paper ID not found!");

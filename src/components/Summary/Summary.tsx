@@ -8,6 +8,7 @@ import { Button } from "../Button";
 import { Amplify, API } from "aws-amplify";
 import aws_exports from "../../aws-exports";
 import { CustomSummary } from "../CustomSummary";
+import { SidebarZoom } from "../SidebarZoom";
 Amplify.configure(aws_exports);
 
 const Summary: FC<SummaryProps> = ({
@@ -104,6 +105,14 @@ const Summary: FC<SummaryProps> = ({
     setCustomSummary(null);
   };
 
+  const [fontSize, setFontSize] = useState<number>(14);
+  const handleZoomIn = () => {
+    setFontSize(fontSize + 1);
+  };
+  const handleZoomOut = () => {
+    setFontSize(fontSize - 1);
+  };
+
   return (
     <div
       id={domIDs.root}
@@ -125,10 +134,16 @@ const Summary: FC<SummaryProps> = ({
         </Button>
       </div>
       <div className={cs("sa-summary-tldr", className)}>
-        <h1>Summary</h1>
+        <SidebarZoom
+          titleText="Summary"
+          handleZoomIn={handleZoomIn}
+          handleZoomOut={handleZoomOut}
+        />
         {summary?.tldr && (
           <>
-            <p>{summary?.tldr}</p>
+            <p id="summary-content" style={{ fontSize: `${fontSize}px` }}>
+              {summary?.tldr}
+            </p>
           </>
         )}
       </div>
@@ -136,7 +151,9 @@ const Summary: FC<SummaryProps> = ({
         {summary?.abstract && (
           <>
             <h2>Abstract</h2>
-            <p>{summary?.abstract}</p>
+            <p id="summary-content" style={{ fontSize: `${fontSize}px` }}>
+              {summary?.abstract}
+            </p>
           </>
         )}
       </div>
