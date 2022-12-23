@@ -15,11 +15,14 @@
       margin-top: 16px;
       margin-bottom: 0px;
       text-align: center;
-      a{
+      a {
         text-decoration: underline;
       }
-      a:link, a:visited, a:hover, a:active {
-        color: var(--sa-neutral-color-5)
+      a:link,
+      a:visited,
+      a:hover,
+      a:active {
+        color: var(--sa-neutral-color-5);
       }
     }
   }

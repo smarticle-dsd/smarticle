@@ -11,5 +11,5 @@ export type KnowledgeGraphProps = {
    * className that is added to the root element of the KnowledgeGraph
    */
   className?: string;
-  paperTitle: string;
+  paperTitle?: string;
 };

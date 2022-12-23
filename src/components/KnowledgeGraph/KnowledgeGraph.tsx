@@ -1,12 +1,10 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useMemo, FC, useState } from "react";
 import cs from "classnames";
 
 import { KnowledgeGraphProps } from "./KnowledgeGraph.types";
-import { SidebarError } from "../SidebarError";
-import { Button } from "../Button";
 import { useNavigate } from "react-router-dom";
-
+import { Button } from "../Button";
+import { SidebarError } from "../SidebarError";
 import { API } from "aws-amplify";
 
 const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
@@ -28,10 +26,10 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
     }),
     [dataTestId],
   );
-
+  const [error, setError] = useState<boolean>(false);
   const [elements, setElements] = useState<any>([]);
 
-  // Function to call backend to get summary
+  // Function to call backend to get nodes
   async function getElements(id: string | null, title: string | null) {
     try {
       const result = await API.post("backend", "/paperKnowledgeGraph", {
@@ -52,9 +50,9 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
       return {};
     }
   }
-  // Get summary on page load
+  // Get nodes on page load
   React.useEffect(() => {
-    if (paperTitle.length > 0) {
+    if (paperTitle && paperTitle.length > 0) {
       getElements(null, paperTitle).then((result) => {
         setElements(result);
         setError(false);
@@ -64,7 +62,6 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
     }
   }, [paperTitle]);
 
-  const [error, setError] = useState<boolean>(false);
   const navigate = useNavigate();
   const sendToKG = () => {
     navigate("/testGraph?title=" + paperTitle);
@@ -77,15 +74,15 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
       data-testid={dataTestIDs.root}
     >
       <h1>Knowledge Graph</h1>
-
       <div className={cs("sa-knowledge-graph-wrapper", className)}>
-        <Button
-          className={cs("sa-knowledge-graph-button", className)}
-          onClick={sendToKG}
-          disabled={error}
-        >
-          View Knowledge Graph
-        </Button>
+        {!error ? (
+          <Button
+            className={cs("sa-knowledge-graph-button", className)}
+            onClick={sendToKG}
+          >
+            View Knowledge Graph
+          </Button>
+        ) : null}
         <div>
           <SidebarError
             paperTitle={paperTitle}

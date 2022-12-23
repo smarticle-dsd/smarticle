@@ -3,16 +3,18 @@
   padding: 16px;
 
   h1 {
-    @include typographyMediumM;
+    @include typographyMediumL;
     margin-bottom: 16px;
   }
+
   .sa-knowledge-graph-wrapper {
-    height: 318px;
-    text-align: center;
-    background: var(--sa-neutral-color-2);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 4px;
+
+    .sa-knowledge-graph-button {
+      margin-bottom: 8px;
+    }
   }
 }
