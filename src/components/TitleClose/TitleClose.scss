@@ -5,8 +5,10 @@
     }
 
     .modal-title {
-      @include typographyMediumM;
-      color: var(--sa-upload-modal-title-text-color);
+      h2 {
+        @include typographyMediumS;
+        color: var(--sa-upload-modal-title-text-color);
+      }
     }
 
     .modal-close-button {
