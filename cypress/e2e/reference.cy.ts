@@ -22,8 +22,57 @@ describe("The reference details component opens when clicking on the Reference b
   });
 });
 
-// describe("Rerence view wapper is shown when no reference has been clicked", () => {
+describe("Rerence view wapper is shown when no reference has been clicked", () => {
+  it("passes", () => {
+    getIframeFromUrl(pdfUrl).then(($iframeData) => {
+      const referenceButton = $iframeData.find("#referenceDetails");
+      cy.wrap(referenceButton).click();
+      cy.wrap($iframeData)
+        .find(".sa-reference")
+        .then(($reference) => {
+          const refrenceWrapper = $reference.find(".reference-view-wrapper");
+          expect(refrenceWrapper).to.exist;
+          const referenceCanvas = $reference.find(".referenceview-canvas");
+          expect(referenceCanvas).to.be.hidden;
+          const jumpToContentButton = $reference.find(".referenceview-button");
+          expect(jumpToContentButton).to.be.hidden;
+        });
+    });
+  });
+});
+
+describe("Clicking on a reference shows a pop-up and opens it in sidebar", () => {
+  it("passes", () => {
+    getIframeFromUrl(pdfUrl).then(($iframeData) => {
+      const annotation = $iframeData.find(".internalLink");
+      cy.wrap(annotation[1])
+        .click()
+        .then(($reference) => {
+          const referenceToolCanvas = $reference.find(".referenceview-canvas");
+          const refrenceWrapper = $reference.find(".reference-view-wrapper");
+          expect(referenceToolCanvas).to.be.visible; // Check if reference is displayed in toolbar
+          expect(refrenceWrapper).to.not.exist; // Check if the wrapper is removed
+        });
+    });
+  });
+});
+
+// describe("Clicking on a reference shows a pop-up and opens it in sidebar", () => {
 //   it("passes", () => {
-//     getIframeFromUrl(pdfUrl).get(".sa-reference").should("exist");
+//     getIframeFromUrl(pdfUrl).then(($iframeData) => {
+//       const annotation = $iframeData.find(".internalLink");
+
+//       cy.wrap(annotation[1])
+//         .trigger("mouseover")
+//         .then(() => {
+//           const canvas = $iframeData.find(".reference-canvas");
+//           expect(canvas).to.exist;
+//           const referenceToolCanvas = $iframeData.find(".referenceview-canvas");
+
+//           const refrenceWrapper = $iframeData.find(".reference-view-wrapper");
+//           expect(referenceToolCanvas).to.be.visible; // Check if reference is displayed in toolbar
+//           expect(refrenceWrapper).to.not.exist; // Check if the wrapper is removed
+//         });
+//     });
 //   });
 // });
