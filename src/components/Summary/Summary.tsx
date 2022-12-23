@@ -97,7 +97,6 @@ const Summary: FC<SummaryProps> = ({
     if (paperTitle !== "") {
       getSummary(null, paperTitle as string).then((result) => {
         setSummary(result);
-        setError(false);
       });
     } else {
       setError(true);
