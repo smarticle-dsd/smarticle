@@ -2,9 +2,9 @@ import React, { useMemo, FC, useEffect, useState } from "react";
 import cs from "classnames";
 
 import { PdfViewerPageProps } from "./PdfViewerPage.types";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { createPortal } from "react-dom";
-import { Summary, Button } from "../../components";
+import { Summary, KnowledgeGraph } from "../../components";
 import { Reference } from "../../components";
 import * as pdfjs from "pdfjs-dist/legacy/build/pdf";
 import { TextItem, TextMarkedContent } from "pdfjs-dist/types/src/display/api";
@@ -158,11 +158,6 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
     }
   }, []);
 
-  const navigate = useNavigate();
-  const sendToKG = () => {
-    navigate("/testGraph?title=" + paperTitle);
-  };
-
   return (
     <div
       id={domIDs.root}
@@ -182,7 +177,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
             createPortal(<Reference />, referenceDetailsMountNode)}
           {knowledgeGraphMountNode &&
             createPortal(
-              <Button onClick={sendToKG}>Go to KG</Button>,
+              <KnowledgeGraph paperTitle={paperTitle} />,
               knowledgeGraphMountNode,
             )}
           {summaryMountNode &&

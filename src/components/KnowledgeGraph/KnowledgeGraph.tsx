@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useMemo, FC, useState } from "react";
 import cs from "classnames";
-import CytoscapeComponent from "react-cytoscapejs";
-
-import { API } from "aws-amplify";
 
 import { KnowledgeGraphProps } from "./KnowledgeGraph.types";
-import styled from "@emotion/styled";
+import { SidebarError } from "../SidebarError";
 import { Button } from "../Button";
+import { useNavigate } from "react-router-dom";
+
+import { API } from "aws-amplify";
 
 const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
   domID = "knowledge-graph",
@@ -28,8 +28,6 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
     }),
     [dataTestId],
   );
-
-  let myCy: cytoscape.Core;
 
   const [elements, setElements] = useState<any>([]);
 
@@ -56,193 +54,55 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
   }
   // Get summary on page load
   React.useEffect(() => {
-    getElements(null, paperTitle).then((result) => {
-      setElements(result);
-    });
+    if (paperTitle.length > 0) {
+      getElements(null, paperTitle).then((result) => {
+        setElements(result);
+        setError(false);
+      });
+    } else {
+      setError(true);
+    }
   }, [paperTitle]);
 
   const [error, setError] = useState<boolean>(false);
-
-  // create a reference to the parent container element
-  const containerRef = React.useRef<HTMLDivElement>(null);
-
-  // use the useState hook to store the width and height of the component
-  const [style, setStyle] = React.useState({});
-
-  // update the width  of the component when the component is mounted
-  React.useEffect(() => {
-    if (containerRef.current) {
-      setStyle({ width: containerRef.current.offsetWidth, height: 500 });
-    }
-  }, []);
-
-  // update the width of the component whenever the parent container changes
-  React.useEffect(() => {
-    function handleResize() {
-      if (containerRef.current) {
-        setStyle({ width: containerRef.current.offsetWidth, height: 500 });
-      }
-    }
-
-    // add an event listener to listen for resize events
-    window.addEventListener("resize", handleResize);
-  });
-
-  // eslint-disable-next-line import/no-webpack-loader-syntax, @typescript-eslint/no-var-requires
-  /* const elements = require("./response.json"); */
-
-  // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-unused-vars
-  const graphStyle = require("./cy-style.json");
-
-  const layout = {
-    name: "concentric",
-    startAngle: 0 * Math.PI,
-    minNodeSpacing: 20,
-    edgeLengthVal: 80,
-    concentric: function (node: any) {
-      return node.degree();
-    },
-    levelWidth: function (nodes: []) {
-      return 2;
-    },
-    fit: "true",
-    animate: "true",
+  const navigate = useNavigate();
+  const sendToKG = () => {
+    navigate("/testGraph?title=" + paperTitle);
   };
-
-  graphStyle[1].style["background-color"] = (node: any) =>
-    getColorBasedOnType(node);
-
-  const [selectedPaperTitle, selectNode] = useState();
-
-  const Container = styled.div`
-    display: flex;
-    justify-content: center;
-    paddingbottom: 20px;
-  `;
-
-  const InnerContainer = styled.div`
-    display: flex;
-    align-items: center;
-    padding: 0 10px; /* add padding between InnerContainer elements */
-  `;
-
-  const Cube = styled.div`
-    width: 10px;
-    height: 10px;
-    border-radius: 2px; /* round the edges */
-    background-color: #ff0000;
-    margin: 0 10px;
-  `;
-
-  const PaperInfo = styled.div`
-    paddingtop: 20px;
-  `;
-
-  function zoomOut() {
-    myCy
-      .animation({
-        fit: {
-          eles: elements,
-          padding: 10,
-        },
-        easing: "ease-in-out",
-        duration: 1000,
-      })
-      .play();
-  }
 
   return (
     <div
       id={domIDs.root}
       className={cs("sa-knowledge-graph", className)}
       data-testid={dataTestIDs.root}
-      ref={containerRef}
     >
       <h1>Knowledge Graph</h1>
-      {error && (
+
+      <div className={cs("sa-knowledge-graph-wrapper", className)}>
+        <Button
+          className={cs("sa-knowledge-graph-button", className)}
+          onClick={sendToKG}
+          disabled={error}
+        >
+          View Knowledge Graph
+        </Button>
         <div>
-          <div>
-            <img
-              src={"/knowledgeGraph-error.svg"}
-              alt="Error during graph loading"
-            />
-            <h3>An error occurred during graph loading!</h3>
-          </div>
+          <SidebarError
+            paperTitle={paperTitle}
+            message={
+              error
+                ? "Paper ID not found!"
+                : "Is this not the right summary for the uploaded paper?"
+            }
+            severity={error ? "error" : "info"}
+            elements={elements}
+            setElements={setElements}
+            getElements={getElements}
+          />
         </div>
-      )}
-      <Container>
-        <InnerContainer>
-          <Cube style={{ backgroundColor: "#00BFFF" }} />
-          <span>Citations</span>
-        </InnerContainer>
-        <InnerContainer>
-          <Cube style={{ backgroundColor: "#009933" }} />
-          <span>References</span>
-        </InnerContainer>
-      </Container>
-      {!error && (
-        <CytoscapeComponent
-          cy={(cy) => {
-            cy.on("select", "node", (event) => {
-              // get the selected node
-              const node = event.target;
-
-              // get the data associated with the node
-              const data = node.data();
-
-              // Can be set to true to emulate error handling in component
-              setError(false);
-
-              // do something with the data here
-              selectNode(data.label);
-
-              // Zoom onto selected node
-              cy.animation({
-                fit: {
-                  eles: node,
-                  padding: 200,
-                },
-                easing: "ease-in-out",
-                duration: 1000,
-              }).play();
-            });
-            myCy = cy;
-          }}
-          elements={elements}
-          style={style}
-          stylesheet={graphStyle}
-          layout={layout}
-          wheelSensitivity={0.2}
-          pan={{ x: 100, y: 200 }}
-          zoom={0.3}
-        />
-      )}
-      <Button /// <reference path="buttonRef" />
-        size="large"
-        type="primary"
-        onClick={() => zoomOut()}
-      >
-        Zoom out
-      </Button>
-      <PaperInfo>
-        <h1>Paper Title:</h1>
-        <p>{selectedPaperTitle}</p>
-      </PaperInfo>
+      </div>
     </div>
   );
 };
-
-function getColorBasedOnType(obj: any) {
-  switch (obj.data("type")) {
-    case "main":
-      return "#8B0000";
-    case "citation":
-      return "#00BFFF";
-    case "reference":
-      return "#009933";
-    default:
-      return "black";
-  }
-}
 
 export default KnowledgeGraph;
