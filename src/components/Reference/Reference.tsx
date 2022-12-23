@@ -1,6 +1,7 @@
 import React, { useMemo, FC, useRef, useState } from "react";
 import cs from "classnames";
 import svg from "./refvec.svg";
+import { Button } from "../Button";
 import { ReferenceProps } from "./Reference.types";
 import { useGesture } from "@use-gesture/react";
 
@@ -39,6 +40,11 @@ const Reference: FC<ReferenceProps> = ({
       </div>
       <div className={cs("wrapper-canvas", className)}>
         <Canvas />
+      </div>
+      <div className={cs("referenceview-button", className)}>
+        <Button size="large" type="primary">
+          Jump to Content
+        </Button>
       </div>
     </div>
   );

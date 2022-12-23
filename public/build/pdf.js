@@ -12354,12 +12354,17 @@
                 )[0];
                 canv.style.visibility = "visible";
 
-                // let link_destination = data.dest;
-                // canv.addEventListener(
-                //   "click",
-                //   () => this.linkService.goToDestination(link_destination),
-                //   false,
-                // );
+                var button = document.getElementsByClassName(
+                  "referenceview-button",
+                )[0];
+                button.style.visibility = "visible";
+
+                let link_destination = data.dest;
+                button.addEventListener(
+                  "click",
+                  () => this.linkService.goToDestination(link_destination),
+                  false,
+                );
 
                 page._transport.getDestination(data.dest).then((data) => {
                   let page_number = this.linkService._cachedPageNumber(data[0]);
