@@ -63,7 +63,7 @@ const SidebarError: FC<SidebarErrorProps> = ({
       });
     }
     // Get summary from paper id
-    if (summary && setSummary && getSummary) {
+    if (setSummary && getSummary) {
       setSummary({});
       setPaperId(paperId);
       getSummary(paperId as string, null).then(
