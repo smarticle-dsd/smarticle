@@ -4,7 +4,8 @@ import cs from "classnames";
 import { KnowledgeGraphProps } from "./KnowledgeGraph.types";
 import { Button } from "../Button";
 import { SidebarError } from "../SidebarError";
-import { API } from "aws-amplify";
+import { queryBackend } from "../../shared/queryBackend";
+import { formatDataForDisplay } from "../../shared/getDataForKnowledgeGraph";
 
 const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
   domID = "knowledge-graph",
@@ -27,12 +28,13 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
   );
   const [error, setError] = useState<boolean>(false);
   const [manualTitle, setManualTitle] = useState<string>("");
+  const [node, setNode] = useState<Record<string, string>>({});
 
   // Function to call backend to get nodes
   async function getElements(id: string | null, title: string | null) {
     try {
       setManualTitle("");
-      const result = await API.post("backend", "/paperKnowledgeGraph", {
+      const result = await queryBackend("/paperKnowledgeGraph", {
         body: {
           paperTitle: title,
           paperId: id,
@@ -44,6 +46,7 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
             node.data.type === "main",
         );
         setManualTitle(main[0].data.label);
+        setNode(main[0].data);
         setError(false);
         return result;
       } else {
@@ -84,18 +87,29 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
       <h1>Knowledge Graph</h1>
       <div className={cs("sa-knowledge-graph-wrapper", className)}>
         {!error && manualTitle.length > 0 ? (
-          <div className={cs("sa-knowledge-graph-details", className)}>
-            <h2>Paper Title</h2>
-            <p>{manualTitle}</p>
-            <div>
+          <>
+            <div className={cs("sa-knowledge-graph-details", className)}>
+              {Object.entries(formatDataForDisplay(node)).map((value) => {
+                return (
+                  <div key={value[0]}>
+                    <p>
+                      <b>{value[0]}: </b>
+                      {value[1]}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+            <div className={cs("sa-knowledge-graph-button-wrapper", className)}>
               <Button
                 className={cs("sa-knowledge-graph-button", className)}
                 onClick={sendToKG}
+                disabled={error}
               >
                 Open Knowledge Graph
               </Button>
             </div>
-          </div>
+          </>
         ) : null}
         <div>
           <SidebarError

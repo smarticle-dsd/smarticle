@@ -2,6 +2,7 @@
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
 const getPaperInfo = require("/opt/utils/getPaperInfo");
+const queryNlpCloud = require("/opt/utils/makeNlpCloudRequest");
 const getReturnMessages = require("/opt/utils/getReturnMessages");
 
 exports.handler = async (event) => {
@@ -22,7 +23,18 @@ exports.handler = async (event) => {
       paperTitle,
       fieldsToGet: "abstract,tldr",
     });
-    const abstract = summaryDetails.data.abstract;
+
+    let abstract = summaryDetails.data.abstract;
+
+    // Get summary of abstract
+
+    // if (summaryDetails.data.abstract) {
+    //   const abstractSummary = await queryNlpCloud({
+    //     text: summaryDetails.data.abstract,
+    //   });
+    //   if (abstractSummary.status) abstract = abstractSummary.data;
+    // }
+
     const tldr = summaryDetails.data.tldr
       ? summaryDetails.data.tldr.text
       : null;

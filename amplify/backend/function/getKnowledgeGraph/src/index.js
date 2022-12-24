@@ -5,6 +5,24 @@
 const getPaperInfo = require("/opt/utils/getPaperInfo");
 const getReturnMessages = require("/opt/utils/getReturnMessages");
 
+const getAuthorName = (data) => {
+  const authors = data.authors.map((author) => {
+    return author.name;
+  });
+  return authors.join(", ");
+};
+
+const getJournal = (data) => {
+  const name =
+    data.journal && data.journal.name ? data.journal.name : data.venue;
+  const volume =
+    data.journal && data.journal.volume ? "Vol." + data.journal.volume : "";
+  const pages =
+    data.journal && data.journal.pages ? "Pages " + data.journal.pages : "";
+  const journal = name + " " + volume + " " + pages;
+  return journal.replace(/\s+/g, " ").trim();
+};
+
 exports.handler = async (event) => {
   console.log(`EVENT: ${JSON.stringify(event)}`);
   let input = {};
@@ -22,7 +40,7 @@ exports.handler = async (event) => {
       paperId,
       paperTitle,
       fieldsToGet:
-        "title,authors,references,references.title,references.authors,citations,citations.title,citations.authors,referenceCount,citationCount",
+        "title,authors,references,journal,venue,publicationDate,references.title,references.authors,references.journal,references.venue,references.publicationDate,citations,citations.title,citations.authors,citations.journal,citations.venue,citations.publicationDate,referenceCount,citationCount",
     });
 
     let nodesAndEdges = [];
@@ -39,6 +57,12 @@ exports.handler = async (event) => {
         id: paperInfo.data.paperId,
         label: paperInfo.data.title,
         type: "main",
+        referenceCount,
+        citationCount,
+        authors: getAuthorName(paperInfo.data),
+        published: paperInfo.data.publicationDate,
+        journal: getJournal(paperInfo.data),
+        venue: paperInfo.data.venue,
       },
     });
 
@@ -46,48 +70,61 @@ exports.handler = async (event) => {
     // edges from current paper to all papers it references
     for (i = 1; i < referenceCount + 1; i++) {
       let reference = paperInfo.data.references[i - 1];
-      nodesAndEdges.push({
-        data: {
-          id: reference.paperId,
-          label: reference.title,
-          type: "reference",
-        },
-      });
-      nodesAndEdges.push({
-        data: {
-          source: paperInfo.data.paperId,
-          target: reference.paperId,
-          label: "Edge label placeholder",
-          type: "reference",
-        },
-      });
+      if (reference) {
+        nodesAndEdges.push({
+          data: {
+            id: reference.paperId,
+            label: reference.title,
+            type: "reference",
+            authors: getAuthorName(reference),
+            published: reference.publicationDate,
+            journal: getJournal(reference),
+            venue: reference.venue,
+          },
+        });
+        nodesAndEdges.push({
+          data: {
+            source: paperInfo.data.paperId,
+            target: reference.paperId,
+            label: "Edge label placeholder",
+            type: "reference",
+          },
+        });
+      }
     }
 
     // Adds a node for each citation and sets up the
     // edges from papers which cite this paper to the current paper
     for (i = referenceCount + 1; i < verticesCount; i++) {
       let citation = paperInfo.data.citations[i - referenceCount - 1];
-      nodesAndEdges.push({
-        data: {
-          id: citation.paperId,
-          label: citation.title,
-          type: "citation",
-        },
-      });
-      nodesAndEdges.push({
-        data: {
-          source: paperInfo.data.paperId,
-          target: citation.paperId,
-          label: "Edge label placeholder",
-          type: "citation",
-        },
-      });
+      if (citation) {
+        nodesAndEdges.push({
+          data: {
+            id: citation.paperId,
+            label: citation.title,
+            type: "citation",
+            authors: getAuthorName(citation),
+            published: citation.publicationDate,
+            journal: getJournal(citation),
+            venue: citation.venue,
+          },
+        });
+        nodesAndEdges.push({
+          data: {
+            source: paperInfo.data.paperId,
+            target: citation.paperId,
+            label: "Edge label placeholder",
+            type: "citation",
+          },
+        });
+      }
     }
 
     return await getReturnMessages({
       messageContent: nodesAndEdges,
     });
-  } catch {
+  } catch (e) {
+    console.log(e);
     return await getReturnMessages({
       messageContent: {
         error: "Failed when search for paper details",

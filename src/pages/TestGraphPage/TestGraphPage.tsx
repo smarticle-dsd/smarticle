@@ -7,8 +7,9 @@ import { useSearchParams } from "react-router-dom";
 
 import CytoscapeComponent from "react-cytoscapejs";
 
-import { API } from "aws-amplify";
 import { Button } from "../../components";
+import { queryBackend } from "../../shared/queryBackend";
+import { formatDataForDisplay } from "../../shared/getDataForKnowledgeGraph";
 
 const TestGraphPage: FC<TestGraphPageProps> = ({
   domID = "test-graph-page",
@@ -39,7 +40,7 @@ const TestGraphPage: FC<TestGraphPageProps> = ({
   // Function to call backend to get summary
   async function getElements(id: string | null, title: string | null) {
     try {
-      const result = await API.post("backend", "/paperKnowledgeGraph", {
+      const result = await queryBackend("/paperKnowledgeGraph", {
         body: {
           paperTitle: title,
           paperId: id,
@@ -115,7 +116,7 @@ const TestGraphPage: FC<TestGraphPageProps> = ({
   graphStyle[1].style["background-color"] = (node: any) =>
     getColorBasedOnType(node);
 
-  const [selectedPaperTitle, selectNode] = useState("");
+  const [node, selectNode] = useState<Record<string, string> | null>(null);
 
   const Container = styled.div`
     display: flex;
@@ -204,7 +205,7 @@ const TestGraphPage: FC<TestGraphPageProps> = ({
               setError(false);
 
               // do something with the data here
-              selectNode(data.label);
+              selectNode(data);
 
               // Zoom onto selected node
               cy.animation({
@@ -227,10 +228,21 @@ const TestGraphPage: FC<TestGraphPageProps> = ({
           zoom={0.3}
         />
       )}
-      {selectedPaperTitle?.length > 0 ? (
+      {node ? (
         <PaperInfo>
-          <h1>Paper Details:</h1>
-          <p>{selectedPaperTitle}</p>
+          <>
+            {/* <h3>Paper Details:</h3> */}
+            {Object.entries(formatDataForDisplay(node)).map((value) => {
+              return (
+                <div key={value[0]}>
+                  <p>
+                    <b>{value[0]}: </b>
+                    {value[1]}
+                  </p>
+                </div>
+              );
+            })}
+          </>
         </PaperInfo>
       ) : null}
     </div>
