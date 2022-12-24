@@ -185,7 +185,7 @@ const Summary: FC<SummaryProps> = ({
               ? "Paper ID not found!"
               : "Is this not the right summary for the uploaded paper?"
           }
-          getSummary={getSummary}
+          getData={getSummary}
           severity={error ? "error" : "info"}
         />
       </div>

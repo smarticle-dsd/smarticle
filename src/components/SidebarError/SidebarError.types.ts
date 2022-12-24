@@ -14,8 +14,6 @@ export type SidebarErrorProps = {
   message?: string;
   paperTitle?: string;
   severity?: string;
-  // Props for summary
-  getSummary?: (id: string | null, title: string | null) => void;
-  // Props for Knowledge graph
-  getElements?: (id: string | null, title: string | null) => void;
+  // Function to get data for summary and knowledge graph
+  getData?: (id: string | null, title: string | null) => void;
 };

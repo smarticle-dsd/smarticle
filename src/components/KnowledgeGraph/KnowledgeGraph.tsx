@@ -117,7 +117,7 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
                 : "Is this not the right summary for the uploaded paper?"
             }
             severity={error ? "error" : "info"}
-            getElements={getElements}
+            getData={getElements}
           />
         </div>
       </div>
