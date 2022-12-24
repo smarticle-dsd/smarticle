@@ -63,6 +63,7 @@ exports.handler = async (event) => {
         published: paperInfo.data.publicationDate,
         journal: getJournal(paperInfo.data),
         venue: paperInfo.data.venue,
+        group: "nodes",
       },
     });
 
@@ -70,7 +71,7 @@ exports.handler = async (event) => {
     // edges from current paper to all papers it references
     for (i = 1; i < referenceCount + 1; i++) {
       let reference = paperInfo.data.references[i - 1];
-      if (reference) {
+      if (reference.paperId) {
         nodesAndEdges.push({
           data: {
             id: reference.paperId,
@@ -80,6 +81,7 @@ exports.handler = async (event) => {
             published: reference.publicationDate,
             journal: getJournal(reference),
             venue: reference.venue,
+            group: "nodes",
           },
         });
         nodesAndEdges.push({
@@ -88,6 +90,7 @@ exports.handler = async (event) => {
             target: reference.paperId,
             label: "Edge label placeholder",
             type: "reference",
+            group: "edges",
           },
         });
       }
@@ -97,7 +100,7 @@ exports.handler = async (event) => {
     // edges from papers which cite this paper to the current paper
     for (i = referenceCount + 1; i < verticesCount; i++) {
       let citation = paperInfo.data.citations[i - referenceCount - 1];
-      if (citation) {
+      if (citation.paperId) {
         nodesAndEdges.push({
           data: {
             id: citation.paperId,
@@ -107,6 +110,7 @@ exports.handler = async (event) => {
             published: citation.publicationDate,
             journal: getJournal(citation),
             venue: citation.venue,
+            group: "nodes",
           },
         });
         nodesAndEdges.push({
@@ -115,6 +119,7 @@ exports.handler = async (event) => {
             target: citation.paperId,
             label: "Edge label placeholder",
             type: "citation",
+            group: "edges",
           },
         });
       }
