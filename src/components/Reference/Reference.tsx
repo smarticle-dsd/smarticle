@@ -70,7 +70,7 @@ function Canvas() {
         if (crop.scale >= 1 && crop.scale <= 5)
           setCrop((crop) => ({
             ...crop,
-            scale: crop.scale + event.deltaY * 0.0001,
+            scale: crop.scale - event.deltaY * 0.0001,
           }));
         if (crop.scale > 5) crop.scale = 5;
         if (crop.scale < 1) crop.scale = 1;
@@ -95,10 +95,10 @@ function Canvas() {
       },
       drag: {
         bounds: {
-          right: bounds.w / crop.scale,
-          left: -bounds.w / crop.scale,
-          top: -bounds.h / crop.scale,
-          bottom: bounds.h / crop.scale,
+          right: bounds.w / 2,
+          left: -bounds.w / 2,
+          top: -bounds.h / 2,
+          bottom: bounds.h / 2,
         },
       },
     },
