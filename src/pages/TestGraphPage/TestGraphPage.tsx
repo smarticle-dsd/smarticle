@@ -31,7 +31,7 @@ const TestGraphPage: FC<TestGraphPageProps> = ({
   );
 
   const [searchParams] = useSearchParams();
-  const paperTitle: string | null = searchParams.get("title");
+  const paperId: string | null = searchParams.get("paper");
 
   let myCy: cytoscape.Core;
 
@@ -60,10 +60,10 @@ const TestGraphPage: FC<TestGraphPageProps> = ({
   }
   // Get summary on page load
   React.useEffect(() => {
-    getElements(null, paperTitle).then((result) => {
+    getElements(paperId, null).then((result) => {
       setElements(result);
     });
-  }, [paperTitle]);
+  }, [paperId]);
 
   const [error, setError] = useState<boolean>(false);
 

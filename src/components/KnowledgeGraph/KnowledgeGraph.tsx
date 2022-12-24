@@ -27,13 +27,13 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
     [dataTestId],
   );
   const [error, setError] = useState<boolean>(false);
-  const [manualTitle, setManualTitle] = useState<string>("");
+  const [paperId, setPaperId] = useState<string>("");
   const [node, setNode] = useState<Record<string, string>>({});
 
   // Function to call backend to get nodes
   async function getElements(id: string | null, title: string | null) {
     try {
-      setManualTitle("");
+      setPaperId("");
       const result = await queryBackend("/paperKnowledgeGraph", {
         body: {
           paperTitle: title,
@@ -45,17 +45,14 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
           (node: Record<string, Record<string, string>>) =>
             node.data.type === "main",
         );
-        setManualTitle(main[0].data.label);
+        setPaperId(main[0].data.id);
         setNode(main[0].data);
         setError(false);
-        return result;
       } else {
         setError(true);
-        return null;
       }
     } catch (e) {
       setError(true);
-      return null;
     }
   }
   // Get paper title status on page load
@@ -64,7 +61,7 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
       getElements(null, paperTitle);
       setError(false);
     } else {
-      setManualTitle("");
+      setPaperId("");
       setError(true);
     }
   }, [paperTitle]);
@@ -73,7 +70,7 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
   const sendToKG = () => {
     // navigate("/testGraph?title=" + paperTitle);
     window.open(
-      window.location.origin.toString() + "/testGraph?title=" + manualTitle,
+      window.location.origin.toString() + "/testGraph?paper=" + paperId,
       "_blank",
     );
   };
@@ -86,7 +83,7 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
     >
       <h1>Knowledge Graph</h1>
       <div className={cs("sa-knowledge-graph-wrapper", className)}>
-        {!error && manualTitle.length > 0 ? (
+        {!error && paperId.length > 0 ? (
           <>
             <div className={cs("sa-knowledge-graph-details", className)}>
               {Object.entries(formatDataForDisplay(node)).map((value) => {
@@ -120,7 +117,7 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
                 : "Is this not the right summary for the uploaded paper?"
             }
             severity={error ? "error" : "info"}
-            getTitle={getElements}
+            getElements={getElements}
           />
         </div>
       </div>

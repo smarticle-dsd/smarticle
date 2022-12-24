@@ -73,6 +73,7 @@ const Summary: FC<SummaryProps> = ({
   // Function to call backend to get summary
   const getSummary = async (id: string | null, title: string | null) => {
     try {
+      setSummary(null);
       const result = await queryBackend("/paperSummary", {
         body: {
           paperTitle: title,
@@ -80,23 +81,19 @@ const Summary: FC<SummaryProps> = ({
         },
       });
       if (result.abstract || result.tldr) {
+        setSummary(result);
         setError(false);
-        return result;
       } else {
         setError(true);
-        return null;
       }
     } catch (e) {
       setError(true);
-      return null;
     }
   };
   // Get summary on page load
   useEffect(() => {
     if (paperTitle !== "") {
-      getSummary(null, paperTitle as string).then((result) => {
-        setSummary(result);
-      });
+      getSummary(null, paperTitle as string);
     } else {
       setError(true);
     }
@@ -188,8 +185,6 @@ const Summary: FC<SummaryProps> = ({
               ? "Paper ID not found!"
               : "Is this not the right summary for the uploaded paper?"
           }
-          summary={summary}
-          setSummary={setSummary}
           getSummary={getSummary}
           severity={error ? "error" : "info"}
         />

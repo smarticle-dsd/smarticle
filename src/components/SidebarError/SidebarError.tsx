@@ -13,9 +13,7 @@ const SidebarError: FC<SidebarErrorProps> = ({
   paperTitle,
   message,
   severity,
-  getTitle,
-  summary,
-  setSummary,
+  getElements,
   getSummary,
 }): JSX.Element => {
   const domIDs = useMemo(
@@ -39,39 +37,30 @@ const SidebarError: FC<SidebarErrorProps> = ({
   const handleResetData = async () => {
     setPaperId("");
     // Code to reset data for Knowledge graph
-    if (getTitle) {
-      getTitle(null, paperTitle as string).then(() => {
-        setNeedsReset(false);
-      });
+    if (getElements) {
+      getElements(null, paperTitle as string);
+      setNeedsReset(false);
     }
+
     // Reset summary from paper title
-    if (paperTitle && setSummary && getSummary) {
-      setSummary({});
-      getSummary(null, paperTitle as string).then((result) => {
-        setSummary(result);
-        setNeedsReset(false);
-      });
+    if (paperTitle && getSummary) {
+      getSummary(null, paperTitle as string);
+      setNeedsReset(false);
     }
   };
 
   // Function to get data for manual id input
   const handlePaperIdInput = async (paperId: string) => {
     // Code to get data for Knowledge graph from paper id
-    if (getTitle) {
-      getTitle(paperId as string, null).then(() => {
-        setNeedsReset(true);
-      });
+    if (getElements) {
+      getElements(paperId as string, null);
+      setNeedsReset(true);
     }
     // Get summary from paper id
-    if (setSummary && getSummary) {
-      setSummary({});
+    if (getSummary) {
       setPaperId(paperId);
-      getSummary(paperId as string, null).then(
-        (result: Record<string, string>) => {
-          setSummary(result);
-          setNeedsReset(true);
-        },
-      );
+      getSummary(paperId as string, null);
+      setNeedsReset(true);
     }
   };
   return (
@@ -118,7 +107,7 @@ const SidebarError: FC<SidebarErrorProps> = ({
               size="large"
               className={cs("sidebar-reset-button", className)}
               type="primary"
-              disabled={!needsReset && paperTitle !== null}
+              disabled={!needsReset}
               onClick={() => handleResetData()}
             >
               Reset
