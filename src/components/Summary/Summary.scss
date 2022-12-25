@@ -25,12 +25,16 @@
 
     .sa-summary-custom-text {
       background-color: var(--sa-neutral-color-2);
-      margin-bottom: 8px;
-      h2,
-      p {
+      padding: 16px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+
+      .title-and-close-button {
         margin-bottom: 8px;
-        margin-left: 12px;
-        margin-right: 12px;
+      }
+
+      p {
+        margin-bottom: 0px;
       }
     }
 

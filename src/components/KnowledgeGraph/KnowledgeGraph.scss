@@ -10,6 +10,11 @@
   .sa-knowledge-graph-wrapper {
     .sa-knowledge-graph-details {
       align-items: left;
+
+      div {
+        margin-bottom: 4px;
+      }
+
       p {
         @include typographyRegularXs;
       }
