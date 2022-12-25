@@ -67,14 +67,14 @@ function Canvas() {
         setCrop((crop) => ({ ...crop, scale: d }));
       },
       onWheel: ({ event }) => {
-        if (crop.scale >= 1 && crop.scale <= 5)
-          setCrop((crop) => ({
-            ...crop,
-            scale: crop.scale - event.deltaY * 0.0001,
-          }));
-        if (crop.scale > 5) crop.scale = 5;
-        if (crop.scale < 1) crop.scale = 1;
-
+        const newScale = Math.min(
+          5,
+          Math.max(1, crop.scale - event.deltaY * 0.001),
+        );
+        setCrop((crop) => ({
+          ...crop,
+          scale: newScale,
+        }));
         canv_bound = canvcon.current?.getBoundingClientRect();
         wrap_bound = canvcon.current?.parentElement?.getBoundingClientRect();
 
