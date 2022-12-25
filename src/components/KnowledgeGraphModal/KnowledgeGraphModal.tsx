@@ -133,6 +133,7 @@ const KnowledgeGraphModal: FC<KnowledgeGraphModalProps> = ({
       });
       if (result.length > 1) {
         setError(false);
+        selectNode(getMainNode(result));
         setNewElements(result);
       } else {
         setError(true);
