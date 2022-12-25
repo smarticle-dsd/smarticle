@@ -70,7 +70,7 @@ function Canvas() {
         if (crop.scale >= 1 && crop.scale <= 5)
           setCrop((crop) => ({
             ...crop,
-            scale: crop.scale - event.deltaY * 0.0002,
+            scale: crop.scale - event.deltaY * 0.0001,
           }));
         if (crop.scale > 5) crop.scale = 5;
         if (crop.scale < 1) crop.scale = 1;
