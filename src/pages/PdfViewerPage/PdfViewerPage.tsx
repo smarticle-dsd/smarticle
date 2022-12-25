@@ -4,7 +4,7 @@ import cs from "classnames";
 import { PdfViewerPageProps } from "./PdfViewerPage.types";
 import { useSearchParams } from "react-router-dom";
 import { createPortal } from "react-dom";
-import { Summary, KnowledgeGraph } from "../../components";
+import { Summary, KnowledgeGraph, KnowledgeGraphModal } from "../../components";
 import { Reference } from "../../components";
 import * as pdfjs from "pdfjs-dist/legacy/build/pdf";
 import { TextItem, TextMarkedContent } from "pdfjs-dist/types/src/display/api";
@@ -158,6 +158,10 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
     }
   }, []);
 
+  const [isVisible, setIsVisible] = React.useState<boolean>(false);
+  const [elements, setElements] = React.useState<Array<
+    Record<string, Record<string, string>>
+  > | null>(null);
   return (
     <div
       id={domIDs.root}
@@ -165,24 +169,40 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
       data-testid={dataTestIDs.root}
     >
       {pdfFile.length > 0 ? (
-        <iframe
-          id="pdf-js-viewer"
-          src={pdfFile}
-          title="webviewer"
-          width="100%"
-          height="100%"
-          ref={viewerRef}
-        >
-          {referenceDetailsMountNode &&
-            createPortal(<Reference />, referenceDetailsMountNode)}
-          {knowledgeGraphMountNode &&
-            createPortal(
-              <KnowledgeGraph paperTitle={paperTitle} />,
-              knowledgeGraphMountNode,
-            )}
-          {summaryMountNode &&
-            createPortal(<Summary paperTitle={paperTitle} />, summaryMountNode)}
-        </iframe>
+        <>
+          <iframe
+            id="pdf-js-viewer"
+            src={pdfFile}
+            title="webviewer"
+            width="100%"
+            height="100%"
+            ref={viewerRef}
+          >
+            {referenceDetailsMountNode &&
+              createPortal(<Reference />, referenceDetailsMountNode)}
+            {knowledgeGraphMountNode &&
+              createPortal(
+                <KnowledgeGraph
+                  paperTitle={paperTitle}
+                  setIsVisible={setIsVisible}
+                  setElements={setElements}
+                />,
+                knowledgeGraphMountNode,
+              )}
+            {summaryMountNode &&
+              createPortal(
+                <Summary paperTitle={paperTitle} />,
+                summaryMountNode,
+              )}
+          </iframe>
+          {isVisible && (
+            <KnowledgeGraphModal
+              isVisible={isVisible}
+              toggle={() => setIsVisible(false)}
+              elements={elements}
+            />
+          )}
+        </>
       ) : (
         <Error404Page />
       )}

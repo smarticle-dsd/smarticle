@@ -10,8 +10,8 @@
   .sa-knowledge-graph-wrapper {
     .sa-knowledge-graph-details {
       align-items: left;
-      h2 {
-        @include typographyMediumM;
+      p {
+        @include typographyRegularXs;
       }
     }
 

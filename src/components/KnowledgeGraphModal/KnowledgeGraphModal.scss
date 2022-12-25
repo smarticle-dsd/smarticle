@@ -1,0 +1,52 @@
+.sa-knowledge-graph-modal {
+    width: 100%;
+
+    position: absolute;
+    inset: 0;
+    top: 10px;
+    bottom: 10px;
+    left: 0px;
+    right: 0px;
+
+  .sa-knowledge-graph-modal-overlay {
+    position: fixed;
+    width: 100%;
+    background-color: rgba(159, 187, 170, 0.6);
+    z-index: 1;
+    top: 0px;
+    bottom: 0px;
+  }
+
+  .sa-knowledge-graph-modal-wrapper {
+    background-color: var(--sa-neutral-color-2);
+    width: fit-content;
+
+    margin: 175px auto;
+
+    border: 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+
+    padding: 32px;
+    position: relative;
+    z-index: 2;
+
+    .sa-knowledge-graph-modal-graph {
+        display: flex;
+        overflow-wrap: break-word;
+    }
+    .sa-knowledge-graph-modal-node-details {
+        display: block;
+        margin-left: 20px;
+        .sa-knowledge-graph-modal-node-buttons {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            .sa-knowledge-graph-modal-zoom-out-button {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+        }
+    }
+  }
+}

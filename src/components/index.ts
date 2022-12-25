@@ -1,4 +1,5 @@
 /* PLOP_INJECT_IMPORT */
+export * from "./KnowledgeGraphModal";
 export * from "./KnowledgeGraph";
 export * from "./TitleClose";
 export * from "./CustomSummary";

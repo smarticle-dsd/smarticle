@@ -1,4 +1,4 @@
-import React, { useMemo, FC, useState } from "react";
+import React, { useMemo, FC, useState, useCallback } from "react";
 import cs from "classnames";
 
 import { KnowledgeGraphProps } from "./KnowledgeGraph.types";
@@ -6,12 +6,15 @@ import { Button } from "../Button";
 import { SidebarError } from "../SidebarError";
 import { queryBackend } from "../../shared/queryBackend";
 import { formatDataForDisplay } from "../../shared/getDataForKnowledgeGraph";
+import { getMainNode } from "../../shared/getMainNodeForKnowledgeGraph";
 
 const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
   domID = "knowledge-graph",
   dataTestId = "test-knowledge-graph",
   className,
   paperTitle,
+  setIsVisible,
+  setElements,
 }): JSX.Element => {
   const domIDs = useMemo(
     () => ({
@@ -31,30 +34,35 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
   const [node, setNode] = useState<Record<string, string>>({});
 
   // Function to call backend to get nodes
-  async function getElements(id: string | null, title: string | null) {
-    try {
-      setPaperId("");
-      const result = await queryBackend("/paperKnowledgeGraph", {
-        body: {
-          paperTitle: title,
-          paperId: id,
-        },
-      });
-      if (result.length > 1) {
-        const main = result.filter(
-          (node: Record<string, Record<string, string>>) =>
-            node.data.type === "main",
-        );
-        setPaperId(main[0].data.id);
-        setNode(main[0].data);
-        setError(false);
-      } else {
+  const getElements = useCallback(
+    async (id: string | null, title: string | null) => {
+      try {
+        setPaperId("");
+        const result = await queryBackend("/paperKnowledgeGraph", {
+          body: {
+            paperTitle: title,
+            paperId: id,
+          },
+        });
+        if (result.length > 1) {
+          const main = getMainNode(result);
+          if (main) {
+            setPaperId(main.id);
+            setNode(main);
+            setError(false);
+            setElements(result);
+          } else {
+            setError(true);
+          }
+        } else {
+          setError(true);
+        }
+      } catch (e) {
         setError(true);
       }
-    } catch (e) {
-      setError(true);
-    }
-  }
+    },
+    [setElements],
+  );
   // Get paper title status on page load
   React.useEffect(() => {
     if (paperTitle && paperTitle.length > 0) {
@@ -64,15 +72,16 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
       setPaperId("");
       setError(true);
     }
-  }, [paperTitle]);
+  }, [getElements, paperTitle]);
 
   // const navigate = useNavigate();
   const sendToKG = () => {
+    setIsVisible(true);
     // navigate("/testGraph?title=" + paperTitle);
-    window.open(
-      window.location.origin.toString() + "/testGraph?paper=" + paperId,
-      "_blank",
-    );
+    // window.open(
+    //   window.location.origin.toString() + "/testGraph?paper=" + paperId,
+    //   "_blank",
+    // );
   };
 
   return (

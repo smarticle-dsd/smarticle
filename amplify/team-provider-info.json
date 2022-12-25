@@ -15,7 +15,7 @@
       "function": {
         "getKnowledgeGraph": {
           "deploymentBucketName": "amplify-smarticle-staging-124337-deployment",
-          "s3Key": "amplify-builds/getKnowledgeGraph-57574d4a723078674433-build.zip",
+          "s3Key": "amplify-builds/getKnowledgeGraph-79456f4f2b6a55653169-build.zip",
           "secretsPathAmplifyAppId": "dcfoxoxqw27pv"
         },
         "getSummaryInfo": {

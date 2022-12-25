@@ -71,7 +71,7 @@ exports.handler = async (event) => {
     // edges from current paper to all papers it references
     for (i = 1; i < referenceCount + 1; i++) {
       let reference = paperInfo.data.references[i - 1];
-      if (reference.paperId) {
+      if (reference && reference.paperId) {
         nodesAndEdges.push({
           data: {
             id: reference.paperId,
@@ -100,7 +100,7 @@ exports.handler = async (event) => {
     // edges from papers which cite this paper to the current paper
     for (i = referenceCount + 1; i < verticesCount; i++) {
       let citation = paperInfo.data.citations[i - referenceCount - 1];
-      if (citation.paperId) {
+      if (citation && citation.paperId) {
         nodesAndEdges.push({
           data: {
             id: citation.paperId,
