@@ -18,6 +18,10 @@
     },
     "secretsPathAmplifyAppId": {
       "Type": "String"
+    },
+    "functionsmarticlelayerArn": {
+      "Type": "String",
+      "Default": "functionsmarticlelayerArn"
     }
   },
   "Conditions": {
@@ -94,6 +98,28 @@
                   "SC_KEY"
                 ]
               ]
+            },
+            "NC_KEY": {
+              "Fn::Join": [
+                "",
+                [
+                  {
+                    "Fn::Sub": [
+                      "/amplify/${appId}/${env}/AMPLIFY_${functionName}_",
+                      {
+                        "appId": {
+                          "Ref": "secretsPathAmplifyAppId"
+                        },
+                        "env": {
+                          "Ref": "env"
+                        },
+                        "functionName": "getSummaryInfo"
+                      }
+                    ]
+                  },
+                  "NC_KEY"
+                ]
+              ]
             }
           }
         },
@@ -104,7 +130,11 @@
           ]
         },
         "Runtime": "nodejs14.x",
-        "Layers": [],
+        "Layers": [
+          {
+            "Ref": "functionsmarticlelayerArn"
+          }
+        ],
         "Timeout": 25
       }
     },

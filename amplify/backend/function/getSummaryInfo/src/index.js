@@ -1,103 +1,55 @@
-/*
-Use the following code to retrieve configured secrets from SSM:
-
-const aws = require('aws-sdk');
-
-const { Parameters } = await (new aws.SSM())
-  .getParameters({
-    Names: ["SC_KEY"].map(secretName => process.env[secretName]),
-    WithDecryption: true,
-  })
-  .promise();
-
-Parameters will be of the form { Name: 'secretName', Value: 'secretValue', ... }[]
-*/
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
-const axios = require("axios");
-const aws = require("aws-sdk");
+const getPaperInfo = require("/opt/utils/getPaperInfo");
+const queryNlpCloud = require("/opt/utils/makeNlpCloudRequest");
+const getReturnMessages = require("/opt/utils/getReturnMessages");
 
-async function getPaperId(paperTitle, key) {
-  return await axios.get(
-    `https://api.semanticscholar.org/graph/v1/paper/search`,
-    {
-      headers: {
-        "x-api-key": key,
-      },
-      params: {
-        query: paperTitle,
-        limit: 1,
-        fields: "authors",
-      },
-    },
-  );
-}
-
-async function getSummaryDetails(paperId, key) {
-  return await axios.get(
-    `https://api.semanticscholar.org/graph/v1/paper/` + paperId,
-    {
-      params: {
-        fields: "abstract,tldr",
-      },
-      headers: {
-        "x-api-key": key,
-      },
-    },
-  );
-}
 exports.handler = async (event) => {
+  console.log(`EVENT: ${JSON.stringify(event)}`);
+  let input = {};
   try {
-    const { Parameters } = await new aws.SSM()
-      .getParameters({
-        Names: ["SC_KEY"].map((secretName) => process.env[secretName]),
-        WithDecryption: true,
-      })
-      .promise();
+    input = JSON.parse(event.body);
+  } catch {
+    input = event;
+  }
 
-    let ss_key = Parameters[0].Value;
-    console.log(`EVENT: ${JSON.stringify(event)}`);
+  let paperId = input.paperId;
+  let paperTitle = input.paperTitle;
 
-    if (ss_key) {
-      const paperDetails = await getPaperId(
-        JSON.parse(event.body).paperTitle,
-        ss_key,
-      );
-      const summaryDetails = await getSummaryDetails(
-        paperDetails.data.data[0].paperId,
-        ss_key,
-      );
-      console.log(summaryDetails.data);
-      return {
-        statusCode: 200,
-        //  Uncomment below to enable CORS requests
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "*",
-        },
-        body: JSON.stringify(summaryDetails.data),
-      };
-    } else {
-      return {
-        statusCode: 500,
-        //  Uncomment below to enable CORS requests
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "*",
-        },
-        body: "some error",
-      };
-    }
-  } catch (err) {
-    return {
-      statusCode: 500,
-      //  Uncomment below to enable CORS requests
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "*",
+  try {
+    const summaryDetails = await getPaperInfo({
+      paperId,
+      paperTitle,
+      fieldsToGet: "abstract,tldr",
+    });
+
+    let abstract = summaryDetails.data.abstract;
+
+    // Get summary of abstract
+
+    // if (summaryDetails.data.abstract) {
+    //   const abstractSummary = await queryNlpCloud({
+    //     text: summaryDetails.data.abstract,
+    //   });
+    //   if (abstractSummary.status) abstract = abstractSummary.data;
+    // }
+
+    const tldr = summaryDetails.data.tldr
+      ? summaryDetails.data.tldr.text
+      : null;
+    return await getReturnMessages({
+      messageContent: {
+        abstract,
+        tldr,
       },
-      body: "some error",
-    };
+    });
+  } catch (error) {
+    console.log(error);
+    return await getReturnMessages({
+      messageContent: {
+        error,
+      },
+    });
   }
 };

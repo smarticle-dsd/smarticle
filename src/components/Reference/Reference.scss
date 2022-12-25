@@ -1,0 +1,49 @@
+.sa-reference {
+  color: var(--sa-neutral-color-5);
+  padding: 16px;
+  h1 {
+    @include typographyMediumL;
+    margin-bottom: 16px;
+  }
+  .reference-view-wrapper {
+    height: 318px;
+    text-align: center;
+    background: var(--sa-neutral-color-2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+
+    .reference-view {
+      img {
+        margin-bottom: 16px;
+        vertical-align: top;
+      }
+      h3 {
+        @include typographyMediumXs;
+        color: var(--sa-primary-color-4);
+        text-align: center;
+      }
+    }
+  }
+  .referenceview-canvas {
+    visibility: hidden;
+    height: 100%;
+    width: 100%;
+  }
+  .referenceview-button {
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    visibility: hidden;
+  }
+  .wrapper-canvas {
+    overflow: hidden;
+  }
+  .referenceview-canvas {
+    position: relative;
+  }
+  .referenceview-canvas:hover {
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,29 @@
+.sa-supported-paper-list {
+  .sa-supported-paper-message {
+    @include typographyRegularXxs;
+    h3 {
+      @include typographyRegularXxs;
+    }
+    ul {
+      @include typographyRegularXxs;
+      padding-left: 20px;
+    }
+  }
+  .sa-supported-paper-footer {
+    h2 {
+      @include typographyRegularXxs;
+      margin-top: 16px;
+      margin-bottom: 0px;
+      text-align: center;
+      a {
+        text-decoration: underline;
+      }
+      a:link,
+      a:visited,
+      a:hover,
+      a:active {
+        color: var(--sa-neutral-color-5);
+      }
+    }
+  }
+}

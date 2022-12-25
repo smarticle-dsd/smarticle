@@ -2,6 +2,7 @@ import React, { useMemo, FC } from "react";
 import cs from "classnames";
 
 import { TestToolProps } from "./TestTool.types";
+import { SidebarError } from "../SidebarError";
 
 const TestTool: FC<TestToolProps> = ({
   domID = "test-tool",
@@ -28,7 +29,9 @@ const TestTool: FC<TestToolProps> = ({
       className={cs("sa-test-tool", className)}
       data-testid={dataTestIDs.root}
     >
-      <div className="data">TestTool</div>
+      <div>
+        <SidebarError message="Paper ID not found!" severity="error" />
+      </div>
     </div>
   );
 };

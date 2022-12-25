@@ -4,10 +4,14 @@ import cs from "classnames";
 import { UploadModalProps } from "./UploadModal.types";
 import Icons from "../../icons";
 
-import AWS from "aws-sdk";
+import AWS, { AWSError } from "aws-sdk";
 import { Button } from "../Button";
 
 import { useNavigate } from "react-router-dom";
+
+import * as pdfjs from "pdfjs-dist/legacy/build/pdf";
+import { Loader } from "../Loader";
+import { TitleClose } from "../TitleClose";
 
 const UploadModal: FC<UploadModalProps> = ({
   domID = "upload-modal",
@@ -45,19 +49,32 @@ const UploadModal: FC<UploadModalProps> = ({
     region: bucketRegion,
   });
 
-  const [error, setError] = useState("");
-  const [selectedFile, setSelectedFile] = useState({
-    name: "",
-  });
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [pdfLink, setPdfLink] = useState("");
+  async function isPdfValid(url: string) {
+    try {
+      setLoading(true);
+      await pdfjs.getDocument({
+        url,
+        disableAutoFetch: true,
+        disableStream: true,
+      }).promise;
+      setError("");
+      return true;
+    } catch (err) {
+      setLoading(false);
+      setError("The input provided is not a valid pdf.");
+    }
+  }
   //accept the file input when user select or drop file
-  const onUpload = (e: any) => {
-    if (e.target.files.length > 0) {
-      if (e.target.files[0].type === "application/pdf") {
-        setSelectedFile(e.target.files[0]);
-        setError("");
+  const onUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPdfLink("");
+    if (e.currentTarget.files && e.currentTarget.files.length > 0) {
+      if (e.currentTarget.files[0].type === "application/pdf") {
+        handleUpload(e.currentTarget.files[0]);
       } else {
-        setSelectedFile(e.target.files[0]);
         setError(
           "The uploaded file is not supported. Only pdf files are allowed.",
         );
@@ -67,29 +84,42 @@ const UploadModal: FC<UploadModalProps> = ({
     }
   };
 
-  const handleUpload = (file: any) => {
-    if (pdfLink !== "" && pdfLink.endsWith(".pdf")) {
-      navigate("/pdfviewer?url=" + pdfLink);
-    } else if (file.name !== "" && file.type === "application/pdf") {
-      const params = {
-        ACL: "public-read",
-        Body: file,
-        Bucket: bucketName,
-        Key: file.name,
-      };
+  const handleUpload = async (file: File | null) => {
+    if (pdfLink !== "") {
+      if (await isPdfValid(pdfLink)) {
+        navigate("/pdfviewer/?url=" + pdfLink);
+      }
+    } else if (file && file.name !== "" && file.type === "application/pdf") {
+      if (await isPdfValid(URL.createObjectURL(file))) {
+        const params = {
+          ACL: "public-read",
+          Body: file,
+          Bucket: bucketName,
+          Key: file.name,
+        };
 
-      myBucket.putObject(params).send((err) => {
-        if (!err) {
-          navigate("/pdfviewer?file=" + file.name);
-        } else {
-          setError("There was an error during upload. Please try again.");
-        }
-      });
+        myBucket.putObject(params).send((err: AWSError) => {
+          if (!err) {
+            navigate("/pdfviewer/?file=" + file.name);
+          } else {
+            setError("There was an error during upload. Please try again.");
+          }
+        });
+        setLoading(false);
+      }
     } else {
       setError(
         "Please provide a pdf file or a link ending in pdf to continue.",
       );
     }
+  };
+
+  const handleToggle = () => {
+    toggle();
+    setSelectedFile(null);
+    setPdfLink("");
+    setError("");
+    setLoading(false);
   };
 
   return (
@@ -104,13 +134,7 @@ const UploadModal: FC<UploadModalProps> = ({
             className={cs("modal-wrapper", className)}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className={cs("title-and-close-button")}>
-              <div className={cs("modal-title", className)}>Upload a paper</div>
-              <Icons.CloseButton
-                className={cs("modal-close-button", className)}
-                onClick={() => toggle()}
-              />
-            </div>
+            <TitleClose titleText="Upload a paper" handleClose={handleToggle} />
             <div className={cs("modal-drop-area", className)}>
               <Icons.UploadCloudIcon className="upload-icon" />
               <p>
@@ -120,9 +144,9 @@ const UploadModal: FC<UploadModalProps> = ({
               </p>
               <input
                 type="file"
-                value=""
                 onChange={onUpload}
                 onInput={() => {
+                  setError("");
                   setPdfLink("");
                 }}
               />
@@ -135,19 +159,23 @@ const UploadModal: FC<UploadModalProps> = ({
             >
               {selectedFile?.name}
             </div>
-            {/*<div className={cs("modal-divider", className)}>or</div>
+            <div className={cs("modal-divider", className)}>or</div>
             <input
               className={cs("modal-link-section", className)}
               type="text"
+              value={pdfLink}
               placeholder="Paste a link"
               onInput={() => {
-                setSelectedFile({
-                  name: "",
-                });
+                setSelectedFile(null);
                 setError("");
               }}
-              onChange={(event) => setPdfLink(event.target.value)}
-            />*/}
+              onChange={(event) => {
+                setPdfLink(event.target.value);
+              }}
+            />
+            <div className={cs("modal-support-message", className)}>
+              Currently links are supported only for papers on arxiv.org
+            </div>
             <div
               className={cs("modal-error-message", className)}
               style={{ visibility: error === "" ? "hidden" : "visible" }}
@@ -163,11 +191,18 @@ const UploadModal: FC<UploadModalProps> = ({
             >
               Continue
             </Button>
+            {loading ? (
+              <div className={cs("loader-background", className)}>
+                <div className={cs("loader-modal", className)}>
+                  <Loader />
+                </div>
+              </div>
+            ) : null}
           </div>
 
           <div
             className={cs("sa-upload-modal-overlay")}
-            onClick={() => toggle()}
+            onClick={() => handleToggle()}
           ></div>
         </div>
       ) : null}

@@ -3,6 +3,17 @@
 @import "./theme/typography.scss";
 
 /* PLOP_INJECT_IMPORT */
+@import "../components/KnowledgeGraphModal/KnowledgeGraphModal.scss";
+@import "../components/KnowledgeGraph/KnowledgeGraph.scss";
+@import "../components/TitleClose/TitleClose.scss";
+@import "../components/CustomSummary/CustomSummary.scss";
+@import "../components/TitleClose/TitleClose.scss";
+@import "../components/CustomSummary/CustomSummary.scss";
+@import "../components/SidebarZoom/SidebarZoom.scss";
+@import "../components/SupportedPaperList/SupportedPaperList.scss";
+@import "../components/Loader/Loader.scss";
+@import "../components/SidebarError/SidebarError.scss";
+@import "../components/Reference/Reference.scss";
 @import "../components/Summary/Summary.scss";
 @import "../components/TestTool/TestTool.scss";
 @import "../components/Button/Button.scss";
