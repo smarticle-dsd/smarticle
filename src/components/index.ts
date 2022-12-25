@@ -1,4 +1,5 @@
 /* PLOP_INJECT_IMPORT */
+export * from "./InputText";
 export * from "./KnowledgeGraphModal";
 export * from "./KnowledgeGraph";
 export * from "./TitleClose";
