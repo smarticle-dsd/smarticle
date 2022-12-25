@@ -46,7 +46,7 @@ See https://github.com/adobe-type-tools/cmap-resources
   </head>
 
   <body tabindex="1">
-    <div id="outerContainer">
+    <div id="outerContainer" class="sidebarClosed">
       <div id="sidebarContainer">
         <div id="toolbarSidebar">
           <div id="toolbarSidebarLeft">
@@ -54,99 +54,7 @@ See https://github.com/adobe-type-tools/cmap-resources
               id="sidebarViewButtons"
               class="splitToolbarButton toggled"
               role="radiogroup"
-            >
-              <button
-                id="viewThumbnail"
-                class="toolbarButton toggled"
-                title="Show Thumbnails"
-                tabindex="2"
-                data-l10n-id="thumbs"
-                role="radio"
-                aria-checked="true"
-                aria-controls="thumbnailView"
-              >
-                <span data-l10n-id="thumbs_label">Thumbnails</span>
-              </button>
-              <button
-                id="viewOutline"
-                class="toolbarButton"
-                title="Show Document Outline (double-click to expand/collapse all items)"
-                tabindex="3"
-                data-l10n-id="document_outline"
-                role="radio"
-                aria-checked="false"
-                aria-controls="outlineView"
-              >
-                <span data-l10n-id="document_outline_label"
-                  >Document Outline</span
-                >
-              </button>
-              <button
-                id="viewAttachments"
-                class="toolbarButton"
-                title="Show Attachments"
-                tabindex="4"
-                data-l10n-id="attachments"
-                role="radio"
-                aria-checked="false"
-                aria-controls="attachmentsView"
-              >
-                <span data-l10n-id="attachments_label">Attachments</span>
-              </button>
-              <button
-                id="viewLayers"
-                class="toolbarButton"
-                title="Show Layers (double-click to reset all layers to the default state)"
-                tabindex="5"
-                data-l10n-id="layers"
-                role="radio"
-                aria-checked="false"
-                aria-controls="layersView"
-              >
-                <span data-l10n-id="layers_label">Layers</span>
-              </button>
-              <div class="verticalSidebarToolbarSeparator"></div>
-              <button
-                id="referenceDetails"
-                class="toolbarButton"
-                title="Show Reference View"
-                tabindex="5"
-                data-l10n-id="reference-details"
-                role="radio"
-                aria-checked="false"
-                aria-controls="referenceDetailsView"
-              >
-                <span data-l10n-id="reference_details_label"
-                  >Reference Details</span
-                >
-              </button>
-              <button
-                id="knowledgeGraph"
-                class="toolbarButton"
-                title="Show Knowledge Graph"
-                tabindex="5"
-                data-l10n-id="knowledgeGraph"
-                role="radio"
-                aria-checked="false"
-                aria-controls="knowledgeGraphView"
-              >
-                <span data-l10n-id="knowledge_graph_label"
-                  >Knowledge Graph</span
-                >
-              </button>
-              <button
-                id="summary"
-                class="toolbarButton"
-                title="Show Summary"
-                tabindex="5"
-                data-l10n-id="summary"
-                role="radio"
-                aria-checked="false"
-                aria-controls="summaryView"
-              >
-                <span data-l10n-id="summary_label">Summary</span>
-              </button>
-            </div>
+            ></div>
           </div>
 
           <div id="toolbarSidebarRight">
@@ -385,6 +293,7 @@ See https://github.com/adobe-type-tools/cmap-resources
               title="Open File"
               tabindex="51"
               data-l10n-id="open_file"
+              style="display: none"
             >
               <span data-l10n-id="open_file_label">Open</span>
             </button>
@@ -630,42 +539,165 @@ See https://github.com/adobe-type-tools/cmap-resources
                   data-l10n-id="toggle_sidebar"
                   aria-expanded="false"
                   aria-controls="sidebarContainer"
+                  style="display: none"
                 >
                   <span data-l10n-id="toggle_sidebar_label"
                     >Toggle Sidebar</span
                   >
                 </button>
+                <button
+                  id="viewThumbnail"
+                  class="customLayoutIconButton sidebarToolButton toggled active"
+                  title="Show Thumbnails"
+                  tabindex="12"
+                  data-l10n-id="thumbs"
+                  data-sidebar-page="thumbnailView"
+                  role="radio"
+                  aria-checked="true"
+                  aria-controls="thumbnailView"
+                >
+                  <object
+                    data="images/toolbarButton-viewThumbnail.svg"
+                    type="image/svg+xml"
+                  ></object>
+                </button>
+                <button
+                  id="viewOutline"
+                  class="customLayoutIconButton sidebarToolButton"
+                  title="Show Document Outline (double-click to expand/collapse all items)"
+                  tabindex="13"
+                  data-l10n-id="document_outline"
+                  data-sidebar-page="outlineView"
+                  role="radio"
+                  aria-checked="false"
+                  aria-controls="outlineView"
+                >
+                  <object
+                    data="images/toolbarButton-viewOutline.svg"
+                    type="image/svg+xml"
+                  ></object>
+                </button>
+                <button
+                  id="viewAttachments"
+                  class="customLayoutIconButton sidebarToolButton"
+                  title="Show Attachments"
+                  tabindex="14"
+                  data-l10n-id="attachments"
+                  data-sidebar-page="attachmentsView"
+                  role="radio"
+                  aria-checked="false"
+                  aria-controls="attachmentsView"
+                >
+                  <object
+                    data="images/toolbarButton-viewAttachments.svg"
+                    type="image/svg+xml"
+                  ></object>
+                </button>
+                <button
+                  id="viewLayers"
+                  class="customLayoutIconButton sidebarToolButton"
+                  title="Show Layers (double-click to reset all layers to the default state)"
+                  tabindex="15"
+                  data-l10n-id="layers"
+                  data-sidebar-page="layersView"
+                  role="radio"
+                  aria-checked="false"
+                  aria-controls="layersView"
+                >
+                  <object
+                    data="images/toolbarButton-viewLayers.svg"
+                    type="image/svg+xml"
+                  ></object>
+                </button>
+                <div class="verticalSidebarToolbarSeparator"></div>
+                <button
+                  id="referenceDetailsToolbarButton"
+                  class="customLayoutIconButton sidebarToolButton"
+                  title="Show Reference View"
+                  tabindex="16"
+                  data-l10n-id="reference-details"
+                  data-sidebar-page="referenceDetailsView"
+                  role="radio"
+                  aria-checked="false"
+                  aria-controls="referenceDetailsView"
+                >
+                  <object
+                    data="images/toolbarButton-referenceDetails.svg"
+                    type="image/svg+xml"
+                  ></object>
+                </button>
+                <button
+                  id="knowledgeGraphToolbarButton"
+                  class="customLayoutIconButton sidebarToolButton"
+                  title="Show Knowledge Graph"
+                  tabindex="16"
+                  data-l10n-id="knowledgeGraph"
+                  data-sidebar-page="knowledgeGraphView"
+                  role="radio"
+                  aria-checked="false"
+                  aria-controls="knowledgeGraphView"
+                >
+                  <object
+                    data="images/toolbarButton-knowledgeGraph.svg"
+                    type="image/svg+xml"
+                  ></object>
+                </button>
+                <button
+                  id="summaryToolbarButton"
+                  class="customLayoutIconButton sidebarToolButton"
+                  title="Show Summary"
+                  tabindex="16"
+                  data-l10n-id="summary"
+                  data-sidebar-page="summaryView"
+                  role="radio"
+                  aria-checked="false"
+                  aria-controls="summaryView"
+                >
+                  <object
+                    data="images/toolbarButton-summary.svg"
+                    type="image/svg+xml"
+                  ></object>
+                </button>
                 <div class="toolbarButtonSpacer"></div>
                 <button
                   id="viewFind"
-                  class="toolbarButton"
+                  class="customLayoutIconButton"
                   title="Find in Document"
                   tabindex="12"
                   data-l10n-id="findbar"
                   aria-expanded="false"
                   aria-controls="findbar"
                 >
-                  <span data-l10n-id="findbar_label">Find</span>
+                  <object
+                    data="images/toolbarButton-search.svg"
+                    type="image/svg+xml"
+                  ></object>
                 </button>
                 <div class="splitToolbarButton hiddenSmallView">
                   <button
-                    class="toolbarButton"
+                    class="customLayoutIconButton"
                     title="Previous Page"
                     id="previous"
                     tabindex="13"
                     data-l10n-id="previous"
                   >
-                    <span data-l10n-id="previous_label">Previous</span>
+                    <object
+                      data="images/toolbarButton-pageUp.svg"
+                      type="image/svg+xml"
+                    ></object>
                   </button>
                   <div class="splitToolbarButtonSeparator"></div>
                   <button
-                    class="toolbarButton"
+                    class="customLayoutIconButton"
                     title="Next Page"
                     id="next"
                     tabindex="14"
                     data-l10n-id="next"
                   >
-                    <span data-l10n-id="next_label">Next</span>
+                    <object
+                      data="images/toolbarButton-pageDown.svg"
+                      type="image/svg+xml"
+                    ></object>
                   </button>
                 </div>
                 <input
@@ -694,22 +726,28 @@ See https://github.com/adobe-type-tools/cmap-resources
 
                 <button
                   id="print"
-                  class="toolbarButton hiddenMediumView"
+                  class="customLayoutIconButton hiddenMediumView"
                   title="Print"
                   tabindex="32"
                   data-l10n-id="print"
                 >
-                  <span data-l10n-id="print_label">Print</span>
+                  <object
+                    data="images/toolbarButton-print.svg"
+                    type="image/svg+xml"
+                  ></object>
                 </button>
 
                 <button
                   id="download"
-                  class="toolbarButton hiddenMediumView"
+                  class="customLayoutIconButton hiddenMediumView"
                   title="Save"
                   tabindex="33"
                   data-l10n-id="save"
                 >
-                  <span data-l10n-id="save_label">Save</span>
+                  <object
+                    data="images/toolbarButton-download.svg"
+                    type="image/svg+xml"
+                  ></object>
                 </button>
 
                 <div class="verticalToolbarSeparator hiddenMediumView"></div>
@@ -721,7 +759,7 @@ See https://github.com/adobe-type-tools/cmap-resources
                 >
                   <button
                     id="editorFreeText"
-                    class="toolbarButton"
+                    class="customLayoutIconButton"
                     disabled="disabled"
                     title="Text"
                     role="radio"
@@ -729,11 +767,14 @@ See https://github.com/adobe-type-tools/cmap-resources
                     tabindex="34"
                     data-l10n-id="editor_free_text2"
                   >
-                    <span data-l10n-id="editor_free_text2_label">Text</span>
+                    <object
+                      data="images/toolbarButton-editorFreeText.svg"
+                      type="image/svg+xml"
+                    ></object>
                   </button>
                   <button
                     id="editorInk"
-                    class="toolbarButton"
+                    class="customLayoutIconButton"
                     disabled="disabled"
                     title="Draw"
                     role="radio"
@@ -741,7 +782,10 @@ See https://github.com/adobe-type-tools/cmap-resources
                     tabindex="35"
                     data-l10n-id="editor_ink2"
                   >
-                    <span data-l10n-id="editor_ink2_label">Draw</span>
+                    <object
+                      data="images/toolbarButton-editorInk.svg"
+                      type="image/svg+xml"
+                    ></object>
                   </button>
                 </div>
 
@@ -752,36 +796,45 @@ See https://github.com/adobe-type-tools/cmap-resources
 
                 <button
                   id="secondaryToolbarToggle"
-                  class="toolbarButton"
+                  class="customLayoutIconButton"
                   title="Tools"
                   tabindex="48"
                   data-l10n-id="tools"
                   aria-expanded="false"
                   aria-controls="secondaryToolbar"
                 >
-                  <span data-l10n-id="tools_label">Tools</span>
+                  <object
+                    data="images/toolbarButton-secondaryToolbarToggle.svg"
+                    type="image/svg+xml"
+                  ></object>
                 </button>
               </div>
               <div id="toolbarViewerMiddle">
                 <div class="splitToolbarButton">
                   <button
                     id="zoomOut"
-                    class="toolbarButton"
+                    class="customLayoutIconButton"
                     title="Zoom Out"
                     tabindex="21"
                     data-l10n-id="zoom_out"
                   >
-                    <span data-l10n-id="zoom_out_label">Zoom Out</span>
+                    <object
+                      data="images/toolbarButton-zoomOut.svg"
+                      type="image/svg+xml"
+                    ></object>
                   </button>
                   <div class="splitToolbarButtonSeparator"></div>
                   <button
                     id="zoomIn"
-                    class="toolbarButton"
+                    class="customLayoutIconButton"
                     title="Zoom In"
                     tabindex="22"
                     data-l10n-id="zoom_in"
                   >
-                    <span data-l10n-id="zoom_in_label">Zoom In</span>
+                    <object
+                      data="images/toolbarButton-zoomIn.svg"
+                      type="image/svg+xml"
+                    ></object>
                   </button>
                 </div>
                 <span id="scaleSelectContainer" class="dropdownToolbarButton">
