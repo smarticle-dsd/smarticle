@@ -162,11 +162,8 @@ const KnowledgeGraphModal: FC<KnowledgeGraphModalProps> = ({
               </div>
             )}
             {!error && (
-              <div
-                className={cs("sa-knowledge-graph-wrapper", className)}
-                style={{ marginBottom: "8px" }}
-              >
-                <Container>
+              <div className={cs("sa-knowledge-graph-wrapper", className)}>
+                <Container style={{ marginBottom: "8px" }}>
                   <InnerContainer>
                     <Cube style={{ backgroundColor: "#00BFFF" }} />
                     <span>Citations</span>
