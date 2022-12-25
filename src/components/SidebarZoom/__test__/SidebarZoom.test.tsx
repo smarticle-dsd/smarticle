@@ -1,27 +1,27 @@
 import * as React from "react";
 import { render } from "@testing-library/react";
 
-import KnowledgeGraph from "../KnowledgeGraph";
+import SidebarZoom from "../SidebarZoom";
 
-describe("KnowledgeGraph tests", () => {
+describe("SidebarZoom tests", () => {
   test("Check if className exists on root DOM element", () => {
-    const { container } = render(<KnowledgeGraph />);
-    const element = container.querySelector(".sa-knowledge-graph");
+    const { container } = render(<SidebarZoom />);
+    const element = container.querySelector(".sa-sidebar-zoom");
     expect(element).not.toBe(null);
   });
 
   test("Check if domID exists on root DOM element", () => {
-    const { container } = render(<KnowledgeGraph domID="knowledge-graph" />);
-    const element = container.querySelector("#knowledge-graph");
+    const { container } = render(<SidebarZoom domID="sidebar-zoom" />);
+    const element = container.querySelector("#sidebar-zoom");
     expect(element).not.toBe(null);
   });
 
   test("Check if dataTestId exists on root DOM element", () => {
     const { container } = render(
-      <KnowledgeGraph dataTestId="test-knowledge-graph" />,
+      <SidebarZoom dataTestId="test-sidebar-zoom" />,
     );
     const element = container.querySelector(
-      '[data-testid="test-knowledge-graph"]',
+      '[data-testid="test-sidebar-zoom"]',
     );
     expect(element).not.toBe(null);
   });

@@ -31,23 +31,6 @@
     position: relative;
     z-index: 2;
 
-    .title-and-close-button {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .modal-title {
-      @include typographyMediumM;
-      color: var(--sa-upload-modal-title-text-color);
-    }
-
-    .modal-close-button {
-      cursor: pointer;
-
-      width: 24px;
-      height: 24px;
-    }
-
     .modal-drop-area {
       background-color: var(--sa-upload-modal-drop-area-background-color);
       width: 100%;

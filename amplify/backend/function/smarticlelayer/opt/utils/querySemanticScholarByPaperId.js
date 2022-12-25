@@ -1,11 +1,11 @@
-const makeHTTPRequest = require("/opt/utils/makeHttpRequest");
+const makeSemanticScholarRequest = require("/opt/utils/makeSemanticScholarRequest");
 async function querySemanticScholarByPaperId({ paperId, fieldsToGet }) {
   console.log("Input to querySemanticScholarByPaperId", paperId, fieldsToGet);
   let endpoint = "";
   try {
     if (paperId && fieldsToGet) {
       endpoint += paperId;
-      const { status, data } = await makeHTTPRequest({
+      const { status, data } = await makeSemanticScholarRequest({
         endpoint,
         fields: fieldsToGet,
       });

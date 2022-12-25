@@ -1,27 +1,27 @@
 import * as React from "react";
 import { render } from "@testing-library/react";
 
-import TestGraphPage from "../TestGraphPage";
+import CustomSummary from "../CustomSummary";
 
-describe("TestGraphPage tests", () => {
+describe("CustomSummary tests", () => {
   test("Check if className exists on root DOM element", () => {
-    const { container } = render(<TestGraphPage />);
-    const element = container.querySelector(".sa-test-graph-page");
+    const { container } = render(<CustomSummary />);
+    const element = container.querySelector(".sa-custom-summary");
     expect(element).not.toBe(null);
   });
 
   test("Check if domID exists on root DOM element", () => {
-    const { container } = render(<TestGraphPage domID="test-graph-page" />);
-    const element = container.querySelector("#test-graph-page");
+    const { container } = render(<CustomSummary domID="custom-summary" />);
+    const element = container.querySelector("#custom-summary");
     expect(element).not.toBe(null);
   });
 
   test("Check if dataTestId exists on root DOM element", () => {
     const { container } = render(
-      <TestGraphPage dataTestId="test-test-graph-page" />,
+      <CustomSummary dataTestId="test-custom-summary" />,
     );
     const element = container.querySelector(
-      '[data-testid="test-test-graph-page"]',
+      '[data-testid="test-custom-summary"]',
     );
     expect(element).not.toBe(null);
   });

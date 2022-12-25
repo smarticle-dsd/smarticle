@@ -12354,8 +12354,13 @@
                 )[0];
                 canv.style.visibility = "visible";
 
+                var button = document.getElementsByClassName(
+                  "referenceview-button",
+                )[0];
+                button.style.visibility = "visible";
+
                 let link_destination = data.dest;
-                canv.addEventListener(
+                button.addEventListener(
                   "click",
                   () => this.linkService.goToDestination(link_destination),
                   false,

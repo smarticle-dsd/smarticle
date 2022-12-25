@@ -8,5 +8,6 @@
       "isLatestVersionSelected": true
     }
   ],
-  "environmentVariableList": []
+  "environmentVariableList": [],
+  "secretNames": ["SC_KEY"]
 }

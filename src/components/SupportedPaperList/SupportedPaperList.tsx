@@ -78,8 +78,14 @@ const SupportedPaperList: FC<SupportedPaperListProps> = ({
       </div>
       <div className={cs("sa-supported-paper-footer", className)}>
         <h2>
-          All the information displayed are provided by Semantic Scholar
-          https://www.semanticscholar.org/
+          All the information displayed are provided by{" "}
+          <a
+            href="https://www.semanticscholar.org/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Semantic Scholar
+          </a>
         </h2>
       </div>
     </div>

@@ -6,14 +6,14 @@ import { Button } from "../Button";
 import { SupportedPaperList } from "../SupportedPaperList";
 
 const SidebarError: FC<SidebarErrorProps> = ({
+  // TODO: Add props for Knowledge graph
   domID = "sidebar-error",
   dataTestId = "test-sidebar-error",
   className,
+  paperTitle,
   message,
-  summary,
-  setSummary,
-  getSummary,
   severity,
+  getData,
 }): JSX.Element => {
   const domIDs = useMemo(
     () => ({
@@ -30,17 +30,25 @@ const SidebarError: FC<SidebarErrorProps> = ({
   );
 
   const [paperId, setPaperId] = useState<string>("");
+  const [needsReset, setNeedsReset] = useState<boolean>(false);
 
-  // Function to get summary for manual id input
+  //Function to reset data to original data
+  const handleResetData = async () => {
+    setPaperId("");
+    // Reset data for Knowledge graph and Summary based on paper title identified
+    if (getData) {
+      getData(null, paperTitle as string);
+      setNeedsReset(false);
+    }
+  };
+
+  // Function to get data for manual id input
   const handlePaperIdInput = async (paperId: string) => {
-    if (summary && setSummary && getSummary) {
-      setSummary({});
+    // Get summary and knowledge graph from paper id
+    if (getData) {
       setPaperId(paperId);
-      getSummary(paperId as string, null).then(
-        (result: Record<string, string>) => {
-          setSummary(result);
-        },
-      );
+      getData(paperId as string, null);
+      setNeedsReset(true);
     }
   };
   return (
@@ -67,18 +75,30 @@ const SidebarError: FC<SidebarErrorProps> = ({
           <input
             className={cs("sidebar-error-input-text", className)}
             type="text"
+            value={paperId}
             placeholder="Enter ID"
             onChange={(event) => {
               setPaperId(event.target.value);
             }}
           />
-          <div className={cs("sidebar-error-button", className)}>
+          <div className={cs("sidebar-error-buttons")}>
             <Button
+              className={cs("sidebar-submit-button", className)}
               size="large"
               type="primary"
+              disabled={paperId.length === 0}
               onClick={() => handlePaperIdInput(paperId)}
             >
               Submit ID
+            </Button>
+            <Button
+              size="large"
+              className={cs("sidebar-reset-button", className)}
+              type="primary"
+              disabled={!needsReset}
+              onClick={() => handleResetData()}
+            >
+              Reset
             </Button>
           </div>
           <SupportedPaperList />

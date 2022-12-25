@@ -89,6 +89,7 @@ function editToolBar() {
   /* Moving elements*/
   //addElemFromSecondaryToPrimary("previous","toolbarViewerMiddle")
   removeElement("openFile");
+  removeElement("secondaryOpenFile");
   registerCustomToolbarButtonHandlers();
 }
 

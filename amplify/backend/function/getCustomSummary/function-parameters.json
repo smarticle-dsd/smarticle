@@ -8,6 +8,5 @@
       "isLatestVersionSelected": true
     }
   ],
-  "secretNames": [],
-  "environmentVariableList": []
+  "secretNames": ["NC_KEY"]
 }
