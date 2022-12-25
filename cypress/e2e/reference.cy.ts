@@ -1,15 +1,15 @@
 const pdfUrl = "https://arxiv.org/pdf/2211.14227.pdf";
 
-const getIframeFromUrl = (pdfUrl: string) => {
+const getIframeFromUrl = (pdfUrl: string, waitTime: number = 10000) => {
   cy.visit("/");
   return cy
     .get(".upload-pdf-button")
-    .click()
+    .click({ force: true })
     .get(".modal-link-section")
     .type(pdfUrl)
     .get(".modal-upload-button")
-    .click()
-    .wait(10000)
+    .click({ force: true })
+    .wait(waitTime)
     .get("iframe")
     .its("0.contentDocument.body")
     .should("not.be.empty")
@@ -18,14 +18,16 @@ const getIframeFromUrl = (pdfUrl: string) => {
 
 describe("The reference details component opens when clicking on the Reference button on the toolbar", () => {
   it("passes", () => {
-    getIframeFromUrl(pdfUrl).find("#referenceDetails").click();
+    getIframeFromUrl(pdfUrl).find("#referenceDetailsToolbarButton").click();
   });
 });
 
 describe("Rerence view wapper is shown when no reference has been clicked", () => {
   it("passes", () => {
     getIframeFromUrl(pdfUrl).then(($iframeData) => {
-      const referenceButton = $iframeData.find("#referenceDetails");
+      const referenceButton = $iframeData.find(
+        "#referenceDetailsToolbarButton",
+      );
       cy.wrap(referenceButton).click();
       cy.wrap($iframeData)
         .find(".sa-reference")
