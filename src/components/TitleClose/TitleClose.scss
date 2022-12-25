@@ -9,6 +9,7 @@
     h2 {
       @include typographyMediumM;
       color: var(--sa-upload-modal-title-text-color);
+      margin: 0px;
     }
   }
 

@@ -46,7 +46,7 @@ const KnowledgeGraphModal: FC<KnowledgeGraphModalProps> = ({
   React.useEffect(() => {
     containerRef.current = document.getElementById(domIDs.root);
     if (containerRef.current) {
-      setStyle({ width: 500, height: 300 });
+      setStyle({ width: containerRef.current.offsetWidth, height: 450 });
     }
   }, [containerRef, domIDs.root]);
 
@@ -54,7 +54,7 @@ const KnowledgeGraphModal: FC<KnowledgeGraphModalProps> = ({
   React.useEffect(() => {
     function handleResize() {
       if (containerRef.current) {
-        setStyle({ width: 500, height: 300 });
+        setStyle({ width: containerRef.current.offsetWidth, height: 450 });
       }
     }
 
@@ -162,7 +162,10 @@ const KnowledgeGraphModal: FC<KnowledgeGraphModalProps> = ({
               </div>
             )}
             {!error && (
-              <div className={cs("sa-knowledge-graph-wrapper", className)}>
+              <div
+                className={cs("sa-knowledge-graph-wrapper", className)}
+                style={{ marginBottom: "8px" }}
+              >
                 <Container>
                   <InnerContainer>
                     <Cube style={{ backgroundColor: "#00BFFF" }} />

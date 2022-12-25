@@ -1,12 +1,16 @@
 .sa-knowledge-graph-modal {
-    width: 100%;
+  width: 100%;
 
-    position: absolute;
-    inset: 0;
-    top: 10px;
-    bottom: 10px;
-    left: 0px;
-    right: 0px;
+  position: absolute;
+  inset: 0;
+  top: 10px;
+  bottom: 10px;
+  left: 0px;
+  right: 0px;
+
+  .sa-title-close {
+    margin-bottom: 8px;
+  }
 
   .sa-knowledge-graph-modal-overlay {
     position: fixed;
@@ -19,7 +23,7 @@
 
   .sa-knowledge-graph-modal-wrapper {
     background-color: var(--sa-neutral-color-2);
-    width: 850px;
+    width: 1000px;
 
     margin: 175px auto;
 
@@ -32,21 +36,20 @@
     z-index: 2;
 
     .sa-knowledge-graph-modal-graph {
-        display: flex;
-        overflow-wrap: break-word;
+      display: flex;
+      overflow-wrap: break-word;
+      gap: 20px;
     }
     .sa-knowledge-graph-modal-node-details {
-        display: block;
-        margin-left: 20px;
-        .sa-knowledge-graph-modal-node-buttons {
-            display: flex;
-            justify-content: center;
-            text-align: center;
-            .sa-knowledge-graph-modal-zoom-out-button {
-                margin-left: 10px;
-                margin-right: 10px;
-            }
+      .sa-knowledge-graph-modal-node-buttons {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        .sa-knowledge-graph-modal-zoom-out-button {
+          margin-left: 10px;
+          margin-right: 10px;
         }
+      }
     }
   }
 }
