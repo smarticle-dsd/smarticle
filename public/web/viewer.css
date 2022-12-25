@@ -1558,11 +1558,11 @@ body {
 }
 
 [dir="ltr"] .findbar {
-  left: 64px;
+  left: 250px;
 }
 
 [dir="rtl"] .findbar {
-  right: 64px;
+  right: 250px;
 }
 
 .findbar {
@@ -2188,6 +2188,51 @@ body {
   inset-inline-start: 12px;
 }
 
+.customLayoutIconButton {
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+  appearance: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+
+  margin: 2px 1px;
+  border-radius: 2px;
+}
+
+.customLayoutIconButton > svg,
+.customLayoutIconButton > object {
+  pointer-events: none;
+}
+
+.customLayoutIconButton:hover {
+  background-color: var(--toggled-hover-active-btn-color);
+}
+
+.customLayoutIconButton.active {
+  background-color: var(--toggled-hover-active-btn-color);
+}
+
+.customLayoutIconButton:disabled {
+  opacity: 40%;
+  cursor: not-allowed;
+}
+
+.editorModeButtons,
+.hiddenSmallView,
+.splitToolbarButton {
+  display: flex;
+  margin: 0px;
+}
+
 #sidebarToggle::before {
   -webkit-mask-image: var(--toolbarButton-sidebarToggle-icon);
   mask-image: var(--toolbarButton-sidebarToggle-icon);
@@ -2468,7 +2513,10 @@ a.secondaryToolbarButton[href="#"] {
 }
 .verticalSidebarToolbarSeparator {
   display: block;
-  margin: 3px 2px;
+  margin-top: 5px;
+  margin-bottom: 3px;
+  margin-left: 2px;
+  margin-right: 2px;
   width: 1px;
   height: 22px;
   background-color: var(--separator-color);

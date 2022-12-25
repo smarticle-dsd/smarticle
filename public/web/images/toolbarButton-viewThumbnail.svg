@@ -1,12 +1,12 @@
 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_771_1224)">
+<g clip-path="url(#clip0_700_594)">
 <rect x="0.75" y="0.75" width="5.5" height="5.5" rx="1.25" stroke="#7FB800" stroke-width="1.5"/>
-<rect x="9.75" y="0.75" width="5.5" height="5.5" rx="1.25" stroke="#7FB800" stroke-width="1.5"/>
-<rect x="9.75" y="9.75" width="5.5" height="5.5" rx="1.25" stroke="#7FB800" stroke-width="1.5"/>
-<rect x="0.75" y="9.75" width="5.5" height="5.5" rx="1.25" stroke="#7FB800" stroke-width="1.5"/>
+<rect x="9.75" y="0.75" width="5.5" height="5.5" rx="1.25" stroke="#54635B" stroke-width="1.5"/>
+<rect x="9.75" y="9.75" width="5.5" height="5.5" rx="1.25" stroke="#54635B" stroke-width="1.5"/>
+<rect x="0.75" y="9.75" width="5.5" height="5.5" rx="1.25" stroke="#54635B" stroke-width="1.5"/>
 </g>
 <defs>
-<clipPath id="clip0_771_1224">
+<clipPath id="clip0_700_594">
 <rect width="16" height="16" fill="white"/>
 </clipPath>
 </defs>
