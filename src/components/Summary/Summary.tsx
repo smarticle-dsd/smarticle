@@ -4,12 +4,9 @@ import cs from "classnames";
 import { SummaryProps } from "./Summary.types";
 import { SidebarError } from "../SidebarError";
 import { Button } from "../Button";
-
-import { Amplify, API } from "aws-amplify";
-import aws_exports from "../../aws-exports";
 import { CustomSummary } from "../CustomSummary";
 import { SidebarZoom } from "../SidebarZoom";
-Amplify.configure(aws_exports);
+import { queryBackend } from "../../shared/queryBackend";
 
 const Summary: FC<SummaryProps> = ({
   domID = "summary",
@@ -35,11 +32,13 @@ const Summary: FC<SummaryProps> = ({
   const [error, setError] = useState<boolean>(false);
 
   const [loading, setLoading] = useState<boolean>(false);
-  const [customSummary, setCustomSummary] = useState<string | null>(null);
+  const [customSummary, setCustomSummary] = useState<string | null>(
+    "Please select a section of the text to view summary of the section.",
+  );
   // Function to call backend to get custom summary
-  const getCustomSummary = async (text: string | undefined) => {
+  const getCustomSummary = async (text: string) => {
     setLoading(true);
-    const result = await API.post("backend", "/customSummary", {
+    const result = await queryBackend("/customSummary", {
       body: {
         text,
       },
@@ -74,30 +73,27 @@ const Summary: FC<SummaryProps> = ({
   // Function to call backend to get summary
   const getSummary = async (id: string | null, title: string | null) => {
     try {
-      const result = await API.post("backend", "/paperSummary", {
+      setSummary(null);
+      const result = await queryBackend("/paperSummary", {
         body: {
           paperTitle: title,
           paperId: id,
         },
       });
       if (result.abstract || result.tldr) {
+        setSummary(result);
         setError(false);
-        return result;
       } else {
         setError(true);
-        return null;
       }
     } catch (e) {
       setError(true);
-      return null;
     }
   };
   // Get summary on page load
   useEffect(() => {
     if (paperTitle !== "") {
-      getSummary(null, paperTitle as string).then((result) => {
-        setSummary(result);
-      });
+      getSummary(null, paperTitle as string);
     } else {
       setError(true);
     }
@@ -189,9 +185,7 @@ const Summary: FC<SummaryProps> = ({
               ? "Paper ID not found!"
               : "Is this not the right summary for the uploaded paper?"
           }
-          summary={summary}
-          setSummary={setSummary}
-          getSummary={getSummary}
+          getData={getSummary}
           severity={error ? "error" : "info"}
         />
       </div>

@@ -9,18 +9,20 @@
 
   .sa-knowledge-graph-wrapper {
     .sa-knowledge-graph-details {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      h2 {
-        @include typographyMediumM;
+      align-items: left;
+      p {
+        @include typographyRegularXs;
       }
     }
 
-    .sa-knowledge-graph-button {
-      margin-top: 8px;
-      margin-bottom: 8px;
+    .sa-knowledge-graph-button-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .sa-knowledge-graph-button {
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
     }
   }
 }
