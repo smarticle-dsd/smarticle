@@ -8,7 +8,7 @@ import AWS, { AWSError } from "aws-sdk";
 import { Button } from "../Button";
 
 import { useNavigate } from "react-router-dom";
-
+import { InputText } from "../InputText";
 import * as pdfjs from "pdfjs-dist/legacy/build/pdf";
 import { Loader } from "../Loader";
 import { TitleClose } from "../TitleClose";
@@ -160,9 +160,10 @@ const UploadModal: FC<UploadModalProps> = ({
               {selectedFile?.name}
             </div>
             <div className={cs("modal-divider", className)}>or</div>
-            <input
+
+            <InputText
+              domID="sa-upload-modal-input-text"
               className={cs("modal-link-section", className)}
-              type="text"
               value={pdfLink}
               placeholder="Paste a link"
               onInput={() => {
@@ -173,6 +174,7 @@ const UploadModal: FC<UploadModalProps> = ({
                 setPdfLink(event.target.value);
               }}
             />
+
             <div className={cs("modal-support-message", className)}>
               Currently links are supported only for papers on arxiv.org
             </div>

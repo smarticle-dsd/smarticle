@@ -4,7 +4,7 @@ import cs from "classnames";
 import { SidebarErrorProps } from "./SidebarError.types";
 import { Button } from "../Button";
 import { SupportedPaperList } from "../SupportedPaperList";
-
+import { InputText } from "../InputText";
 const SidebarError: FC<SidebarErrorProps> = ({
   // TODO: Add props for Knowledge graph
   domID = "sidebar-error",
@@ -72,9 +72,9 @@ const SidebarError: FC<SidebarErrorProps> = ({
           <h3>Enter the paper's ID manually:</h3>
         </div>
         <div className={cs("sidebar-error-input-section", className)}>
-          <input
+          <InputText
+            domID={"sa-sidebar-error-input-text"}
             className={cs("sidebar-error-input-text", className)}
-            type="text"
             value={paperId}
             placeholder="Enter ID"
             onChange={(event) => {

@@ -46,20 +46,6 @@
     .sidebar-error-input-section {
       margin-bottom: 8px;
 
-      .sidebar-error-input-text {
-        @include typographyRegularXs;
-        margin-bottom: 16px;
-        padding: 8px;
-        box-sizing: border-box;
-        width: 100%;
-        border: 0px;
-        border-radius: 4px;
-        color: var(--sa-neutral-color-5);
-
-        &::placeholder {
-          color: var(--sa-neutral-color-3);
-        }
-      }
       .sidebar-error-buttons {
         display: flex;
         text-align: center;

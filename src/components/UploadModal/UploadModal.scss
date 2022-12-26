@@ -127,23 +127,6 @@
       }
     }
 
-    .modal-link-section {
-      @include typographyRegularXs;
-      background-color: var(--sa-upload-modal-linlk-section);
-      width: 320px;
-      height: 33px;
-      border: 0px;
-      border-radius: 4px;
-      margin: 16px auto 0px auto;
-      padding-left: 8px;
-
-      color: var(--sa-neutral-color-5);
-
-      &::placeholder {
-        color: var(--sa-neutral-color-3);
-      }
-    }
-
     .modal-support-message {
       @include typographyRegularXxs;
       color: var(--sa-neutral-color-4);
