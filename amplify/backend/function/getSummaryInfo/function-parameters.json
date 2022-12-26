@@ -9,6 +9,7 @@
     }
   ],
   "secretNames": [
-    "SC_KEY"
+    "SC_KEY",
+    "NC_KEY"
   ]
 }

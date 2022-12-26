@@ -1,0 +1,27 @@
+.sa-input-text {
+  @include typographyRegularXs;
+  color: var(--sa-neutral-color-5);
+
+  &.modal-link-section {
+    background-color: var(--sa-upload-modal-linlk-section);
+    width: 320px;
+    height: 33px;
+    border: 0px;
+    border-radius: 4px;
+    margin: 16px auto 0px auto;
+    padding-left: 8px;
+  }
+
+  &.sidebar-error-input-text {
+    margin-bottom: 16px;
+    padding: 8px;
+    box-sizing: border-box;
+    width: 100%;
+    border: 0px;
+    border-radius: 4px;
+  }
+
+  &::placeholder {
+    color: var(--sa-neutral-color-3);
+  }
+}

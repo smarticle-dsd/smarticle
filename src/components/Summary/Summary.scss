@@ -16,4 +16,30 @@
     @include typographyRegularXs;
     margin-bottom: 16px;
   }
+
+  .sa-summary-custom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .sa-summary-custom-text {
+      background-color: var(--sa-neutral-color-2);
+      padding: 16px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+
+      .title-and-close-button {
+        margin-bottom: 8px;
+      }
+
+      p {
+        margin-bottom: 0px;
+      }
+    }
+
+    .sa-summary-custom-button {
+      margin-bottom: 8px;
+    }
+  }
 }

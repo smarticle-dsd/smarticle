@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type KnowledgeGraphProps = {
   /**
    * Id prefix for DOM elements inside KnowledgeGraph component
@@ -11,4 +13,9 @@ export type KnowledgeGraphProps = {
    * className that is added to the root element of the KnowledgeGraph
    */
   className?: string;
+  paperTitle?: string;
+  setIsVisible: Dispatch<SetStateAction<boolean>>;
+  setElements: Dispatch<
+    SetStateAction<Array<Record<string, Record<string, string>>> | null>
+  >;
 };

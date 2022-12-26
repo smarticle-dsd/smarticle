@@ -8,9 +8,10 @@ import AWS, { AWSError } from "aws-sdk";
 import { Button } from "../Button";
 
 import { useNavigate } from "react-router-dom";
-
+import { InputText } from "../InputText";
 import * as pdfjs from "pdfjs-dist/legacy/build/pdf";
 import { Loader } from "../Loader";
+import { TitleClose } from "../TitleClose";
 
 const UploadModal: FC<UploadModalProps> = ({
   domID = "upload-modal",
@@ -50,9 +51,7 @@ const UploadModal: FC<UploadModalProps> = ({
 
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [selectedFile, setSelectedFile] = useState<Record<string, string>>({
-    name: "",
-  });
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [pdfLink, setPdfLink] = useState("");
   async function isPdfValid(url: string) {
     try {
@@ -70,11 +69,11 @@ const UploadModal: FC<UploadModalProps> = ({
     }
   }
   //accept the file input when user select or drop file
-  const onUpload = (e: any) => {
+  const onUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPdfLink("");
-    if (e.target.files.length > 0) {
-      if (e.target.files[0].type === "application/pdf") {
-        handleUpload(e.target.files[0]);
+    if (e.currentTarget.files && e.currentTarget.files.length > 0) {
+      if (e.currentTarget.files[0].type === "application/pdf") {
+        handleUpload(e.currentTarget.files[0]);
       } else {
         setError(
           "The uploaded file is not supported. Only pdf files are allowed.",
@@ -85,12 +84,12 @@ const UploadModal: FC<UploadModalProps> = ({
     }
   };
 
-  const handleUpload = async (file: any) => {
+  const handleUpload = async (file: File | null) => {
     if (pdfLink !== "") {
       if (await isPdfValid(pdfLink)) {
         navigate("/pdfviewer/?url=" + pdfLink);
       }
-    } else if (file.name !== "" && file.type === "application/pdf") {
+    } else if (file && file.name !== "" && file.type === "application/pdf") {
       if (await isPdfValid(URL.createObjectURL(file))) {
         const params = {
           ACL: "public-read",
@@ -117,9 +116,7 @@ const UploadModal: FC<UploadModalProps> = ({
 
   const handleToggle = () => {
     toggle();
-    setSelectedFile({
-      name: "",
-    });
+    setSelectedFile(null);
     setPdfLink("");
     setError("");
     setLoading(false);
@@ -137,13 +134,7 @@ const UploadModal: FC<UploadModalProps> = ({
             className={cs("modal-wrapper", className)}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className={cs("title-and-close-button")}>
-              <div className={cs("modal-title", className)}>Upload a paper</div>
-              <Icons.CloseButton
-                className={cs("modal-close-button", className)}
-                onClick={() => handleToggle()}
-              />
-            </div>
+            <TitleClose titleText="Upload a paper" handleClose={handleToggle} />
             <div className={cs("modal-drop-area", className)}>
               <Icons.UploadCloudIcon className="upload-icon" />
               <p>
@@ -169,21 +160,21 @@ const UploadModal: FC<UploadModalProps> = ({
               {selectedFile?.name}
             </div>
             <div className={cs("modal-divider", className)}>or</div>
-            <input
+
+            <InputText
+              domID="sa-upload-modal-input-text"
               className={cs("modal-link-section", className)}
-              type="text"
               value={pdfLink}
               placeholder="Paste a link"
               onInput={() => {
-                setSelectedFile({
-                  name: "",
-                });
+                setSelectedFile(null);
                 setError("");
               }}
               onChange={(event) => {
                 setPdfLink(event.target.value);
               }}
             />
+
             <div className={cs("modal-support-message", className)}>
               Currently links are supported only for papers on arxiv.org
             </div>

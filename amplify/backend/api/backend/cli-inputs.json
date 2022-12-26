@@ -1,16 +1,23 @@
 {
   "version": 1,
   "paths": {
-    "/paperInfo": {
-      "name": "/paperInfo",
-      "lambdaFunction": "getPaperInfo",
+    "/paperSummary": {
+      "name": "/paperSummary",
+      "lambdaFunction": "getSummaryInfo",
       "permissions": {
         "setting": "open"
       }
     },
-    "/paperSummary": {
-      "name": "/paperSummary",
-      "lambdaFunction": "getSummaryInfo",
+    "/paperKnowledgeGraph": {
+      "name": "/paperKnowledgeGraph",
+      "lambdaFunction": "getKnowledgeGraph",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/customSummary": {
+      "name": "/customSummary",
+      "lambdaFunction": "getCustomSummary",
       "permissions": {
         "setting": "open"
       }

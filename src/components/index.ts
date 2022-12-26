@@ -1,4 +1,10 @@
 /* PLOP_INJECT_IMPORT */
+export * from "./InputText";
+export * from "./KnowledgeGraphModal";
+export * from "./KnowledgeGraph";
+export * from "./TitleClose";
+export * from "./CustomSummary";
+export * from "./SidebarZoom";
 export * from "./SupportedPaperList";
 export * from "./Loader";
 export * from "./SidebarError";

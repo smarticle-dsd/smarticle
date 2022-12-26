@@ -1,5 +1,3 @@
-import { Dispatch } from "react";
-
 export type SidebarErrorProps = {
   /**
    * Id prefix for DOM elements inside SidebarError component
@@ -14,11 +12,8 @@ export type SidebarErrorProps = {
    */
   className?: string;
   message?: string;
-  summary?: Record<string, string>;
-  setSummary?: Dispatch<Record<string, string>>;
-  getSummary?: (
-    id: string | null,
-    title: string | null,
-  ) => Promise<Record<string, string>>;
+  paperTitle?: string;
   severity?: string;
+  // Function to get data for summary and knowledge graph
+  getData?: (id: string | null, title: string | null) => void;
 };

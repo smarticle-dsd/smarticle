@@ -15,6 +15,15 @@
       margin-top: 16px;
       margin-bottom: 0px;
       text-align: center;
+      a {
+        text-decoration: underline;
+      }
+      a:link,
+      a:visited,
+      a:hover,
+      a:active {
+        color: var(--sa-neutral-color-5);
+      }
     }
   }
 }
