@@ -12,4 +12,5 @@ export type SummaryProps = {
    */
   className?: string;
   paperTitle?: string;
+  summary?: Record<string, string>;
 };

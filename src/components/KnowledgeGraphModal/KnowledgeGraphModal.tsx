@@ -3,12 +3,14 @@ import cs from "classnames";
 
 import { KnowledgeGraphModalProps } from "./KnowledgeGraphModal.types";
 import { TitleClose } from "../TitleClose";
-import { formatDataForDisplay } from "../../shared/getDataForKnowledgeGraph";
+import {
+  formatDataForDisplay,
+  getMainNode,
+} from "../../shared/getDataForKnowledgeGraph";
 import styled from "@emotion/styled";
 import CytoscapeComponent from "react-cytoscapejs";
 import { Button } from "../Button";
 import { queryBackend } from "../../shared/queryBackend";
-import { getMainNode } from "../../shared/getMainNodeForKnowledgeGraph";
 
 const KnowledgeGraphModal: FC<KnowledgeGraphModalProps> = ({
   domID = "knowledge-graph-modal",

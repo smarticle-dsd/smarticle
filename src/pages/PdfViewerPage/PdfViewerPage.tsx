@@ -47,11 +47,17 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
   }
   if (file) {
     const s3Url =
-      "https://" + bucketName + ".s3." + bucketRegion + ".amazonaws.com/";
-    pdfFile = baseUrl + s3Url + file;
+      "https://" +
+      bucketName +
+      ".s3." +
+      bucketRegion +
+      ".amazonaws.com/" +
+      file;
+    pdfFile = baseUrl + s3Url;
   }
 
   useEffect(() => {
+    // Get title of paper by parsing the largest text in first page
     async function getDetailedInfo(pdf: pdfjs.PDFDocumentProxy) {
       const page = await pdf.getPage(1);
       const content = await page.getTextContent();
@@ -59,7 +65,11 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
       let maxHeight = 0;
       let headingData = "";
       content.items.forEach((item: TextItem | TextMarkedContent) => {
-        if ((item as TextItem).height > maxHeight) {
+        if (
+          (item as TextItem).height > maxHeight &&
+          (item as TextItem).str.length > 1
+        ) {
+          // Ignore arxiv watermark on first page
           if (!(item as TextItem).str.toLowerCase().includes("arxiv")) {
             maxHeight = (item as TextItem).height;
             headingData = (item as TextItem).str;

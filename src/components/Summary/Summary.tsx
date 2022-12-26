@@ -1,4 +1,4 @@
-import React, { useMemo, FC, useState, useEffect } from "react";
+import React, { useMemo, FC, useState } from "react";
 import cs from "classnames";
 
 import { SummaryProps } from "./Summary.types";
@@ -6,13 +6,14 @@ import { SidebarError } from "../SidebarError";
 import { Button } from "../Button";
 import { CustomSummary } from "../CustomSummary";
 import { SidebarZoom } from "../SidebarZoom";
-import { queryBackend } from "../../shared/queryBackend";
+import { getCustomSummary, getSummary } from "../../shared/getDataForSummary";
 
 const Summary: FC<SummaryProps> = ({
   domID = "summary",
   dataTestId = "test-summary",
   className,
   paperTitle,
+  summary,
 }): JSX.Element => {
   const domIDs = useMemo(
     () => ({
@@ -28,33 +29,14 @@ const Summary: FC<SummaryProps> = ({
     [dataTestId],
   );
 
-  const [summary, setSummary] = useState<Record<string, string> | null>(null);
-  const [error, setError] = useState<boolean>(false);
-
   const [loading, setLoading] = useState<boolean>(false);
   const [customSummary, setCustomSummary] = useState<string | null>(
     "Please select a section of the text to view summary of the section.",
   );
-  // Function to call backend to get custom summary
-  const getCustomSummary = async (text: string) => {
-    setLoading(true);
-    const result = await queryBackend("/customSummary", {
-      body: {
-        text,
-      },
-    });
-
-    if (result.summary) setCustomSummary(result.summary);
-    else
-      setCustomSummary(
-        "Summary could not be generated for the selected section.",
-      );
-
-    setLoading(false);
-  };
 
   // Get selected text when "Generate Summary" button is clicked and query backend to get custom text summary
   const handleCustomSummary = () => {
+    setLoading(true);
     setCustomSummary("Generating summary for selected text. Please wait...");
     const selectedText = (
       document.getElementById("pdf-js-viewer") as HTMLIFrameElement
@@ -69,35 +51,6 @@ const Summary: FC<SummaryProps> = ({
         "Please select a section of the text to view summary of the section.",
       );
   };
-
-  // Function to call backend to get summary
-  const getSummary = async (id: string | null, title: string | null) => {
-    try {
-      setSummary(null);
-      const result = await queryBackend("/paperSummary", {
-        body: {
-          paperTitle: title,
-          paperId: id,
-        },
-      });
-      if (result.abstract || result.tldr) {
-        setSummary(result);
-        setError(false);
-      } else {
-        setError(true);
-      }
-    } catch (e) {
-      setError(true);
-    }
-  };
-  // Get summary on page load
-  useEffect(() => {
-    if (paperTitle !== "") {
-      getSummary(null, paperTitle as string);
-    } else {
-      setError(true);
-    }
-  }, [paperTitle]);
 
   const handleClose = () => {
     setCustomSummary(null);
@@ -181,12 +134,12 @@ const Summary: FC<SummaryProps> = ({
         <SidebarError
           paperTitle={paperTitle}
           message={
-            error
+            summary
               ? "Paper ID not found!"
               : "Is this not the right summary for the uploaded paper?"
           }
           getData={getSummary}
-          severity={error ? "error" : "info"}
+          severity={summary ? "error" : "info"}
         />
       </div>
     </div>

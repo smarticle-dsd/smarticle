@@ -5,8 +5,10 @@ import { KnowledgeGraphProps } from "./KnowledgeGraph.types";
 import { Button } from "../Button";
 import { SidebarError } from "../SidebarError";
 import { queryBackend } from "../../shared/queryBackend";
-import { formatDataForDisplay } from "../../shared/getDataForKnowledgeGraph";
-import { getMainNode } from "../../shared/getMainNodeForKnowledgeGraph";
+import {
+  formatDataForDisplay,
+  getMainNode,
+} from "../../shared/getDataForKnowledgeGraph";
 
 const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
   domID = "knowledge-graph",
