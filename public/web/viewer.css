@@ -1082,7 +1082,7 @@
   --doorhanger-icon-opacity: 0.9;
 
   --main-color: var(--sa-neutral-color-5);
-  --body-bg-color: var(--sa-neutral-color-30-3);
+  --body-bg-color: var(--sa-neutral-color-30-2);
   --progressBar-percent: 0%;
   --progressBar-end-offset: 0;
   --progressBar-color: rgba(10, 132, 255, 1);
@@ -1091,7 +1091,7 @@
   --scrollbar-color: auto;
   --scrollbar-bg-color: auto;
   --toolbar-icon-bg-color: var(--sa-neutral-color-4);
-  --toolbar-icon-hover-bg-color: var(--sa-neutral-color-5);
+  --toolbar-icon-hover-bg-color: var(--sa-primary-color-4);
 
   --sidebar-narrow-bg-color: rgba(237, 237, 240, 0.9);
   --sidebar-toolbar-bg-color: rgba(245, 246, 247, 1);
@@ -1104,9 +1104,9 @@
     0 1px 0 rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.1);
   --toolbarSidebar-border-bottom: none;
   --button-hover-color: #1c211e1a;
-  --toggled-btn-color: var(--sa-neutral-color-5);
-  --toggled-btn-bg-color: rgba(0, 0, 0, 0.3);
-  --toggled-hover-active-btn-color: rgba(0, 0, 0, 0.4);
+  --toggled-btn-color: var(--sa-primary-color-4);
+  --toggled-btn-bg-color: rgba(28, 33, 30, 0.1);
+  --toggled-hover-active-btn-color: rgba(28, 33, 30, 0.15);
   --dropdown-btn-bg-color: rgba(215, 215, 219, 1);
   --dropdown-btn-border: none;
   --separator-color: rgba(0, 0, 0, 0.3);
@@ -1319,13 +1319,13 @@ body {
 }
 
 #sidebarContent {
-  top: 32px;
+  top: 0px;
   bottom: 0;
   inset-inline-start: 0;
   overflow: auto;
   position: absolute;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--sa-neutral-color-30-3);
   box-shadow: inset calc(-1px * var(--dir-factor)) 0 0 rgba(0, 0, 0, 0.25);
 }
 
@@ -1411,6 +1411,7 @@ body {
   background-color: var(--sidebar-toolbar-bg-color);
   box-shadow: var(--toolbarSidebar-box-shadow);
   border-bottom: var(--toolbarSidebar-border-bottom);
+  display: none;
 }
 
 [dir="ltr"] #sidebarResizer {
@@ -1557,11 +1558,11 @@ body {
 }
 
 [dir="ltr"] .findbar {
-  left: 64px;
+  left: 250px;
 }
 
 [dir="rtl"] .findbar {
-  right: 64px;
+  right: 250px;
 }
 
 .findbar {
@@ -2057,14 +2058,17 @@ body {
   color: var(--doorhanger-hover-color);
 }
 
-.toolbarButton.toggled,
-.splitToolbarButton.toggled > .toolbarButton.toggled,
+.toolbarButton.toggled.active,
+.toolbarButton.active,
+.splitToolbarButton.toggled > .toolbarButton.toggled.active,
+.splitToolbarButton.toggled > .toolbarButton.active,
 .secondaryToolbarButton.toggled {
   background-color: var(--toggled-btn-bg-color);
   color: var(--toggled-btn-color);
 }
 
-.toolbarButton.toggled::before,
+.toolbarButton.toggled.active::before,
+.toolbarButton.active::before,
 .secondaryToolbarButton.toggled::before {
   background-color: var(--toggled-btn-color);
 }
@@ -2182,6 +2186,51 @@ body {
   opacity: var(--doorhanger-icon-opacity);
   top: 5px;
   inset-inline-start: 12px;
+}
+
+.customLayoutIconButton {
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+  appearance: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+
+  margin: 2px 1px;
+  border-radius: 2px;
+}
+
+.customLayoutIconButton > svg,
+.customLayoutIconButton > object {
+  pointer-events: none;
+}
+
+.customLayoutIconButton:hover {
+  background-color: var(--toggled-hover-active-btn-color);
+}
+
+.customLayoutIconButton.active {
+  background-color: var(--toggled-hover-active-btn-color);
+}
+
+.customLayoutIconButton:disabled {
+  opacity: 40%;
+  cursor: not-allowed;
+}
+
+.editorModeButtons,
+.hiddenSmallView,
+.splitToolbarButton {
+  display: flex;
+  margin: 0px;
 }
 
 #sidebarToggle::before {
@@ -2306,17 +2355,17 @@ a.secondaryToolbarButton[href="#"] {
   mask-image: var(--toolbarButton-search-icon);
 }
 
-#referenceDetails::before {
+#referenceDetailsToolbarButton::before {
   -webkit-mask-image: var(--toolbarButton-reference-details-icon);
   mask-image: var(--toolbarButton-reference-details-icon);
 }
 
-#knowledgeGraph::before {
+#knowledgeGraphToolbarButton::before {
   -webkit-mask-image: var(--toolbarButton-knowledge-graph-icon);
   mask-image: var(--toolbarButton-knowledge-graph-icon);
 }
 
-#summary::before {
+#summaryToolbarButton::before {
   -webkit-mask-image: var(--toolbarButton-summary-icon);
   mask-image: var(--toolbarButton-summary-icon);
 }
@@ -2464,7 +2513,10 @@ a.secondaryToolbarButton[href="#"] {
 }
 .verticalSidebarToolbarSeparator {
   display: block;
-  margin: 3px 2px;
+  margin-top: 5px;
+  margin-bottom: 3px;
+  margin-left: 2px;
+  margin-right: 2px;
   width: 1px;
   height: 22px;
   background-color: var(--separator-color);

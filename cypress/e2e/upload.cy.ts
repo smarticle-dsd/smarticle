@@ -152,6 +152,7 @@ describe("Entering a non-existent PDF link shows error message", () => {
       .type("http://google.com/test1.pdf")
       .get(".modal-upload-button")
       .click()
+      .wait(5000)
       .get(".modal-error-message")
       .contains("The input provided is not a valid pdf.");
   });

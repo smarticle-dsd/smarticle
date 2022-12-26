@@ -3,8 +3,19 @@
 @import "./theme/typography.scss";
 
 /* PLOP_INJECT_IMPORT */
+<<<<<<< HEAD
 @import '../components/FeatureTooltipHandler/FeatureTooltipHandler.scss';
 @import '../components/FeatureTooltip/FeatureTooltip.scss';
+=======
+@import '../components/InputText/InputText.scss';
+@import "../components/KnowledgeGraphModal/KnowledgeGraphModal.scss";
+@import "../components/KnowledgeGraph/KnowledgeGraph.scss";
+@import "../components/TitleClose/TitleClose.scss";
+@import "../components/CustomSummary/CustomSummary.scss";
+@import "../components/TitleClose/TitleClose.scss";
+@import "../components/CustomSummary/CustomSummary.scss";
+@import "../components/SidebarZoom/SidebarZoom.scss";
+>>>>>>> develop
 @import "../components/SupportedPaperList/SupportedPaperList.scss";
 @import "../components/Loader/Loader.scss";
 @import "../components/SidebarError/SidebarError.scss";

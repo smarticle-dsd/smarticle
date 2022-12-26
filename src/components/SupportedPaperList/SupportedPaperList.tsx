@@ -78,8 +78,23 @@ const SupportedPaperList: FC<SupportedPaperListProps> = ({
       </div>
       <div className={cs("sa-supported-paper-footer", className)}>
         <h2>
-          All the information displayed are provided by Semantic Scholar
-          https://www.semanticscholar.org/
+          All the paper information displayed are provided by{" "}
+          <a
+            href="https://www.semanticscholar.org/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Semantic Scholar
+          </a>
+          . Custom summary provided by{" "}
+          <a
+            href="https://docs.nlpcloud.com/#summarization"
+            target="_blank"
+            rel="noreferrer"
+          >
+            NLP Cloud
+          </a>
+          .
         </h2>
       </div>
     </div>

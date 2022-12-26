@@ -4,12 +4,8 @@ import cs from "classnames";
 import { PdfViewerPageProps } from "./PdfViewerPage.types";
 import { useSearchParams } from "react-router-dom";
 import { createPortal } from "react-dom";
-import {
-  Reference,
-  TestTool,
-  Summary,
-  FeatureTooltipHandler,
-} from "../../components";
+import { Summary, KnowledgeGraph, KnowledgeGraphModal } from "../../components";
+import { Reference, FeatureTooltipHandler } from "../../components";
 import * as pdfjs from "pdfjs-dist/legacy/build/pdf";
 import { TextItem, TextMarkedContent } from "pdfjs-dist/types/src/display/api";
 import { Error404Page } from "../Error404Page";
@@ -56,6 +52,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
   }
 
   useEffect(() => {
+    // Get title of paper by parsing the largest text on page 1
     async function getDetailedInfo(pdf: pdfjs.PDFDocumentProxy) {
       const page = await pdf.getPage(1);
       const content = await page.getTextContent();
@@ -63,7 +60,11 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
       let maxHeight = 0;
       let headingData = "";
       content.items.forEach((item: TextItem | TextMarkedContent) => {
-        if ((item as TextItem).height > maxHeight) {
+        if (
+          (item as TextItem).height > maxHeight &&
+          (item as TextItem).str.length > 1
+        ) {
+          // Ignore arxiv watermark
           if (!(item as TextItem).str.toLowerCase().includes("arxiv")) {
             maxHeight = (item as TextItem).height;
             headingData = (item as TextItem).str;
@@ -179,6 +180,10 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
     }
   }, []);
 
+  const [isVisible, setIsVisible] = React.useState<boolean>(false);
+  const [elements, setElements] = React.useState<Array<
+    Record<string, Record<string, string>>
+  > | null>(null);
   return (
     <div
       id={domIDs.root}
@@ -198,14 +203,27 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
             {referenceDetailsMountNode &&
               createPortal(<Reference />, referenceDetailsMountNode)}
             {knowledgeGraphMountNode &&
-              createPortal(<TestTool />, knowledgeGraphMountNode)}
+              createPortal(
+                <KnowledgeGraph
+                  paperTitle={paperTitle}
+                  setIsVisible={setIsVisible}
+                  setElements={setElements}
+                />,
+                knowledgeGraphMountNode,
+              )}
             {summaryMountNode &&
               createPortal(
-                // Need to find a way to get this from the PDF Viewer component
                 <Summary paperTitle={paperTitle} />,
                 summaryMountNode,
               )}
           </iframe>
+          {isVisible && (
+            <KnowledgeGraphModal
+              isVisible={isVisible}
+              toggle={() => setIsVisible(false)}
+              elements={elements}
+            />
+          )}
           {isVisited ? (
             <FeatureTooltipHandler
               isVisible={isTooltipVisible}
