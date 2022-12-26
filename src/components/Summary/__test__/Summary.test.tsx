@@ -37,7 +37,7 @@ describe("Summary tests", () => {
     expect(response.tldr).toBeNull();
   });
 
-  test.skip("Check if summary endpoint returns error message for null values for paperId and paperTitle", async () => {
+  test("Check if summary endpoint returns error message for null values for paperId and paperTitle", async () => {
     const response = await API.post("backend", "/paperSummary", {
       body: {
         paperTitle: null,
