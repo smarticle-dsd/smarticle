@@ -1,0 +1,66 @@
+$feature-tooltip-top-margins: 318px 100px 100px 100px 318px;
+$feature-tooltip-left-margins: 0px 125px 160px 190px 0px;
+
+@function tooltip-wrapper-class($i) {
+  @return ".tooltip-wrapper-#{$i}";
+}
+
+@for $i from 1 through 5 {
+  #{tooltip-wrapper-class($i)} {
+    justify-content: center;
+    margin-top: nth($feature-tooltip-top-margins, $i);
+  }
+}
+
+@for $i from 2 through 4 {
+  #{tooltip-wrapper-class($i)} {
+    justify-content: flex-start;
+    margin-left: nth($feature-tooltip-left-margins, $i);
+  }
+}
+
+.sa-feature-tooltip-handler {
+  position: absolute;
+  z-index: 10000;
+
+  width: 100%;
+  height: 100%;
+  top: 0px;
+
+  .tooltip-wrapper {
+    position: absolute;
+    display: flex;
+    width: 100%;
+
+    .tooltip-welcome {
+      @include typographyRegularXxs;
+      text-align: center;
+
+      .tooltip-welcome-title {
+        @include typographyBoldM;
+        text-align: center;
+      }
+
+      .tooltip-welcome-text {
+        margin-top: 14px;
+        width: 230px;
+      }
+    }
+
+    .tooltip-feature-text {
+      margin-top: 318px;
+      width: 200px;
+      text-align: right;
+      @include typographyRegularXxs;
+      margin-top: 14px;
+    }
+  }
+
+  .tooltip-background-overlay {
+    //background-color: rgba(169, 187, 170, 0.6);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(169, 187, 170, 0.6);
+  }
+}

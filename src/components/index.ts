@@ -1,4 +1,6 @@
 /* PLOP_INJECT_IMPORT */
+export * from "./FeatureTooltipHandler";
+export * from "./FeatureTooltip";
 export * from "./SupportedPaperList";
 export * from "./Loader";
 export * from "./SidebarError";
