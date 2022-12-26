@@ -4,10 +4,9 @@ import cs from "classnames";
 import { InputTextProps } from "./InputText.types";
 
 const InputText: FC<InputTextProps> = ({
-  className,
-  domID = className?.concat("-input-text"),
+  domID = "inputext",
   dataTestId = "test-input-text",
-
+  className,
   value,
   placeholder,
   onInput,

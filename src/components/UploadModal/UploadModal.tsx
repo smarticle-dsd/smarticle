@@ -162,6 +162,7 @@ const UploadModal: FC<UploadModalProps> = ({
             <div className={cs("modal-divider", className)}>or</div>
 
             <InputText
+              domID="sa-upload-modal-input-text"
               className={cs("modal-link-section", className)}
               value={pdfLink}
               placeholder="Paste a link"

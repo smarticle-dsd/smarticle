@@ -73,6 +73,7 @@ const SidebarError: FC<SidebarErrorProps> = ({
         </div>
         <div className={cs("sidebar-error-input-section", className)}>
           <InputText
+            domID={"sa-sidebar-error-input-text"}
             className={cs("sidebar-error-input-text", className)}
             value={paperId}
             placeholder="Enter ID"
