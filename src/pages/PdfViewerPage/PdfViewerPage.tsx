@@ -52,6 +52,7 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
   }
 
   useEffect(() => {
+    // Get title of paper by parsing the largest text on page 1
     async function getDetailedInfo(pdf: pdfjs.PDFDocumentProxy) {
       const page = await pdf.getPage(1);
       const content = await page.getTextContent();
@@ -59,7 +60,11 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
       let maxHeight = 0;
       let headingData = "";
       content.items.forEach((item: TextItem | TextMarkedContent) => {
-        if ((item as TextItem).height > maxHeight) {
+        if (
+          (item as TextItem).height > maxHeight &&
+          (item as TextItem).str.length > 1
+        ) {
+          // Ignore arxiv watermark
           if (!(item as TextItem).str.toLowerCase().includes("arxiv")) {
             maxHeight = (item as TextItem).height;
             headingData = (item as TextItem).str;
