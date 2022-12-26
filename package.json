@@ -35,6 +35,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "cypress run",
+    "test:jest": "react-scripts test --watchAll",
     "eject": "react-scripts eject",
     "generate": "plop",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
