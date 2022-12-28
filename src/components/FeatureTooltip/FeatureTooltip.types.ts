@@ -13,7 +13,6 @@ export type FeatureTooltipProps = {
    * className that is added to the root element of the FeatureTooltip
    */
   className?: string;
-  isVisible?: boolean;
   /**
    * Whether the tooltip has arrow or not and where it is
    */
@@ -23,22 +22,27 @@ export type FeatureTooltipProps = {
    */
   title?: string;
   /**
-   * Text of tooltip
-   */
-  text?: string;
-  /**
-   * First Button
+   * First Button of tooltip
    */
   firstButton?: string;
   /**
-   * First Button
+   * Second Button of tooltip
    */
   secButton?: string;
+  /**
+   * Close function of the tooltip
+   */
   close?: () => void;
   /**
-   * Called when a button is clicked
+   * Called when First Button is clicked
    */
   onFistButtonClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  /**
+   * Called when Second Button is clicked
+   */
   onSecButtonClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  /**
+   * Children of Tooltip
+   */
   children?: React.ReactElement;
 };

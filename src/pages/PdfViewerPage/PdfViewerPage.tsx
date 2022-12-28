@@ -163,6 +163,12 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
     }
   }, []);
 
+  const [isVisible, setIsVisible] = React.useState<boolean>(false);
+  const [elements, setElements] = React.useState<Array<
+    Record<string, Record<string, string>>
+  > | null>(null);
+
+  // Feature tooltips will appear only at user's first visit
   const prefix = "/pdfviewer/";
   const [isVisited, setIsVisited] = useState(false);
   const [isTooltipVisible, setIsTooltipVisible] = useState(true);
@@ -174,16 +180,12 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
   useEffect(() => {
     const visited = localStorage.getItem("Visited");
     if (window.location.href.includes(prefix) && !visited) {
-      console.log({ localStorage });
+      //console.log({ localStorage });
       localStorage.setItem("Visited", "visited");
       setIsVisited(true);
     }
   }, []);
 
-  const [isVisible, setIsVisible] = React.useState<boolean>(false);
-  const [elements, setElements] = React.useState<Array<
-    Record<string, Record<string, string>>
-  > | null>(null);
   return (
     <div
       id={domIDs.root}
