@@ -66,8 +66,8 @@ const FeatureTooltipHandler: FC<FeatureTooltipHandlerProps> = ({
       onSecButtonClick={nextTooltip}
     >
       <div className={cs("tooltip-feature-text", className)}>
-        Click here to find details about paper’s references or figures you want
-        to check.
+        Click on a reference of the PDF you would like to check, and here you
+        will find details about the citation, reference or figure you need.
       </div>
     </FeatureTooltip>,
     <FeatureTooltip
