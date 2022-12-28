@@ -1,5 +1,5 @@
-$feature-tooltip-top-margins: 318px 100px 100px 100px 318px;
-$feature-tooltip-left-margins: 0px 125px 160px 190px 0px;
+$feature-tooltip-top-margins: 318px 102px 102px 102px 318px;
+$feature-tooltip-left-margins: 0px 105px 135px 165px 0px;
 
 @function tooltip-wrapper-class($i) {
   @return ".tooltip-wrapper-#{$i}";
