@@ -1,4 +1,8 @@
 .sa-supported-paper-list {
+  user-select: none;
+  :hover {
+    user-select: text;
+  }
   .sa-supported-paper-message {
     @include typographyRegularXxs;
     h3 {
