@@ -174,7 +174,8 @@ const UploadModal: FC<UploadModalProps> = ({
                 setPdfLink(event.target.value);
               }}
               onKeyDown={(event) => {
-                if (event.key === "Enter") handleUpload(selectedFile);
+                if (event.key === "Enter" && error.length === 0)
+                  handleUpload(selectedFile);
               }}
             />
 
