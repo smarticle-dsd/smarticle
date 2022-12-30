@@ -41,10 +41,17 @@ const Reference: FC<ReferenceProps> = ({
       <div className={cs("wrapper-canvas", className)}>
         <Canvas />
       </div>
-      <div className={cs("referenceview-button", className)}>
-        <Button size="large" type="primary">
-          Jump to Content
-        </Button>
+      <div className={cs("referenceview-buttons", className)}>
+        <div className={cs("reference-content-button", className)}>
+          <Button size="large" type="primary">
+            Jump to Content
+          </Button>
+        </div>
+        <div className={cs("reference-back-button", className)}>
+          <Button size="large" type="primary">
+            Jump back
+          </Button>
+        </div>
       </div>
     </div>
   );
