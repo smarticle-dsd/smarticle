@@ -1,6 +1,7 @@
 .sa-knowledge-graph {
   color: var(--sa-neutral-color-5);
   padding: 16px;
+  user-select: none;
 
   h1 {
     @include typographyMediumL;
@@ -9,6 +10,9 @@
 
   .sa-knowledge-graph-wrapper {
     .sa-knowledge-graph-details {
+      :hover {
+        user-select: text;
+      }
       align-items: left;
 
       div {

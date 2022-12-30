@@ -1,5 +1,9 @@
 .sa-sidebar-error {
   color: var(--sa-neutral-color-5);
+  user-select: none;
+  :hover {
+    user-select: text;
+  }
 
   h1 {
     @include typographyMediumL;

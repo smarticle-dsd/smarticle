@@ -44,7 +44,7 @@ const KnowledgeGraph: FC<KnowledgeGraphProps> = ({
             paperId: id,
           },
         });
-        if (result.length > 1) {
+        if (result.length > 0) {
           const main = getMainNode(result);
           if (main) {
             setPaperId(main.id);
