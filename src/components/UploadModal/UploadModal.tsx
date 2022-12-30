@@ -173,6 +173,10 @@ const UploadModal: FC<UploadModalProps> = ({
               onChange={(event) => {
                 setPdfLink(event.target.value);
               }}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" && error.length === 0)
+                  handleUpload(selectedFile);
+              }}
             />
 
             <div className={cs("modal-support-message", className)}>
