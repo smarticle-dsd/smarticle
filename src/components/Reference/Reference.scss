@@ -31,12 +31,15 @@
     height: 100%;
     width: 100%;
   }
-  .referenceview-button {
-    margin-top: 5px;
+  .referenceview-buttons {
     display: flex;
-    justify-content: center;
+    text-align: center;
+    margin-top: 5px;
     visibility: hidden;
+    justify-content: center;
+    gap: 5px;
   }
+
   .wrapper-canvas {
     overflow: hidden;
   }
