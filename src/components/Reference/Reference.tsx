@@ -55,10 +55,8 @@ const useGesture = createUseGesture([dragAction, pinchAction]);
 function Canvas() {
   const ref = useRef<HTMLCanvasElement>(null);
   const [bounds, setBounds] = useState({ w: 0, h: 0 });
-
   let canv_bound = ref.current?.getBoundingClientRect();
   let wrap_bound = ref.current?.parentElement?.getBoundingClientRect();
-
   const [style, api] = useSpring(() => ({
     x: 0,
     y: 0,
@@ -91,18 +89,15 @@ function Canvas() {
             h: (canv_bound?.height as number) - (wrap_bound?.height as number),
           }));
         }
-        console.log(bounds);
         if (first && ref.current) {
           const { width, height, x, y } = ref.current.getBoundingClientRect();
           const tx = ox - (x + width / 2);
           const ty = oy - (y + height / 2);
           memo = [style.x.get(), style.y.get(), tx, ty];
         }
-
         const x = memo[0] - (ms - 1) * memo[2];
         const y = memo[1] - (ms - 1) * memo[3];
         api.start({ scale: s, rotateZ: a, x, y });
-
         return memo;
       },
     },
