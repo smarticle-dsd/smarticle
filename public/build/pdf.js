@@ -12398,7 +12398,7 @@
                   let page_number = this.linkService._cachedPageNumber(data[0]);
                   page._transport.getDestinations().then((res) => {
                     var margin =
-                      res['appendix.A'] != undefined
+                      res["appendix.A"] != undefined
                         ? res["appendix.A"]
                         : res["section.1"];
                     margin = margin == undefined ? 50 : margin[2];
