@@ -12271,11 +12271,11 @@
             //
             //mouseover create a canvas
             //
+            const c = document.createElement("canvas");
             container.addEventListener(
               "mouseenter",
               (event) => {
                 if (data.dest) {
-                  const c = document.createElement("canvas");
                   c.className = "reference-canvas";
                   c.style.top = event.clientY + "px";
 
@@ -12324,17 +12324,17 @@
                           };
                           page.render(w);
                         }),
-                        container.after(c),
-                        container.addEventListener(
-                          "mouseleave",
-                          () => {
-                            c.remove();
-                          },
-                          false,
-                        );
+                        container.after(c)
                     });
                   });
                 }
+              },
+              false,
+            );
+            container.addEventListener(
+              "mouseleave",
+              () => {
+                c.remove();
               },
               false,
             );
