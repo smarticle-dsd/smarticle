@@ -42,19 +42,25 @@ const KnowledgeGraphModal: FC<KnowledgeGraphModalProps> = ({
   const [error, setError] = React.useState<boolean>(false);
   const [newElements, setNewElements] = React.useState<any>(elements);
 
-  // update the width  of the component when the component is mounted
+  // update the width and height of the component when the component is mounted
   React.useEffect(() => {
-    containerRef.current = document.getElementById(domIDs.root);
+    containerRef.current = document.getElementById("cytoscape-graph-container");
     if (containerRef.current) {
-      setStyle({ width: containerRef.current.offsetWidth, height: 450 });
+      setStyle({
+        width: 0.85 * containerRef.current.clientWidth,
+        height: 0.85 * containerRef.current.clientHeight,
+      });
     }
   }, [containerRef, domIDs.root]);
 
-  // update the width of the component whenever the parent container changes
+  // update the width and height of the component whenever the parent container changes
   React.useEffect(() => {
     function handleResize() {
       if (containerRef.current) {
-        setStyle({ width: containerRef.current.offsetWidth, height: 450 });
+        setStyle({
+          width: 0.85 * containerRef.current.clientWidth,
+          height: 0.85 * containerRef.current.clientHeight,
+        });
       }
     }
 
@@ -76,8 +82,9 @@ const KnowledgeGraphModal: FC<KnowledgeGraphModalProps> = ({
     levelWidth: function (nodes: []) {
       return 2;
     },
-    fit: "true",
-    animate: "true",
+    fit: true,
+    pan: true,
+    animate: true,
   };
 
   graphStyle[1].style["background-color"] = (node: any) =>
@@ -153,6 +160,7 @@ const KnowledgeGraphModal: FC<KnowledgeGraphModalProps> = ({
         >
           <div
             className={cs("sa-knowledge-graph-modal-wrapper", className)}
+            id="cytoscape-graph-container"
             onClick={(e) => e.stopPropagation()}
           >
             <TitleClose titleText="Knowledge Graph" handleClose={toggle} />
@@ -201,6 +209,19 @@ const KnowledgeGraphModal: FC<KnowledgeGraphModalProps> = ({
                           duration: 1000,
                         }).play();
                       });
+                      cy.on("ready", function () {
+                        console.log("ready");
+                        setTimeout(() => {
+                          cy.animation({
+                            fit: {
+                              eles: newElements,
+                              padding: 10,
+                            },
+                            easing: "ease-in-out",
+                            duration: 1000,
+                          }).play();
+                        }, 500);
+                      });
                       myCy = cy;
                     }}
                     elements={newElements}
@@ -208,7 +229,6 @@ const KnowledgeGraphModal: FC<KnowledgeGraphModalProps> = ({
                     stylesheet={graphStyle}
                     layout={layout}
                     wheelSensitivity={0.2}
-                    pan={{ x: 100, y: 200 }}
                     zoom={0.3}
                   />
                   {node ? (
