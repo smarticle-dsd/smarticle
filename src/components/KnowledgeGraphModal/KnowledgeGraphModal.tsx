@@ -129,7 +129,6 @@ const KnowledgeGraphModal: FC<KnowledgeGraphModalProps> = ({
         >
           <div
             className={cs("sa-knowledge-graph-modal-wrapper", className)}
-            id="cytoscape-graph-container"
             onClick={(e) => e.stopPropagation()}
           >
             <TitleClose titleText="Knowledge Graph" handleClose={toggle} />
@@ -172,7 +171,7 @@ const KnowledgeGraphModal: FC<KnowledgeGraphModalProps> = ({
                         cy.animation({
                           fit: {
                             eles: node,
-                            padding: 50,
+                            padding: 150,
                           },
                           easing: "ease-in-out",
                           duration: 1000,
@@ -181,11 +180,6 @@ const KnowledgeGraphModal: FC<KnowledgeGraphModalProps> = ({
 
                       // Get reference to the component
                       myCy = cy;
-
-                      // Make it so the graph is automatically fitted into container when it is resized
-                      cy.on("resize", () => {
-                        zoomOut();
-                      });
                     }}
                     elements={newElements}
                     style={{ width: "50vw", height: "70vh" }}
