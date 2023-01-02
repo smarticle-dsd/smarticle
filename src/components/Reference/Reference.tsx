@@ -113,10 +113,10 @@ function Canvas() {
       drag: {
         from: () => [style.x.get(), style.y.get()],
         bounds: {
-          right: bounds.w / 1.8,
-          left: -bounds.w / 1.8,
-          top: -bounds.h / 1.8,
-          bottom: bounds.h / 1.8,
+          right: bounds.w / 1.5,
+          left: -bounds.w / 1.5,
+          top: -bounds.h / 1.5,
+          bottom: bounds.h / 1.5,
         },
       },
       pinch: {
