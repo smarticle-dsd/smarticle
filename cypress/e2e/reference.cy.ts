@@ -36,11 +36,14 @@ describe("Rerence view wapper is shown when no reference has been clicked", () =
           expect(refrenceWrapper).to.exist; //Check if wrapper exists
           const refView = $reference.find(".reference-view");
           expect(refView).to.contain.text("Click on a reference to preview it");
-
           const referenceCanvas = $reference.find(".referenceview-canvas");
           expect(referenceCanvas).to.be.hidden; // Canvas should not be displayed until it's clicked
-          const jumpToContentButton = $reference.find(".referenceview-button");
+          const jumpToContentButton = $reference.find(
+            ".reference-content-button",
+          );
           expect(jumpToContentButton).to.be.hidden; //Button should not be visible if wrapper is there
+          const jumpBackButton = $reference.find(".reference-back-button");
+          expect(jumpBackButton).to.be.hidden;
         });
     });
   });

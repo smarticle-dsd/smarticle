@@ -11,6 +11,7 @@ const InputText: FC<InputTextProps> = ({
   placeholder,
   onInput,
   onChange,
+  onKeyDown,
 }): JSX.Element => {
   const domIDs = useMemo(
     () => ({
@@ -36,6 +37,7 @@ const InputText: FC<InputTextProps> = ({
       placeholder={placeholder}
       onInput={onInput}
       onChange={onChange}
+      onKeyDown={onKeyDown}
     />
   );
 };
