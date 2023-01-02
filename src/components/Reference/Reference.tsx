@@ -68,7 +68,6 @@ function Canvas() {
     x: 0,
     y: 0,
     scale: 1,
-    rotateZ: 0,
   }));
 
   useGesture(
@@ -104,7 +103,7 @@ function Canvas() {
         }
         const x = memo[0] - (ms - 1) * memo[2];
         const y = memo[1] - (ms - 1) * memo[3];
-        api.start({ scale: s, rotateZ: a, x, y });
+        api.start({ scale: s, x: x, y: y });
         return memo;
       },
     },
@@ -114,10 +113,10 @@ function Canvas() {
       drag: {
         from: () => [style.x.get(), style.y.get()],
         bounds: {
-          right: bounds.w / 2,
-          left: -bounds.w / 2,
-          top: -bounds.h / 2,
-          bottom: bounds.h / 2,
+          right: bounds.w / 1.8,
+          left: -bounds.w / 1.8,
+          top: -bounds.h / 1.8,
+          bottom: bounds.h / 1.8,
         },
       },
       pinch: {
