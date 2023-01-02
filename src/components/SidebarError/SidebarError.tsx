@@ -80,6 +80,10 @@ const SidebarError: FC<SidebarErrorProps> = ({
             onChange={(event) => {
               setPaperId(event.target.value);
             }}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" && paperId.length !== 0)
+                handlePaperIdInput(paperId);
+            }}
           />
           <div className={cs("sidebar-error-buttons")}>
             <Button

@@ -12354,15 +12354,43 @@
                 )[0];
                 canv.style.visibility = "visible";
 
-                var button = document.getElementsByClassName(
-                  "referenceview-button",
+                var contentButton = document.getElementsByClassName(
+                  "reference-content-button",
                 )[0];
-                button.style.visibility = "visible";
+                contentButton.style.visibility = "visible";
+
+                var backButton = document.getElementsByClassName(
+                  "reference-back-button",
+                )[0];
+                backButton.style.visibility = "visible";
+
+                const childBack = backButton.firstChild;
+                const childContent = contentButton.firstChild;
+                childBack.disabled = true;
+                childContent.disabled = false;
 
                 let link_destination = data.dest;
-                button.addEventListener(
+                contentButton.addEventListener(
                   "click",
-                  () => this.linkService.goToDestination(link_destination),
+                  () => {
+                    this.linkService.goToDestination(link_destination);
+                    childBack.disabled = false;
+                    childContent.disabled = true;
+                  },
+                  false,
+                );
+
+                backButton.addEventListener(
+                  "click",
+                  () => {
+                    document
+                      .querySelector(
+                        "section[data-annotation-id='" + data.id + "']",
+                      )
+                      .scrollIntoView();
+                    childBack.disabled = true;
+                    childContent.disabled = false;
+                  },
                   false,
                 );
 
