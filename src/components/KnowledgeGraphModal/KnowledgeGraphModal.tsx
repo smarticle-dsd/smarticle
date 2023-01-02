@@ -33,40 +33,9 @@ const KnowledgeGraphModal: FC<KnowledgeGraphModalProps> = ({
   );
 
   let myCy: cytoscape.Core;
-  // create a reference to the parent container element
-  const containerRef = React.useRef<HTMLElement | null>(null);
-
-  // use the useState hook to store the width and height of the component
-  const [style, setStyle] = React.useState({});
 
   const [error, setError] = React.useState<boolean>(false);
   const [newElements, setNewElements] = React.useState<any>(elements);
-
-  // update the width and height of the component when the component is mounted
-  React.useEffect(() => {
-    containerRef.current = document.getElementById("cytoscape-graph-container");
-    if (containerRef.current) {
-      setStyle({
-        width: 0.85 * containerRef.current.clientWidth,
-        height: 0.85 * containerRef.current.clientHeight,
-      });
-    }
-  }, [containerRef, domIDs.root]);
-
-  // update the width and height of the component whenever the parent container changes
-  React.useEffect(() => {
-    function handleResize() {
-      if (containerRef.current) {
-        setStyle({
-          width: 0.85 * containerRef.current.clientWidth,
-          height: 0.85 * containerRef.current.clientHeight,
-        });
-      }
-    }
-
-    // add an event listener to listen for resize events
-    window.addEventListener("resize", handleResize);
-  });
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const graphStyle = require("./cy-style.json");
@@ -209,23 +178,17 @@ const KnowledgeGraphModal: FC<KnowledgeGraphModalProps> = ({
                           duration: 1000,
                         }).play();
                       });
-                      cy.on("ready", function () {
-                        console.log("ready");
-                        setTimeout(() => {
-                          cy.animation({
-                            fit: {
-                              eles: newElements,
-                              padding: 10,
-                            },
-                            easing: "ease-in-out",
-                            duration: 1000,
-                          }).play();
-                        }, 500);
-                      });
+
+                      // Get reference to the component
                       myCy = cy;
+
+                      // Make it so the graph is automatically fitted into container when it is resized
+                      cy.on("resize", () => {
+                        zoomOut();
+                      });
                     }}
                     elements={newElements}
-                    style={style}
+                    style={{ width: "50vw", height: "70vh" }}
                     stylesheet={graphStyle}
                     layout={layout}
                     wheelSensitivity={0.2}
