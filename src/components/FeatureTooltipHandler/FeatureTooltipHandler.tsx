@@ -102,13 +102,17 @@ const FeatureTooltipHandler: FC<FeatureTooltipHandlerProps> = ({
       title=""
       close={close}
       firstButton="Prev"
-      secButton="Close"
+      secButton="Start Reading"
       onFistButtonClick={prevTooltip}
       onSecButtonClick={close}
     >
       <div className={cs("tooltip-welcome", className)}>
-        <div className={cs("tooltip-welcome-title", className)}>Thank You</div>
+        <div className={cs("tooltip-welcome-title", className)}>
+          Tour Finished
+        </div>
         <div className={cs("tooltip-welcome-text", className)}>
+          Thank you for viewing!
+          <br />
           Continue your reading on Smarticle!
           <br />
           Go! Go!
