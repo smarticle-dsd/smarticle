@@ -17,5 +17,3 @@ function importParentStyles() {
   }
   document.getElementsByTagName("head")[0].appendChild(style);
 }
-
-importParentStyles();

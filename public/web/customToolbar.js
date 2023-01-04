@@ -1,15 +1,6 @@
 function registerCustomToolbarButtonHandlers() {
   const toolbarButtons = document.querySelectorAll(".sidebarToolButton");
 
-  const oldPdfJsHistory = JSON.parse(localStorage.getItem("pdfjs.history"));
-  const newPdfJsHistory = {
-    files: oldPdfJsHistory.files.map((el) => ({
-      ...el,
-      sidebarView: 1,
-    })),
-  };
-
-  localStorage.setItem("pdfjs.history", JSON.stringify(newPdfJsHistory));
   for (const toolbarBtn of toolbarButtons) {
     toolbarBtn.addEventListener("click", (e) => {
       toggleSidebarTool(e.target.id);
@@ -23,16 +14,19 @@ function registerCustomToolbarButtonHandlers() {
  * If the tool is already open, doesn't do anything
  *
  * @param {buttonId} buttonId id of the button that controls the tool
- * @param {viewId} viewId id of the view that is controlled
  */
-function openSidebarTool(buttonId) {
+function openSidebarTool(buttonId, calledFromPDFEventBus = false) {
   const sidebar = document.getElementById("outerContainer");
   const button = document.getElementById(buttonId);
   const toolbarButtons = document.querySelectorAll(".sidebarToolButton");
 
   if (!button || !sidebar || !toolbarButtons) return;
 
-  sidebar?.classList.add("sidebarOpen");
+  // Open the sidebar if it is not already open
+  // Only open on button click
+  if (!calledFromPDFEventBus && !sidebar?.classList.contains("sidebarOpen")) {
+    document.getElementById("sidebarToggle").click();
+  }
 
   const sidebarContent = document.getElementById("sidebarContent");
   for (const child of sidebarContent.children) {
@@ -57,13 +51,11 @@ function openSidebarTool(buttonId) {
  * @param {buttonId} buttonId id of the button that controls the tool
  */
 function closeSidebarTool(buttonId) {
-  const sidebar = document.getElementById("outerContainer");
   const button = document.getElementById(buttonId);
 
   if (!button) return;
 
-  sidebar?.classList.remove("sidebarOpen");
-  sidebar?.classList.add("sidebarClosed");
+  document.getElementById("sidebarToggle").click();
   button?.classList.remove("active");
 }
 
@@ -106,4 +98,25 @@ function removeElement(elemID) {
   element.parentNode.removeChild(element);
 }
 
-window.onload = editToolBar;
+PDFViewerApplication.initializedPromise.then(() => {
+  const f = (e) => {
+    if (typeof e.view === "number" && e.view != 0) {
+      switch (e.view) {
+        case 1:
+          openSidebarTool("viewThumbnail", true);
+          break;
+        case 2:
+          openSidebarTool("viewOutline", true);
+          break;
+        case 3:
+          openSidebarTool("viewAttachments", true);
+          break;
+        case 4:
+          openSidebarTool("viewLayers", true);
+          break;
+      }
+    }
+    PDFViewerApplication.eventBus._off("sidebarviewchanged", f);
+  };
+  PDFViewerApplication.eventBus.on("sidebarviewchanged", f);
+});
