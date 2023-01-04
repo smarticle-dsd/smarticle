@@ -43,6 +43,7 @@ See https://github.com/adobe-type-tools/cmap-resources
     <script src="viewer.js"></script>
     <script src="customToolbar.js"></script>
     <script src="importStyles.js"></script>
+    <script src="customOnLoad.js"></script>
   </head>
 
   <body tabindex="1">
@@ -52,7 +53,7 @@ See https://github.com/adobe-type-tools/cmap-resources
           <div id="toolbarSidebarLeft">
             <div
               id="sidebarViewButtons"
-              class="splitToolbarButton toggled"
+              class="splitToolbarButton"
               role="radiogroup"
             ></div>
           </div>
@@ -77,7 +78,7 @@ See https://github.com/adobe-type-tools/cmap-resources
           </div>
         </div>
         <div id="sidebarContent">
-          <div id="thumbnailView"></div>
+          <div id="thumbnailView" class="hidden"></div>
           <div id="outlineView" class="hidden"></div>
           <div id="attachmentsView" class="hidden"></div>
           <div id="layersView" class="hidden"></div>
@@ -547,7 +548,7 @@ See https://github.com/adobe-type-tools/cmap-resources
                 </button>
                 <button
                   id="viewThumbnail"
-                  class="customLayoutIconButton sidebarToolButton toggled active"
+                  class="customLayoutIconButton sidebarToolButton"
                   title="Show Thumbnails"
                   tabindex="12"
                   data-l10n-id="thumbs"
