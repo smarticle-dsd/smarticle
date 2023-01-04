@@ -23,7 +23,7 @@ function openSidebarTool(buttonId, calledFromPDFEventBus = false) {
   if (!button || !sidebar || !toolbarButtons) return;
 
   // Open the sidebar if it is not already open
-  // Only open on button click
+  // Only open on button click - on first load pdf.js opens it anyway
   if (!calledFromPDFEventBus && !sidebar?.classList.contains("sidebarOpen")) {
     document.getElementById("sidebarToggle").click();
   }
@@ -98,6 +98,8 @@ function removeElement(elemID) {
   element.parentNode.removeChild(element);
 }
 
+// Used to open the stored tool on first page load
+// After the initial tool loading, the listener is removed
 PDFViewerApplication.initializedPromise.then(() => {
   const f = (e) => {
     if (typeof e.view === "number" && e.view != 0) {
