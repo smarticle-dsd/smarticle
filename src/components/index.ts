@@ -5,6 +5,8 @@ export * from "./KnowledgeGraph";
 export * from "./TitleClose";
 export * from "./CustomSummary";
 export * from "./SidebarZoom";
+export * from "./FeatureTooltipHandler";
+export * from "./FeatureTooltip";
 export * from "./SupportedPaperList";
 export * from "./Loader";
 export * from "./SidebarError";
