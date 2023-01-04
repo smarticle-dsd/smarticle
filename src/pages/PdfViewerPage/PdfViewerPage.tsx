@@ -5,7 +5,7 @@ import { PdfViewerPageProps } from "./PdfViewerPage.types";
 import { useSearchParams } from "react-router-dom";
 import { createPortal } from "react-dom";
 import { Summary, KnowledgeGraph, KnowledgeGraphModal } from "../../components";
-import { Reference } from "../../components";
+import { Reference, FeatureTooltipHandler } from "../../components";
 import * as pdfjs from "pdfjs-dist/legacy/build/pdf";
 import { TextItem, TextMarkedContent } from "pdfjs-dist/types/src/display/api";
 import { Error404Page } from "../Error404Page";
@@ -167,6 +167,25 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
   const [elements, setElements] = React.useState<Array<
     Record<string, Record<string, string>>
   > | null>(null);
+
+  // Feature tooltips will appear only at user's first visit
+  const prefix = "/pdfviewer/";
+  const [isVisited, setIsVisited] = useState(false);
+  const [isTooltipVisible, setIsTooltipVisible] = useState(true);
+
+  const toogleTooltip = () => {
+    setIsTooltipVisible(!isTooltipVisible);
+  };
+
+  useEffect(() => {
+    const visited = localStorage.getItem("Visited");
+    if (window.location.href.includes(prefix) && !visited) {
+      //console.log({ localStorage });
+      localStorage.setItem("Visited", "visited");
+      setIsVisited(true);
+    }
+  }, []);
+
   return (
     <div
       id={domIDs.root}
@@ -207,6 +226,12 @@ const PdfViewerPage: FC<PdfViewerPageProps> = ({
               elements={elements}
             />
           )}
+          {isVisited ? (
+            <FeatureTooltipHandler
+              isVisible={isTooltipVisible}
+              close={toogleTooltip}
+            />
+          ) : null}
         </>
       ) : (
         <Error404Page />
