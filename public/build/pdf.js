@@ -12324,7 +12324,7 @@
                           };
                           page.render(w);
                         }),
-                        container.after(c)
+                        container.after(c);
                     });
                   });
                 }
@@ -12334,7 +12334,11 @@
             container.addEventListener(
               "mouseleave",
               () => {
-                c.remove();
+                var canvas =
+                  document.getElementsByClassName("reference-canvas");
+                for (var i = 0; i < canvas.length; i++) {
+                  canvas.item(i).remove();
+                }
               },
               false,
             );
