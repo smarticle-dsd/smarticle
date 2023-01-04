@@ -12336,8 +12336,8 @@
               () => {
                 var canvas =
                   document.getElementsByClassName("reference-canvas");
-                for (var i = 0; i < canvas.length; i++) {
-                  canvas.item(i).remove();
+                while (canvas.length > 0) {
+                  canvas[0].parentNode.removeChild(canvas[0]);
                 }
               },
               false,
