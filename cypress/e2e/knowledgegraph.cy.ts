@@ -299,11 +299,53 @@ describe('Knowledge Graph modal opens when "Open Knowledge Graph" button is clic
           cy.wrap(knowledgeGraphButton).click();
           cy.get("#knowledge-graph-modal").then((modal) => {
             expect(modal).to.be.visible;
+          });
+        });
+    });
+  });
+});
+
+describe('Knowledge Graph is displayed when "Open Knowledge Graph" button is clicked', () => {
+  it("passes", () => {
+    getIframeFromUrl(pdfUrlWithSummaryAbstract).then(($iframeData) => {
+      const knowledgeGraphButton = $iframeData.find(
+        "#knowledgeGraphToolbarButton",
+      );
+      cy.wrap(knowledgeGraphButton).click();
+      cy.wrap($iframeData)
+        .find(".sa-knowledge-graph-wrapper")
+        .then(($kg) => {
+          const knowledgeGraphButton = $kg.find(".sa-knowledge-graph-button");
+          expect(knowledgeGraphButton).to.be.enabled;
+          cy.wrap(knowledgeGraphButton).click();
+          cy.get("#knowledge-graph-modal").then((modal) => {
+            expect(modal).to.be.visible;
             const graph = modal.find(".sa-knowledge-graph-modal-graph");
+            expect(graph).to.exist;
+          });
+        });
+    });
+  });
+});
+
+describe('Paper details are displayed next to the graph is displayed when "Open Knowledge Graph" button is clicked', () => {
+  it("passes", () => {
+    getIframeFromUrl(pdfUrlWithSummaryAbstract).then(($iframeData) => {
+      const knowledgeGraphButton = $iframeData.find(
+        "#knowledgeGraphToolbarButton",
+      );
+      cy.wrap(knowledgeGraphButton).click();
+      cy.wrap($iframeData)
+        .find(".sa-knowledge-graph-wrapper")
+        .then(($kg) => {
+          const knowledgeGraphButton = $kg.find(".sa-knowledge-graph-button");
+          expect(knowledgeGraphButton).to.be.enabled;
+          cy.wrap(knowledgeGraphButton).click();
+          cy.get("#knowledge-graph-modal").then((modal) => {
+            expect(modal).to.be.visible;
             const nodeDetails = modal.find(
               ".sa-knowledge-graph-modal-node-details",
             );
-            expect(graph).to.exist;
             expect(nodeDetails).to.exist;
             expect(nodeDetails.text()).to.contain(
               "Paper Title: Bypass Exponential Time Preprocessing: Fast Neural Network Training via Weight-Data Correlation Preprocessing",
