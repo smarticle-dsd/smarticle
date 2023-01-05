@@ -1,7 +1,11 @@
 const pdfUrl = "https://arxiv.org/pdf/2211.14227.pdf";
 
-const getIframeFromUrl = (pdfUrl: string, waitTime: number = 10000) => {
-  cy.visit("/");
+const getIframeFromUrl = (pdfUrl: string, waitTime: number = 15000) => {
+  cy.visit("/", {
+    onBeforeLoad: function (window) {
+      window.localStorage.setItem("Visited", "visited");
+    },
+  });
   return cy
     .get(".upload-pdf-button")
     .click({ force: true })
