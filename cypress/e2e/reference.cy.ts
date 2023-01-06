@@ -59,10 +59,15 @@ describe("Clicking on a reference shows a pop-up and opens it in sidebar", () =>
       const annotation = $iframeData.find(".internalLink");
       cy.wrap(annotation[1])
         .click()
+        .wait(3000)
         .then(() => {
           const referenceCanvas = $iframeData.find(".reference-canvas");
           const referenceToolCanvas = $iframeData.find(".referenceview-canvas");
           const refrenceWrapper = $iframeData.find(".reference-view-wrapper");
+          const jumpToContentButton = $iframeData.find(
+            ".reference-content-button",
+          );
+          expect(jumpToContentButton).to.be.visible;
           expect(refrenceWrapper).to.not.exist; //Wrapper should not exist when a reference is clicked
           expect(referenceCanvas).to.exist; // Check if pop up exists
           expect(referenceToolCanvas).to.be.visible; // Check if reference is displayed in toolbar
@@ -71,16 +76,28 @@ describe("Clicking on a reference shows a pop-up and opens it in sidebar", () =>
   });
 });
 
-// describe("Clicking on a reference shows a pop-up and opens it in sidebar", () => {
-//   it("passes", () => {
-//     getIframeFromUrl(pdfUrl).then(($iframeData) => {
-//       const annotation = $iframeData.find(".internalLink");
-//       cy.wrap(annotation[1])
-//         .trigger("mouseover")
-//         .then(() => {
-//           const referenceCanvas = $iframeData.find(".reference-canvas");
-//           expect(referenceCanvas).to.exist; // Check if pop up exists
-//         });
-//     });
-//   });
-// });
+describe("Once ‘Jump to Content’ button is clicked it becomes disabled and ‘Jump back’ button becomes enabled.", () => {
+  it("passes", () => {
+    getIframeFromUrl(pdfUrl).then(($iframeData) => {
+      const annotation = $iframeData.find(".internalLink");
+      cy.wrap(annotation[1])
+        .click()
+        .wait(3000)
+        .then(() => {
+          const jumpToContentButton = $iframeData.find(
+            ".reference-content-button",
+          );
+          expect(jumpToContentButton).not.be.disabled;
+          const jumpBackButton = $iframeData.find(".reference-back-button");
+          expect(jumpBackButton).not.be.enabled;
+          cy.wrap(jumpToContentButton)
+            .click()
+            .wait(3000)
+            .then(() => {
+              expect(jumpToContentButton).not.be.enabled;
+              expect(jumpBackButton).not.be.disabled;
+            });
+        });
+    });
+  });
+});
