@@ -7,5 +7,9 @@ export const queryBackend = async (
   endpoint: string,
   data: Record<string, Record<string, string | null>>,
 ) => {
-  return API.post("backend", endpoint, data);
+  try {
+    return API.post("backend", endpoint, data);
+  } catch {
+    return null;
+  }
 };
