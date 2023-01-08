@@ -33,34 +33,9 @@ const KnowledgeGraphModal: FC<KnowledgeGraphModalProps> = ({
   );
 
   let myCy: cytoscape.Core;
-  // create a reference to the parent container element
-  const containerRef = React.useRef<HTMLElement | null>(null);
-
-  // use the useState hook to store the width and height of the component
-  const [style, setStyle] = React.useState({});
 
   const [error, setError] = React.useState<boolean>(false);
   const [newElements, setNewElements] = React.useState<any>(elements);
-
-  // update the width  of the component when the component is mounted
-  React.useEffect(() => {
-    containerRef.current = document.getElementById(domIDs.root);
-    if (containerRef.current) {
-      setStyle({ width: containerRef.current.offsetWidth, height: 450 });
-    }
-  }, [containerRef, domIDs.root]);
-
-  // update the width of the component whenever the parent container changes
-  React.useEffect(() => {
-    function handleResize() {
-      if (containerRef.current) {
-        setStyle({ width: containerRef.current.offsetWidth, height: 450 });
-      }
-    }
-
-    // add an event listener to listen for resize events
-    window.addEventListener("resize", handleResize);
-  });
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const graphStyle = require("./cy-style.json");
@@ -76,8 +51,9 @@ const KnowledgeGraphModal: FC<KnowledgeGraphModalProps> = ({
     levelWidth: function (nodes: []) {
       return 2;
     },
-    fit: "true",
-    animate: "true",
+    fit: true,
+    pan: true,
+    animate: true,
   };
 
   graphStyle[1].style["background-color"] = (node: any) =>
@@ -195,20 +171,21 @@ const KnowledgeGraphModal: FC<KnowledgeGraphModalProps> = ({
                         cy.animation({
                           fit: {
                             eles: node,
-                            padding: 50,
+                            padding: 150,
                           },
                           easing: "ease-in-out",
                           duration: 1000,
                         }).play();
                       });
+
+                      // Get reference to the component
                       myCy = cy;
                     }}
                     elements={newElements}
-                    style={style}
+                    style={{ width: "50vw", height: "70vh" }}
                     stylesheet={graphStyle}
                     layout={layout}
                     wheelSensitivity={0.2}
-                    pan={{ x: 100, y: 200 }}
                     zoom={0.3}
                   />
                   {node ? (

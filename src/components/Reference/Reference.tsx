@@ -3,7 +3,8 @@ import cs from "classnames";
 import svg from "./refvec.svg";
 import { Button } from "../Button";
 import { ReferenceProps } from "./Reference.types";
-import { useGesture } from "@use-gesture/react";
+import { useSpring, animated } from "@react-spring/web";
+import { createUseGesture, dragAction, pinchAction } from "@use-gesture/react";
 
 const Reference: FC<ReferenceProps> = ({
   domID = "reference",
@@ -41,43 +42,52 @@ const Reference: FC<ReferenceProps> = ({
       <div className={cs("wrapper-canvas", className)}>
         <Canvas />
       </div>
-      <div className={cs("referenceview-button", className)}>
-        <Button size="large" type="primary">
-          Jump to Content
-        </Button>
+      <div className={cs("referenceview-buttons", className)}>
+        <div className={cs("reference-content-button", className)}>
+          <Button size="large" type="primary">
+            Jump to Content
+          </Button>
+        </div>
+        <div className={cs("reference-back-button", className)}>
+          <Button size="large" type="primary">
+            Jump back
+          </Button>
+        </div>
       </div>
     </div>
   );
 };
 
+const useGesture = createUseGesture([dragAction, pinchAction]);
 function Canvas() {
-  const canvcon = useRef() as React.MutableRefObject<HTMLCanvasElement>;
-  const [crop, setCrop] = useState({ x: 0, y: 0, scale: 1 });
-  let canv_bound = canvcon.current?.parentElement?.getBoundingClientRect();
-  let wrap_bound = canvcon.current?.parentElement?.getBoundingClientRect();
+  const ref = useRef<HTMLCanvasElement>(null);
   const [bounds, setBounds] = useState({ w: 0, h: 0 });
+  let canv_bound = ref.current?.getBoundingClientRect();
+  let wrap_bound = ref.current?.parentElement?.getBoundingClientRect();
+  const [style, api] = useSpring(() => ({
+    x: 0,
+    y: 0,
+    scale: 1,
+  }));
+
   useGesture(
     {
-      onDrag: ({ offset: [dx, dy] }) => {
-        setCrop((crop) => ({ ...crop, x: dx, y: dy }));
+      onDrag: ({ pinching, cancel, offset: [x, y], ...rest }) => {
+        if (pinching) return cancel();
+        api.start({ x, y });
       },
-      onPinch: ({ event, offset: [d] }) => {
-        event.stopImmediatePropagation();
+      onPinch: ({
+        event,
+        origin: [ox, oy],
+        first,
+        movement: [ms],
+        offset: [s, a],
+        memo,
+      }) => {
         event.preventDefault();
-        setCrop((crop) => ({ ...crop, scale: d }));
-      },
-      onWheel: ({ event }) => {
-        const newScale = Math.min(
-          5,
-          Math.max(1, crop.scale - event.deltaY * 0.001),
-        );
-        setCrop((crop) => ({
-          ...crop,
-          scale: newScale,
-        }));
-        canv_bound = canvcon.current?.getBoundingClientRect();
-        wrap_bound = canvcon.current?.parentElement?.getBoundingClientRect();
-
+        event.stopImmediatePropagation();
+        canv_bound = ref.current?.getBoundingClientRect();
+        wrap_bound = ref.current?.parentElement?.getBoundingClientRect();
         if (canv_bound && wrap_bound) {
           setBounds((bounds) => ({
             ...bounds,
@@ -85,35 +95,44 @@ function Canvas() {
             h: (canv_bound?.height as number) - (wrap_bound?.height as number),
           }));
         }
+        if (first && ref.current) {
+          const { width, height, x, y } = ref.current.getBoundingClientRect();
+          const tx = ox - (x + width / 2);
+          const ty = oy - (y + height / 2);
+          memo = [style.x.get(), style.y.get(), tx, ty];
+        }
+        const x = memo[0] - (ms - 1) * memo[2];
+        const y = memo[1] - (ms - 1) * memo[3];
+        api.start({ scale: s, x: x, y: y });
+        return memo;
       },
     },
     {
-      target: canvcon,
-      eventOptions: { passive: false },
+      target: ref,
+
+      drag: {
+        from: () => [style.x.get(), style.y.get()],
+        bounds: {
+          right: bounds.w / 1.8,
+          left: -bounds.w / 1.8,
+          top: -bounds.h / 1.8,
+          bottom: bounds.h / 1.8,
+        },
+      },
       pinch: {
         scaleBounds: { min: 1, max: 5 },
-      },
-      drag: {
-        bounds: {
-          right: bounds.w / 2,
-          left: -bounds.w / 2,
-          top: -bounds.h / 2,
-          bottom: bounds.h / 2,
-        },
+        pinchOnWheel: true,
+        modifierKey: null,
       },
     },
   );
 
   return (
-    <canvas
-      ref={canvcon}
-      className="referenceview-canvas"
-      style={{
-        left: crop.x,
-        top: crop.y,
-        transform: `scale(${crop.scale})`,
-      }}
-    ></canvas>
+    <animated.canvas
+      className={"referenceview-canvas"}
+      ref={ref}
+      style={style}
+    ></animated.canvas>
   );
 }
 

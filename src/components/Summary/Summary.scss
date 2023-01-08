@@ -1,6 +1,7 @@
 .sa-summary {
   color: var(--sa-neutral-color-5);
   padding: 16px;
+  user-select: none;
 
   h1 {
     @include typographyMediumL;
@@ -15,6 +16,10 @@
   p {
     @include typographyRegularXs;
     margin-bottom: 16px;
+  }
+
+  #summary-content:hover {
+    user-select: text;
   }
 
   .sa-summary-custom {

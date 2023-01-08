@@ -12271,11 +12271,11 @@
             //
             //mouseover create a canvas
             //
+            const c = document.createElement("canvas");
             container.addEventListener(
               "mouseenter",
               (event) => {
                 if (data.dest) {
-                  const c = document.createElement("canvas");
                   c.className = "reference-canvas";
                   c.style.top = event.clientY + "px";
 
@@ -12324,16 +12324,20 @@
                           };
                           page.render(w);
                         }),
-                        container.after(c),
-                        container.addEventListener(
-                          "mouseleave",
-                          () => {
-                            c.remove();
-                          },
-                          false,
-                        );
+                        container.after(c);
                     });
                   });
+                }
+              },
+              false,
+            );
+            container.addEventListener(
+              "mouseleave",
+              () => {
+                var canvas =
+                  document.getElementsByClassName("reference-canvas");
+                while (canvas.length > 0) {
+                  canvas[0].parentNode.removeChild(canvas[0]);
                 }
               },
               false,
@@ -12354,15 +12358,43 @@
                 )[0];
                 canv.style.visibility = "visible";
 
-                var button = document.getElementsByClassName(
-                  "referenceview-button",
+                var contentButton = document.getElementsByClassName(
+                  "reference-content-button",
                 )[0];
-                button.style.visibility = "visible";
+                contentButton.style.visibility = "visible";
+
+                var backButton = document.getElementsByClassName(
+                  "reference-back-button",
+                )[0];
+                backButton.style.visibility = "visible";
+
+                const childBack = backButton.firstChild;
+                const childContent = contentButton.firstChild;
+                childBack.disabled = true;
+                childContent.disabled = false;
 
                 let link_destination = data.dest;
-                button.addEventListener(
+                contentButton.addEventListener(
                   "click",
-                  () => this.linkService.goToDestination(link_destination),
+                  () => {
+                    this.linkService.goToDestination(link_destination);
+                    childBack.disabled = false;
+                    childContent.disabled = true;
+                  },
+                  false,
+                );
+
+                backButton.addEventListener(
+                  "click",
+                  () => {
+                    document
+                      .querySelector(
+                        "section[data-annotation-id='" + data.id + "']",
+                      )
+                      .scrollIntoView();
+                    childBack.disabled = true;
+                    childContent.disabled = false;
+                  },
                   false,
                 );
 

@@ -15,6 +15,7 @@
   .sa-knowledge-graph-modal-overlay {
     position: fixed;
     width: 100%;
+    height: 100%;
     background-color: rgba(159, 187, 170, 0.6);
     z-index: 1;
     top: 0px;
@@ -23,9 +24,10 @@
 
   .sa-knowledge-graph-modal-wrapper {
     background-color: var(--sa-neutral-color-2);
-    width: 1000px;
+    width: 80%;
+    height: 80%;
 
-    margin: 175px auto;
+    margin: 50px auto;
 
     border: 0px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -41,6 +43,7 @@
       gap: 20px;
     }
     .sa-knowledge-graph-modal-node-details {
+      width: 35%;
       .sa-knowledge-graph-modal-node-buttons {
         display: flex;
         justify-content: center;

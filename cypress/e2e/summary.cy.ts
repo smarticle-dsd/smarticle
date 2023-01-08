@@ -5,15 +5,19 @@ const pdfUrlWithNoDetails = "https://arxiv.org/pdf/2211.14250.pdf";
 const paperIdWithSummaryAbstract = "649def34f8be52c8b66281af98ae884c09aef38b";
 const paperIdWithoutSummary = "arxiv:1305.3823";
 const pdfFile = "cypress/fixtures/test1.pdf";
-const getIframeFromUrl = (pdfUrl: string, waitTime: number = 10000) => {
-  cy.visit("/");
+const getIframeFromUrl = (pdfUrl: string, waitTime: number = 15000) => {
+  cy.visit("/", {
+    onBeforeLoad: function (window) {
+      window.localStorage.setItem("Visited", "visited");
+    },
+  });
   return cy
     .get(".upload-pdf-button")
-    .click({ force: true })
+    .click()
     .get(".modal-link-section")
     .type(pdfUrl)
     .get(".modal-upload-button")
-    .click({ force: true })
+    .click()
     .wait(waitTime)
     .get("iframe")
     .its("0.contentDocument.body")
@@ -25,7 +29,7 @@ describe("The summary component opens when clicking on the Summary button on the
   it("passes", () => {
     getIframeFromUrl(pdfUrlWithSummaryAbstract)
       .find("#summaryToolbarButton")
-      .click({ force: true });
+      .click();
   });
 });
 
@@ -33,7 +37,7 @@ describe("The summary and abstract are displayed when Semantic Scholar has summa
   it("passes", () => {
     getIframeFromUrl(pdfUrlWithSummaryAbstract).then(($iframeData) => {
       const summaryButton = $iframeData.find("#summaryToolbarButton");
-      cy.wrap(summaryButton).click({ force: true });
+      cy.wrap(summaryButton).click();
       cy.wrap($iframeData)
         .find(".sa-summary")
         .then(($summary) => {
@@ -56,7 +60,7 @@ describe("The available data is displayed when Semantic Scholar has either summa
   it("passes", () => {
     getIframeFromUrl(pdfUrlWithoutSummary).then(($iframeData) => {
       const summaryButton = $iframeData.find("#summaryToolbarButton");
-      cy.wrap(summaryButton).click({ force: true });
+      cy.wrap(summaryButton).click();
       cy.wrap($iframeData)
         .find(".sa-summary")
         .then(($summary) => {
@@ -76,7 +80,7 @@ describe("Error message is displayed when Semantic Scholar does not have summary
   it("passes", () => {
     getIframeFromUrl(pdfUrlWithNoDetails).then(($iframeData) => {
       const summaryButton = $iframeData.find("#summaryToolbarButton");
-      cy.wrap(summaryButton).click({ force: true });
+      cy.wrap(summaryButton).click();
       cy.wrap($iframeData)
         .find(".sa-summary")
         .then(($summary) => {
@@ -98,7 +102,7 @@ describe('"Submit ID" and "Reset" buttons are disabled when paper is loaded with
   it("passes", () => {
     getIframeFromUrl(pdfUrlWithNoDetails).then(($iframeData) => {
       const summaryButton = $iframeData.find("#summaryToolbarButton");
-      cy.wrap(summaryButton).click({ force: true });
+      cy.wrap(summaryButton).click();
       cy.wrap($iframeData)
         .find(".sa-summary")
         .then(($summary) => {
@@ -115,7 +119,7 @@ describe('"Submit ID" button is enabled when user starts typing input in the inp
   it("passes", () => {
     getIframeFromUrl(pdfUrlWithNoDetails).then(($iframeData) => {
       const summaryButton = $iframeData.find("#summaryToolbarButton");
-      cy.wrap(summaryButton).click({ force: true });
+      cy.wrap(summaryButton).click();
       cy.wrap($iframeData)
         .find(".sa-summary")
         .then(($summary) => {
@@ -125,7 +129,7 @@ describe('"Submit ID" button is enabled when user starts typing input in the inp
           const resetButton = $summary.find(".sidebar-reset-button");
           expect(resetButton).to.be.disabled;
           cy.wrap(inputText)
-            .type("abcd", { force: true })
+            .type("abcd")
             .then(() => {
               expect(submitButton).to.not.be.disabled;
               expect(resetButton).to.be.disabled;
@@ -139,7 +143,7 @@ describe('"Reset" button is enabled when user has generated summary for custom p
   it("passes", () => {
     getIframeFromUrl(pdfUrlWithSummaryAbstract).then(($iframeData) => {
       const summaryButton = $iframeData.find("#summaryToolbarButton");
-      cy.wrap(summaryButton).click({ force: true });
+      cy.wrap(summaryButton).click();
       cy.wrap($iframeData)
         .find(".sa-summary")
         .then(($summary) => {
@@ -150,12 +154,12 @@ describe('"Reset" button is enabled when user has generated summary for custom p
           expect(resetButton).to.be.disabled;
 
           cy.wrap(inputText)
-            .type(paperIdWithSummaryAbstract, { force: true })
+            .type(paperIdWithSummaryAbstract)
             .then(() => {
               expect(submitButton).to.not.be.disabled;
               expect(resetButton).to.be.disabled;
               cy.wrap(submitButton)
-                .click({ force: true })
+                .click()
                 .wait(5000)
                 .then(() => {
                   expect(resetButton).to.not.be.disabled;
@@ -170,7 +174,7 @@ describe('Clicking on "Reset" button resets the summary to the originally genera
   it("passes", () => {
     getIframeFromUrl(pdfUrlWithSummaryAbstract).then(($iframeData) => {
       const summaryButton = $iframeData.find("#summaryToolbarButton");
-      cy.wrap(summaryButton).click({ force: true });
+      cy.wrap(summaryButton).click();
       cy.wrap($iframeData)
         .find(".sa-summary")
         .then(($summary) => {
@@ -183,16 +187,16 @@ describe('Clicking on "Reset" button resets the summary to the originally genera
           const abstract = $summary.find(".sa-summary-abstract");
 
           cy.wrap(inputText)
-            .type(paperIdWithSummaryAbstract, { force: true })
+            .type(paperIdWithSummaryAbstract)
             .then(() => {
               expect(submitButton).to.not.be.disabled;
               expect(resetButton).to.be.disabled;
               cy.wrap(submitButton)
-                .click({ force: true })
+                .click()
                 .wait(5000)
                 .then(() => {
                   cy.wrap(resetButton)
-                    .click({ force: true })
+                    .click()
                     .wait(5000)
                     .then(() => {
                       expect(tldr).to.contain.text(
@@ -213,7 +217,7 @@ describe('Entering a paper ID with abstract and summary and clicking on "Submit 
   it("passes", () => {
     getIframeFromUrl(pdfUrlWithSummaryAbstract).then(($iframeData) => {
       const summaryButton = $iframeData.find("#summaryToolbarButton");
-      cy.wrap(summaryButton).click({ force: true });
+      cy.wrap(summaryButton).click();
       cy.wrap($iframeData)
         .find(".sa-summary")
         .then(($summary) => {
@@ -226,12 +230,12 @@ describe('Entering a paper ID with abstract and summary and clicking on "Submit 
           const abstract = $summary.find(".sa-summary-abstract");
 
           cy.wrap(inputText)
-            .type(paperIdWithSummaryAbstract, { force: true })
+            .type(paperIdWithSummaryAbstract)
             .then(() => {
               expect(submitButton).to.not.be.disabled;
               expect(resetButton).to.be.disabled;
               cy.wrap(submitButton)
-                .click({ force: true })
+                .click()
                 .wait(5000)
                 .then(() => {
                   expect(tldr).to.contain.text(
@@ -251,7 +255,7 @@ describe('Entering a paper ID with either abstract or summary and clicking on "S
   it("passes", () => {
     getIframeFromUrl(pdfUrlWithSummaryAbstract).then(($iframeData) => {
       const summaryButton = $iframeData.find("#summaryToolbarButton");
-      cy.wrap(summaryButton).click({ force: true });
+      cy.wrap(summaryButton).click();
       cy.wrap($iframeData)
         .find(".sa-summary")
         .then(($summary) => {
@@ -264,12 +268,12 @@ describe('Entering a paper ID with either abstract or summary and clicking on "S
           const abstract = $summary.find(".sa-summary-abstract");
 
           cy.wrap(inputText)
-            .type(paperIdWithoutSummary, { force: true })
+            .type(paperIdWithoutSummary)
             .then(() => {
               expect(submitButton).to.not.be.disabled;
               expect(resetButton).to.be.disabled;
               cy.wrap(submitButton)
-                .click({ force: true })
+                .click()
                 .wait(5000)
                 .then(() => {
                   expect(abstract).to.contain.text(
@@ -287,7 +291,7 @@ describe('Entering an invalid paper ID and clicking on "Submit ID" displays erro
   it("passes", () => {
     getIframeFromUrl(pdfUrlWithNoDetails).then(($iframeData) => {
       const summaryButton = $iframeData.find("#summaryToolbarButton");
-      cy.wrap(summaryButton).click({ force: true });
+      cy.wrap(summaryButton).click();
       cy.wrap($iframeData)
         .find(".sa-summary")
         .then(($summary) => {
@@ -301,12 +305,12 @@ describe('Entering an invalid paper ID and clicking on "Submit ID" displays erro
           const error = $summary.find(".sa-summary-error");
 
           cy.wrap(inputText)
-            .type("abcd", { force: true })
+            .type("abcd")
             .then(() => {
               expect(submitButton).to.not.be.disabled;
               expect(resetButton).to.be.disabled;
               cy.wrap(submitButton)
-                .click({ force: true })
+                .click()
                 .wait(5000)
                 .then(() => {
                   expect(tldr.text()).to.equal("Summary-+");
@@ -327,7 +331,7 @@ describe('"Generate Summary" button is enabled when user opens the Summary tool'
   it("passes", () => {
     getIframeFromUrl(pdfUrlWithSummaryAbstract).then(($iframeData) => {
       const summaryButton = $iframeData.find("#summaryToolbarButton");
-      cy.wrap(summaryButton).click({ force: true });
+      cy.wrap(summaryButton).click();
       cy.wrap($iframeData)
         .find(".sa-summary")
         .then(($summary) => {
@@ -344,7 +348,7 @@ describe('When user clicks on "Generate Summary" button without any selection, a
   it("passes", () => {
     getIframeFromUrl(pdfUrlWithSummaryAbstract).then(($iframeData) => {
       const summaryButton = $iframeData.find("#summaryToolbarButton");
-      cy.wrap(summaryButton).click({ force: true });
+      cy.wrap(summaryButton).click();
       cy.wrap($iframeData)
         .find(".sa-summary")
         .then(($summary) => {
@@ -352,7 +356,7 @@ describe('When user clicks on "Generate Summary" button without any selection, a
             ".sa-summary-custom-button",
           );
           cy.wrap(generateSummaryButton)
-            .click({ force: true })
+            .click()
             .then(() => {
               const customSummaryText = $summary.find(
                 ".sa-summary-custom-text",
@@ -370,13 +374,13 @@ describe('When user clicks on "Generate Summary" button without any selection, a
 //   it("passes", () => {
 //     getIframeFromUrl(pdfUrlWithoutSummary).then(($iframeData) => {
 //       const summaryButton = $iframeData.find("#summaryToolbarButton");
-//       cy.wrap(summaryButton).click({ force: true });
+//       cy.wrap(summaryButton).click();
 //       cy.wrap($iframeData)
 //         .find(".sa-summary")
 //         .then(($summary) => {
 //           const textSelection = $summary.find(".sa-summary-abstract");
 //           cy.wrap(textSelection)
-//             .trigger("mousedown", { force: true })
+//             .trigger("mousedown")
 //             .then(($el) => {
 //               const el = $el[0];
 //               const document = el.ownerDocument;
@@ -385,15 +389,15 @@ describe('When user clicks on "Generate Summary" button without any selection, a
 //               document.getSelection().removeAllRanges(range);
 //               document.getSelection().addRange(range);
 //             })
-//             .trigger("mouseup", { force: true });
+//             .trigger("mouseup");
 //           cy.document()
-//             .trigger("selectionchange", { force: true })
+//             .trigger("selectionchange")
 //             .then(() => {
 //               const generateSummaryButton = $summary.find(
 //                 ".sa-summary-custom-button",
 //               );
 //               cy.wrap(generateSummaryButton)
-//                 .click({ force: true })
+//                 .click()
 //                 .then(() => {
 //                   const customSummaryText = $summary.find(
 //                     ".sa-summary-custom-text",
@@ -412,7 +416,7 @@ describe("Clicking the close button on the custom summary text closes it", () =>
   it("passes", () => {
     getIframeFromUrl(pdfUrlWithoutSummary).then(($iframeData) => {
       const summaryButton = $iframeData.find("#summaryToolbarButton");
-      cy.wrap(summaryButton).click({ force: true });
+      cy.wrap(summaryButton).click();
       cy.wrap($iframeData)
         .find(".sa-summary")
         .then(($summary) => {
@@ -421,7 +425,7 @@ describe("Clicking the close button on the custom summary text closes it", () =>
           );
 
           cy.wrap(generateSummaryButton)
-            .click({ force: true })
+            .click()
             .then(() => {
               const customSummaryText = $summary.find(
                 ".sa-summary-custom-text",
@@ -431,7 +435,7 @@ describe("Clicking the close button on the custom summary text closes it", () =>
               );
               expect(customSummaryText).to.exist;
               cy.wrap(customSummaryCloseButton)
-                .click({ force: true })
+                .click()
                 .then(() => {
                   expect(customSummaryText).to.not.exist;
                 });
@@ -445,7 +449,7 @@ describe("Clicking the zoom out button decreases font size for abstract and tldr
   it("passes", () => {
     getIframeFromUrl(pdfUrlWithSummaryAbstract).then(($iframeData) => {
       const summaryButton = $iframeData.find("#summaryToolbarButton");
-      cy.wrap(summaryButton).click({ force: true });
+      cy.wrap(summaryButton).click();
       cy.wrap($iframeData)
         .find(".sa-summary")
         .then(($summary) => {
@@ -455,7 +459,7 @@ describe("Clicking the zoom out button decreases font size for abstract and tldr
           const zoomOutButton = $summary.find(".sa-sidebar-zoom-out-button");
 
           cy.wrap(zoomOutButton)
-            .click({ force: true })
+            .click()
             .then(() => {
               cy.wrap(summaryContent).should("have.css", "font-size", "13px");
             });
@@ -468,7 +472,7 @@ describe("Clicking the zoom in button increases font size for abstract and tldr"
   it("passes", () => {
     getIframeFromUrl(pdfUrlWithSummaryAbstract).then(($iframeData) => {
       const summaryButton = $iframeData.find("#summaryToolbarButton");
-      cy.wrap(summaryButton).click({ force: true });
+      cy.wrap(summaryButton).click();
       cy.wrap($iframeData)
         .find(".sa-summary")
         .then(($summary) => {
@@ -478,7 +482,7 @@ describe("Clicking the zoom in button increases font size for abstract and tldr"
           const zoomInButton = $summary.find(".sa-sidebar-zoom-in-button");
 
           cy.wrap(zoomInButton)
-            .click({ force: true })
+            .click()
             .then(() => {
               cy.wrap(summaryContent).should("have.css", "font-size", "15px");
             });
@@ -491,7 +495,7 @@ describe("Clicking the zoom out button is disabled after font size is 11px", () 
   it("passes", () => {
     getIframeFromUrl(pdfUrlWithSummaryAbstract).then(($iframeData) => {
       const summaryButton = $iframeData.find("#summaryToolbarButton");
-      cy.wrap(summaryButton).click({ force: true });
+      cy.wrap(summaryButton).click();
       cy.wrap($iframeData)
         .find(".sa-summary")
         .then(($summary) => {
@@ -501,9 +505,9 @@ describe("Clicking the zoom out button is disabled after font size is 11px", () 
           const zoomOutButton = $summary.find(".sa-sidebar-zoom-out-button");
 
           cy.wrap(zoomOutButton)
-            .click({ force: true })
-            .click({ force: true })
-            .click({ force: true })
+            .click()
+            .click()
+            .click()
             .then(() => {
               cy.wrap(summaryContent).should("have.css", "font-size", "11px");
               cy.wrap(zoomOutButton).should("be.disabled");
@@ -517,7 +521,7 @@ describe("Clicking the zoom in button is disabled when font size is 16px", () =>
   it("passes", () => {
     getIframeFromUrl(pdfUrlWithSummaryAbstract).then(($iframeData) => {
       const summaryButton = $iframeData.find("#summaryToolbarButton");
-      cy.wrap(summaryButton).click({ force: true });
+      cy.wrap(summaryButton).click();
       cy.wrap($iframeData)
         .find(".sa-summary")
         .then(($summary) => {
@@ -527,8 +531,8 @@ describe("Clicking the zoom in button is disabled when font size is 16px", () =>
           const zoomInButton = $summary.find(".sa-sidebar-zoom-in-button");
 
           cy.wrap(zoomInButton)
-            .click({ force: true })
-            .click({ force: true })
+            .click()
+            .click()
             .then(() => {
               cy.wrap(summaryContent).should("have.css", "font-size", "16px");
               cy.wrap(zoomInButton).should("be.disabled");

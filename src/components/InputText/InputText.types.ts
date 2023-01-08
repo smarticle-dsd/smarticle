@@ -27,4 +27,6 @@ export type InputTextProps = {
    * The The onchange event occurs when the value of a text field has been changed.
    */
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 };
