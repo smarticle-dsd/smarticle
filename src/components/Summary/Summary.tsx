@@ -38,17 +38,23 @@ const Summary: FC<SummaryProps> = ({
   // Function to call backend to get custom summary
   const getCustomSummary = async (text: string) => {
     setLoading(true);
-    const result = await queryBackend("/customSummary", {
-      body: {
-        text,
-      },
-    });
+    try {
+      const result = await queryBackend("/customSummary", {
+        body: {
+          text,
+        },
+      });
 
-    if (result.summary) setCustomSummary(result.summary);
-    else
+      if (result.summary) setCustomSummary(result.summary);
+      else
+        setCustomSummary(
+          "Summary could not be generated for the selected section.",
+        );
+    } catch {
       setCustomSummary(
-        "Summary could not be generated for the selected section.",
+        "Summary could not be generated at this time. Please try again later.",
       );
+    }
 
     setLoading(false);
   };

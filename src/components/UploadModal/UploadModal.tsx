@@ -90,22 +90,25 @@ const UploadModal: FC<UploadModalProps> = ({
         navigate("/pdfviewer/?url=" + pdfLink);
       }
     } else if (file && file.name !== "" && file.type === "application/pdf") {
-      if (await isPdfValid(URL.createObjectURL(file))) {
-        const params = {
-          ACL: "public-read",
-          Body: file,
-          Bucket: bucketName,
-          Key: file.name,
-        };
+      if (file.size < 50000000) {
+        if (await isPdfValid(URL.createObjectURL(file))) {
+          const params = {
+            ACL: "public-read",
+            Body: file,
+            Bucket: bucketName,
+            Key: file.name,
+          };
 
-        myBucket.putObject(params).send((err: AWSError) => {
-          if (!err) {
-            navigate("/pdfviewer/?file=" + file.name);
-          } else {
-            setError("There was an error during upload. Please try again.");
-          }
-        });
-        setLoading(false);
+          myBucket.putObject(params).send((err: AWSError) => {
+            if (!err) {
+              navigate("/pdfviewer/?file=" + file.name);
+            } else {
+              setError("There was an error during upload. Please try again.");
+            }
+          });
+        }
+      } else {
+        setError("Please upload a pdf file smaller than 50 MB.");
       }
     } else {
       setError(
